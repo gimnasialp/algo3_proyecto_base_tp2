@@ -89,7 +89,6 @@ public class TP2 {
         int puntoObtenidoJugadorDos =0;
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
-        //assertEquals(puntosEsperados, puntosObtenidos);
     }
 
     @Test

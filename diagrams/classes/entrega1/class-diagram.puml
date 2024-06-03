@@ -1,6 +1,9 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+class AlgoHoot{
+    +comenzarPartida();
+}
 interface Pregunta {
     + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
 }
@@ -79,5 +82,6 @@ Pregunta <|.. VerdaderoFalso
 Respuesta <|-up- RespuestaCorrecta
 Respuesta <|-up- RespuestaIncorrecta
 
+Partida <-up- AlgoHoot
 
 @enduml
