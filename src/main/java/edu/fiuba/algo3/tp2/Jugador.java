@@ -1,23 +1,32 @@
 package edu.fiuba.algo3.tp2;
 
+import edu.fiuba.algo3.modelo.puntuacion.Puntuacion;
+
 public class Jugador {
 
-    private String nombre = "";
-    private int puntaje = 0;
+    private String nombre;
+    private Puntuacion puntucion;
+    //private ArrayList<MultiplicadorJugador> multiplicadores;
+    //private ArrayList<Exclusividad> exclusividades;
 
-    public void setNombre(String nuevo_nombre){
-        this.nombre = nuevo_nombre;
+    public Jugador(String nombre) {
+        this.nombre = nombre;
+        this.puntucion = new Puntuacion(); ;
     }
 
-    public String nombre(){
+    public void setNombre(String nombreJugador){
+        this.nombre = nombreJugador;
+    }
+
+    public String getNombre(){
         return this.nombre;
+
     }
 
-    public void puntuar(int puntos){
-        this.puntaje += puntos;
+    public int puntaje() {
+        return this.puntucion.obtenerPuntos();
     }
-
-    public int puntaje(){
-        return this.puntaje;
+    public void agregarPuntuacion(int puntaje){
+        this.puntucion.agregarPuntos(puntaje);
     }
 }

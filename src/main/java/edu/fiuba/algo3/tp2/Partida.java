@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.tp2;
 
+import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +21,7 @@ public class Partida {
     private void asignarPuntos(ArrayList<Integer> puntos){
         int posicion=0;
         for (Jugador jugadorIterator : this.jugadores) {
-            jugadorIterator.puntuar(puntos.get(posicion));
+            jugadorIterator.agregarPuntuacion(puntos.get(posicion));
             posicion++;
         }
     }

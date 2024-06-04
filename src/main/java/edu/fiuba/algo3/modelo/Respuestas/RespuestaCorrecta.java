@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.tp2;
+package edu.fiuba.algo3.modelo.Respuestas;
 
 public class RespuestaCorrecta extends Respuesta {
 

@@ -1,6 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.tp2.*;
+import edu.fiuba.algo3.modelo.Preguntas.MultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.Preguntas.MultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Preguntas.VerdaderoFalsoClasico;
+import edu.fiuba.algo3.modelo.Preguntas.VerdaderoFalsoConPenalidad;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -58,12 +58,20 @@ class RespuestaIncorrecta{
 }
 
 class Partida{
+    -ArrayList<Jugador>
+
     +procesarRespuestas(ArrayList<Respuesta>: respuestaUno, ArrayList<Respuesta>: respuestaDos)
 }
 
+
 class Jugador{
     - puntos: Integer
+
     + nombrar(String: nombre)
+
+}
+class jugada{
+
 }
 
 MultipleChoice <|-down- MultipleChoiceClasico
@@ -75,7 +83,9 @@ VerdaderoFalso <|-- VerdaderoFalsoConPenalidad
 Pregunta -up-> "1..n" Respuesta
 
 Jugador "n" -up-o Partida
+
 Pregunta -left-o Partida
+
 
 Pregunta <|.. MultipleChoice
 Pregunta <|.. VerdaderoFalso

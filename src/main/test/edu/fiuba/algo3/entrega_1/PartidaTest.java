@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.Preguntas.VerdaderoFalsoClasico;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import edu.fiuba.algo3.tp2.*;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +19,8 @@ public class PartidaTest {
     @Test
     public void Test01RondaProcesaCorrectamenteLasRespuestasVF() {
 
-        Jugador jugadorUno = new Jugador();
-        Jugador jugadorDos = new Jugador();
+        Jugador jugadorUno = new Jugador("pedro");
+        Jugador jugadorDos = new Jugador("miguel");
 
         Respuesta correcta = new RespuestaCorrecta("Verdadero");
         Respuesta incorrecta = new RespuestaIncorrecta("Falso");
