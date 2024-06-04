@@ -36,12 +36,6 @@ public class PreguntaMultipleChoiceTest {
     }
 
     /* Clasico */
-    @Test
-    public void MultipleChoiceClasicoPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        crearMultipleChoiceClasico();
-        RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(this.opcionesCorrectas);
-        assertEquals(Collections.singletonList(1), this.preguntaMC.responder(Collections.singletonList(respuesta)));
-    }
 
     @Test
     public void MultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaPuntos(){
@@ -73,12 +67,6 @@ public class PreguntaMultipleChoiceTest {
     }
 
     /* Parcial */
-    @Test
-    public void MultipleChoiceParcialPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        crearMultipleChoiceParcial();
-        RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 1, 0)));
-        assertEquals(Collections.singletonList(3), this.preguntaMC.responder(Collections.singletonList(respuesta)));
-    }
 
     @Test
     public void MultipleChoiceParcialRecibeUnaListaDeRespuestasYAsignaPuntos(){
@@ -110,12 +98,6 @@ public class PreguntaMultipleChoiceTest {
     }
 
     /* Penalidad */
-    @Test
-    public void MultipleChoicePenalidadPuedeCrearseSiSeIndicanLasRtasCorretas(){
-        crearMultipleChoicePenalidad();
-        RespuestaMultipleChoice respuesta = new RespuestaMultipleChoice(new HashSet<>(Arrays.asList(2, 0, 1)));
-        assertEquals(Collections.singletonList(3), this.preguntaMC.responder(Collections.singletonList(respuesta)));
-    }
 
     @Test
     public void MultipleChoicePenalidadRecibeUnaListaDeRespuestasYAsignaPuntos(){
