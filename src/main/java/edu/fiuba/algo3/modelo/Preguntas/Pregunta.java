@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface Pregunta {
 
-     public abstract ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas);
+    public abstract ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas);
 
 }

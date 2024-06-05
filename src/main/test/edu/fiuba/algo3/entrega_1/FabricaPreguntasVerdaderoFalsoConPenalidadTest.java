@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntasVerdaderoFalso;
-import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoClasico;
+import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntasVerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class FabricaPreguntasVerdaderoFalsoConPenalidadTest {
-    private static FabricaPreguntasVerdaderoFalso fabrica;
+    private static FabricaPreguntasVerdaderoFalsoConPenalidad fabrica;
     private static ArrayList<Respuesta> respuestas;
 
     @BeforeAll
     public static void setup() {
-        fabrica = new FabricaPreguntasVerdaderoFalso();
+        fabrica = new FabricaPreguntasVerdaderoFalsoConPenalidad();
         respuestas = new ArrayList<>();
     }
 

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntaMultipleChoiceConPenalidad;
-import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,7 +21,7 @@ public class FabricaPreguntasMultipleChoiceConPenalidadTest {
     }
 
     @Test
-    public void crearPreguntaPreguntaMultipleChoiceClasicoTest() {
+    public void crearPreguntaPreguntaMultipleChoiceConPenalidadTest() {
         setup();
         MultipleChoiceConPenalidad pregunta = (MultipleChoiceConPenalidad) fabrica.crearPregunta("Argentina es el actual Campeon Mundial", respuestas);
         assertNotNull(pregunta);
