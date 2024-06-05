@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -23,36 +24,37 @@ public class PreguntaVerdaderoFalsoClasicoTest {
         this.respuestaCorrectaVF = new RespuestaCorrecta("Verdadero");
         this.respuestaIncorrectaVF = new RespuestaIncorrecta("Falso");
     }
+    @BeforeEach
     public void creoUnaPreguntaDeVFClasico() {
         setRespuestasVF();
         ArrayList<Respuesta> respuestas = new ArrayList<>(Arrays.asList(this.respuestaCorrectaVF, this.respuestaIncorrectaVF));
         this.unaPreguntaDeVFClasico = new VerdaderoFalsoClasico("Argentina es el actual Campeon Mundial", respuestas);
     }
     @Test
-    public void unaPreguntaDeVFClasicoRecibeRespuestas_entoncesAsignaPuntosCorrectosEIncorrectos() { //Pto. 1 & 2
+    public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntosAJugadoresQueRespondieronBien() { //Pto. 1
+        int puntoObtenidoJugadorUno = 1;
+        int puntoObtenidoJugadorDos = 1;
 
-        creoUnaPreguntaDeVFClasico();
         ArrayList<Respuesta> respuestaJugadorUno = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
-        ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaIncorrectaVF));
+        ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<ArrayList<Respuesta>> respuestas = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeVFClasico.responder(respuestas);
-        int puntoObtenidoJugadorUno = 1;
-        int puntoObtenidoJugadorDos =0;
+
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
 
 
     }
     @Test
-    public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntosIncorrectos() { //Pto. 1 & 2
+    public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntosAJugadoresQueRespondieronBienYMal() { //Pto. 2
+        int puntoObtenidoJugadorUno = 1;
+        int puntoObtenidoJugadorDos = 0;
 
-        creoUnaPreguntaDeVFClasico();
         ArrayList<Respuesta> respuestaJugadorUno = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaIncorrectaVF));
         ArrayList<ArrayList<Respuesta>> respuestas = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeVFClasico.responder(respuestas);
-        int puntoObtenidoJugadorUno = 1;
-        int puntoObtenidoJugadorDos =0;
+
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
 

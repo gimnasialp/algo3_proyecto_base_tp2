@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,21 +25,36 @@ public class PreguntaMultipleChoiceClasicoTest {
         this.respuestaCorrectaMCTres = new RespuestaCorrecta("17");
         this.respuestaIncorrectaMCUno = new RespuestaIncorrecta("fruta");
     }
+    @BeforeEach
     public void creoUnaPreguntaDeMCClasico() {
         setupRespuestasMC();
         ArrayList<Respuesta> respuestas = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCUno, this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaIncorrectaMCUno));
         this.unaPreguntaDeMCClasico = new MultipleChoiceClasico("Java tiene versiones de numero...", respuestas);
     }
     @Test
-    public void unaPreguntaDeMCClasicoRecibeRespuestas_entoncesAsignaPuntosCorrectosEIncorrectos() { //Pto. 3 & 4
-        creoUnaPreguntaDeMCClasico();
+    public void unaPreguntaDeMCClasicoRecibeRespuestasYAsignaPuntosCorrectos() { //Pto. 3
+        int puntoObtenidoJugadorUno = 1;
+        int puntoObtenidoJugadorDos = 1;
+
+        ArrayList<Respuesta> respuestasJugadorUno = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaCorrectaMCUno));
+        ArrayList<Respuesta> respuestasJugadorDos = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaCorrectaMCUno));
+        ArrayList<ArrayList<Respuesta>> respuestasUsuarios = new ArrayList<>(Arrays.asList(respuestasJugadorUno, respuestasJugadorDos));
+        ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeMCClasico.responder(respuestasUsuarios);
+
+        assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
+        assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
+    }
+    @Test
+    public void unaPreguntaDeMCClasicoRecibeRespuestasYasignaPuntosAjugadorQueRespondieronIncorrectamente() { //Pto.4
+
+        int puntoObtenidoJugadorUno = 1;
+        int puntoObtenidoJugadorDos = 0;
         ArrayList<Respuesta> respuestasJugadorUno = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaCorrectaMCTres, this.respuestaCorrectaMCUno));
         ArrayList<Respuesta> respuestasJugadorDos = new ArrayList<>(Arrays.asList(this.respuestaCorrectaMCDos, this.respuestaIncorrectaMCUno, this.respuestaCorrectaMCUno));
         ArrayList<ArrayList<Respuesta>> respuestasUsuarios = new ArrayList<>(Arrays.asList(respuestasJugadorUno, respuestasJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeMCClasico.responder(respuestasUsuarios);
-        int puntoObtenidoJugadorUno =1;
-        int puntoObtenidoJugadorDos =0;
-        assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
+
+        //assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
     }
     
