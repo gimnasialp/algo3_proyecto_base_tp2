@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Preguntas;
+package edu.fiuba.algo3.modelo.Preguntas.VoF;
 
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 
