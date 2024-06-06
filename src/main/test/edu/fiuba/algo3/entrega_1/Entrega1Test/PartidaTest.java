@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
 import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
 import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoClasico;
@@ -40,4 +40,5 @@ public class PartidaTest {
         assertEquals(1, jugadorUno.puntaje());
         assertEquals(0, jugadorDos.puntaje());
     }
+
 }

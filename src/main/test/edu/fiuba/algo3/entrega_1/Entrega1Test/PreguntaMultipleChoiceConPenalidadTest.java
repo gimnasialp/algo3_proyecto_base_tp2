@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
 import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;

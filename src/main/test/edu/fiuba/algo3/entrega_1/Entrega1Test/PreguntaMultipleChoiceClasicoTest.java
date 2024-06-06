@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
 import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
@@ -54,7 +54,7 @@ public class PreguntaMultipleChoiceClasicoTest {
         ArrayList<ArrayList<Respuesta>> respuestasUsuarios = new ArrayList<>(Arrays.asList(respuestasJugadorUno, respuestasJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeMCClasico.responder(respuestasUsuarios);
 
-        //assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
+        assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
     }
     

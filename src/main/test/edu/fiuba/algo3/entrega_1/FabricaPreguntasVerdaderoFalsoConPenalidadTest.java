@@ -24,7 +24,9 @@ public class FabricaPreguntasVerdaderoFalsoConPenalidadTest {
     @Test
     public void crearPreguntaVerdaderoFalsoConPenalidad() {
         setup();
+
         VerdaderoFalsoConPenalidad pregunta = (VerdaderoFalsoConPenalidad) fabrica.crearPregunta("Argentina es el actual Campeon Mundial", respuestas);
         assertNotNull(pregunta);
     }
+    
 }

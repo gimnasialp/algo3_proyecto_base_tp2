@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
 import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
@@ -38,7 +38,7 @@ public class PreguntaVerdaderoFalsoConPenalidadTest {
         ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<ArrayList<Respuesta>> respuestas = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeVFConPenalidad.responder(respuestas);
-        int puntoObtenidoJugadorUno =1;
+        int puntoObtenidoJugadorUno = 1;
         int puntoObtenidoJugadorDos = 1;
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
@@ -55,5 +55,6 @@ public class PreguntaVerdaderoFalsoConPenalidadTest {
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
     }
+
 
 }

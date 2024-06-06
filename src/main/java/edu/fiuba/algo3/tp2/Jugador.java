@@ -11,7 +11,7 @@ public class Jugador {
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.puntucion = new Puntuacion(); ;
+        this.puntucion = new Puntuacion();
     }
 
     public void setNombre(String nombreJugador){
