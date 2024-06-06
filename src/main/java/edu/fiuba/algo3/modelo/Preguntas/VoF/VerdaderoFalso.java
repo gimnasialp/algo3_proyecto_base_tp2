@@ -24,9 +24,9 @@ public abstract class VerdaderoFalso implements Pregunta {
     public ArrayList<Integer> responder(ArrayList<ArrayList<Respuesta>> respuestas) {
         ArrayList<Integer> puntos = new ArrayList();
 
-        for (ArrayList<Respuesta> respuesta : respuestas) {
-            for (Respuesta respuestaList : respuesta) {
-                puntos.add(evaluar(respuestaList));
+        for (ArrayList<Respuesta> respuestaList : respuestas) {
+            for (Respuesta respuesta : respuestaList) {
+                puntos.add(evaluar(respuesta));
             }
         }
         //

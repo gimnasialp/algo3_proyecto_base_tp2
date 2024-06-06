@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.tp2;
 
-import edu.fiuba.algo3.modelo.puntuacion.Puntuacion;
+import edu.fiuba.algo3.modelo.Puntuacion.Puntuacion;
 
 public class Jugador {
 

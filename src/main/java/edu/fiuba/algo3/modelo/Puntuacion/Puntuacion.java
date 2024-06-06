@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.puntuacion;
+package edu.fiuba.algo3.modelo.Puntuacion;
 import java.util.ArrayList;
 
 public class Puntuacion {

@@ -30,18 +30,15 @@ public class PreguntaVerdaderoFalsoClasicoTest {
     }
     @Test
     public void unaPreguntaDeVFClasicoRecibeRespuestas_entoncesAsignaPuntosCorrectosEIncorrectos() { //Pto. 1 & 2
-
         creoUnaPreguntaDeVFClasico();
         ArrayList<Respuesta> respuestaJugadorUno = new ArrayList<>(Collections.singletonList(this.respuestaCorrectaVF));
         ArrayList<Respuesta> respuestaJugadorDos = new ArrayList<>(Collections.singletonList(this.respuestaIncorrectaVF));
         ArrayList<ArrayList<Respuesta>> respuestas = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeVFClasico.responder(respuestas);
         int puntoObtenidoJugadorUno = 1;
-        int puntoObtenidoJugadorDos =0;
+        int puntoObtenidoJugadorDos = 0;
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
-
-
     }
     @Test
     public void unaPreguntaDeVFClasicoRecibeRespuestasYAsignaPuntosIncorrectos() { //Pto. 1 & 2
