@@ -70,9 +70,9 @@ public class PreguntaMultipleChoiceConPenalidadTest {
                 Arrays.asList(respuestasJugadorUno, respuestasJugadorDos));
         ArrayList<Integer> puntosObtenidos = this.unaPreguntaDeMCConPenalidad.responder(respuestasUsuarios);
         int puntoObtenidoJugadorUno = 2;
-        //int puntoObtenidoJugadorDos =-1;
+        int puntoObtenidoJugadorDos =-1;
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
-        //assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
+        assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
     }
 
 }
