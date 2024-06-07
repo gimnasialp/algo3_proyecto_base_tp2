@@ -62,7 +62,7 @@ class RespuestaIncorrecta{
 
 class Partida{
     -ArrayList<Jugador>
-
+    -turnos:int
     +procesarRespuestas(ArrayList<Respuesta>: respuestaUno, ArrayList<Respuesta>: respuestaDos)
 }
 
@@ -73,9 +73,7 @@ class Jugador{
     + nombrar(String: nombre)
 
 }
-class jugada{
 
-}
 Interface Modificador{
     +modificarPuntos(puntos: int)
 }
