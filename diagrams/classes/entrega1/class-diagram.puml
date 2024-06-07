@@ -73,7 +73,18 @@ class Jugador{
 class jugada{
 
 }
-
+Interface Modificador{
+    +modificarPuntos(puntos: int)
+}
+class MultiplicadorX2{
+    +modificarPuntos(puntos:int)
+}
+class MultiplicadorX3{
+    +modificarPuntos(puntos:int)
+}
+Modificador <- Jugador
+Modificador <|-- MultiplicadorX2
+Modificador <|-- MultiplicadorX3
 MultipleChoice <|-down- MultipleChoiceClasico
 MultipleChoice <|-down- MultipleChoiceParcial
 MultipleChoice <|-- MultipleChoiceConPenalidad
