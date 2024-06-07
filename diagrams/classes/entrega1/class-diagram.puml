@@ -86,7 +86,7 @@ class MultiplicadorX3{
     +modificarPuntos(puntos:int)
 }
 class ExclusividadDePuntaje{
-    +modificarPuntos(puntos:int)
+    +modificarPuntos(jugadores:Jugador, respuestasCorectas:Respuestas)
 }
 class AnuladorDePuntos{
     +anularPuntos(jugadores:Jugador)
