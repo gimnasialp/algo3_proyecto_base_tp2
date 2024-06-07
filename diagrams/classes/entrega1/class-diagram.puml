@@ -1,4 +1,7 @@
 @startuml
+title Diagrama de Clase
+skinparam monochrome true
+hide circle
 skinparam classAttributeIconSize 0
 
 class AlgoHoot{
@@ -82,9 +85,17 @@ class MultiplicadorX2{
 class MultiplicadorX3{
     +modificarPuntos(puntos:int)
 }
+class ExclusividadDePuntaje{
+    +modificarPuntos(puntos:int)
+}
+class AnuladorDePuntos{
+    +anularPuntos(jugadores:Jugador)
+}
 Modificador <- Jugador
-Modificador <|-- MultiplicadorX2
-Modificador <|-- MultiplicadorX3
+Modificador <|.. MultiplicadorX2
+Modificador <|.. MultiplicadorX3
+Modificador <|.. AnuladorDePuntos
+Modificador <|.. ExclusividadDePuntaje
 MultipleChoice <|-down- MultipleChoiceClasico
 MultipleChoice <|-down- MultipleChoiceParcial
 MultipleChoice <|-- MultipleChoiceConPenalidad
