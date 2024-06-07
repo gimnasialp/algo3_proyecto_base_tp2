@@ -1,26 +1,41 @@
 package edu.fiuba.algo3.tp2.modelo;
 
 import java.util.List;
+import java.util.Set;
 
 public class PuntajeClasico implements Puntaje{
 
     private int aciertosEsperados;
 
-    private PuntajeClasico(){
-        this.aciertosEsperados = 1;
+    private PuntajeClasico() {
     }
 
-    public static PuntajeClasico PuntajeParaVerdaderoFalso() {
-        return new PuntajeClasico();
+    public static PuntajeClasico ParaVerdaderoFalso() {
+        PuntajeClasico miPuntaje = new PuntajeClasico();
+        miPuntaje.aciertosEsperados = 1;
+        return miPuntaje;
     }
 
-    public static PuntajeClasico PuntajeParaMultipleChoice(RespuestaMultipleChoice respuestaCorrecta) {
-        PuntajeClasico miTipoPuntaje = new PuntajeClasico();
-        miTipoPuntaje.aciertosEsperados = respuestaCorrecta.size();
-        return miTipoPuntaje;
+    public static PuntajeClasico ParaMultipleChoice(Set<Integer> opcionesCorrectas) {
+        PuntajeClasico miPuntaje = new PuntajeClasico();
+        miPuntaje.aciertosEsperados = opcionesCorrectas.size();
+        return miPuntaje;
     }
 
-    public Integer puntuar(List<Integer> evaluacion) {
-        return this.aciertosEsperados == evaluacion.get(0) && evaluacion.get(1) == 0 ? 1 : 0;
+    @Override
+    public Integer puntuar(Integer aciertos, Integer errores) {
+        return aciertosEsperados == aciertos && errores == 0 ? 1 : 0;
     }
+
+    @Override
+    public boolean permiteMultiplicadores() {
+        return false;
+    }
+
+    @Override
+    public boolean permiteExclusividad() {
+        return true;
+    }
+
+
 }

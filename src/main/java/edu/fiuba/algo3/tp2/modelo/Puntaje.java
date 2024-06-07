@@ -4,5 +4,9 @@ import java.util.List;
 
 public interface Puntaje {
 
-    Integer puntuar(List<Integer> evaluacion);
+    Integer puntuar(Integer aciertos, Integer errores);
+
+    boolean permiteMultiplicadores();
+
+    boolean permiteExclusividad();
 }

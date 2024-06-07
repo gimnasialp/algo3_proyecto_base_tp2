@@ -4,9 +4,20 @@ import java.util.List;
 
 public class PuntajeParcial implements Puntaje{
 
-    public Integer puntuar(List<Integer> evaluacion) {
 
-        return evaluacion.get(1) == 0 ? evaluacion.get(0) : 0;
+    @Override
+    public Integer puntuar(Integer aciertos, Integer errores) {
+        return errores == 0 ? aciertos : 0;
+    }
+
+    @Override
+    public boolean permiteMultiplicadores() {
+        return false;
+    }
+
+    @Override
+    public boolean permiteExclusividad() {
+        return true;
     }
 
 }

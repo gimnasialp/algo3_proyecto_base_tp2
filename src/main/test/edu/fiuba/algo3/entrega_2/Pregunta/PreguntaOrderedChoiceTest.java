@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2;
+package edu.fiuba.algo3.entrega_2.Pregunta;
 
 import edu.fiuba.algo3.tp2.modelo.PreguntaOrderedChoice;
 import edu.fiuba.algo3.tp2.modelo.RespuestaOrderedChoice;
