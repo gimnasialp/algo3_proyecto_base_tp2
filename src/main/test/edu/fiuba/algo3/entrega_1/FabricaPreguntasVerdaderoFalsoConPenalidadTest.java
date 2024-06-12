@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntasVerdaderoFalso;
 import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntasVerdaderoFalsoConPenalidad;
-import edu.fiuba.algo3.modelo.Preguntas.VoF.VerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
