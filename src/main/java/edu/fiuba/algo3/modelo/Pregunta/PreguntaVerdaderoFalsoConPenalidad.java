@@ -17,19 +17,16 @@ public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
         Resultado resultado = new Resultado();
 
         for (Respuesta respuesta: respuestas) {
-            int puntosObtenidos = 0;
-            if (mismaRespuesta(respuesta)){
-                puntosObtenidos += 1;
+            int puntos = 0;
+            if (respuesta.comparar(this.respuestaCorrecta)){
+                puntos += 1;
             } else {
-                puntosObtenidos -= 1;
+                puntos -= 1;
             }
-            resultado.agregarPuntos(puntosObtenidos);
+            resultado.agregarPuntos(puntos);
         }
 
         return resultado;
     }
 
-    private boolean mismaRespuesta(Respuesta respuesta) {
-        return respuesta.comparar(this.respuestaCorrecta);
-    }
 }

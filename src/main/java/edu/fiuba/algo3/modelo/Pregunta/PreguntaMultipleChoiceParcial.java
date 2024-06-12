@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Pregunta;
 
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoice;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
 import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
@@ -18,12 +18,14 @@ public class PreguntaMultipleChoiceParcial extends Pregunta{
         Resultado resultado = new Resultado();
 
         for (Respuesta respuesta: respuestas) {
-            RespuestaMultipleChoice respuestaJugador = (RespuestaMultipleChoice) respuesta;
-            int puntosObtenidos = 0;
 
-            puntosObtenidos += respuestaJugador.opcionesCorrectas(respuestaCorrecta);
+            RespuestaMultipleChoiceEspecial respuestaJugador = (RespuestaMultipleChoiceEspecial) respuesta;
 
-            resultado.agregarPuntos(puntosObtenidos);
+            int puntos = 0;
+
+            puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
+
+            resultado.agregarPuntos(puntos);
         }
 
         return resultado;

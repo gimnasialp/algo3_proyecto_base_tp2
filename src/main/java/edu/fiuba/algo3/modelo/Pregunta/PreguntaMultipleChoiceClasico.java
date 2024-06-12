@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Pregunta;
 
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoice;
 import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
@@ -18,20 +17,13 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
         Resultado resultado = new Resultado();
 
         for (Respuesta respuesta: respuestas) {
-            int puntosObtenidos = 0;
-            if (todosSonCorrectos(respuesta)) {
-                puntosObtenidos += 1;
+            int puntos = 0;
+            if (respuesta.comparar(this.respuestaCorrecta)) {
+                puntos += 1;
             }
-            resultado.agregarPuntos(puntosObtenidos);
+            resultado.agregarPuntos(puntos);
         }
 
         return resultado;
     }
-
-    private boolean todosSonCorrectos(Respuesta respuesta) {
-        RespuestaMultipleChoice respuestaJugador = (RespuestaMultipleChoice) respuesta;
-        RespuestaMultipleChoice respuestaCorrecta = (RespuestaMultipleChoice) this.respuestaCorrecta;
-        return respuestaCorrecta.todasLasRespuestasSonCorrectas(respuestaJugador);
-    }
-
 }

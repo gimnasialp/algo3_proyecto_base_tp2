@@ -17,8 +17,16 @@ public class PreguntaVerdaderoFalsoTest {
 
     @Test
     public void UnaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorretamente() {
-        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico("Argentina es el actual campeon mundial de futbol", new ArrayList<String>(Arrays.asList("Verdadero", "Falso")), new RespuestaVerdaderoFalso("Verdadero"));
-        ArrayList<Respuesta> respuestaDeJugadores = new ArrayList<Respuesta>(Arrays.asList(new RespuestaVerdaderoFalso("Verdadero"), new RespuestaVerdaderoFalso("Falso")));
+
+        String enunciado = "Argentina es el actual campeon mundial de futbol";
+        ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
+        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, opciones, respuestaCorrecta);
+
+        Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
+        ArrayList<Respuesta> respuestaDeJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
+
         Resultado resultado = pregunta.responder(respuestaDeJugadores);
 
         int puntosDelJugadorUno = 1;
@@ -30,8 +38,16 @@ public class PreguntaVerdaderoFalsoTest {
 
     @Test
     public void UnaPreguntaDeVerdaderoFalsoConPenalidadRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorretamente() {
-        Pregunta pregunta = new PreguntaVerdaderoFalsoConPenalidad("Argentina es el actual campeon mundial de futbol", new ArrayList<String>(Arrays.asList("Verdadero", "Falso")), new RespuestaVerdaderoFalso("Verdadero"));
-        ArrayList<Respuesta> respuestaDeJugadores = new ArrayList<Respuesta>(Arrays.asList(new RespuestaVerdaderoFalso("Verdadero"), new RespuestaVerdaderoFalso("Falso")));
+
+        String enunciado = "Argentina es el actual campeon mundial de futbol";
+        ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
+        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoConPenalidad(enunciado, opciones, respuestaCorrecta);
+
+        Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
+        ArrayList<Respuesta> respuestaDeJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
+
         Resultado resultado = pregunta.responder(respuestaDeJugadores);
 
         int puntosDelJugadorUno = 1;

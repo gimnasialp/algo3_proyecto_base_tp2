@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class RespuestaVerdaderoFalso implements Respuesta {
 
-    private String respuesta;
+    private final Integer respuesta;
 
-    public RespuestaVerdaderoFalso(String respuesta) {
+    public RespuestaVerdaderoFalso(Integer respuesta) {
         this.respuesta = respuesta;
     }
 
     @Override
     public boolean comparar(Respuesta respuesta) {
-        RespuestaVerdaderoFalso respuestaVoF = (RespuestaVerdaderoFalso) respuesta;
-        return respuestaVoF.evaluar(this.respuesta);
+        RespuestaVerdaderoFalso respuestaCorrecta = (RespuestaVerdaderoFalso) respuesta;
+        return respuestaCorrecta.evaluar(this.respuesta);
     }
 
-    private boolean evaluar(String respuesta) {
+    private boolean evaluar(Integer respuesta) {
         return Objects.equals(this.respuesta, respuesta);
     }
 }
