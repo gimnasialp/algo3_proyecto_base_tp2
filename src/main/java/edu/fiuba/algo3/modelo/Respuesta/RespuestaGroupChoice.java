@@ -5,8 +5,8 @@ import java.util.HashSet;
 
 public class RespuestaGroupChoice implements Respuesta{
 
-    private ArrayList<Integer> respuestaGrupoUno;
-    private ArrayList<Integer> respuestaGrupoDos;
+    private final ArrayList<Integer> respuestaGrupoUno;
+    private final ArrayList<Integer> respuestaGrupoDos;
 
     public RespuestaGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos) {
         this.respuestaGrupoUno = respuestaGrupoUno;
@@ -20,8 +20,8 @@ public class RespuestaGroupChoice implements Respuesta{
     }
 
     private boolean evaluar(ArrayList<Integer> respuestaCorrectaGrupoUno, ArrayList<Integer> respuestaCorrectaGrupoDos) {
-        boolean primeraCondicion = new HashSet<Integer>(this.respuestaGrupoUno).equals(new HashSet<Integer>(respuestaCorrectaGrupoUno));
-        boolean segundaCondicion = new HashSet<Integer>(this.respuestaGrupoUno).equals(new HashSet<Integer>(respuestaCorrectaGrupoDos));
+        boolean primeraCondicion = new HashSet<>(this.respuestaGrupoUno).equals(new HashSet<>(respuestaCorrectaGrupoUno));
+        boolean segundaCondicion = new HashSet<>(this.respuestaGrupoUno).equals(new HashSet<>(respuestaCorrectaGrupoDos));
         if (primeraCondicion || segundaCondicion) {
             return true;
         } else {

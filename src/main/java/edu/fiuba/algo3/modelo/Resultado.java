@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
+
 import java.util.ArrayList;
 
 public class Resultado {
@@ -16,4 +18,8 @@ public class Resultado {
     public int obtenerPuntosDelJugador(int index) {
         return puntosRonda.get(index);
     };
+
+    public void usarModificador(Modificador modificador, int jugadorIndice) {
+        modificador.aplicar(puntosRonda, jugadorIndice);
+    }
 }

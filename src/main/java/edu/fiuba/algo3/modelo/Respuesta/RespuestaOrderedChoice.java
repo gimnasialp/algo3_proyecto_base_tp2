@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RespuestaOrderedChoice implements Respuesta {
 
-    private ArrayList<Integer> respuesta;
+    private final ArrayList<Integer> respuesta;
 
     public RespuestaOrderedChoice(ArrayList<Integer> respuesta) {
         this.respuesta = respuesta;
