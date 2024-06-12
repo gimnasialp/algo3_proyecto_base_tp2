@@ -5,7 +5,8 @@ import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import java.util.ArrayList;
 
 public class Resultado {
-    protected ArrayList<Integer> puntosRonda;
+
+    private ArrayList<Integer> puntosRonda;
 
     public Resultado () {
         this.puntosRonda = new ArrayList<Integer>();
