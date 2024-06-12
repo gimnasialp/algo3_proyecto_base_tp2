@@ -1,8 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Respuesta;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RespuestaMultipleChoice implements Respuesta{
 
