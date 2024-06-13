@@ -6,23 +6,31 @@
     <version>0.0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <junit.jupiter.version>5.4.0</junit.jupiter.version>
         <mockito-mockito-core-version>3.3.0</mockito-mockito-core-version>
         <maven-surefire-version>3.0.0-M3</maven-surefire-version>
         <archunit-version>0.21.0</archunit-version>
         <javafx-version>15.0.1</javafx-version>
         <main-class>edu.fiuba.algo3.Main</main-class>
+        <javafx.version>19</javafx.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
+
             <version>${javafx-version}</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
+
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
@@ -114,6 +122,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-version}</version>
                 <configuration>
+                    <!--suppress UnresolvedMavenProperty -->
                     <argLine>${argLine} -XX:MaxPermSize=256m</argLine>
                 </configuration>
             </plugin>
