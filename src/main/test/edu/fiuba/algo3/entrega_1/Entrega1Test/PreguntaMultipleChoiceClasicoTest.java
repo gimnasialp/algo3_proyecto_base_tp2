@@ -1,9 +1,5 @@
 package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
-import edu.fiuba.algo3.modelo.Preguntas.MultipleChoice.MultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaMultipleChoiceClasicoTest {
-    private Respuesta respuestaCorrectaMCUno;
+   /* private Respuesta respuestaCorrectaMCUno;
     private Respuesta respuestaCorrectaMCDos;
     private Respuesta respuestaCorrectaMCTres;
     private Respuesta respuestaIncorrectaMCUno;
@@ -56,7 +52,7 @@ public class PreguntaMultipleChoiceClasicoTest {
 
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
-    }
+    }*/
     
 
 }

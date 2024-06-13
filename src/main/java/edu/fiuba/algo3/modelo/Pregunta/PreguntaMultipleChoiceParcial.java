@@ -6,10 +6,10 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaMultipleChoiceParcial extends Pregunta{
+public class PreguntaMultipleChoiceParcial implements Pregunta{
 
     public PreguntaMultipleChoiceParcial(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        super(enunciado, opciones, respuestaCorrecta);
+        //super(enunciado, opciones, respuestaCorrecta);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class PreguntaMultipleChoiceParcial extends Pregunta{
 
             int puntos = 0;
 
-            puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
+            //puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
 
             resultado.agregarPuntos(puntos);
         }

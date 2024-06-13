@@ -6,10 +6,10 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaMultipleChoiceConPenalidad extends Pregunta {
+public class PreguntaMultipleChoiceConPenalidad implements Pregunta {
 
     public PreguntaMultipleChoiceConPenalidad(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        super(enunciado, opciones, respuestaCorrecta);
+        //super(enunciado, opciones, respuestaCorrecta);
     }
 
     @Override
@@ -23,8 +23,8 @@ public class PreguntaMultipleChoiceConPenalidad extends Pregunta {
 
             int puntos = 0;
 
-            puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
-            puntos -= respuestaJugador.opcionesIncorrectas(this.respuestaCorrecta);
+            //puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
+            //puntos -= respuestaJugador.opcionesIncorrectas(this.respuestaCorrecta);
 
             resultado.agregarPuntos(puntos);
         }

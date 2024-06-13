@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.modelo.Preguntas.Fabricas;
+package edu.fiuba.algo3.modelo.Pregunta.Fabricas;
 
-import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 public  abstract class FabricaPreguntas {
 

@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.tp2;
 
-import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Partida {
-
+    /*
     private List<Jugador> jugadores;
     private Pregunta pregunta;
     public Partida(Pregunta pregunta, ArrayList<Jugador> jugadores) {
@@ -28,8 +28,8 @@ public class Partida {
 
     public void procesarRespuestas(ArrayList<Respuesta> respuestas){
         ArrayList<ArrayList<Respuesta>> listRespuestas = new ArrayList<>(Arrays.asList(respuestas));
-        ArrayList<Integer> puntos = this.pregunta.responder(listRespuestas);
-        this.asignarPuntos(puntos);
-    }
+        //ArrayList<Integer> puntos = this.pregunta.responder(listRespuestas);
+        //this.asignarPuntos(puntos);
+    }*/
 
 }

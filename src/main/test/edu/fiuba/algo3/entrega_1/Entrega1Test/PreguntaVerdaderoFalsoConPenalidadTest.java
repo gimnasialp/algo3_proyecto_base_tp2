@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +10,7 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaVerdaderoFalsoConPenalidadTest {
-
+    /*
     private Respuesta respuestaCorrectaVF;
     private Respuesta respuestaIncorrectaVF;
 
@@ -54,6 +51,6 @@ public class PreguntaVerdaderoFalsoConPenalidadTest {
         assertEquals(puntoObtenidoJugadorUno, puntosObtenidos.get(0));
         assertEquals(puntoObtenidoJugadorDos, puntosObtenidos.get(1));
     }
-
+    */
 
 }

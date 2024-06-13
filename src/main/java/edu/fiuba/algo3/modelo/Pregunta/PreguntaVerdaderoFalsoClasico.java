@@ -6,10 +6,23 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaVerdaderoFalsoClasico extends Pregunta {
+public class PreguntaVerdaderoFalsoClasico implements Pregunta {
+    private int idPregunta;
+    private String tema;
+    private String textoRepuesta;
 
-    public PreguntaVerdaderoFalsoClasico(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        super(enunciado, opciones, respuestaCorrecta);
+    private String enunciado;
+    private ArrayList<String> opciones;
+    private Respuesta respuestaCorrecta;
+    public PreguntaVerdaderoFalsoClasico(int idPregunta,String tema, String enunciadoPregunta,
+                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
+
+        this.enunciado = enunciadoPregunta;
+        this.opciones = opciones;
+        this.respuestaCorrecta=respuestaCorrecta;
+        this.idPregunta = idPregunta;
+        this.tema = tema;
+        this.textoRepuesta = textoRespuesta;
     }
 
     @Override

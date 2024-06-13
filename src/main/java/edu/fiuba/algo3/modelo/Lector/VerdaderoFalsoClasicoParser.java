@@ -2,16 +2,17 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.fiuba.algo3.modelo.Preguntas.Fabricas.FabricaPreguntasVerdaderoFalso;
-import edu.fiuba.algo3.modelo.Preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
+import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalso;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
 
 public class VerdaderoFalsoClasicoParser implements Parser{
 
-    private FabricaPreguntasVerdaderoFalso fabricaPreguntasVerdaderoFalso;
+    private FabricaPreguntasVerdaderoFalso fabrica;
     private int idPregunta;
     private String tema;
     private String tipoPregunta;
@@ -20,31 +21,36 @@ public class VerdaderoFalsoClasicoParser implements Parser{
     private String enunciadoPregunta;
 
     public VerdaderoFalsoClasicoParser() {
-        FabricaPreguntasVerdaderoFalso fabricaPreguntasVerdaderoFalso = new FabricaPreguntasVerdaderoFalso();
+        this.fabrica= new FabricaPreguntasVerdaderoFalso();
+        tipoPregunta = "Verdadero Falso Simple";
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
-        ArrayList<Respuesta> Respuesta = new ArrayList<>();
+        ArrayList<Respuesta> respuestas = new ArrayList<>();
         ArrayList<String> opciones = new ArrayList<>();
-
-
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         tipoPregunta = jsonObject.get("Tipo").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String opcionCorrecta = jsonObject.get("Respuesta").getAsString();
-
-        Respuesta.add(new RespuestaCorrecta(opcionCorrecta));
+        RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
+        respuestas.add(respuesta);
         opciones.add(jsonObject.get("Opcion 1").getAsString());
         opciones.add(jsonObject.get("Opcion 2").getAsString());
+
         enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        Pregunta pregunta = fabricaPreguntasVerdaderoFalso.crearPregunta(idPregunta, tema, enunciadoPregunta, opcionCorrecta,opciones, textoRespuesta);
+        Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta,opciones, textoRespuesta);
         return pregunta;
+
     }
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
         return OrganizarDatos(preguntaJson.getAsJsonObject());
+    }
+
+    @Override
+    public String tipoPregunta() {
+        return tipoPregunta;
     }
 
 }

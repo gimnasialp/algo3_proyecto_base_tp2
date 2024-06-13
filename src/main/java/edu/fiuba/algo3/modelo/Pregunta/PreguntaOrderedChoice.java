@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaOrderedChoice extends Pregunta {
+public class PreguntaOrderedChoice implements Pregunta {
 
     public PreguntaOrderedChoice(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        super(enunciado, opciones, respuestaCorrecta);
+
     }
 
     @Override
@@ -17,10 +17,10 @@ public class PreguntaOrderedChoice extends Pregunta {
 
         for (Respuesta respuesta: respuestas){
             int puntos = 0;
-            if (respuestaCorrecta.comparar(respuesta)){
+            /*if (respuestaCorrecta.comparar(respuesta)){
                 puntos += 1;
             }
-            resultado.agregarPuntos(puntos);
+            resultado.agregarPuntos(puntos);*/
         }
 
         return resultado;

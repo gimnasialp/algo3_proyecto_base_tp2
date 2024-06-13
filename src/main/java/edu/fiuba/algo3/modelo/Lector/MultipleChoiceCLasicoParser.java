@@ -2,17 +2,16 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalsoConPenalidad;
+import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalso;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalsoConPenalidadParser implements  Parser{
-
-    private FabricaPreguntasVerdaderoFalsoConPenalidad fabrica;
+public class MultipleChoiceCLasicoParser implements Parser {
+    private FabricaPreguntaMultipleChoiceClasico fabrica;
     private int idPregunta;
     private String tema;
     private String tipoPregunta;
@@ -20,17 +19,15 @@ public class VerdaderoFalsoConPenalidadParser implements  Parser{
     private ArrayList<String> opciones = new ArrayList<>();
     private String enunciadoPregunta;
 
-    public VerdaderoFalsoConPenalidadParser() {
-        fabrica = new FabricaPreguntasVerdaderoFalsoConPenalidad();
-        tipoPregunta = "Verdadero Falso Penalidad";
+    public MultipleChoiceCLasicoParser() {
+        this.fabrica= new FabricaPreguntaMultipleChoiceClasico();
+        tipoPregunta = "Multiple Choice Simple";
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
-        System.out.println(jsonObject);
+
         ArrayList<Respuesta> respuestas = new ArrayList<>();
         ArrayList<String> opciones = new ArrayList<>();
-
-
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         tipoPregunta = jsonObject.get("Tipo").getAsString();
@@ -55,5 +52,4 @@ public class VerdaderoFalsoConPenalidadParser implements  Parser{
     public String tipoPregunta() {
         return tipoPregunta;
     }
-
 }

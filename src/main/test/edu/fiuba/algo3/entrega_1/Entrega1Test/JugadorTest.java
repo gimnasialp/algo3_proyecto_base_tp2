@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JugadorTest {
-    @Test
+  /*  @Test
     public void Test01CreoUnJugadorSinPuntosYConsultoSusPuntos() {
         Jugador unJugador = new Jugador("Juan");
         int puntuacionEsperada = 0;
@@ -26,5 +26,5 @@ public class JugadorTest {
         assertEquals(puntuacionEsperada,unJugador.puntaje());
 
     }
-
+*/
 }

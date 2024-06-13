@@ -3,17 +3,17 @@ package edu.fiuba.algo3.modelo.Respuesta;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class RespuestaMultipleChoiceComun implements Respuesta {
+public class RespuestaMultipleChoiceClasico implements Respuesta {
 
     private final ArrayList<Integer> respuesta;
 
-    public RespuestaMultipleChoiceComun (ArrayList<Integer> respuesta) {
+    public RespuestaMultipleChoiceClasico (ArrayList<Integer> respuesta) {
         this.respuesta = respuesta;
     }
 
     @Override
     public boolean comparar(Respuesta respuesta) {
-        RespuestaMultipleChoiceComun respuestaCorrecta = (RespuestaMultipleChoiceComun) respuesta;
+        RespuestaMultipleChoiceClasico respuestaCorrecta = (RespuestaMultipleChoiceClasico) respuesta;
         return respuestaCorrecta.evaluar(this.respuesta);
     }
 

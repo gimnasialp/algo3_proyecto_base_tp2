@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.tp2;
 
-import edu.fiuba.algo3.modelo.puntuacion.Puntuacion;
+import edu.fiuba.algo3.modelo.*;
 
 public class Jugador {
 
-    private String nombre;
-    private Puntuacion puntucion;
+    /*private String nombre;
+    //private Puntuacion puntucion;
     //private ArrayList<MultiplicadorJugador> multiplicadores;
     //private ArrayList<Exclusividad> exclusividades;
 
@@ -28,5 +28,5 @@ public class Jugador {
     }
     public void agregarPuntuacion(int puntaje){
         this.puntucion.agregarPuntos(puntaje);
-    }
+    }*/
 }
