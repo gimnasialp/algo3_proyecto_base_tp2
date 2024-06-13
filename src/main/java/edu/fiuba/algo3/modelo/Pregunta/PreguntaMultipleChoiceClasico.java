@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class PreguntaMultipleChoiceClasico implements Pregunta{
 
     public PreguntaMultipleChoiceClasico(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        //super(enunciado, opciones, respuestaCorrecta);
+        super(enunciado, opciones, respuestaCorrecta);
     }
 
     @Override
@@ -18,9 +18,9 @@ public class PreguntaMultipleChoiceClasico implements Pregunta{
 
         for (Respuesta respuesta: respuestas) {
             int puntos = 0;
-            /*if (respuesta.comparar(this.respuestaCorrecta)) {
+            if (respuesta.comparar(this.respuestaCorrecta)) {
                 puntos += 1;
-            }*/
+            }
             resultado.agregarPuntos(puntos);
         }
 

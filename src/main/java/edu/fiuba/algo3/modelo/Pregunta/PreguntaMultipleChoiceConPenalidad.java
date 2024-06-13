@@ -23,8 +23,8 @@ public class PreguntaMultipleChoiceConPenalidad implements Pregunta {
 
             int puntos = 0;
 
-            //puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
-            //puntos -= respuestaJugador.opcionesIncorrectas(this.respuestaCorrecta);
+            puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
+            puntos -= respuestaJugador.opcionesIncorrectas(this.respuestaCorrecta);
 
             resultado.agregarPuntos(puntos);
         }

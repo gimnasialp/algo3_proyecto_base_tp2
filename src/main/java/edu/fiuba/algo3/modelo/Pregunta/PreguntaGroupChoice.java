@@ -17,9 +17,9 @@ public class PreguntaGroupChoice implements Pregunta {
 
         for (Respuesta respuesta: respuestas){
             int puntos = 0;
-            /*if (respuestaCorrecta.comparar(respuesta)){
+            if (respuestaCorrecta.comparar(respuesta)){
                 puntos += 1;
-            }*/
+            }
             resultado.agregarPuntos(puntos);
         }
 

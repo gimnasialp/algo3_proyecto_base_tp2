@@ -23,7 +23,7 @@ public class PreguntaMultipleChoiceParcial implements Pregunta{
 
             int puntos = 0;
 
-            //puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
+            puntos += respuestaJugador.opcionesCorrectas(this.respuestaCorrecta);
 
             resultado.agregarPuntos(puntos);
         }

@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.entrega_1.Entrega1Test;
 
-import edu.fiuba.algo3.tp2.Jugador;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JugadorTest {
