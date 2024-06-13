@@ -23,4 +23,12 @@ public class Resultado {
     public void usarModificador(Modificador modificador, int jugadorIndice) {
         modificador.aplicar(puntosRonda, jugadorIndice);
     }
+
+    public void asignarPuntos(ArrayList<Jugador> jugadores) {
+
+        for (int i = 0; i < jugadores.size(); i++) {
+            jugadores.get(i).asignarPuntos(puntosRonda.get(i));
+        }
+
+    }
 }

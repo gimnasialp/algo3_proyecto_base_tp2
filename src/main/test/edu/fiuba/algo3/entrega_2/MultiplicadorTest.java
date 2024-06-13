@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_2.ModificadorTest;
+package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorTres;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Multiplicador {
+public class MultiplicadorTest {
 
     @Test
     public void unJugadorTieneDosPuntosYActivaElMultiplicadorPorDos () {
@@ -16,9 +16,9 @@ public class Multiplicador {
         resultado.agregarPuntos(2);
         resultado.usarModificador(new MultiplicarPorDos(), 0);
 
-        int puntosDelJugador = 4;
+        int puntosDelJugadorEsperado = 4;
 
-        assertEquals(puntosDelJugador, resultado.obtenerPuntosDelJugador(0));
+        assertEquals(puntosDelJugadorEsperado, resultado.obtenerPuntosDelJugador(0));
 
     }
 
@@ -29,9 +29,9 @@ public class Multiplicador {
         resultado.agregarPuntos(2);
         resultado.usarModificador(new MultiplicarPorTres(), 0);
 
-        int puntosDelJugador = 6;
+        int puntosDelJugadorEsperado = 6;
 
-        assertEquals(puntosDelJugador, resultado.obtenerPuntosDelJugador(0));
+        assertEquals(puntosDelJugadorEsperado, resultado.obtenerPuntosDelJugador(0));
 
     }
 
@@ -46,15 +46,15 @@ public class Multiplicador {
 
         resultado.usarModificador(new MultiplicarPorDos(), 2);
 
-        int puntosDelJugadorUno = 2;
-        int puntosDelJugadorDos = 3;
-        int puntosDelJugadorTres = 5*2;
-        int puntosDelJugadorCuatro = 1;
+        int puntosDelJugadorUnoEsperado = 2;
+        int puntosDelJugadorDosEsperado = 3;
+        int puntosDelJugadorTresEsperado = 5*2;
+        int puntosDelJugadorCuatroEsperado = 1;
 
-        assertEquals(puntosDelJugadorUno, resultado.obtenerPuntosDelJugador(0));
-        assertEquals(puntosDelJugadorDos, resultado.obtenerPuntosDelJugador(1));
-        assertEquals(puntosDelJugadorTres, resultado.obtenerPuntosDelJugador(2));
-        assertEquals(puntosDelJugadorCuatro, resultado.obtenerPuntosDelJugador(3));
+        assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
+        assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));
+        assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
+        assertEquals(puntosDelJugadorCuatroEsperado, resultado.obtenerPuntosDelJugador(3));
 
     }
 
@@ -71,15 +71,16 @@ public class Multiplicador {
         resultado.usarModificador(new MultiplicarPorDos(), 1);
         resultado.usarModificador(new MultiplicarPorDos(), 3);
 
-        int puntosDelJugadorUno = 2*2;
-        int puntosDelJugadorDos = 3*2;
-        int puntosDelJugadorTres = 5;
-        int puntosDelJugadorCuatro = 1*2;
+        int puntosDelJugadorUnoEsperado = 2*2;
+        int puntosDelJugadorDosEsperado = 3*2;
+        int puntosDelJugadorTresEsperado = 5;
+        int puntosDelJugadorCuatroEsperado = 1*2;
 
-        assertEquals(puntosDelJugadorUno, resultado.obtenerPuntosDelJugador(0));
-        assertEquals(puntosDelJugadorDos, resultado.obtenerPuntosDelJugador(1));
-        assertEquals(puntosDelJugadorTres, resultado.obtenerPuntosDelJugador(2));
-        assertEquals(puntosDelJugadorCuatro, resultado.obtenerPuntosDelJugador(3));
+        assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
+        assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));
+        assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
+        assertEquals(puntosDelJugadorCuatroEsperado, resultado.obtenerPuntosDelJugador(3));
 
     }
+
 }
