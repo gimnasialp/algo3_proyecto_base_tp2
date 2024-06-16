@@ -22,7 +22,7 @@ public class VerdaderoFalsoConPenalidadParser implements  Parser{
 
     public VerdaderoFalsoConPenalidadParser() {
         fabrica = new FabricaPreguntasVerdaderoFalsoConPenalidad();
-        tipoPregunta = "Verdadero Falso Penalidad";
+        tipoPregunta = "verdadero falso penalidad";
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
@@ -33,7 +33,6 @@ public class VerdaderoFalsoConPenalidadParser implements  Parser{
 
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
-        tipoPregunta = jsonObject.get("Tipo").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
         respuestas.add(respuesta);

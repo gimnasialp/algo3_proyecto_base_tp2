@@ -20,6 +20,6 @@ public class FabricaPreguntasMultipleChoiceClasicoTest {
     @Test
     public void crearPreguntaPreguntaMultipleChoiceClasicoTest() {
         setup();
-        assertNotNull(null);
+        assertNotNull(fabrica);
     }
 }

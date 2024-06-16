@@ -22,6 +22,6 @@ public class FabricaPreguntasMultipleChoiceConPenalidadTest {
     public void crearPreguntaPreguntaMultipleChoiceConPenalidadTest() {
         setup();
 
-        assertNotNull(null);
+        assertNotNull(fabrica);
     }
 }

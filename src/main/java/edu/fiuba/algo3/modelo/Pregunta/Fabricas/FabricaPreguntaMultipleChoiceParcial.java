@@ -1,14 +1,17 @@
 package edu.fiuba.algo3.modelo.Pregunta.Fabricas;
 
-import edu.fiuba.algo3.modelo.Pregunta.*;
-import edu.fiuba.algo3.modelo.Respuesta.*;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceParcial;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
+
 import java.util.ArrayList;
 
-public class FabricaPreguntaMultipleChoiceConPenalidad extends FabricaPreguntas{
+public class FabricaPreguntaMultipleChoiceParcial extends FabricaPreguntas {
 
     @Override
     public Pregunta crearPregunta(Object ... parameters) {
-        PreguntaMultipleChoiceConPenalidad preguntaMultipleChoiceConPenalidad = new PreguntaMultipleChoiceConPenalidad(
+        PreguntaMultipleChoiceParcial preguntaMultipleChoiceParcial = new PreguntaMultipleChoiceParcial(
                 (Integer) parameters[0],//ID
                 parameters[1].toString(), //TEMA
                 parameters[2].toString(), //ENUNCIADO
@@ -18,7 +21,7 @@ public class FabricaPreguntaMultipleChoiceConPenalidad extends FabricaPreguntas{
         );
 
         //(idPregunta, tema, enunciadoPregunta, opcionCorrecta,opciones, textoRespuesta);*/
-        return preguntaMultipleChoiceConPenalidad;
+        return preguntaMultipleChoiceParcial;
     }
 
 }

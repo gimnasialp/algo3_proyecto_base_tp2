@@ -26,12 +26,16 @@ public class LectorPreguntasJson implements Lector{
 
         Parser parserVerdaderoFalsoClasico = new VerdaderoFalsoClasicoParser();
         Parser parserVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidadParser();
-        //Parser parserMultipleChoice = new MultipleChoiceParser();
-        //Parser parserOrden = new OrderParser();
-        //Parser parserGrupo = new GroupChoiceParser();
-        //agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoice);
-        //agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserOrden);
-        //agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserGrupo);
+        Parser parserMultipleChoice = new MultipleChoiceCLasicoParser();
+        Parser parserMultipleChoicePenalidad = new MultipleChoicePenalidadParser();
+        Parser parserMultipleChoiceParcial = new MultipleChoiceParcialParser();
+        Parser parserOrden = new OrderedChoiceParser();
+        Parser parserGroupChoice = new GroupChoiceParser();
+        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoice);
+        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoicePenalidad);
+        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoiceParcial);
+        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserOrden);
+        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserGroupChoice);
         agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoClasico);
         agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoConPenalidad);
         return preguntasTotales;
@@ -48,7 +52,7 @@ public class LectorPreguntasJson implements Lector{
             jsonarray = preguntasJson.getAsJsonArray();
             try{
                 for (JsonElement jsonElement : jsonarray) {
-                    if(jsonElement.getAsJsonObject().get("Tipo").getAsString().equals(preguntaParser.tipoPregunta())){
+                    if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
                         System.out.println("    ");
                         System.out.println(jsonElement);
                         preguntasTotales.add(preguntaParser.parse(jsonElement));

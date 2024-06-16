@@ -6,10 +6,11 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaMultipleChoiceParcial implements Pregunta{
+public class PreguntaMultipleChoiceParcial extends Pregunta{
 
-    public PreguntaMultipleChoiceParcial(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        //super(enunciado, opciones, respuestaCorrecta);
+    public PreguntaMultipleChoiceParcial(int idPregunta,String tema, String enunciado,
+                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
+        super(enunciado, opciones, respuestaCorrecta);
     }
 
     @Override

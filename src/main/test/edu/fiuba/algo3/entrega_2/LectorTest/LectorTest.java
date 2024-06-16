@@ -18,7 +18,7 @@ public class LectorTest {
         preguntas = lectorPreguntasJson.generarPreguntas();
 
 
-        assertEquals(4, preguntas.size());
+        assertEquals(25, preguntas.size());
     }
 
 }

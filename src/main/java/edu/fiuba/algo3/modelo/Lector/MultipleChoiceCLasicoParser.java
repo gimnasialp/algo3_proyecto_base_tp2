@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Lector;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalso;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class MultipleChoiceCLasicoParser implements Parser {
 
     public MultipleChoiceCLasicoParser() {
         this.fabrica= new FabricaPreguntaMultipleChoiceClasico();
-        tipoPregunta = "Multiple Choice Simple";
+        tipoPregunta = "multiple choice simple";
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
@@ -30,12 +30,23 @@ public class MultipleChoiceCLasicoParser implements Parser {
         ArrayList<String> opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
-        tipoPregunta = jsonObject.get("Tipo").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
+
+        String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
+        String[] lista = respuestaCorrecta.split(",");
+        ArrayList<Integer> listaRespuesta = new ArrayList<>();
+        for (String elemento : lista) {
+            listaRespuesta.add(Integer.getInteger(elemento));
+        }
+        RespuestaMultipleChoiceComun respuesta = new RespuestaMultipleChoiceComun(listaRespuesta);
         respuestas.add(respuesta);
-        opciones.add(jsonObject.get("Opcion 1").getAsString());
-        opciones.add(jsonObject.get("Opcion 2").getAsString());
+        int numeroOpcion = 1;
+        String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
+        while  (jsonObject.keySet().contains(claveOpcion)) {
+            opciones.add(jsonObject.get(claveOpcion).getAsString());
+            numeroOpcion++;
+            claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
+        }
 
         enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
         Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta,opciones, textoRespuesta);

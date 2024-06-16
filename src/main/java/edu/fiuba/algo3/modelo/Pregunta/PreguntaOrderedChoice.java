@@ -5,10 +5,11 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaOrderedChoice implements Pregunta {
+public class PreguntaOrderedChoice extends Pregunta {
 
-    public PreguntaOrderedChoice(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-
+    public PreguntaOrderedChoice(int idPregunta,String tema, String enunciado,
+                                 Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
+        super(enunciado, opciones, respuestaCorrecta);
     }
 
     @Override

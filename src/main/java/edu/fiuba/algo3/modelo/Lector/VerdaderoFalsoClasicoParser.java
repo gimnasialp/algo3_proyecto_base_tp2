@@ -22,7 +22,7 @@ public class VerdaderoFalsoClasicoParser implements Parser{
 
     public VerdaderoFalsoClasicoParser() {
         this.fabrica= new FabricaPreguntasVerdaderoFalso();
-        tipoPregunta = "Verdadero Falso Simple";
+        tipoPregunta = "verdadero falso simple";
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
@@ -30,7 +30,6 @@ public class VerdaderoFalsoClasicoParser implements Parser{
         ArrayList<String> opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
-        tipoPregunta = jsonObject.get("Tipo").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
         respuestas.add(respuesta);
