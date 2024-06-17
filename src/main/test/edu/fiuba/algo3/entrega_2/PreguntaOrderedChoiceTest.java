@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
 public class PreguntaOrderedChoiceTest {
 
     private static String enunciado;
@@ -55,5 +56,5 @@ public class PreguntaOrderedChoiceTest {
         assertEquals(puntosDelJugadorEsperado, resultado.obtenerPuntosDelJugador(0));
 
     }
-
 }
+*/

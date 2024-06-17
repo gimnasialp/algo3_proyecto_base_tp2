@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class PreguntaMultipleChoiceParcial extends Pregunta{
 
-    public PreguntaMultipleChoiceParcial(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
+    public PreguntaMultipleChoiceParcial(int idPregunta,String tema, String enunciado,
+                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
         super(enunciado, opciones, respuestaCorrecta);
     }
 

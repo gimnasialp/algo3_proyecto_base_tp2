@@ -6,9 +6,15 @@ import edu.fiuba.algo3.modelo.Resultado;
 import java.util.ArrayList;
 
 public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
-
-    public PreguntaVerdaderoFalsoConPenalidad(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
+    private int idPregunta;
+    private String tema;
+    private String textoRepuesta;
+    public PreguntaVerdaderoFalsoConPenalidad(int idPregunta,String tema, String enunciado,
+                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
         super(enunciado, opciones, respuestaCorrecta);
+        this.idPregunta = idPregunta;
+        this.tema = tema;
+        this.textoRepuesta = textoRespuesta;
     }
 
     @Override

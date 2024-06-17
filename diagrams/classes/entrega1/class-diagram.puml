@@ -1,0 +1,97 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class AlgoHoot{
+    +comenzarPartida();
+}
+interface Pregunta {
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
+}
+
+abstract class MultipleChoice {
+    - enunciado: String
+    - opciones: ArrayList<Respuesta>
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
+    + {abstract} evaluar(ArrayList<Respuesta>: respuestas): Integer
+}
+
+class MultipleChoiceClasico{
+    + evaluar(ArrayList<Respuesta>: respuestas): Integer
+}
+
+class MultipleChoiceParcial{
+    + evaluar(ArrayList<Respuesta>: respuestas): Integer
+}
+
+class MultipleChoiceConPenalidad{
+    + evaluar(ArrayList<Respuesta>: respuestas): Integer
+}
+
+abstract class VerdaderoFalso {
+    - enunciado: String
+    + responder(ArrayList<Arraylist<Respuesta>>: respuestasDeJugadores): ArrayList<Integer>
+    + {abstract} evaluar(Respuesta: respuesta): Integer
+}
+
+class VerdaderoFalsoClasico{
+    + evaluar(Respuesta: respuesta): Integer
+}
+
+class VerdaderoFalsoConPenalidad{
+    + evaluar(Respuesta: respuesta): Integer
+}
+
+abstract class Respuesta {
+    - respuesta: String
+    + valorClasico(): Integer
+    + {abstract} valorConPenalidad(): Integer
+}
+
+class RespuestaCorrecta{
+    + valorClasico(): Integer
+    +  valorConPenalidad(): Integer
+}
+
+class RespuestaIncorrecta{
+    + valorClasico(): Integer
+    + valorConPenalidad(): Integer
+}
+
+class Partida{
+    -ArrayList<Jugador>
+
+    +procesarRespuestas(ArrayList<Respuesta>: respuestaUno, ArrayList<Respuesta>: respuestaDos)
+}
+
+
+class Jugador{
+    - puntos: Integer
+
+    + nombrar(String: nombre)
+
+}
+class jugada{
+
+}
+
+MultipleChoice <|-down- MultipleChoiceClasico
+MultipleChoice <|-down- MultipleChoiceParcial
+MultipleChoice <|-- MultipleChoiceConPenalidad
+VerdaderoFalso <|-- VerdaderoFalsoClasico
+VerdaderoFalso <|-- VerdaderoFalsoConPenalidad
+
+Pregunta -up-> "1..n" Respuesta
+
+Jugador "n" -up-o Partida
+
+Pregunta -left-o Partida
+
+
+Pregunta <|.. MultipleChoice
+Pregunta <|.. VerdaderoFalso
+Respuesta <|-up- RespuestaCorrecta
+Respuesta <|-up- RespuestaIncorrecta
+
+Partida <-up- AlgoHoot
+
+@enduml

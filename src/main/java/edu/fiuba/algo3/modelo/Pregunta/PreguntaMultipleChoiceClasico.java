@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class PreguntaMultipleChoiceClasico extends Pregunta{
 
-    public PreguntaMultipleChoiceClasico(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
+    public PreguntaMultipleChoiceClasico(int idPregunta,String tema, String enunciado,
+                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
         super(enunciado, opciones, respuestaCorrecta);
     }
 

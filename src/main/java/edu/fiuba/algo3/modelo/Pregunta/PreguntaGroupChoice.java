@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class PreguntaGroupChoice extends Pregunta {
 
-    public PreguntaGroupChoice(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
+    public PreguntaGroupChoice(int idPregunta,String tema, String enunciado,
+                               Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
         super(enunciado, opciones, respuestaCorrecta);
     }
 

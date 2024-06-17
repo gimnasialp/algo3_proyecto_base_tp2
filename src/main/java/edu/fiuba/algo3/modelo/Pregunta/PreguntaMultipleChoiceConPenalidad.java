@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class PreguntaMultipleChoiceConPenalidad extends Pregunta {
 
-    public PreguntaMultipleChoiceConPenalidad(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
+    public PreguntaMultipleChoiceConPenalidad(int idPregunta,String tema, String enunciado,
+                                              Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
         super(enunciado, opciones, respuestaCorrecta);
     }
 
