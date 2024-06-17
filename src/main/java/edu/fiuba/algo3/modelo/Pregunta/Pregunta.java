@@ -5,17 +5,10 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public abstract class Pregunta {
+public interface Pregunta {
 
-    protected String enunciado;
-    protected ArrayList<String> opciones;
-    protected Respuesta respuestaCorrecta;
+    public Resultado responder(ArrayList<Respuesta> respuestas);
 
-    public Pregunta(String enunciado, ArrayList<String> opciones, Respuesta respuestaCorrecta) {
-        this.enunciado = enunciado;
-        this.opciones = opciones;
-        this.respuestaCorrecta = respuestaCorrecta;
-    }
+    public boolean mismoId(int id);
 
-    public abstract Resultado responder(ArrayList<Respuesta> respuestas);
 }

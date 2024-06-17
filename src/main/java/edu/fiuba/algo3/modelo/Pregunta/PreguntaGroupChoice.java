@@ -5,11 +5,23 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaGroupChoice extends Pregunta {
+public class PreguntaGroupChoice implements Pregunta {
 
-    public PreguntaGroupChoice(int idPregunta,String tema, String enunciado,
-                               Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
-        super(enunciado, opciones, respuestaCorrecta);
+    private int idPregunta;
+    private String tema;
+    private String textoRepuesta;
+    private String enunciado;
+    private ArrayList<String> opciones;
+    private Respuesta respuestaCorrecta;
+
+
+    public PreguntaGroupChoice(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String>opciones, String textoRespuesta) {
+        this.idPregunta = idPregunta;
+        this.tema = tema;
+        this.textoRepuesta = textoRespuesta;
+        this.enunciado = enunciado;
+        this.opciones = opciones;
+        this.respuestaCorrecta = respuestaCorrecta;
     }
 
     @Override
@@ -25,5 +37,10 @@ public class PreguntaGroupChoice extends Pregunta {
         }
 
         return resultado;
+    }
+
+    @Override
+    public boolean mismoId(int id) {
+        return (id == idPregunta);
     }
 }

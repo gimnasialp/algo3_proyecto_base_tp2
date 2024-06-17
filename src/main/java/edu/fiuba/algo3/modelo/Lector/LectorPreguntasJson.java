@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class LectorPreguntasJson implements Lector{
+
     private static final String rutaRelativa = "preguntas.json";
     private final ArrayList<Pregunta> preguntasTotales;
 
@@ -53,8 +54,6 @@ public class LectorPreguntasJson implements Lector{
             try{
                 for (JsonElement jsonElement : jsonarray) {
                     if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
-                        System.out.println("    ");
-                        System.out.println(jsonElement);
                         preguntasTotales.add(preguntaParser.parse(jsonElement));
                     }
                 }
