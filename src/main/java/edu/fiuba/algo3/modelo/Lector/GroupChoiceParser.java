@@ -3,38 +3,21 @@ package edu.fiuba.algo3.modelo.Lector;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaGroupChoice;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaOrderedChoice;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 public class GroupChoiceParser implements Parser {
 
     private FabricaPreguntaGroupChoice fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
 
     public GroupChoiceParser() {
         this.fabrica= new FabricaPreguntaGroupChoice();
-        tipoPregunta = "group choice";
     }
 
-    private Pregunta OrganizarDatos(JsonObject jsonObject){
-
-        ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
-        idPregunta = jsonObject.get("ID").getAsInt();
-        tema = jsonObject.get("Tema").getAsString();
-        textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
+    private RespuestaGroupChoice getRespuesta(JsonObject jsonObject){
 
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] grupos = respuestaCorrecta.split(";");
@@ -52,30 +35,34 @@ public class GroupChoiceParser implements Parser {
         ArrayList<Integer> respuestaUno = claveValor.get("A");
         ArrayList<Integer> respuestaDos = claveValor.get("B");
         RespuestaGroupChoice respuesta = new RespuestaGroupChoice(respuestaUno, respuestaDos);
-        respuestas.add(respuesta);
 
+        return respuesta;
+    }
+
+    public ArrayList<String> getOpciones(JsonObject jsonObject) {
+        ArrayList<String> opciones = new ArrayList<>();
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        while (jsonObject.keySet().contains(claveOpcion)) {
+        while  (jsonObject.keySet().contains(claveOpcion)) {
             opciones.add(jsonObject.get(claveOpcion).getAsString());
             numeroOpcion++;
             claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
         }
 
-        enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta,opciones, textoRespuesta);
-        return pregunta;
-
+        return opciones;
     }
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
-        return OrganizarDatos(preguntaJson.getAsJsonObject());
-    }
+        JsonObject jsonObject = preguntaJson.getAsJsonObject();
+        int idPregunta = jsonObject.get("ID").getAsInt();
+        String tema = jsonObject.get("Tema").getAsString();
+        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
+        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+        ArrayList<String> opciones = getOpciones(jsonObject);
+        RespuestaGroupChoice respuesta = getRespuesta(jsonObject);
 
-    @Override
-    public String tipoPregunta() {
-        return tipoPregunta;
+        return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
     }
 
 }

@@ -8,60 +8,48 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.HashMap;
 
 public class LectorPreguntasJson implements Lector{
     private static final String rutaRelativa = "preguntas.json";
     private final ArrayList<Pregunta> preguntasTotales;
+    private HashMap<String, Parser> parseadores;
 
     public LectorPreguntasJson() {
+
         this.preguntasTotales = new ArrayList<>();
+        this.parseadores = new HashMap<>();
+        this.parseadores.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
+        this.parseadores.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
+        this.parseadores.put("multiple choice simple", new MultipleChoiceCLasicoParser());
+        this.parseadores.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
+        this.parseadores.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
+        this.parseadores.put("ordered choice", new OrderedChoiceParser());
+        this.parseadores.put("group choice", new GroupChoiceParser());
+
     }
 
     @Override
     public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
 
-        Parser parserVerdaderoFalsoClasico = new VerdaderoFalsoClasicoParser();
-        Parser parserVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidadParser();
-        Parser parserMultipleChoice = new MultipleChoiceCLasicoParser();
-        Parser parserMultipleChoicePenalidad = new MultipleChoicePenalidadParser();
-        Parser parserMultipleChoiceParcial = new MultipleChoiceParcialParser();
-        Parser parserOrden = new OrderedChoiceParser();
-        Parser parserGroupChoice = new GroupChoiceParser();
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoicePenalidad);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoiceParcial);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserOrden);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserGroupChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoClasico);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoConPenalidad);
-        return preguntasTotales;
-    }
-
-    private void agregarPreguntasDeArchivo(ArrayList<Pregunta> preguntasTotales, String ruta, Parser preguntaParser) throws ArchivoNoEncontradoException {
-
-        JsonElement preguntasJson;
-        JsonArray jsonarray;
-
         try {
-            JsonReader reader = new JsonReader(new FileReader(ruta));
-            preguntasJson = JsonParser.parseReader(reader);
-            jsonarray = preguntasJson.getAsJsonArray();
-            try{
+            JsonReader reader = new JsonReader(new FileReader(this.rutaRelativa));
+            JsonElement preguntasJson = JsonParser.parseReader(reader);
+            JsonArray jsonarray = preguntasJson.getAsJsonArray();
+            try {
                 for (JsonElement jsonElement : jsonarray) {
-                    if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
+                    String tipoPregunta = jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase();
+                    if(this.parseadores.containsKey(tipoPregunta)) {
                         System.out.println("    ");
                         System.out.println(jsonElement);
-                        preguntasTotales.add(preguntaParser.parse(jsonElement));
+                        this.preguntasTotales.add(this.parseadores.get(tipoPregunta).parse(jsonElement));
                     }
                 }
 
             } catch (JsonSyntaxException e) {
                 throw new RuntimeException(e.toString());
-            }catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
+            } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
                 ex.printStackTrace();
             }
 
@@ -71,6 +59,7 @@ public class LectorPreguntasJson implements Lector{
             throw new RuntimeException(e.toString());
         }
 
+        return this.preguntasTotales;
     }
 
 }

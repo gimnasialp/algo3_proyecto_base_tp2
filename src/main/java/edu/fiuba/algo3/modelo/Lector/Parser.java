@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public interface Parser {
+
     public Pregunta parse(JsonElement preguntaJson);
-    public String tipoPregunta();
 
 }
