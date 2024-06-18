@@ -21,8 +21,8 @@ public class OrderedChoiceParser implements Parser {
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
-        for (String elemento : lista) {
-            listaRespuesta.add(Integer.getInteger(elemento));
+        for (String valor : lista) {
+            listaRespuesta.add(Integer.parseInt(valor.trim()));
         }
         RespuestaOrderedChoice respuesta = new RespuestaOrderedChoice(listaRespuesta);
 

@@ -28,14 +28,13 @@ public class GroupChoiceParser implements Parser {
             String[] valores = claveValorGrupo[1].split(",");
             ArrayList<Integer> listaValor = new ArrayList<>();
             for (String valor : valores) {
-                listaValor.add(Integer.getInteger(valor));
+                listaValor.add(Integer.parseInt(valor.trim()));
             }
             claveValor.put(clave, listaValor);
         }
         ArrayList<Integer> respuestaUno = claveValor.get("A");
         ArrayList<Integer> respuestaDos = claveValor.get("B");
         RespuestaGroupChoice respuesta = new RespuestaGroupChoice(respuestaUno, respuestaDos);
-
         return respuesta;
     }
 

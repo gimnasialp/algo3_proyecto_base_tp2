@@ -12,7 +12,7 @@ public class MultipleChoiceCLasicoParser implements Parser {
     private FabricaPreguntaMultipleChoiceClasico fabrica;
 
     public MultipleChoiceCLasicoParser() {
-        this.fabrica= new FabricaPreguntaMultipleChoiceClasico();
+        this.fabrica = new FabricaPreguntaMultipleChoiceClasico();
     }
 
     private RespuestaMultipleChoiceComun getRespuesta(JsonObject jsonObject){
@@ -20,8 +20,8 @@ public class MultipleChoiceCLasicoParser implements Parser {
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
-        for (String elemento : lista) {
-            listaRespuesta.add(Integer.getInteger(elemento));
+        for (String valor : lista) {
+            listaRespuesta.add(Integer.parseInt(valor.trim()));
         }
         RespuestaMultipleChoiceComun respuesta = new RespuestaMultipleChoiceComun(listaRespuesta);
 
