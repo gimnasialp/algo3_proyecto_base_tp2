@@ -40,17 +40,18 @@ public class GroupChoiceParser implements Parser {
         String[] grupos = respuestaCorrecta.split(";");
         HashMap<String, ArrayList<Integer>> claveValor = new HashMap<>();
         for (String grupo : grupos) {
-            String[] claveValorGrupo = grupo.split(":");
+            String[] claveValorGrupo = grupo.trim().split(":");
             String clave = claveValorGrupo[0];
-            String[] valores = claveValorGrupo[1].split(",");
+            String[] valores = claveValorGrupo[1].trim().split(",");
             ArrayList<Integer> listaValor = new ArrayList<>();
             for (String valor : valores) {
-                listaValor.add(Integer.getInteger(valor));
+                listaValor.add(Integer.parseInt(valor));
             }
             claveValor.put(clave, listaValor);
         }
         ArrayList<Integer> respuestaUno = claveValor.get("A");
         ArrayList<Integer> respuestaDos = claveValor.get("B");
+
         RespuestaGroupChoice respuesta = new RespuestaGroupChoice(respuestaUno, respuestaDos);
         respuestas.add(respuesta);
 

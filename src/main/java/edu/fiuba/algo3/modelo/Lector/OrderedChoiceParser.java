@@ -37,7 +37,7 @@ public class OrderedChoiceParser implements Parser {
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
         for (String elemento : lista) {
-            listaRespuesta.add(Integer.getInteger(elemento));
+            listaRespuesta.add(Integer.parseInt(elemento));
         }
         RespuestaOrderedChoice respuesta = new RespuestaOrderedChoice(listaRespuesta);
         respuestas.add(respuesta);

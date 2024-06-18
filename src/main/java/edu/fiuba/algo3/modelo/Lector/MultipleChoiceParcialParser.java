@@ -37,7 +37,7 @@ public class MultipleChoiceParcialParser implements Parser {
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
         for (String elemento : lista) {
-            listaRespuesta.add(Integer.getInteger(elemento));
+            listaRespuesta.add(Integer.parseInt(elemento));
         }
         RespuestaMultipleChoiceEspecial respuesta = new RespuestaMultipleChoiceEspecial(listaRespuesta);
         respuestas.add(respuesta);

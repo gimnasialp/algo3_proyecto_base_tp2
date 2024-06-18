@@ -10,18 +10,33 @@ import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaVerdaderoFalsoTest {
-    /*
-    @Test
-    public void UnaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorretamente() {
 
-        String enunciado = "Argentina es el actual campeon mundial de futbol";
-        ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
-        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
-        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, opciones, respuestaCorrecta);
+    private String enunciado;
+    private ArrayList<String> opciones;
+    private Respuesta respuestaCorrecta;
+    private int idPregunta;
+    private String tema;
+    private String textoRepuesta;
+
+    @BeforeEach
+    public void setUpPregunta() {
+        this.enunciado = "Argentina es el actual campeon mundial de futbol";
+        this.opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
+        this.respuestaCorrecta = new RespuestaVerdaderoFalso(1);
+        this.idPregunta = 16;
+        this.tema = "DEPORTES";
+        this.textoRepuesta = "Argentina gano mundial de futbol en 2022";
+    }
+
+    @Test
+    public void unaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlResultadoDeLaRonda() {
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
@@ -37,12 +52,9 @@ public class PreguntaVerdaderoFalsoTest {
     }
 
     @Test
-    public void UnaPreguntaDeVerdaderoFalsoConPenalidadRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorretamente() {
+    public void unaPreguntaDeVerdaderoFalsoConPenalidadRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlResultadoDeLaRonda() {
 
-        String enunciado = "Argentina es el actual campeon mundial de futbol";
-        ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
-        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
-        Pregunta pregunta = new PreguntaVerdaderoFalsoConPenalidad(enunciado, opciones, respuestaCorrecta);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoConPenalidad(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
@@ -55,6 +67,6 @@ public class PreguntaVerdaderoFalsoTest {
 
         assertEquals(puntosDelJugadorUno, resultado.obtenerPuntosDelJugador(0));
         assertEquals(puntosDelJugadorDos, resultado.obtenerPuntosDelJugador(1));
-    }*/
+    }
 
 }

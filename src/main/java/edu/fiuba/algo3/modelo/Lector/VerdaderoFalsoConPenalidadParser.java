@@ -26,10 +26,8 @@ public class VerdaderoFalsoConPenalidadParser implements  Parser{
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
-        System.out.println(jsonObject);
         ArrayList<Respuesta> respuestas = new ArrayList<>();
         ArrayList<String> opciones = new ArrayList<>();
-
 
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();

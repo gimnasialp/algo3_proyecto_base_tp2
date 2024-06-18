@@ -9,12 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AnuladorTest {
 
     @Test
-    public void tresJugadoresTienenDosPuntosYUnoActivaElAnuladorDePuntaje () {
+    public void tresJugadoresTienenDosPuntosUnoActivaElAnuladorDePuntajeSoloEseJugadorRecibiraPuntos() {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(2);
         resultado.agregarPuntos(2);
         resultado.agregarPuntos(2);
+
         resultado.usarModificador(new AnuladorDePuntaje(), 1);
 
         int puntosDelJugadorUnoEsperado = 0;
@@ -28,12 +29,13 @@ public class AnuladorTest {
     }
 
     @Test
-    public void tresJugadoresTienenVariosPuntosYDosJugadoresActivanElAnuladorDePuntajeTodosRecibiranCeroPuntos () {
+    public void tresJugadoresTienenVariosPuntosDosJugadoresActivanElAnuladorDePuntajeTodosRecibiranCeroPuntos () {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(3);
         resultado.agregarPuntos(1);
         resultado.agregarPuntos(5);
+
         resultado.usarModificador(new AnuladorDePuntaje(), 1);
         resultado.usarModificador(new AnuladorDePuntaje(), 2);
 

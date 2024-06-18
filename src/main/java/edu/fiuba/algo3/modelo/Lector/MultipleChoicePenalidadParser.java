@@ -37,7 +37,7 @@ public class MultipleChoicePenalidadParser implements Parser {
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
         for (String elemento : lista) {
-            listaRespuesta.add(Integer.getInteger(elemento));
+            listaRespuesta.add(Integer.parseInt(elemento));
         }
         RespuestaMultipleChoiceEspecial respuesta = new RespuestaMultipleChoiceEspecial(listaRespuesta);
         respuestas.add(respuesta);
@@ -50,7 +50,7 @@ public class MultipleChoicePenalidadParser implements Parser {
         }
 
         enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta,opciones, textoRespuesta);
+        Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
         return pregunta;
 
     }

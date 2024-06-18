@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Lector;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceClasico;
@@ -10,7 +9,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
 
 import java.util.ArrayList;
 
-public class MultipleChoiceCLasicoParser implements Parser {
+public class MultipleChoiceClasicoParser implements Parser {
     private FabricaPreguntaMultipleChoiceClasico fabrica;
     private int idPregunta;
     private String tema;
@@ -19,7 +18,7 @@ public class MultipleChoiceCLasicoParser implements Parser {
     private ArrayList<String> opciones = new ArrayList<>();
     private String enunciadoPregunta;
 
-    public MultipleChoiceCLasicoParser() {
+    public MultipleChoiceClasicoParser() {
         this.fabrica= new FabricaPreguntaMultipleChoiceClasico();
         tipoPregunta = "multiple choice simple";
     }

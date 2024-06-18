@@ -12,7 +12,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JugadorTest {
 
     @Test
-    public void dosJugadoresRecibenUnPunto() {
+    public void leAsignoUnPuntoAUnJugador() {
+
+        Jugador jugadorUno = new Jugador("Martin");
+
+        jugadorUno.asignarPuntos(1);
+
+        int puntosDelJugadorEsperado = 1;
+
+        assertEquals(puntosDelJugadorEsperado, jugadorUno.obtenerPuntaje());
+    }
+
+    @Test
+    public void leAsignoPuntosPositivosYNegativosAUnJugador() {
+
+        Jugador jugadorUno = new Jugador("Martin");
+
+        jugadorUno.asignarPuntos(10);
+        jugadorUno.asignarPuntos(5);
+        jugadorUno.asignarPuntos(-30);
+
+        int puntosDelJugadorEsperado = 10 + 5 - 30;
+
+        assertEquals(puntosDelJugadorEsperado, jugadorUno.obtenerPuntaje());
+
+    }
+
+    @Test
+    public void dosJugadoresRecibenUnPuntoObtenidoDelResultadoDeUnaRonda() {
+
         Jugador jugadorUno = new Jugador("Martin");
         Jugador jugadorDos = new Jugador("Robert");
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>(Arrays.asList(jugadorUno, jugadorDos));
@@ -29,4 +57,5 @@ public class JugadorTest {
         assertEquals(puntosDelJugadorUnoEsperado, jugadorUno.obtenerPuntaje());
         assertEquals(puntosDelJugadorDosEsperado, jugadorDos.obtenerPuntaje());
     }
+
 }

@@ -9,7 +9,7 @@ public class Resultado {
     private ArrayList<Integer> puntosRonda;
 
     public Resultado () {
-        this.puntosRonda = new ArrayList<Integer>();
+        this.puntosRonda = new ArrayList<>();
     }
 
     public void agregarPuntos(int puntos) {

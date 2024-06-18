@@ -14,8 +14,7 @@ public class PreguntaGroupChoice implements Pregunta {
     private ArrayList<String> opciones;
     private Respuesta respuestaCorrecta;
 
-
-    public PreguntaGroupChoice(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String>opciones, String textoRespuesta) {
+    public PreguntaGroupChoice(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones, String textoRespuesta) {
         this.idPregunta = idPregunta;
         this.tema = tema;
         this.textoRepuesta = textoRespuesta;
