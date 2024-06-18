@@ -2,9 +2,7 @@ package edu.fiuba.algo3.modelo.Pregunta.Fabricas;
 
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaGroupChoice;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
 
 import java.util.ArrayList;
 

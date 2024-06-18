@@ -8,12 +8,10 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class LectorPreguntasJson implements Lector{
+
     private static final String rutaRelativa = "preguntas.json";
     private final ArrayList<Pregunta> preguntasTotales;
 
@@ -26,7 +24,7 @@ public class LectorPreguntasJson implements Lector{
 
         Parser parserVerdaderoFalsoClasico = new VerdaderoFalsoClasicoParser();
         Parser parserVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidadParser();
-        Parser parserMultipleChoice = new MultipleChoiceCLasicoParser();
+        Parser parserMultipleChoice = new MultipleChoiceClasicoParser();
         Parser parserMultipleChoicePenalidad = new MultipleChoicePenalidadParser();
         Parser parserMultipleChoiceParcial = new MultipleChoiceParcialParser();
         Parser parserOrden = new OrderedChoiceParser();
@@ -53,8 +51,6 @@ public class LectorPreguntasJson implements Lector{
             try{
                 for (JsonElement jsonElement : jsonarray) {
                     if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
-                        System.out.println("    ");
-                        System.out.println(jsonElement);
                         preguntasTotales.add(preguntaParser.parse(jsonElement));
                     }
                 }

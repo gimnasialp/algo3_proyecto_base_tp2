@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface Modificador {
 
-    void aplicar(ArrayList<Integer> puntosRonda, int jugadorIndice);
+    void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion);
 
 }

@@ -5,16 +5,22 @@ import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
 
-public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
-    private int idPregunta;
-    private String tema;
-    private String textoRepuesta;
-    public PreguntaVerdaderoFalsoConPenalidad(int idPregunta,String tema, String enunciado,
-                                         Respuesta respuestaCorrecta,ArrayList<String>opciones,String textoRespuesta) {
-        super(enunciado, opciones, respuestaCorrecta);
+public class PreguntaVerdaderoFalsoConPenalidad implements Pregunta {
+
+    private final int idPregunta;
+    private final String tema;
+    private final String textoRepuesta;
+    private final String enunciado;
+    private final ArrayList<String> opciones;
+    private final Respuesta respuestaCorrecta;
+
+    public PreguntaVerdaderoFalsoConPenalidad(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String>opciones, String textoRespuesta) {
         this.idPregunta = idPregunta;
         this.tema = tema;
         this.textoRepuesta = textoRespuesta;
+        this.enunciado = enunciado;
+        this.opciones = opciones;
+        this.respuestaCorrecta = respuestaCorrecta;
     }
 
     @Override
@@ -33,6 +39,11 @@ public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
         }
 
         return resultado;
+    }
+
+    @Override
+    public boolean mismoId(int id) {
+        return (id == idPregunta);
     }
 
 }
