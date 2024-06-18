@@ -2,56 +2,74 @@ package edu.fiuba.algo3.vista;
 
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class Interfaz extends Application {
 
     @Override
+
     public void start(Stage primaryStage) {
-        // Crear un label con una oración
-        Label sentenceLabel = new Label("Argentina campeon del mundo?.");
+        // Crear el componente de texto
+        String texto = "El punto de ebullición del agua a 3300m del mar es 100 grados centígrados.";
 
-        // Crear los dos botones con medidas específicas
-        Button button1 = new Button("Verdadero");
-        button1.setPrefSize(100, 50); // Establecer el tamaño del botón izquierdo
+        int maxLongitud = 34;
+        // Texto truncado
+        Text part1 = new Text(texto.substring(0,maxLongitud));
+        Text part2 = new Text(texto.substring(maxLongitud));
+        // Crear un TextFlow para contener ambas partes del texto
+        TextFlow textFlow = new TextFlow(part1, new Text("\n"), part2);
 
+        //label.setPadding(new Insets(20));
+        // Crear los botones
+        Button button1 = new Button("Verdaero");
+        button1.setBackground(new Background(new BackgroundFill(Color.LIGHTSEAGREEN, CornerRadii.EMPTY, null)));
+        button1.setTextFill(Color.WHITE);
         Button button2 = new Button("Falso");
-        button2.setPrefSize(100, 50); // Establecer el tamaño del botón derecho
+        button2.setBackground(new Background(new BackgroundFill(Color.LIGHTCORAL, CornerRadii.EMPTY, null)));
+        button2.setTextFill(Color.WHITE);
 
-        // Añadir acción a los botones
-        button1.setOnAction(event -> System.out.println("Botón Izquierdo presionado"));
-        button2.setOnAction(event -> System.out.println("Botón Derecho presionado"));
+        Button siguiente = new Button("Siguiente");
+        button1.setPrefSize(100, 50);
+        button2.setPrefSize(100, 50);
+        siguiente.setPrefSize(100, 50);
 
-        // Crear un HBox para el botón izquierdo y configurarlo
-        HBox leftBox = new HBox(button1);
-        leftBox.setPadding(new javafx.geometry.Insets(10)); // Añadir padding
-        leftBox.setPrefWidth(150); // Ancho preferido del contenedor izquierdo
+        // Crear un HBox para los botones con espaciado entre ellos
+        HBox buttonBox = new HBox(60); // 10 píxeles de espaciado entre los botones
+        buttonBox.getChildren().addAll(button1, button2);
 
-        // Crear un HBox para el botón derecho y configurarlo
-        HBox rightBox = new HBox(button2);
-        rightBox.setPadding(new javafx.geometry.Insets(10)); // Añadir padding
-        rightBox.setPrefWidth(150); // Ancho preferido del contenedor derecho
+        // Crear un VBox para el texto y los botones
+        VBox vBox = new VBox(40); // 20 píxeles de espaciado entre el texto y el HBox
+        vBox.setPadding(new Insets(20)); // 20 píxeles de padding alrededor del VBox
+        vBox.getChildren().addAll(textFlow, buttonBox,siguiente);
+        // Cambiar la fuente del Label a Arial, tamaño 24, negrita
+        //textFlow.setRotate(Font.font("Arial", FontWeight.BOLD, 13).getSize());
 
-        // Crear un BorderPane y añadir los componentes
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(sentenceLabel); // Colocar el label en la parte superior
-        borderPane.setLeft(leftBox); // Colocar el contenedor del botón izquierdo en el lado izquierdo
-        borderPane.setRight(rightBox); // Colocar el contenedor del botón derecho en el lado derecho
+        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTSTEELBLUE, CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        vBox.setBackground(background);
 
-        // Crear la escena con el BorderPane
-        Scene scene = new Scene(borderPane, 400, 200); // Tamaño de la ventana 400x200 píxeles
+        // Crear un StackPane como contenedor raíz
+        StackPane root = new StackPane();
+        root.getChildren().add(vBox);
 
-        // Configurar el escenario (Stage)
-        primaryStage.setTitle("Juego de responder Preguntas");
+        // Crear la escena con el VBox y establecerla en el escenario
+        Scene scene = new Scene(root, 350, 300);
+        primaryStage.setTitle("Juego de preguntas");
+
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
+
     public static void main(String[] args){
         launch(args);
     }
+
 }
