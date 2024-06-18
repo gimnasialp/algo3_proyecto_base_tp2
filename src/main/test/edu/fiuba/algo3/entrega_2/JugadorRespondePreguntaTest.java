@@ -19,9 +19,12 @@ public class JugadorRespondePreguntaTest {
 
     private Pregunta preguntaVerdaderoFalsoClasicoUno;
     private Pregunta preguntaVerdaderoFalsoClasicoDos;
+    private Jugador jugador;
 
     @BeforeEach
     public void setUpPreguntas() {
+        this.jugador = new Jugador("Marianito");
+
         LectorPreguntasJson lector = new LectorPreguntasJson();
         ArrayList<Pregunta> preguntas = lector.generarPreguntas();
         this.preguntaVerdaderoFalsoClasicoUno = preguntas.stream().filter(p -> p.mismoId(3)).findFirst().get();
@@ -31,11 +34,9 @@ public class JugadorRespondePreguntaTest {
     @Test
     public void unJugadorRespondeIncorrectamenteUnaPreguntaVerdaderoFalsoClasicoYRecibeCeroPuntos() {
 
-        Jugador jugador = new Jugador("Jorge");
-
         Respuesta respuestaDelJugador = new RespuestaVerdaderoFalso(1);
         Resultado resultado = preguntaVerdaderoFalsoClasicoUno.responder(new ArrayList<>(Arrays.asList(respuestaDelJugador)));
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugador)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugador)));
 
         assertEquals(0, jugador.obtenerPuntaje());
     }
@@ -43,15 +44,13 @@ public class JugadorRespondePreguntaTest {
     @Test
     public void unJugadorRespondeCorrectamenteDosPreguntasVerdaderoFalsoClasicoYRecibeDosPuntos() {
 
-        Jugador jugador = new Jugador("Pablo");
-
         Respuesta primeraRespuestaDelJugador = new RespuestaVerdaderoFalso(2);
         Resultado resultadoUno = preguntaVerdaderoFalsoClasicoUno.responder(new ArrayList<>(Arrays.asList(primeraRespuestaDelJugador)));
-        resultadoUno.asignarPuntos(new ArrayList<>(Arrays.asList(jugador)));
+        resultadoUno.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugador)));
 
         Respuesta segundaRespuestaDelJugador = new RespuestaVerdaderoFalso(2);
         Resultado resultadoDos = preguntaVerdaderoFalsoClasicoDos.responder(new ArrayList<>(Arrays.asList(segundaRespuestaDelJugador)));
-        resultadoDos.asignarPuntos(new ArrayList<>(Arrays.asList(jugador)));
+        resultadoDos.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugador)));
 
         assertEquals(2, jugador.obtenerPuntaje());
     }

@@ -4,8 +4,9 @@ import edu.fiuba.algo3.modelo.*;
 
 import edu.fiuba.algo3.modelo.Pregunta.*;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,11 +37,11 @@ public class PreguntaMultipleChoiceTest {
     @Test
     public void unaPreguntaMultipleChoiceClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlResultadoDeLaRonda() {
 
-        this.respuestaCorrecta = new RespuestaMultipleChoiceComun(new ArrayList<>(Arrays.asList(1, 4, 5)));
+        this.respuestaCorrecta = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceClasico(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceComun(new ArrayList<>(Arrays.asList(5, 1, 4)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceComun(new ArrayList<>(Arrays.asList(1, 5)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(5, 1, 4)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(1, 5)));
 
         ArrayList<Respuesta> respuestaDeJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos));
         Resultado resultado = pregunta.responder(respuestaDeJugadores);
@@ -55,12 +56,12 @@ public class PreguntaMultipleChoiceTest {
     @Test
     public void unaPreguntaDeMultipleChoiceConPenalidadRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlResultadoDeLaRonda() {
 
-        this.respuestaCorrecta = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 4, 5)));
+        this.respuestaCorrecta = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceConPenalidad(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(5, 1, 4)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 5)));
-        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(4, 6)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(5, 1, 4)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 5)));
+        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(4, 6)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos, respuestaJugadorTres));
         Resultado resultado = pregunta.responder(respuestaDeLosJugadores);
@@ -77,13 +78,13 @@ public class PreguntaMultipleChoiceTest {
     @Test
     public void unaPreguntaDeMultipleChoiceParcialRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosAlResultadoDeLaRonda() {
 
-        this.respuestaCorrecta = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 4, 5)));
+        this.respuestaCorrecta = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceParcial(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(5, 1 ,4)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(List.of(1)));
-        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 6, 5)));
-        Respuesta respuestaJugadorCuatro = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(6, 1, 5, 4)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(5, 1 ,4)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceParcial(new ArrayList<>(List.of(1)));
+        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(1, 6, 5)));
+        Respuesta respuestaJugadorCuatro = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(6, 1, 5, 4)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos, respuestaJugadorTres, respuestaJugadorCuatro));
         Resultado resultado = pregunta.responder(respuestaDeLosJugadores);

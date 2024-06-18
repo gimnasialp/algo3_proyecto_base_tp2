@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class MultipleChoiceClasicoParser implements Parser {
         for (String elemento : lista) {
             listaRespuesta.add(Integer.getInteger(elemento));
         }
-        RespuestaMultipleChoiceComun respuesta = new RespuestaMultipleChoiceComun(listaRespuesta);
+        RespuestaMultipleChoiceClasico respuesta = new RespuestaMultipleChoiceClasico(listaRespuesta);
         respuestas.add(respuesta);
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));

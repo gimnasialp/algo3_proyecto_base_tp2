@@ -21,33 +21,20 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
 
     private Jugador jugadorUno;
     private Jugador jugadorDos;
-    private Pregunta preguntaVerdaderoFalsoClasico;
-    private Pregunta preguntaVerdaderoFalsoConPenalidad;
-    private Pregunta preguntaMultipleChoiceClasico;
-    private Pregunta preguntaMultipleChoicePuntajeParcial;
-    private Pregunta preguntaMultipleChoiceConPenalidad;
-    private Pregunta preguntaOrderedChoice;
-    private Pregunta preguntaGroupChoice;
+    private ArrayList<Pregunta> preguntas;
 
     @BeforeEach
     public void setUpPreguntas() {
         this.jugadorUno = new Jugador("Casimiro");
         this.jugadorDos = new Jugador("Mafalda");
-
         LectorPreguntasJson lector = new LectorPreguntasJson();
-        ArrayList<Pregunta> preguntas = lector.generarPreguntas();
-
-        this.preguntaVerdaderoFalsoClasico = preguntas.stream().filter(p -> p.mismoId(3)).findFirst().get();
-        this.preguntaVerdaderoFalsoConPenalidad = preguntas.stream().filter(p -> p.mismoId(10)).findFirst().get();
-        this.preguntaMultipleChoiceClasico = preguntas.stream().filter(p -> p.mismoId(9)).findFirst().get();
-        this.preguntaMultipleChoicePuntajeParcial = preguntas.stream().filter(p -> p.mismoId(8)).findFirst().get();
-        this.preguntaMultipleChoiceConPenalidad = preguntas.stream().filter(p -> p.mismoId(14)).findFirst().get();
-        this.preguntaOrderedChoice = preguntas.stream().filter(p -> p.mismoId(17)).findFirst().get();
-        this.preguntaGroupChoice = preguntas.stream().filter(p -> p.mismoId(18)).findFirst().get();
+        this.preguntas = lector.generarPreguntas();
     }
 
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaVerdaderoFalsoClasicoAmbosActivanElAnuladorYTodosLosJugadoresRecibenCeroPuntos() {
+
+        Pregunta preguntaVerdaderoFalsoClasico = preguntas.stream().filter(p -> p.mismoId(3)).findFirst().get();
 
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(2);
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
@@ -57,7 +44,7 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         resultado.usarModificador(new AnuladorDePuntaje(), 0);
         resultado.usarModificador(new AnuladorDePuntaje(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(0, jugadorUno.obtenerPuntaje());
         assertEquals(0, jugadorDos.obtenerPuntaje());
@@ -65,6 +52,8 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
 
     @Test
     public void dosJugadoresRespondeIncorrectamenteUnaPreguntaVerdaderoFalsoConPenalidadAmbosActivanMultiplicadorYAmbosRecibenSusPuntos() {
+
+        Pregunta preguntaVerdaderoFalsoConPenalidad = preguntas.stream().filter(p -> p.mismoId(10)).findFirst().get();
 
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(2);
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
@@ -74,7 +63,7 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         resultado.usarModificador(new MultiplicarPorTres(), 0);
         resultado.usarModificador(new MultiplicarPorDos(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(-1 * 3, jugadorUno.obtenerPuntaje());
         assertEquals(-1 * 2, jugadorDos.obtenerPuntaje());
@@ -83,15 +72,17 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
     @Test
     public void deDosJugadoresUnoRespondeCorrectamenteUnaPreguntaMultipleChoiceClasicoYActivaUnMultiplicadorElOtroActivaElAnuladorNadieRecibePuntos() {
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceComun(new ArrayList<>(Arrays.asList(3)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceComun(new ArrayList<>(Arrays.asList(5)));
+        Pregunta preguntaMultipleChoiceClasico = preguntas.stream().filter(p -> p.mismoId(9)).findFirst().get();
+
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(5)));
 
         Resultado resultado = preguntaMultipleChoiceClasico.responder(new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos)));
 
         resultado.usarModificador(new MultiplicarPorTres(), 0);
         resultado.usarModificador(new AnuladorDePuntaje(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(0, jugadorUno.obtenerPuntaje());
         assertEquals(0, jugadorDos.obtenerPuntaje());
@@ -100,15 +91,17 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
     @Test
     public void deDosJugadoresUnoRespondeCorrectamenteUnaPreguntaMultipleChoiceParcialAmbosActivanLaExclusividadYSoloUnoRecibeElDobleDeSusPuntos() {
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(4, 1)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(3, 5)));
+        Pregunta preguntaMultipleChoicePuntajeParcial = preguntas.stream().filter(p -> p.mismoId(8)).findFirst().get();
+
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(4, 1)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(3, 5)));
 
         Resultado resultado = preguntaMultipleChoicePuntajeParcial.responder(new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos)));
 
         resultado.usarModificador(new ExclusividadDePuntaje(), 0);
         resultado.usarModificador(new ExclusividadDePuntaje(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(0, jugadorUno.obtenerPuntaje());
         assertEquals(2 * 2 * 2, jugadorDos.obtenerPuntaje());
@@ -117,15 +110,17 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaMultipleChoiceConPenalidadAmbosActivanMultiplicadorYRecibenSusPuntos() {
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(3)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(3)));
+        Pregunta preguntaMultipleChoiceConPenalidad = preguntas.stream().filter(p -> p.mismoId(14)).findFirst().get();
+
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(3)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(3)));
 
         Resultado resultado = preguntaMultipleChoiceConPenalidad.responder(new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos)));
 
         resultado.usarModificador(new MultiplicarPorDos(), 0);
         resultado.usarModificador(new MultiplicarPorTres(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(1 * 2, jugadorUno.obtenerPuntaje());
         assertEquals(1 * 3, jugadorDos.obtenerPuntaje());
@@ -133,6 +128,8 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
 
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaOrderedChoiceAmbosActivanExclusividadQueNoAfectaANingunoYRecibenSusPuntos() {
+
+        Pregunta preguntaOrderedChoice = preguntas.stream().filter(p -> p.mismoId(17)).findFirst().get();
 
         Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
         Respuesta respuestaJugadorDos = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
@@ -142,7 +139,7 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         resultado.usarModificador(new ExclusividadDePuntaje(), 0);
         resultado.usarModificador(new ExclusividadDePuntaje(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(1, jugadorUno.obtenerPuntaje());
         assertEquals(1, jugadorDos.obtenerPuntaje());
@@ -152,6 +149,8 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaGroupChoiceElPrimeroActivaExclusividadElOtroActivaElAnuladorYSoloUnoRecibePuntos() {
 
+        Pregunta preguntaGroupChoice = preguntas.stream().filter(p -> p.mismoId(18)).findFirst().get();
+
         Respuesta respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(6, 3, 4)));
         Respuesta respuestaJugadorDos = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(4, 6, 3)), new ArrayList<>(Arrays.asList(2, 1, 5)));
 
@@ -160,10 +159,10 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         resultado.usarModificador(new ExclusividadDePuntaje(), 0);
         resultado.usarModificador(new AnuladorDePuntaje(), 1);
 
-        resultado.asignarPuntos(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
+        resultado.asignarPuntosALosJugadores(new ArrayList<>(Arrays.asList(jugadorUno, jugadorDos)));
 
         assertEquals(0, jugadorUno.obtenerPuntaje());
         assertEquals(1, jugadorDos.obtenerPuntaje());
     }
-    // hacer tests con las demas preguntas con distintos modificadores y cantidad de jugadores
+
 }

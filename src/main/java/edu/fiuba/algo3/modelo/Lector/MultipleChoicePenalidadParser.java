@@ -2,12 +2,11 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 
 import java.util.ArrayList;
 
@@ -39,7 +38,7 @@ public class MultipleChoicePenalidadParser implements Parser {
         for (String elemento : lista) {
             listaRespuesta.add(Integer.parseInt(elemento));
         }
-        RespuestaMultipleChoiceEspecial respuesta = new RespuestaMultipleChoiceEspecial(listaRespuesta);
+        RespuestaMultipleChoiceConPenalidad respuesta = new RespuestaMultipleChoiceConPenalidad(listaRespuesta);
         respuestas.add(respuesta);
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));

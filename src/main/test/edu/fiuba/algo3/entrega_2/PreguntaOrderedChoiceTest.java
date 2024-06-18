@@ -30,7 +30,7 @@ public class PreguntaOrderedChoiceTest {
     @Test
     public void unJugadorRespondeCorrectamenteUnaPreguntaOrderedChoiceYRecibeUnPunto() {
 
-        Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<Integer>(Arrays.asList(1, 3, 4, 6, 5, 2)));
+        Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<Respuesta>(Arrays.asList(respuestaJugadorUno));
         Resultado resultado = preguntaOrderedChoice.responder(respuestaDeLosJugadores);
@@ -44,7 +44,7 @@ public class PreguntaOrderedChoiceTest {
     @Test
     public void unJugadorRespondeIncorrectamenteUnaPreguntaOrderedChoiceYNoRecibeUnPunto() {
 
-        Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<Integer>(Arrays.asList(2, 4, 3, 1, 5, 6)));
+        Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<Respuesta>(Arrays.asList(respuestaJugadorUno));
         Resultado resultado = preguntaOrderedChoice.responder(respuestaDeLosJugadores);

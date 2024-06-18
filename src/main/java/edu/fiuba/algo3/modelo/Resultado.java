@@ -6,28 +6,28 @@ import java.util.ArrayList;
 
 public class Resultado {
 
-    private ArrayList<Integer> puntosRonda;
+    private ArrayList<Integer> puntajeRonda;
 
     public Resultado () {
-        this.puntosRonda = new ArrayList<>();
+        this.puntajeRonda = new ArrayList<>();
     }
 
     public void agregarPuntos(int puntos) {
-        puntosRonda.add(puntos);
+        puntajeRonda.add(puntos);
     };
 
-    public int obtenerPuntosDelJugador(int index) {
-        return puntosRonda.get(index);
+    public int obtenerPuntosDelJugador(int posicionJugador) {
+        return puntajeRonda.get(posicionJugador);
     };
 
-    public void usarModificador(Modificador modificador, int jugadorIndice) {
-        modificador.aplicar(puntosRonda, jugadorIndice);
+    public void usarModificador(Modificador modificador, int posicionJugador) {
+        modificador.aplicar(puntajeRonda, posicionJugador);
     }
 
-    public void asignarPuntos(ArrayList<Jugador> jugadores) {
+    public void asignarPuntosALosJugadores(ArrayList<Jugador> jugadores) {
 
         for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).asignarPuntos(puntosRonda.get(i));
+            jugadores.get(i).asignarPuntos(puntajeRonda.get(i));
         }
 
     }

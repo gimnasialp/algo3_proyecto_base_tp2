@@ -49,7 +49,7 @@ public class JugadorTest {
         resultado.agregarPuntos(1);
         resultado.agregarPuntos(1);
 
-        resultado.asignarPuntos(jugadores);
+        resultado.asignarPuntosALosJugadores(jugadores);
 
         int puntosDelJugadorUnoEsperado = 1;
         int puntosDelJugadorDosEsperado = 1;

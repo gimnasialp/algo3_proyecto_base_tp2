@@ -2,10 +2,13 @@ package edu.fiuba.algo3.modelo.Modificador;
 
 import java.util.ArrayList;
 
-public class MultiplicarPorTres implements Modificador{
+public class MultiplicarPorTres implements Modificador {
+
     private final int MULTIPLICADOR = 3;
+
     @Override
-    public void aplicar(ArrayList<Integer> puntosRonda, int jugadorIndice) {
-        puntosRonda.set(jugadorIndice, puntosRonda.get(jugadorIndice)*MULTIPLICADOR);
+    public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
+        puntajeRonda.set(jugadorPosicion, puntajeRonda.get(jugadorPosicion)*MULTIPLICADOR);
     }
+
 }

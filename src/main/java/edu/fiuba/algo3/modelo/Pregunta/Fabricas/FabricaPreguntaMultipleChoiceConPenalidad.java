@@ -12,7 +12,7 @@ public class FabricaPreguntaMultipleChoiceConPenalidad extends FabricaPreguntas{
                 (Integer) parameters[0],//ID
                 parameters[1].toString(), //TEMA
                 parameters[2].toString(), //ENUNCIADO
-                (RespuestaMultipleChoiceEspecial) parameters[3], //RESPUESTA CORRECTA
+                (RespuestaMultipleChoiceConPenalidad) parameters[3], //RESPUESTA CORRECTA
                 (ArrayList<String>) parameters[4], //OPCIONES
                 parameters[5].toString() //TEXTORESPUESTA
         );

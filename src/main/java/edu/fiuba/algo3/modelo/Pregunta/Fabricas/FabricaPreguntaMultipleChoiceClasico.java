@@ -13,7 +13,7 @@ public class FabricaPreguntaMultipleChoiceClasico extends FabricaPreguntas {
                 (Integer) parameters[0],//ID
                 parameters[1].toString(), //TEMA
                 parameters[2].toString(), //ENUNCIADO
-                (RespuestaMultipleChoiceComun) parameters[3], //RESPUESTA CORRECTA
+                (RespuestaMultipleChoiceClasico) parameters[3], //RESPUESTA CORRECTA
                 (ArrayList<String>) parameters[4], //OPCIONES
                 parameters[5].toString() //TEXTORESPUESTA
         );

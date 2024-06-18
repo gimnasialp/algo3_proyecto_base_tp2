@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo.Respuesta;
 
 import java.util.ArrayList;
 
-public class RespuestaMultipleChoiceEspecial implements Respuesta{
+public class RespuestaMultipleChoiceParcial implements Respuesta{
 
     private final ArrayList<Integer> respuesta;
 
-    public RespuestaMultipleChoiceEspecial (ArrayList<Integer> respuesta) {
+    public RespuestaMultipleChoiceParcial(ArrayList<Integer> respuesta) {
         this.respuesta = respuesta;
     }
 
@@ -20,7 +20,7 @@ public class RespuestaMultipleChoiceEspecial implements Respuesta{
     }
 
     public int opcionesCorrectas(Respuesta respuesta) {
-        RespuestaMultipleChoiceEspecial respuestaCorrecta = (RespuestaMultipleChoiceEspecial) respuesta;
+        RespuestaMultipleChoiceParcial respuestaCorrecta = (RespuestaMultipleChoiceParcial) respuesta;
 
         int cantidad = 0;
 
@@ -33,17 +33,4 @@ public class RespuestaMultipleChoiceEspecial implements Respuesta{
         return cantidad;
     }
 
-    public int opcionesIncorrectas(Respuesta respuesta) {
-        RespuestaMultipleChoiceEspecial respuestaCorrecta = (RespuestaMultipleChoiceEspecial) respuesta;
-
-        int cantidad = 0;
-
-        for (Integer choice : this.respuesta) {
-            if (!respuestaCorrecta.evaluar(choice)) {
-                cantidad += 1;
-            }
-        }
-
-        return cantidad;
-    }
 }
