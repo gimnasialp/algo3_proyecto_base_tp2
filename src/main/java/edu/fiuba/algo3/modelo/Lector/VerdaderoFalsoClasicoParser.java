@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalsoClasicoParser implements Parser{
+public class VerdaderoFalsoClasicoParser extends Parser{
 
     private FabricaPreguntasVerdaderoFalso fabrica;
     private int idPregunta;

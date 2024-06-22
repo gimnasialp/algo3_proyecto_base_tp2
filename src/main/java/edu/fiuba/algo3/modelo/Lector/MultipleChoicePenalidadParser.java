@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 
 import java.util.ArrayList;
 
-public class MultipleChoicePenalidadParser implements Parser {
+public class MultipleChoicePenalidadParser extends Parser {
     private FabricaPreguntaMultipleChoiceConPenalidad fabrica;
     private int idPregunta;
     private String tema;

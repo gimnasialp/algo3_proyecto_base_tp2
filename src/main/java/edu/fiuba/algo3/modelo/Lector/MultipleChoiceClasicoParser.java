@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
 
 import java.util.ArrayList;
 
-public class MultipleChoiceClasicoParser implements Parser {
+public class MultipleChoiceClasicoParser extends Parser {
     private FabricaPreguntaMultipleChoiceClasico fabrica;
     private int idPregunta;
     private String tema;

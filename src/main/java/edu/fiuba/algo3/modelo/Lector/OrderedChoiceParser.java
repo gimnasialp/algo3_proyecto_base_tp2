@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 
 import java.util.ArrayList;
 
-public class OrderedChoiceParser implements Parser {
+public class OrderedChoiceParser extends Parser {
 
     private FabricaPreguntaOrderedChoice fabrica;
     private int idPregunta;

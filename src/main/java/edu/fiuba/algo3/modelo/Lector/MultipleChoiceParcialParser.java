@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 
 import java.util.ArrayList;
 
-public class MultipleChoiceParcialParser implements Parser {
+public class MultipleChoiceParcialParser extends Parser {
 
     private FabricaPreguntaMultipleChoiceParcial fabrica;
     private int idPregunta;

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 
-public class GroupChoiceParser implements Parser {
+public class GroupChoiceParser extends Parser {
 
     private FabricaPreguntaGroupChoice fabrica;
     private int idPregunta;

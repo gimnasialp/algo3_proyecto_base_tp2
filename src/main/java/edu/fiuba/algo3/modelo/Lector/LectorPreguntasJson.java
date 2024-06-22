@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LectorPreguntasJson implements Lector{
 
@@ -21,40 +22,39 @@ public class LectorPreguntasJson implements Lector{
 
     @Override
     public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
-
-        Parser parserVerdaderoFalsoClasico = new VerdaderoFalsoClasicoParser();
-        Parser parserVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidadParser();
-        Parser parserMultipleChoice = new MultipleChoiceClasicoParser();
-        Parser parserMultipleChoicePenalidad = new MultipleChoicePenalidadParser();
-        Parser parserMultipleChoiceParcial = new MultipleChoiceParcialParser();
-        Parser parserOrden = new OrderedChoiceParser();
-        Parser parserGroupChoice = new GroupChoiceParser();
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoicePenalidad);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoiceParcial);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserOrden);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserGroupChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoClasico);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoConPenalidad);
+        List<Parser> parsers = List.of(
+                new VerdaderoFalsoClasicoParser(),
+                new VerdaderoFalsoConPenalidadParser(),
+                new MultipleChoiceClasicoParser(),
+                new MultipleChoicePenalidadParser(),
+                new MultipleChoiceParcialParser(),
+                new OrderedChoiceParser(),
+                new GroupChoiceParser()
+        );
+        for (Parser parser : parsers) {
+            agregarPreguntas(preguntasTotales, parser);
+        }
         return preguntasTotales;
     }
 
-    private void agregarPreguntasDeArchivo(ArrayList<Pregunta> preguntasTotales, String ruta, Parser preguntaParser) throws ArchivoNoEncontradoException {
+    private void agregarPreguntas(ArrayList<Pregunta> preguntasTotales, Parser preguntaParser) throws ArchivoNoEncontradoException {
 
         JsonElement preguntasJson;
         JsonArray jsonarray;
 
         try {
-            JsonReader reader = new JsonReader(new FileReader(ruta));
+            JsonReader reader = new JsonReader(new FileReader(rutaRelativa));
             preguntasJson = JsonParser.parseReader(reader);
             jsonarray = preguntasJson.getAsJsonArray();
             try{
                 for (JsonElement jsonElement : jsonarray) {
-                    if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+                    String tipo = jsonObject.get("Tipo").getAsString().toLowerCase();
+
+                    if (tipo.equals(preguntaParser.tipoPregunta().toLowerCase())) {
                         preguntasTotales.add(preguntaParser.parse(jsonElement));
                     }
                 }
-
             } catch (JsonSyntaxException e) {
                 throw new RuntimeException(e.toString());
             }catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
