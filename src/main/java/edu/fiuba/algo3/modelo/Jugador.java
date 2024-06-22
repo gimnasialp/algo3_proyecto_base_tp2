@@ -15,6 +15,7 @@ public class Jugador {
     }
 
     public int obtenerPuntaje() {
+
         return puntaje.obtenerPuntos();
     }
 }
