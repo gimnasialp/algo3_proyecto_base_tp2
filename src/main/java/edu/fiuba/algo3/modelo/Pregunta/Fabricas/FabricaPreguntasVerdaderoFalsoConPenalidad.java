@@ -19,7 +19,7 @@ public class FabricaPreguntasVerdaderoFalsoConPenalidad  extends FabricaPregunta
                 parameters[5].toString() //TEXTORESPUESTA
         );
 
-        //(idPregunta, tema, enunciadoPregunta, opcionCorrecta,opciones, textoRespuesta);*/
+
         return preguntaVerdaderoFalsoClasico;
     }
 

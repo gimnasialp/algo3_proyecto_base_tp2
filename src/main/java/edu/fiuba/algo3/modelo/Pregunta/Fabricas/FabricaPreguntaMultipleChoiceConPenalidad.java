@@ -17,7 +17,7 @@ public class FabricaPreguntaMultipleChoiceConPenalidad extends FabricaPreguntas{
                 parameters[5].toString() //TEXTORESPUESTA
         );
 
-        //(idPregunta, tema, enunciadoPregunta, opcionCorrecta,opciones, textoRespuesta);*/
+
         return preguntaMultipleChoiceConPenalidad;
     }
 

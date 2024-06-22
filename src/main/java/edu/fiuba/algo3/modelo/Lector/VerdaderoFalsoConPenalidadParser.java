@@ -13,12 +13,7 @@ import java.util.ArrayList;
 public class VerdaderoFalsoConPenalidadParser extends   Parser{
 
     private FabricaPreguntasVerdaderoFalsoConPenalidad fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
+
 
     public VerdaderoFalsoConPenalidadParser() {
         fabrica = new FabricaPreguntasVerdaderoFalsoConPenalidad();
@@ -27,8 +22,7 @@ public class VerdaderoFalsoConPenalidadParser extends   Parser{
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
         ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
-
+        opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();

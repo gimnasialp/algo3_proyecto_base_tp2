@@ -18,7 +18,7 @@ public class FabricaPreguntaMultipleChoiceClasico extends FabricaPreguntas {
                 parameters[5].toString() //TEXTORESPUESTA
         );
 
-        //(idPregunta, tema, enunciadoPregunta, opcionCorrecta,opciones, textoRespuesta);*/
+
         return preguntaMultipleChoiceClasico;
     }
 

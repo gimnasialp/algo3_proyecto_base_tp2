@@ -6,18 +6,12 @@ import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceCon
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
+
 
 import java.util.ArrayList;
 
 public class MultipleChoicePenalidadParser extends Parser {
     private FabricaPreguntaMultipleChoiceConPenalidad fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
 
     public MultipleChoicePenalidadParser() {
         this.fabrica= new FabricaPreguntaMultipleChoiceConPenalidad();
@@ -27,7 +21,7 @@ public class MultipleChoicePenalidadParser extends Parser {
     private Pregunta OrganizarDatos(JsonObject jsonObject){
 
         ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
+        opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
@@ -40,6 +34,7 @@ public class MultipleChoicePenalidadParser extends Parser {
         }
         RespuestaMultipleChoiceConPenalidad respuesta = new RespuestaMultipleChoiceConPenalidad(listaRespuesta);
         respuestas.add(respuesta);
+
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
         while  (jsonObject.keySet().contains(claveOpcion)) {

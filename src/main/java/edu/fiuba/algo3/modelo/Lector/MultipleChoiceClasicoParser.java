@@ -11,12 +11,6 @@ import java.util.ArrayList;
 
 public class MultipleChoiceClasicoParser extends Parser {
     private FabricaPreguntaMultipleChoiceClasico fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
 
     public MultipleChoiceClasicoParser() {
         this.fabrica= new FabricaPreguntaMultipleChoiceClasico();
@@ -26,7 +20,7 @@ public class MultipleChoiceClasicoParser extends Parser {
     private Pregunta OrganizarDatos(JsonObject jsonObject){
 
         ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
+        opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();

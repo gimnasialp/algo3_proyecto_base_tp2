@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Lector;
 
-import com.google.gson.JsonArray;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaOrderedChoice;
@@ -13,12 +13,6 @@ import java.util.ArrayList;
 public class OrderedChoiceParser extends Parser {
 
     private FabricaPreguntaOrderedChoice fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
 
     public OrderedChoiceParser() {
         this.fabrica= new FabricaPreguntaOrderedChoice();
@@ -28,7 +22,7 @@ public class OrderedChoiceParser extends Parser {
     private Pregunta OrganizarDatos(JsonObject jsonObject){
 
         ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
+        opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();

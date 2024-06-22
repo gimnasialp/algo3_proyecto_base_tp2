@@ -4,7 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalso;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
@@ -13,12 +12,6 @@ import java.util.ArrayList;
 public class VerdaderoFalsoClasicoParser extends Parser{
 
     private FabricaPreguntasVerdaderoFalso fabrica;
-    private int idPregunta;
-    private String tema;
-    private String tipoPregunta;
-    private String textoRespuesta;
-    private ArrayList<String> opciones = new ArrayList<>();
-    private String enunciadoPregunta;
 
     public VerdaderoFalsoClasicoParser() {
         this.fabrica= new FabricaPreguntasVerdaderoFalso();
@@ -27,16 +20,16 @@ public class VerdaderoFalsoClasicoParser extends Parser{
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
         ArrayList<Respuesta> respuestas = new ArrayList<>();
-        ArrayList<String> opciones = new ArrayList<>();
+         opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
-        textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
         respuestas.add(respuesta);
         opciones.add(jsonObject.get("Opcion 1").getAsString());
         opciones.add(jsonObject.get("Opcion 2").getAsString());
 
         enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+        textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         Pregunta pregunta = fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta,opciones, textoRespuesta);
         return pregunta;
 
