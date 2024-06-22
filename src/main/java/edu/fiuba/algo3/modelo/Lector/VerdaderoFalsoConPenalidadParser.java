@@ -21,13 +21,12 @@ public class VerdaderoFalsoConPenalidadParser extends   Parser{
     }
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
-        ArrayList<Respuesta> respuestas = new ArrayList<>();
+
         opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
         textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
-        respuestas.add(respuesta);
         opciones.add(jsonObject.get("Opcion 1").getAsString());
         opciones.add(jsonObject.get("Opcion 2").getAsString());
 

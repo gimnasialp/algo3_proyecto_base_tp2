@@ -20,7 +20,6 @@ public class MultipleChoiceParcialParser extends Parser {
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
 
-        ArrayList<Respuesta> respuestas = new ArrayList<>();
          opciones = new ArrayList<>();
         super.idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
@@ -33,7 +32,6 @@ public class MultipleChoiceParcialParser extends Parser {
             listaRespuesta.add(Integer.parseInt(elemento));
         }
         RespuestaMultipleChoiceParcial respuesta = new RespuestaMultipleChoiceParcial(listaRespuesta);
-        respuestas.add(respuesta);
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
         while  (jsonObject.keySet().contains(claveOpcion)) {

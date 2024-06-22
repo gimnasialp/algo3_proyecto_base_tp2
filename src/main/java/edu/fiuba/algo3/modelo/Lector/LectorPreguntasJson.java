@@ -21,7 +21,7 @@ public class LectorPreguntasJson implements Lector{
     }
 
     @Override
-    public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
+    public ArrayList<Pregunta> generarPreguntas() {
         List<Parser> parsers = List.of(
                 new VerdaderoFalsoClasicoParser(),
                 new VerdaderoFalsoConPenalidadParser(),
@@ -55,6 +55,7 @@ public class LectorPreguntasJson implements Lector{
                         preguntasTotales.add(preguntaParser.parse(jsonElement));
                     }
                 }
+
             } catch (JsonSyntaxException e) {
                 throw new RuntimeException(e.toString());
             }catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {

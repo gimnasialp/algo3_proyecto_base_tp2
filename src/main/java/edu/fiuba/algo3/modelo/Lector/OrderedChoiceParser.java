@@ -21,7 +21,6 @@ public class OrderedChoiceParser extends Parser {
 
     private Pregunta OrganizarDatos(JsonObject jsonObject){
 
-        ArrayList<Respuesta> respuestas = new ArrayList<>();
         opciones = new ArrayList<>();
         idPregunta = jsonObject.get("ID").getAsInt();
         tema = jsonObject.get("Tema").getAsString();
@@ -34,7 +33,6 @@ public class OrderedChoiceParser extends Parser {
             listaRespuesta.add(Integer.parseInt(elemento));
         }
         RespuestaOrderedChoice respuesta = new RespuestaOrderedChoice(listaRespuesta);
-        respuestas.add(respuesta);
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
         while  (jsonObject.keySet().contains(claveOpcion)) {
