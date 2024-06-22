@@ -41,8 +41,6 @@ public class LectorPreguntasJson implements Lector{
                 for (JsonElement jsonElement : jsonarray) {
                     String tipoPregunta = jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase();
                     if(this.parseadores.containsKey(tipoPregunta)) {
-                        System.out.println("    ");
-                        System.out.println(jsonElement);
                         this.preguntasTotales.add(this.parseadores.get(tipoPregunta).parse(jsonElement));
                     }
                 }

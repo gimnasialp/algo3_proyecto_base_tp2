@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
 
-public class VerdaderoFalsoConPenalidadParser implements Parser {
+public class VerdaderoFalsoConPenalidadParser extends Parser {
 
     private FabricaPreguntasVerdaderoFalsoConPenalidad fabrica;
 
@@ -25,18 +25,6 @@ public class VerdaderoFalsoConPenalidadParser implements Parser {
 
     }
 
-    public ArrayList<String> getOpciones(JsonObject jsonObject) {
-        ArrayList<String> opciones = new ArrayList<>();
-        int numeroOpcion = 1;
-        String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        while  (jsonObject.keySet().contains(claveOpcion)) {
-            opciones.add(jsonObject.get(claveOpcion).getAsString());
-            numeroOpcion++;
-            claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        }
-
-        return opciones;
-    }
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {

@@ -4,18 +4,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
 
 import java.util.ArrayList;
 
-public class MultipleChoicePenalidadParser implements Parser {
+public class MultipleChoicePenalidadParser extends Parser {
     private FabricaPreguntaMultipleChoiceConPenalidad fabrica;
 
     public MultipleChoicePenalidadParser() {
         this.fabrica= new FabricaPreguntaMultipleChoiceConPenalidad();
     }
 
-    private RespuestaMultipleChoiceEspecial getRespuesta(JsonObject jsonObject){
+    private RespuestaMultipleChoiceConPenalidad getRespuesta(JsonObject jsonObject){
 
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
@@ -23,22 +23,9 @@ public class MultipleChoicePenalidadParser implements Parser {
         for (String valor : lista) {
             listaRespuesta.add(Integer.parseInt(valor.trim()));
         }
-        RespuestaMultipleChoiceEspecial respuesta = new RespuestaMultipleChoiceEspecial(listaRespuesta);
+        RespuestaMultipleChoiceConPenalidad respuesta = new RespuestaMultipleChoiceConPenalidad(listaRespuesta);
 
         return respuesta;
-    }
-
-    public ArrayList<String> getOpciones(JsonObject jsonObject) {
-        ArrayList<String> opciones = new ArrayList<>();
-        int numeroOpcion = 1;
-        String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        while  (jsonObject.keySet().contains(claveOpcion)) {
-            opciones.add(jsonObject.get(claveOpcion).getAsString());
-            numeroOpcion++;
-            claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        }
-
-        return opciones;
     }
 
     @Override
@@ -49,7 +36,7 @@ public class MultipleChoicePenalidadParser implements Parser {
         String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
         ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaMultipleChoiceEspecial respuesta = getRespuesta(jsonObject);
+        RespuestaMultipleChoiceConPenalidad respuesta = getRespuesta(jsonObject);
 
         return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
 

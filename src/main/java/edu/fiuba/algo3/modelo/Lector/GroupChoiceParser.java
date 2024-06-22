@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GroupChoiceParser implements Parser {
+public class GroupChoiceParser extends Parser {
 
     private FabricaPreguntaGroupChoice fabrica;
 
@@ -23,9 +23,9 @@ public class GroupChoiceParser implements Parser {
         String[] grupos = respuestaCorrecta.split(";");
         HashMap<String, ArrayList<Integer>> claveValor = new HashMap<>();
         for (String grupo : grupos) {
-            String[] claveValorGrupo = grupo.split(":");
+            String[] claveValorGrupo = grupo.trim().split(":");
             String clave = claveValorGrupo[0];
-            String[] valores = claveValorGrupo[1].split(",");
+            String[] valores = claveValorGrupo[1].trim().split(",");
             ArrayList<Integer> listaValor = new ArrayList<>();
             for (String valor : valores) {
                 listaValor.add(Integer.parseInt(valor.trim()));
