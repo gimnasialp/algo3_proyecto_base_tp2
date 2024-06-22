@@ -1,60 +1,16 @@
 package edu.fiuba.algo3.modelo.Lector;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceParcial;
-import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPuntajeParcial;
 
-import java.util.ArrayList;
-
-public class MultipleChoiceParcialParser implements Parser {
-
-    private FabricaPreguntaMultipleChoiceParcial fabrica;
+public class MultipleChoiceParcialParser implements ParserRespuesta {
+    private ParserListaRespuesta parserRespuesta;
 
     public MultipleChoiceParcialParser() {
-        this.fabrica= new FabricaPreguntaMultipleChoiceParcial();
+        this.parserRespuesta = new ParserListaRespuesta();
     }
 
-    private RespuestaMultipleChoiceEspecial getRespuesta(JsonObject jsonObject){
-
-        String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
-        String[] lista = respuestaCorrecta.split(",");
-        ArrayList<Integer> listaRespuesta = new ArrayList<>();
-        for (String valor : lista) {
-            listaRespuesta.add(Integer.parseInt(valor.trim()));
-        }
-        RespuestaMultipleChoiceEspecial respuesta = new RespuestaMultipleChoiceEspecial(listaRespuesta);
-
-        return respuesta;
+    public Respuesta parsearRespuesta(String respuesta) {
+        return new RespuestaMultipleChoiceConPuntajeParcial(this.parserRespuesta.parsearListaRespuesta(respuesta));
     }
-
-    public ArrayList<String> getOpciones(JsonObject jsonObject) {
-        ArrayList<String> opciones = new ArrayList<>();
-        int numeroOpcion = 1;
-        String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        while  (jsonObject.keySet().contains(claveOpcion)) {
-            opciones.add(jsonObject.get(claveOpcion).getAsString());
-            numeroOpcion++;
-            claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
-        }
-
-        return opciones;
-    }
-
-    @Override
-    public Pregunta parse(JsonElement preguntaJson) {
-
-        JsonObject jsonObject = preguntaJson.getAsJsonObject();
-        int idPregunta = jsonObject.get("ID").getAsInt();
-        String tema = jsonObject.get("Tema").getAsString();
-        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaMultipleChoiceEspecial respuesta = getRespuesta(jsonObject);
-
-        return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
-
-    }
-
 }

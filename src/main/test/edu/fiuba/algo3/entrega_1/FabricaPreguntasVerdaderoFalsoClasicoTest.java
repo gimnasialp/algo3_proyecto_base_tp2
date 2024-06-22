@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalso;
-import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoConPenalidad;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalsoClasico;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +21,7 @@ public class FabricaPreguntasVerdaderoFalsoClasicoTest {
         int id = 5;
         String tema = "Computacion";
         String enunciado = "Smalltalk es un lenguaje de programación muerto";
-        RespuestaVerdaderoFalso respuestaCorrecta = new RespuestaVerdaderoFalso(2);
+        RespuestaVerdaderoFalsoClasico respuestaCorrecta = new RespuestaVerdaderoFalsoClasico(2);
         ArrayList<String> opciones = new ArrayList<>();
         opciones.add("Verdadero");
         opciones.add("Falso");

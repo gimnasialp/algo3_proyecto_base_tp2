@@ -1,6 +1,11 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
-public interface Respuesta {
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 
-    boolean comparar(Respuesta respuesta);
+public abstract class Respuesta {
+    protected Puntaje puntaje;
+
+    public abstract Integer comparar(Respuesta respuesta);
+
+    protected abstract boolean evaluar(Integer respuesta);
 }

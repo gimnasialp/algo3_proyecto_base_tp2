@@ -1,16 +1,18 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
+import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
+import edu.fiuba.algo3.modelo.Puntaje.PuntajeNormal;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
-public class RespuestaGroupChoice implements Respuesta{
+public class RespuestaGroupChoice extends Respuesta{
+    private HashMap<String, ArrayList<Integer>> respuesta;
 
-    private final ArrayList<Integer> respuestaGrupoUno;
-    private final ArrayList<Integer> respuestaGrupoDos;
-
-    public RespuestaGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos) {
-        this.respuestaGrupoUno = respuestaGrupoUno;
-        this.respuestaGrupoDos = respuestaGrupoDos;
+    public RespuestaGroupChoice(HashMap<String, ArrayList<Integer>> respuesta) {
+        this.respuesta = respuesta;
+        this.puntaje = new PuntajeNormal();
     }
 
     @Override

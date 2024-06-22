@@ -1,22 +1,19 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
-import java.util.Objects;
+public abstract class RespuestaVerdaderoFalso extends Respuesta {
+    protected Integer respuesta;
 
-public class RespuestaVerdaderoFalso implements Respuesta {
+    @Override
+    public Integer comparar(Respuesta respuesta) {
+        if (respuesta.evaluar(this.respuesta)) {
+            return this.puntaje.getValorRespuestaCorrecta();
+        }
 
-    private final Integer respuesta;
-
-    public RespuestaVerdaderoFalso(Integer respuesta) {
-        this.respuesta = respuesta;
+        return this.puntaje.getValorRespuestaIncorrecta();
     }
 
     @Override
-    public boolean comparar(Respuesta respuesta) {
-        RespuestaVerdaderoFalso respuestaCorrecta = (RespuestaVerdaderoFalso) respuesta;
-        return respuestaCorrecta.evaluar(this.respuesta);
-    }
-
-    private boolean evaluar(Integer respuesta) {
-        return Objects.equals(this.respuesta, respuesta);
+    public boolean evaluar(Integer respuesta) {
+        return this.respuesta.equals(respuesta);
     }
 }

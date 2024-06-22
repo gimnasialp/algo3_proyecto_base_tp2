@@ -2,64 +2,76 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
 import edu.fiuba.algo3.modelo.Excepciones.CantidadErroneaDeRespuestasParaPreguntaException;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LectorPreguntasJson implements Lector{
-    private static final String rutaRelativa = "preguntas.json";
-    private final ArrayList<Pregunta> preguntasTotales;
-    private HashMap<String, Parser> parseadores;
+public class LectorPreguntasJson {
+    private HashMap<String, ParserRespuesta> parseadores;
 
-    public LectorPreguntasJson() {
-
-        this.preguntasTotales = new ArrayList<>();
-        this.parseadores = new HashMap<>();
-        this.parseadores.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
-        this.parseadores.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
-        this.parseadores.put("multiple choice simple", new MultipleChoiceCLasicoParser());
-        this.parseadores.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
-        this.parseadores.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
-        this.parseadores.put("ordered choice", new OrderedChoiceParser());
-        this.parseadores.put("group choice", new GroupChoiceParser());
-
+    public LectorPreguntasJson(HashMap<String, ParserRespuesta> parseadores) {
+        this.parseadores = parseadores;
     }
 
-    @Override
-    public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
-
+    public ArrayList<Pregunta> leerArchivo(JsonReader reader) {
         try {
-            JsonReader reader = new JsonReader(new FileReader(this.rutaRelativa));
             JsonElement preguntasJson = JsonParser.parseReader(reader);
-            JsonArray jsonarray = preguntasJson.getAsJsonArray();
-            try {
-                for (JsonElement jsonElement : jsonarray) {
-                    String tipoPregunta = jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase();
-                    if(this.parseadores.containsKey(tipoPregunta)) {
-                        System.out.println("    ");
-                        System.out.println(jsonElement);
-                        this.preguntasTotales.add(this.parseadores.get(tipoPregunta).parse(jsonElement));
-                    }
-                }
-
-            } catch (JsonSyntaxException e) {
-                throw new RuntimeException(e.toString());
-            } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
-                ex.printStackTrace();
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.toString());
+            JsonArray jsonArray = preguntasJson.getAsJsonArray();
+            return generarPreguntas(jsonArray);
         } catch (JsonSyntaxException e) {
             throw new RuntimeException(e.toString());
         }
+    }
 
-        return this.preguntasTotales;
+    public ArrayList<Pregunta> generarPreguntas(JsonArray jsonArray) throws CantidadErroneaDeRespuestasParaPreguntaException {
+        try {
+            ArrayList<Pregunta> preguntasTotales = new ArrayList<>();
+            for (JsonElement jsonElement : jsonArray) {
+                JsonElement tipoPregunta = jsonElement.getAsJsonObject().get("Tipo");
+                if(this.parseadores.containsKey(tipoPregunta.getAsString().toLowerCase())) {
+                    System.out.println("    ");
+                    System.out.println(jsonElement);
+                    try {
+                        preguntasTotales.add(parse(jsonElement));
+                    } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            return preguntasTotales;
+        } catch (JsonSyntaxException e) {
+            throw new RuntimeException(e.toString());
+        }
+    }
+
+    public Pregunta parse(JsonElement preguntaJson) {
+        JsonObject jsonObject = preguntaJson.getAsJsonObject();
+        int idPregunta = jsonObject.get("ID").getAsInt();
+        String tema = jsonObject.get("Tema").getAsString();
+        String tipo = jsonObject.get("Tipo").getAsString();
+        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
+        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+        ArrayList<String> opciones = getOpciones(jsonObject);
+        ParserRespuesta tipoParseador = this.parseadores.get(tipo.toLowerCase());
+        Respuesta respuesta = tipoParseador.parsearRespuesta(jsonObject.get("Respuesta").getAsString());
+
+        return new Pregunta(idPregunta, tema, tipo, enunciadoPregunta, opciones, textoRespuesta, respuesta);
+    }
+
+    public ArrayList<String> getOpciones(JsonObject jsonObject) {
+        ArrayList<String> opciones = new ArrayList<>();
+        int numeroOpcion = 1;
+        String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
+        while  (jsonObject.keySet().contains(claveOpcion)) {
+            opciones.add(jsonObject.get(claveOpcion).getAsString());
+            numeroOpcion++;
+            claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
+        }
+
+        return opciones;
     }
 
 }

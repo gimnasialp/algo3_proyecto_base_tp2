@@ -1,17 +1,5 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-
-import edu.fiuba.algo3.modelo.Pregunta.*;
-import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceComun;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceEspecial;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PreguntaMultipleChoiceTest {
@@ -42,12 +30,12 @@ public class PreguntaMultipleChoiceTest {
 
         String enunciado = "Que paises ganaron mundiales";
         ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Argentina", "Nigeria", "Suiza", "Francia", "Alemania", "Chile"));
-        Respuesta respuestaCorrecta = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 4, 5)));
+        Respuesta respuestaCorrecta = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceConPenalidad(enunciado, opciones, respuestaCorrecta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(5, 1, 4)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 5)));
-        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(4, 6)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(5, 1, 4)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 5)));
+        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(4, 6)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos, respuestaJugadorTres));
         Resultado resultado = pregunta.responder(respuestaDeLosJugadores);
@@ -66,13 +54,13 @@ public class PreguntaMultipleChoiceTest {
 
         String enunciado = "Que paises ganaron mundiales";
         ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Argentina", "Nigeria", "Suiza", "Francia", "Alemania", "Chile"));
-        Respuesta respuestaCorrecta = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 4, 5)));
+        Respuesta respuestaCorrecta = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceParcial(enunciado, opciones, respuestaCorrecta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(5, 1 ,4)));
-        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceEspecial(new ArrayList<>(List.of(1)));
-        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(1, 6, 5)));
-        Respuesta respuestaJugadorCuatro = new RespuestaMultipleChoiceEspecial(new ArrayList<>(Arrays.asList(6, 1, 5, 4)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(5, 1 ,4)));
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(List.of(1)));
+        Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(1, 6, 5)));
+        Respuesta respuestaJugadorCuatro = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(6, 1, 5, 4)));
 
         ArrayList<Respuesta> respuestaDeLosJugadores = new ArrayList<>(Arrays.asList(respuestaJugadorUno, respuestaJugadorDos, respuestaJugadorTres, respuestaJugadorCuatro));
         Resultado resultado = pregunta.responder(respuestaDeLosJugadores);
