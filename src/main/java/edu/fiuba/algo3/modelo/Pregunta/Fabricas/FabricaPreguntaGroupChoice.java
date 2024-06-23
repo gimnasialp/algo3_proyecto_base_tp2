@@ -39,7 +39,8 @@ public class FabricaPreguntaGroupChoice extends FabricaPreguntas {
                 parameters[2].toString(), //ENUNCIADO
                 obtenerRespuesta(parameters[3].toString()), //RESPUESTA CORRECTA
                 (ArrayList<String>) parameters[4], //OPCIONES
-                parameters[5].toString() //TEXTORESPUESTA
+                parameters[5].toString(), //TEXTORESPUESTA
+                (ArrayList<String>) parameters[6] //GRUPOS
         );
 
 
