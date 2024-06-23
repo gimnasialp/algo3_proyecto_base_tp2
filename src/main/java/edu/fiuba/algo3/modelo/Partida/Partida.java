@@ -49,12 +49,12 @@ public class Partida {
         if(!jugadores.isEmpty()){
             avanzoConSiguienteJugador();
         }else{
-            procesarRespuestasDeLaPartida();
+            procesarRespuestasDeLaPartida(respuestas);
         }
     }
 
-    private void procesarRespuestasDeLaPartida() {
-        pregunta.responder((ArrayList<Respuesta>) respuestas);
+    private void procesarRespuestasDeLaPartida(List<Respuesta> respuestas) {
+       // int puntos = pregunta.evaluar((ArrayList<Respuesta>) this.respuestas);
         //posiblesObservadores
     }
 }

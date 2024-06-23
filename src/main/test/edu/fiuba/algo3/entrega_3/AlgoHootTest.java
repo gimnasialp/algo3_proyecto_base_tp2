@@ -60,5 +60,6 @@ public class AlgoHootTest {
         Responder respondePrimerJugador = new Responder(jugadorDePartidaActiva,listRespuestasJugadorUno,multiplicadorPorUno);
 
         partidaActiva.agregarRespuesta(respondePrimerJugador);
+
     }
 }
