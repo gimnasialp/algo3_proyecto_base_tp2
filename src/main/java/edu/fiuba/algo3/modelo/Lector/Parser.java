@@ -7,14 +7,22 @@ import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
+
 import java.util.ArrayList;
 
 public abstract class Parser {
 
+    protected int idPregunta;
+    protected String tema;
+    protected String textoRespuesta;
+    protected String enunciadoPregunta;
+    protected ArrayList<String> opciones;
+
     public abstract Pregunta parse(JsonElement preguntaJson);
 
+    protected abstract Respuesta obtenerRespuesta(JsonObject jsonObject);
 
-    public ArrayList<String> getOpciones(JsonObject jsonObject) {
+    public ArrayList<String> obtenerOpciones(JsonObject jsonObject) {
         ArrayList<String> opciones = new ArrayList<>();
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
@@ -27,6 +35,11 @@ public abstract class Parser {
         return opciones;
 
     }
-
-
+    public void obtenerDatosDePregunta(JsonObject jsonObject) {
+        this.idPregunta = jsonObject.get("ID").getAsInt();
+        this.tema = jsonObject.get("Tema").getAsString();
+        this.textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
+        this.enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
+        this.opciones = obtenerOpciones(jsonObject);
+    }
 }

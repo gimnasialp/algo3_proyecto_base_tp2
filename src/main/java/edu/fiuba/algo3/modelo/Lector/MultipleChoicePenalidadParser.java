@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class MultipleChoicePenalidadParser extends Parser {
         this.fabrica= new FabricaPreguntaMultipleChoiceConPenalidad();
     }
 
-    private RespuestaMultipleChoiceConPenalidad getRespuesta(JsonObject jsonObject){
+    @Override
+    protected Respuesta obtenerRespuesta(JsonObject jsonObject){
 
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
@@ -31,12 +33,8 @@ public class MultipleChoicePenalidadParser extends Parser {
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
-        int idPregunta = jsonObject.get("ID").getAsInt();
-        String tema = jsonObject.get("Tema").getAsString();
-        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaMultipleChoiceConPenalidad respuesta = getRespuesta(jsonObject);
+        obtenerDatosDePregunta(jsonObject);
+        RespuestaMultipleChoiceConPenalidad respuesta = (RespuestaMultipleChoiceConPenalidad) obtenerRespuesta(jsonObject);
 
         return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
 

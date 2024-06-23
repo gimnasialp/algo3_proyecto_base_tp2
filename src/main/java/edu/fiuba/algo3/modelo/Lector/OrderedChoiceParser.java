@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaOrderedChoice;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ public class OrderedChoiceParser extends Parser {
     }
 
 
-    private RespuestaOrderedChoice getRespuesta(JsonObject jsonObject){
+    @Override
+    protected Respuesta obtenerRespuesta(JsonObject jsonObject){
 
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
@@ -33,17 +35,13 @@ public class OrderedChoiceParser extends Parser {
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
-
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
-        int idPregunta = jsonObject.get("ID").getAsInt();
-        String tema = jsonObject.get("Tema").getAsString();
-        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaOrderedChoice respuesta = getRespuesta(jsonObject);
+        obtenerDatosDePregunta(jsonObject);
+        RespuestaOrderedChoice respuesta = (RespuestaOrderedChoice) obtenerRespuesta(jsonObject);
 
         return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
 
     }
+
 
 }

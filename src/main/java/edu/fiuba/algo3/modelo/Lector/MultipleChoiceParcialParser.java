@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntaMultipleChoiceParcial;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 
 
@@ -17,7 +18,8 @@ public class MultipleChoiceParcialParser extends Parser {
         this.fabrica= new FabricaPreguntaMultipleChoiceParcial();
     }
 
-    private RespuestaMultipleChoiceParcial getRespuesta(JsonObject jsonObject){
+    @Override
+    protected Respuesta obtenerRespuesta(JsonObject jsonObject){
 
         String respuestaCorrecta = jsonObject.get("Respuesta").getAsString();
         String[] lista = respuestaCorrecta.split(",");
@@ -32,14 +34,9 @@ public class MultipleChoiceParcialParser extends Parser {
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
-
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
-        int idPregunta = jsonObject.get("ID").getAsInt();
-        String tema = jsonObject.get("Tema").getAsString();
-        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaMultipleChoiceParcial respuesta = getRespuesta(jsonObject);
+        obtenerDatosDePregunta(jsonObject);
+        RespuestaMultipleChoiceParcial respuesta = (RespuestaMultipleChoiceParcial) obtenerRespuesta(jsonObject);
 
         return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
 

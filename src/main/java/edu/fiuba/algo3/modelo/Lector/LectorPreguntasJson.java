@@ -34,7 +34,7 @@ public class LectorPreguntasJson implements Lector{
     public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
 
         try {
-            JsonReader reader = new JsonReader(new FileReader(this.rutaRelativa));
+            JsonReader reader = new JsonReader(new FileReader(rutaRelativa));
             JsonElement preguntasJson = JsonParser.parseReader(reader);
             JsonArray jsonarray = preguntasJson.getAsJsonArray();
             try {

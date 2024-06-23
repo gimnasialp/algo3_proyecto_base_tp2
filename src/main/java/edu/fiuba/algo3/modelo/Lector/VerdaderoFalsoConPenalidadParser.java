@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Fabricas.FabricaPreguntasVerdaderoFalsoConPenalidad;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ public class VerdaderoFalsoConPenalidadParser extends Parser {
         fabrica = new FabricaPreguntasVerdaderoFalsoConPenalidad();
     }
 
-    private RespuestaVerdaderoFalso getRespuesta(JsonObject jsonObject) {
+    @Override
+    protected Respuesta obtenerRespuesta(JsonObject jsonObject) {
 
         RespuestaVerdaderoFalso respuesta = new RespuestaVerdaderoFalso(jsonObject.get("Respuesta").getAsInt());
 
@@ -28,16 +30,10 @@ public class VerdaderoFalsoConPenalidadParser extends Parser {
 
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
-
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
-        int idPregunta = jsonObject.get("ID").getAsInt();
-        String tema = jsonObject.get("Tema").getAsString();
-        String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
-        String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
-        ArrayList<String> opciones = getOpciones(jsonObject);
-        RespuestaVerdaderoFalso respuesta = getRespuesta(jsonObject);
-
-        return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
+        obtenerDatosDePregunta(jsonObject);
+        RespuestaVerdaderoFalso respuesta = (RespuestaVerdaderoFalso) obtenerRespuesta(jsonObject);
+        return fabrica.crearPregunta(super.idPregunta,super.tema,super.enunciadoPregunta,respuesta,super.opciones,super.textoRespuesta);
     }
 
 }
