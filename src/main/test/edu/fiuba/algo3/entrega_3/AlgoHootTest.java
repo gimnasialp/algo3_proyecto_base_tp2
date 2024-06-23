@@ -6,10 +6,7 @@ import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicadorPorUno;
-import edu.fiuba.algo3.modelo.Partida.Contesta;
-import edu.fiuba.algo3.modelo.Partida.Opcion;
-import edu.fiuba.algo3.modelo.Partida.OpcionUnica;
-import edu.fiuba.algo3.modelo.Partida.Partida;
+import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
@@ -50,12 +47,18 @@ public class AlgoHootTest {
 
         Jugador jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        Opcion opcionJugadorUno =new OpcionUnica("Verdadero");
-
+        /*
+        Opcion opcionJugadorUno =new OpcionUnica("1");
         List<Opcion> opcionesJugadorUno = new ArrayList<>();
         opcionesJugadorUno.add(opcionJugadorUno);
+        */
+        Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
+        List<Respuesta> listRespuestasJugadorUno = new ArrayList<>();
 
-        Contesta contestaJugadorUno = new Contesta(opcionesJugadorUno);
         Modificador multiplicadorPorUno = new MultiplicadorPorUno();
+
+        Responder respondePrimerJugador = new Responder(jugadorDePartidaActiva,listRespuestasJugadorUno,multiplicadorPorUno);
+
+        partidaActiva.agregarRespuesta(respondePrimerJugador);
     }
 }

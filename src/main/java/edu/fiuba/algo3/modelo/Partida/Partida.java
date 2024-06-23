@@ -12,7 +12,7 @@ public class Partida {
     private  Jugador jugador;
     private  Pregunta pregunta;
 
-    private final List<Respuesta> respuestas;
+    private  List<Respuesta> respuestas;
     private Jugador jugadorActivo;
     private List<Jugador> jugadores;
 
@@ -25,13 +25,13 @@ public class Partida {
 
 
     public void avanzoConSiguienteJugador() {
-        this.jugadorActivo = nuevoJugador();
+        jugadorActivo = nuevoJugador();
         //posible observer
         
     }
 
     private Jugador nuevoJugador(){
-        if(!this.jugadores.isEmpty()){
+        if(!jugadores.isEmpty()){
             Jugador jugador = jugadores.get(0);
             jugadores.remove(0);
             return jugador;
@@ -44,4 +44,17 @@ public class Partida {
     }
 
 
+    public void agregarRespuesta(Responder respondeJugador) {
+        respuestas.add((Respuesta) respondeJugador.getRespuestaDeJugador());
+        if(!jugadores.isEmpty()){
+            avanzoConSiguienteJugador();
+        }else{
+            procesarRespuestasDeLaPartida();
+        }
+    }
+
+    private void procesarRespuestasDeLaPartida() {
+        pregunta.responder((ArrayList<Respuesta>) respuestas);
+        //posiblesObservadores
+    }
 }
