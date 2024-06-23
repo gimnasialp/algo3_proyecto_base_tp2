@@ -10,30 +10,34 @@ public class AlgoHoot {
 
     private  Limite limite;
     private  List<Jugador> jugadores;
-
-
     private List<Partida> partidas;
-
     private Jugador jugadorActual;
     private Pregunta preguntaActual;
+    private Partida partidaActual;
 
 
     public AlgoHoot(List<Jugador> jugadores, List<Pregunta> preguntas, Limite limite){
         this.jugadores = jugadores;
         this.limite = limite;
-       // this.preguntas = preguntas;
-        //this.preguntas = new LinkedList<Pregunta>();
-        //this.puntajeLimite = limite.preguntaNoLimitada(this.preguntas);
-        this.jugadorActual = jugadores.stream().findFirst().get();
         iniciarPartidas(preguntas);
     }
 
     private void iniciarPartidas(List<Pregunta> preguntas) {
-        this.jugadorActual = jugadores.stream().findFirst().get();
-        //this.preguntaActual = limite.preguntaNoLimitada(preguntas);
-        //Partida partida = new Partida(preguntaActual, this.jugadores);
-       // partidas.add(partida);
+        jugadorActual = jugadores.stream().findFirst().get();
+        preguntaActual = limite.preguntaNoLimitada(jugadores);
+        Partida partida = new Partida(preguntaActual, this.jugadores, jugadorActual);
+        partidas.add(partida);
     }
+
+    public void proximaPartida(){
+        partidaActual = partidas.get(0);
+        //tal vez habra Observers
+    }
+
+    public Partida obtenerPartidaActiva(){
+        return partidaActual;
+    }
+
 
 
 }
