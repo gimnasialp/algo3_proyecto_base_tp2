@@ -30,31 +30,40 @@ public class LectorPreguntasJson implements Lector{
 
     }
 
-    @Override
-    public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
-
+    private JsonArray leerArchivo() throws FileNotFoundException {
+        JsonArray jsonarray;
         try {
             JsonReader reader = new JsonReader(new FileReader(rutaRelativa));
             JsonElement preguntasJson = JsonParser.parseReader(reader);
-            JsonArray jsonarray = preguntasJson.getAsJsonArray();
-            try {
-                for (JsonElement jsonElement : jsonarray) {
-                    String tipoPregunta = jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase();
-                    if(this.parseadores.containsKey(tipoPregunta)) {
-                        this.preguntasTotales.add(this.parseadores.get(tipoPregunta).parse(jsonElement));
-                    }
-                }
+            jsonarray = preguntasJson.getAsJsonArray();
 
-            } catch (JsonSyntaxException e) {
-                throw new RuntimeException(e.toString());
-            } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
-                ex.printStackTrace();
+        } catch (FileNotFoundException | JsonSyntaxException e) {
+            throw new RuntimeException(e.toString());
+        }
+
+        return jsonarray;
+    }
+
+    @Override
+    public ArrayList<Pregunta> generarPreguntas() {
+        JsonArray jsonarray = new JsonArray();
+        try {
+            jsonarray = leerArchivo();
+        }catch (FileNotFoundException e){
+
+        }
+        try {
+            for (JsonElement jsonElement : jsonarray) {
+                String tipoPregunta = jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase();
+                if (this.parseadores.containsKey(tipoPregunta)) {
+                    this.preguntasTotales.add(this.parseadores.get(tipoPregunta).parse(jsonElement));
+                }
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.toString());
         } catch (JsonSyntaxException e) {
             throw new RuntimeException(e.toString());
+        } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
+            ex.printStackTrace();
         }
 
         return this.preguntasTotales;
