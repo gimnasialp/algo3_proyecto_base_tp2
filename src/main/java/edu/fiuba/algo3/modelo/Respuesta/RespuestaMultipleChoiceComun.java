@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.Respuesta;
 import edu.fiuba.algo3.modelo.Puntaje.PuntajePenalidad;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class RespuestaMultipleChoiceComun extends Respuesta {
     private ArrayList<Integer> respuesta;
@@ -15,18 +14,11 @@ public class RespuestaMultipleChoiceComun extends Respuesta {
 
     @Override
     public Integer comparar(Respuesta respuesta) {
-        for (Integer respuestaElegida : this.respuesta) {
-            if (!respuesta.evaluar(respuestaElegida)) {
-                return this.puntaje.getValorRespuestaIncorrecta();
-            }
-        }
-
         RespuestaMultipleChoiceComun respuestaCorrecta = (RespuestaMultipleChoiceComun) respuesta;
-        return respuestaCorrecta.evaluar(this.respuesta);
-    }
-
-    protected boolean compararTamanio(ArrayList<Integer> respuesta) {
-        return this.respuesta.size() == respuesta.size();
+        if (respuestaCorrecta.evaluar(this.respuesta)) {
+            return this.puntaje.getValorRespuestaCorrecta();
+        }
+        return this.puntaje.getValorRespuestaIncorrecta();
     }
 
     public boolean evaluar(ArrayList<Integer> respuesta) {

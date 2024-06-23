@@ -1,34 +1,36 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
-import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Puntaje.PuntajeNormal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class RespuestaGroupChoice extends Respuesta{
     private HashMap<String, ArrayList<Integer>> respuesta;
+    private ArrayList<String> grupos;
 
     public RespuestaGroupChoice(HashMap<String, ArrayList<Integer>> respuesta) {
         this.respuesta = respuesta;
         this.puntaje = new PuntajeNormal();
     }
 
-    @Override
-    public boolean comparar(Respuesta respuesta) {
-        RespuestaGroupChoice respuestaJugador = (RespuestaGroupChoice) respuesta;
-        return respuestaJugador.evaluar(this.respuestaGrupoUno, this.respuestaGrupoDos);
+    public void setGrupos(ArrayList<String> grupos) {
+        this.grupos = grupos;
     }
 
-    private boolean evaluar(ArrayList<Integer> respuestaCorrectaGrupoUno, ArrayList<Integer> respuestaCorrectaGrupoDos) {
-        boolean primeraCondicion = new HashSet<>(this.respuestaGrupoUno).equals(new HashSet<>(respuestaCorrectaGrupoUno));
-        boolean segundaCondicion = new HashSet<>(this.respuestaGrupoUno).equals(new HashSet<>(respuestaCorrectaGrupoDos));
-        if (primeraCondicion || segundaCondicion) {
-            return true;
-        } else {
-            return false;
+    @Override
+    public Integer comparar(Respuesta respuesta) {
+        RespuestaGroupChoice respuestaCorrecta = (RespuestaGroupChoice) respuesta;
+        if (respuestaCorrecta.evaluar(this.respuesta)) {
+            return this.puntaje.getValorRespuestaCorrecta();
         }
+        return this.puntaje.getValorRespuestaIncorrecta();
+    }
+
+    public boolean evaluar(HashMap<String, ArrayList<Integer>> respuesta) {
+        ArrayList<Integer> unGrupoRespuestaCorrecta = this.respuesta.get(grupos.get(0));
+        ArrayList<Integer> grupoRespuestaElegida = respuesta.get(grupos.get(0));
+        return unGrupoRespuestaCorrecta.stream().sorted().equals(grupoRespuestaElegida.stream().sorted());
     }
 
 }

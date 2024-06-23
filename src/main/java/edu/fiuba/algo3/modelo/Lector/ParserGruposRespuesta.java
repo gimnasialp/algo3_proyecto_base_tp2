@@ -8,9 +8,9 @@ public class ParserGruposRespuesta {
         String[] grupos = respuesta.split(";");
         HashMap<String, ArrayList<Integer>> claveValor = new HashMap<>();
         for (String grupo : grupos) {
-            String[] claveValorGrupo = grupo.split(":");
+            String[] claveValorGrupo = grupo.trim().split(":");
             String clave = claveValorGrupo[0];
-            String[] valores = claveValorGrupo[1].split(",");
+            String[] valores = claveValorGrupo[1].trim().split(",");
             ArrayList<Integer> listaValor = new ArrayList<>();
             for (String valor : valores) {
                 listaValor.add(Integer.parseInt(valor.trim()));

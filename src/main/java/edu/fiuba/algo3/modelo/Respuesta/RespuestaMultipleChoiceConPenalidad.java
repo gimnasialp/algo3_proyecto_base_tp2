@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
-import edu.fiuba.algo3.modelo.Puntaje.Puntaje;
 import edu.fiuba.algo3.modelo.Puntaje.PuntajePenalidad;
 
 import java.util.ArrayList;
@@ -15,9 +14,10 @@ public class RespuestaMultipleChoiceConPenalidad extends Respuesta {
 
     @Override
     public Integer comparar(Respuesta respuesta) {
+        RespuestaMultipleChoiceConPenalidad respuestaCorrecta = (RespuestaMultipleChoiceConPenalidad) respuesta;
         Integer puntos = 0;
-        for (Integer respuestaElegida : this.respuesta) {
-            if (respuesta.evaluar(respuestaElegida)) {
+        for (Integer opcionElegida : this.respuesta) {
+            if (respuestaCorrecta.evaluar(opcionElegida)) {
                 puntos += this.puntaje.getValorRespuestaCorrecta();
             }
             else {
@@ -27,7 +27,7 @@ public class RespuestaMultipleChoiceConPenalidad extends Respuesta {
         return puntos;
     }
 
-    public boolean evaluar(Integer respuestaElegida) {
-        return this.respuesta.contains(respuestaElegida);
+    public boolean evaluar(Integer opcionElegida) {
+        return this.respuesta.contains(opcionElegida);
     }
 }

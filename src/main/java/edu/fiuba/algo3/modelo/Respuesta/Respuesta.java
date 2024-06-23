@@ -6,6 +6,4 @@ public abstract class Respuesta {
     protected Puntaje puntaje;
 
     public abstract Integer comparar(Respuesta respuesta);
-
-    protected abstract boolean evaluar(Integer respuesta);
 }

@@ -14,9 +14,10 @@ public class RespuestaMultipleChoiceConPuntajeParcial extends Respuesta {
 
     @Override
     public Integer comparar(Respuesta respuesta) {
+        RespuestaMultipleChoiceConPuntajeParcial respuestaCorrecta = (RespuestaMultipleChoiceConPuntajeParcial) respuesta;
         Integer puntos = 0;
-        for (Integer respuestaElegida : this.respuesta) {
-            if (respuesta.evaluar(respuestaElegida)) {
+        for (Integer opcionElegida : this.respuesta) {
+            if (respuestaCorrecta.evaluar(opcionElegida)) {
                 puntos += this.puntaje.getValorRespuestaCorrecta();
             }
             else {
@@ -26,7 +27,7 @@ public class RespuestaMultipleChoiceConPuntajeParcial extends Respuesta {
         return puntos;
     }
 
-    public boolean evaluar(Integer respuestaElegida) {
-        return this.respuesta.contains(respuestaElegida);
+    public boolean evaluar(Integer opcionElegida) {
+        return this.respuesta.contains(opcionElegida);
     }
 }
