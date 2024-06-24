@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MultiplicadorPorUno implements Modificador{
 
-    private final int MULTIPLICADOR = 2;
+    private final int MULTIPLICADOR = 1;
 
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {

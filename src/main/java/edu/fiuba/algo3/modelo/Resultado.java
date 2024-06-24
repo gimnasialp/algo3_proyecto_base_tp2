@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Resultado {
 
@@ -30,4 +31,9 @@ public class Resultado {
             jugadores.get(i).asignarPuntos(puntajeRonda.get(i));
         }
     }
+
+    public List<Integer> obtenerPuntosDeJugadores() {
+        return puntajeRonda;
+    }
+
 }

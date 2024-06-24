@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Resultado;
@@ -58,15 +59,35 @@ public class Partida {
         if((direccionListaJugador +1) <= jugadores.size()){
             avanzoConSiguienteJugador();
         }else{
-            evaluarRespuestasDeUnJugador(respuestas);
+            evaluarRespuestasDePartidaActual(respuestas);
+            actualizarPartidaEnJugadores();
         }
     }
 
-    private void evaluarRespuestasDeUnJugador(List<Respuesta> respuestas) {
-        resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
-        resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
+    private void actualizarPartidaEnJugadores() {
+        List<Integer> resultadosPartidaActual = resultado.obtenerPuntosDeJugadores();
+        for (int i = 0; i < resultadosPartidaActual.size(); i++) {
+            jugadores.get(i).asignarPuntos(resultadosPartidaActual.get(i));
+        }
     }
 
+    private void evaluarRespuestasDePartidaActual(List<Respuesta> respuestas) {
+        resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
+        //resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
+        analisisModificadores();
+    }
+
+    private void analisisModificadores() {
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador jugador = jugadores.get(i);
+            resultado.usarModificador(jugador.obtenerModificadorActual(),i);
+            jugador.resetearMultiplicador();
+        }
+       // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
+       // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
+    }
+
+    //debuggear que parece que me esta multiplicando por tres ,
     public Jugador jugadorConMasPuntos(){
         Jugador jugadorActualConMasPuntos = jugadores.get(0);
         for(Jugador jugador : jugadores){
@@ -75,5 +96,10 @@ public class Partida {
             }
         }
         return jugadorActualConMasPuntos;
+    }
+
+    public void activaMultiplicador(Modificador multiplicadorPorDos, Jugador jugadorDePartidaActiva) {
+        jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicadorPorDos);
+
     }
 }
