@@ -29,6 +29,6 @@ public class Resultado {
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).asignarPuntos(puntajeRonda.get(i));
         }
-
+        int i=0;i++;
     }
 }

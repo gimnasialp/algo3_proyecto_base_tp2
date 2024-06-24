@@ -14,6 +14,8 @@ public class PreguntaGroupChoice implements Pregunta {
     private ArrayList<String> opciones;
     private Respuesta respuestaCorrecta;
 
+    private  Resultado resultado;
+
     public PreguntaGroupChoice(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones, String textoRespuesta) {
         this.idPregunta = idPregunta;
         this.tema = tema;
@@ -21,11 +23,11 @@ public class PreguntaGroupChoice implements Pregunta {
         this.enunciado = enunciado;
         this.opciones = opciones;
         this.respuestaCorrecta = respuestaCorrecta;
+        resultado = new Resultado();
     }
 
     @Override
     public Resultado responder(ArrayList<Respuesta> respuestas) {
-        Resultado resultado = new Resultado();
 
         for (Respuesta respuesta: respuestas){
             int puntos = 0;
