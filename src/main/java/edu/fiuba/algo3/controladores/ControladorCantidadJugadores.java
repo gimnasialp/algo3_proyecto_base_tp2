@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.vistas.VistaPedirCantidadJugadores;
+import edu.fiuba.algo3.vista.vistas.VistaPedirNombreJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
-public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
+public class ControladorCantidadJugadores implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
 
-    public ControladorIniciarJuego(Stage stage, PantallaPrincipal pantallaPrincipal){
+    public ControladorCantidadJugadores(Stage stage, PantallaPrincipal pantallaPrincipal){
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
     }
@@ -19,7 +19,6 @@ public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores(stage,pantallaPrincipal));
+        pantallaPrincipal.setCentro(new VistaPedirNombreJugadores(stage,pantallaPrincipal));
     }
-
 }
