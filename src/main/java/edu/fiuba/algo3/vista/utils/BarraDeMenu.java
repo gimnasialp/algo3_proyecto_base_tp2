@@ -21,9 +21,9 @@ public class BarraDeMenu extends MenuBar {
         MenuItem opcionAcercaDe = new MenuItem("Acerca de ...");
         MenuItem opcionAyuda = new MenuItem("Ayuda");
 
-        //opcionSalir.setOnAction(new ControladorTerminarJuego());
-        //opcionAcercaDe.setOnAction(new ControladorAcercaDeAyuda());
-        //opcionAyuda.setOnAction(new ControladorAyudaDelJuego());
+        opcionSalir.setOnAction(new ControladorFinalizarJuego());
+        opcionAcercaDe.setOnAction(new ControladorAcercaDeAyuda());
+        opcionAyuda.setOnAction(new ControladorAyudaDelJuego());
         opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(stage,opcionPantallaCompleta));
         agregarMusicas(menuMusica);
 

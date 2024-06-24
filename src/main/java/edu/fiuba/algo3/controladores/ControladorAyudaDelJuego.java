@@ -12,7 +12,7 @@ public class ControladorAyudaDelJuego implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         Stage stageAyuda = new Stage();
         Scene sceneAyuda = new Scene(new VistaAyuda(),900,600);
-        Image icono = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/ayuda-icono.png");
+        Image icono = new Image("file:" + System.getProperty("user.dir") + "src/main/java/edu/fiuba/algo3/resources/imagenes/help.png");
         stageAyuda.getIcons().add(icono);
         stageAyuda.setTitle("Ayuda AlgoHoot!");
         stageAyuda.setScene(sceneAyuda);

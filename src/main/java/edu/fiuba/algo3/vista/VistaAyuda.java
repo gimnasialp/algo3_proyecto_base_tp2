@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 public class VistaAyuda extends StackPane {
 
     public VistaAyuda() {
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondoInicio.jpg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/2721026.jpg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,
                 BackgroundRepeat.ROUND,
                 BackgroundRepeat.SPACE,
