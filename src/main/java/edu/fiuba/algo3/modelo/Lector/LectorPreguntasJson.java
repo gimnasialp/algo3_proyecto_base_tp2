@@ -51,12 +51,12 @@ public class LectorPreguntasJson {
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
         int idPregunta = jsonObject.get("ID").getAsInt();
         String tema = jsonObject.get("Tema").getAsString();
-        String tipo = jsonObject.get("Tipo").getAsString();
+        String tipo = jsonObject.get("Tipo").getAsString().toLowerCase();
         String textoRespuesta = jsonObject.get("Texto respuesta").getAsString();
         String enunciadoPregunta = jsonObject.get("Pregunta").getAsString();
         ArrayList<String> opciones = getOpciones(jsonObject);
         ParserRespuesta tipoParseador = this.parseadores.get(tipo.toLowerCase());
-        Respuesta respuesta = tipoParseador.parsearRespuesta(jsonObject.get("Respuesta").getAsString());
+        Respuesta respuesta = tipoParseador.parsearRespuesta(jsonObject);
 
         return new Pregunta(idPregunta, tema, tipo, enunciadoPregunta, opciones, textoRespuesta, respuesta);
     }
@@ -73,5 +73,4 @@ public class LectorPreguntasJson {
 
         return opciones;
     }
-
 }

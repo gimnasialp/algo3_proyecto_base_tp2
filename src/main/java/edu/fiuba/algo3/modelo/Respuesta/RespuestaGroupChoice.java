@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Puntaje.PuntajeNormal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class RespuestaGroupChoice extends Respuesta{
     private HashMap<String, ArrayList<Integer>> respuesta;
@@ -30,7 +31,10 @@ public class RespuestaGroupChoice extends Respuesta{
     public boolean evaluar(HashMap<String, ArrayList<Integer>> respuesta) {
         ArrayList<Integer> unGrupoRespuestaCorrecta = this.respuesta.get(grupos.get(0));
         ArrayList<Integer> grupoRespuestaElegida = respuesta.get(grupos.get(0));
-        return unGrupoRespuestaCorrecta.stream().sorted().equals(grupoRespuestaElegida.stream().sorted());
+        System.out.println(grupos.get(0));
+        System.out.println(unGrupoRespuestaCorrecta);
+        System.out.println(grupoRespuestaElegida);
+        return new HashSet<>(unGrupoRespuestaCorrecta).equals(new HashSet<>(grupoRespuestaElegida));
     }
 
 }

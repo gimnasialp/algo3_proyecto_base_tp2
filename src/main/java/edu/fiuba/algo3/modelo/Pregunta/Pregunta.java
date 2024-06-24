@@ -36,4 +36,8 @@ public class Pregunta {
 
         return resultado;
     }
+
+    public boolean mismoId(int id) {
+        return (id == idPregunta);
+    }
 }

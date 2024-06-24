@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Lector;
 
+import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalsoClasico;
 
 public class VerdaderoFalsoClasicoParser implements ParserRespuesta {
@@ -9,7 +10,8 @@ public class VerdaderoFalsoClasicoParser implements ParserRespuesta {
         this.parserRespuesta = new ParserRespuestaUnica();
     }
 
-    public RespuestaVerdaderoFalsoClasico parsearRespuesta(String respuesta) {
+    public RespuestaVerdaderoFalsoClasico parsearRespuesta(JsonObject jsonObject) {
+        String respuesta = jsonObject.get("Respuesta").getAsString();
         return new RespuestaVerdaderoFalsoClasico(this.parserRespuesta.parsearOpcionRespuesta(respuesta));
     }
 }

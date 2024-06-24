@@ -3,11 +3,11 @@ package edu.fiuba.algo3.modelo;
 public class Jugador {
 
     private String nombre;
-    private Puntaje puntaje;
+    private Puntuacion puntaje;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.puntaje = new Puntaje();
+        this.puntaje = new Puntuacion();
     }
 
     public void asignarPuntos(int puntos) {
@@ -15,6 +15,7 @@ public class Jugador {
     }
 
     public int obtenerPuntaje() {
+
         return puntaje.obtenerPuntos();
     }
 }

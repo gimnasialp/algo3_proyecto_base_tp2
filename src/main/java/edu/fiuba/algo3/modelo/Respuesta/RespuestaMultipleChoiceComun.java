@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo.Respuesta;
 
+import edu.fiuba.algo3.modelo.Puntaje.PuntajeNormal;
 import edu.fiuba.algo3.modelo.Puntaje.PuntajePenalidad;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class RespuestaMultipleChoiceComun extends Respuesta {
     private ArrayList<Integer> respuesta;
 
     public RespuestaMultipleChoiceComun(ArrayList<Integer> respuesta) {
         this.respuesta = respuesta;
-        this.puntaje = new PuntajePenalidad();
+        this.puntaje = new PuntajeNormal();
     }
 
     @Override
@@ -22,6 +24,6 @@ public class RespuestaMultipleChoiceComun extends Respuesta {
     }
 
     public boolean evaluar(ArrayList<Integer> respuesta) {
-        return this.respuesta.stream().sorted().equals(respuesta.stream().sorted());
+        return new HashSet<>(this.respuesta).equals(new HashSet<>(respuesta));
     }
 }
