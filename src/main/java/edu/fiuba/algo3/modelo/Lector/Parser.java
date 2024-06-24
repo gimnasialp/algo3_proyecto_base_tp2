@@ -20,6 +20,7 @@ public abstract class Parser {
     public abstract Pregunta parse(JsonElement preguntaJson);
 
     protected ArrayList<String> obtenerOpciones(JsonObject jsonObject) {
+
         ArrayList<String> opciones = new ArrayList<>();
         int numeroOpcion = 1;
         String claveOpcion = "Opcion ".concat(Integer.toString(numeroOpcion));
