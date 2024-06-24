@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.vista.mensajes.MensajeAyuda;
@@ -13,24 +13,23 @@ import javafx.scene.text.Font;
 public class VistaAyuda extends StackPane {
 
     public VistaAyuda() {
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/2721026.jpg");
-        BackgroundImage fondoImagen = new BackgroundImage(imagen,
-                BackgroundRepeat.ROUND,
-                BackgroundRepeat.SPACE,
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg");
+        BackgroundImage fondoImagen = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(100, 100, true, true, true, false));
+                BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
         VBox cajaPrincipal = new VBox(70);
-        cajaPrincipal.setPadding(new Insets(20));
-        cajaPrincipal.setAlignment(Pos.CENTER);
+        cajaPrincipal.setPadding(new Insets(30));
+        cajaPrincipal.setAlignment(Pos.TOP_CENTER);
 
         Label titulo = new Label("Ayuda sobre el juego");
         titulo.setFont(Font.font(Estilos.FUENTE,25));
         titulo.setStyle("-fx-font-weight: bold");
         titulo.setUnderline(true);
-        titulo.setTextFill(Color.BLACK);
+        titulo.setTextFill(Color.WHITE);
         titulo.setWrapText(true);
 
         cajaPrincipal.getChildren().add(titulo);

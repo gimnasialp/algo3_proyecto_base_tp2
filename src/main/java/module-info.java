@@ -9,5 +9,6 @@ module edu.fiuba.algo3 {
     requires javafx.media;
     exports edu.fiuba.algo3.vista;
     exports edu.fiuba.algo3.vista.botones;
+    exports edu.fiuba.algo3.vista.vistas;
 
 }

@@ -10,7 +10,7 @@ public class ControladorAcercaDeAyuda implements EventHandler<ActionEvent> {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de...");
         alert.setHeaderText("Acerca de la aplicacion");
-        String mensaje = "Aplicacion estilo Kahoot creada para el TP2 de la materia Algoritmos y programacion 3 por el grupo";
+        String mensaje = "Aplicacion estilo Kahoot creada para el TP2 de la materia Algoritmos y programacion 3 por el grupo 8:Miguel,Ruth,Alejandro,Nicolas y Maurizio";
         alert.setContentText(mensaje);
         alert.show();
     }
