@@ -12,6 +12,7 @@ public class Estilos {
     public static final String AZUL = "2A2DF4";
     public static final String AMARILLO = "FFC857";
     public static final String ROJO = "EF2D56";
+    public static final String BLANCO = "FFFFFF";
     public static final String FUENTE = "montserrat";
     public static final float ALPHA_CAJA_JUGADOR_ACTIVO = 1;
     public static final double ALPHA_CAJA_JUGADOR_INACTIVO = 0.4D;
