@@ -73,8 +73,6 @@ public class Interfaz extends Application {
         part1.setFont(Font.font("Verdana", FontWeight.BOLD,15));
         part1.setFill(Color.WHITE);
 
-        //Label label = new Label(truncatedText);
-        //label.setPadding(new Insets(20));
         // Crear los botones
         CheckBox checkBox1 = new CheckBox("Verdadero");
         checkBox1.setBackground(new Background(new BackgroundFill(Color.MEDIUMPURPLE, new CornerRadii(5), new Insets(-5,-5,-5,-5))));
@@ -105,8 +103,7 @@ public class Interfaz extends Application {
         //vBox.setPadding(new Insets(20)); // 20 píxeles de padding alrededor del VBox
         vBox.setPadding(new Insets(40,40,40,40));
         vBox.getChildren().addAll(part1, buttonBox,siguiente);
-        // Cambiar la fuente del Label a Arial, tamaño 24, negrita
-        //textFlow.setRotate(Font.font("Arial", FontWeight.BOLD, 13).getSize());
+
 
         BackgroundFill backgroundFill = new BackgroundFill(Color.DARKVIOLET, new CornerRadii(5), Insets.EMPTY);
         Background background = new Background(backgroundFill);
@@ -132,8 +129,6 @@ public class Interfaz extends Application {
         part1.setFont(Font.font("Verdana", FontWeight.BOLD,15));
         part1.setFill(Color.WHITE);
 
-        //Label label = new Label(truncatedText);
-        //label.setPadding(new Insets(20));
         // Crear los botones
         CheckBox checkBox1 = new CheckBox("Revolver (Los Beatles)");
         checkBox1.setBackground(new Background(new BackgroundFill(Color.MEDIUMPURPLE, new CornerRadii(5), new Insets(-5,-5,-5,-5))));
@@ -180,14 +175,6 @@ public class Interfaz extends Application {
         vBox.setPadding(new Insets(40,40,40,40));
         vBox.getChildren().addAll(part1, checkBox1,checkBox2,checkBox3,checkBox4,checkBox5,siguiente);
 
-        // Crear un HBox para los botones con espaciado entre ellos
-        //HBox buttonBox = new HBox(250); // 10 píxeles de espaciado entre los botones
-        //buttonBox.getChildren().addAll(checkBox1, checkBox2);
-
-
-        // Cambiar la fuente del Label a Arial, tamaño 24, negrita
-        //textFlow.setRotate(Font.font("Arial", FontWeight.BOLD, 13).getSize());
-
         BackgroundFill backgroundFill = new BackgroundFill(Color.DARKVIOLET, new CornerRadii(5), Insets.EMPTY);
         Background background = new Background(backgroundFill);
         vBox.setBackground(background);
@@ -202,10 +189,6 @@ public class Interfaz extends Application {
 
         //Button btnBack = new Button("Atrás");
         siguiente.setOnAction(event -> stage.close());
-
-
-
-        // Cambiar la escena de la ventana principal a la segunda escena
 
 
     }
