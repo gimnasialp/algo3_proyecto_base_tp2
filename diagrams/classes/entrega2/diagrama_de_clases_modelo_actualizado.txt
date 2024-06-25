@@ -1,0 +1,226 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class AlgoHoot{
++comenzarPartida(): void
+}
+
+interface ProveedorPreguntas {
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class ProveedorJsonPreguntas {
+-tiposPreguntas: HashMap<String, Parser>
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class LectorPreguntasJson {
+-parseadores: HashMap<String, Parser>
++leerArchivo(reader: JsonReader): ArrayList<Pregunta>
++generarPreguntas(jsonArray: JsonArray): ArrayList<Pregunta>
+}
+
+abstract class Parser {
++parse(preguntaJson: JsonElement): Pregunta
++obtenerOpciones(JsonObject jsonObject): ArrayList<String>
++obtenerDatosDePregunta(JsonObject jsonObject): void
+}
+
+abstract class FabricaPreguntas {
++crearPregunta(parameters: Object...): Pregunta
+}
+
+class Ronda{
++Ronda(Pregunta pregunta,\n ArrayList<Jugador> jugadores)
++jugarRonda(): void
+}
+
+interface Limite {
++{abstract}terminar(): void
+}
+
+class LimitePreguntas {
+-cantidadPreguntas: int
++LimitePreguntas(int limitePreguntas)
++terminar(): void
+}
+
+class LimitePuntaje {
+-puntaje: int
++LimitePuntaje(int puntajeLimite)
++terminar(): void
+}
+
+class Jugador {
+-nombre: String
++Jugador(String nombre)
++obtenerRespuesta(): Respuesta
++obtenerModificador(): Modificador 
++asignarPuntos(): void
++obtenerPuntaje(): int
+}
+
+class Puntaje {
+-puntos: int
++asignarPuntos(int puntos): void
++obtenerPuntaje(): int
+}
+
+interface Modificador {
++{abstract} aplicar(ArrayList<Integer>\n puntajeRonda, int jugadorPosicion): void
+}
+
+class Anulador {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class Exclusividad {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class MultiplicadorPorDos {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class MultiplicadorPorTres {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class Resultado {
+-puntosRonda: ArrayList<Integer>
++agregarPuntaje(int puntos): void
++usarModificador(Modificador\n modificador, int jugadorPosicion): void
++obtenerPuntosDelJugador(int posicionJugador): int
++asignarPuntosALosJugadores(ArrayList<Jugador> jugadores): void
+}
+
+interface Pregunta {
++{abstract}responder(ArrayList<Respuesta>: respuestas): Resultado
++{abstract}mismoId(int id): boolean
+}
+
+class PreguntaGroupChoice {
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaOrderedChoice {
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoiceClasico{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoiceParcial{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoice\nConPenalidad{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaVerdaderoFalsoClasico{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaVerdaderoFalso\nConPenalidad{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+interface Respuesta {
++{abstract}comparar(Respuesta\n respuesta): boolean
+}
+
+class RespuestaVerdaderoFalso {
+-respuesta: int
++comparar(Respuesta respuesta): boolean
+-evaluar(int unOpcion): boolean
+}
+
+class RespuestaMultipleChoiceClasico {
+-respuesta: ArrayList<Integer> 
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opciones): boolean
+}
+
+class RespuestaMultipleChoiceConPenalidad {
+-respuesta: ArrayList<Integer> 
++comparar(Respuesta respuesta): boolean
+-evaluar(int choice): boolean
++opcionesCorrectas(Respuesta respuesta): int
++opcionesIncorrectas(Respuesta respuesta): int
+}
+
+class RespuestaMultipleChoiceParcial {
+-respuesta: ArrayList<Integer> 
++comparar(Respuesta respuesta): boolean
+-evaluar(int choice): boolean
++opcionesCorrectas(Respuesta respuesta): int
+}
+
+class RespuestaOrderedChoice {
+-respuesta: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opciones): boolean
+}
+
+class RespuestaGroupChoice {
+-respuestaGrupoUno: ArrayList<Integer>
+-respuestaGrupoDos: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opcionesGrupoUno,\n ArrayList<Integer> opcionesGrupoDos): boolean
+}
+
+/'-------------------------------------------------------------------'/
+
+AlgoHoot .up.> Lector
+AlgoHoot .left.> Limite
+AlgoHoot .down.> Jugador
+
+ProveedorPreguntas <|.. ProveedorJsonPreguntas
+ProveedorJsonPreguntas ..> LectorPreguntasJson
+LectorPreguntasJson --> "*" Parser
+Parser --> FabricaPreguntas
+
+Ronda "m" <.left. AlgoHoot
+Ronda ..> Modificador
+Ronda .up.> Resultado
+
+Jugador "n" -up-o Ronda
+Jugador --> Puntaje
+Jugador ..> Modificador
+
+Pregunta "1" <-left- Ronda
+Pregunta <|-right- PreguntaMultipleChoiceClasico
+Pregunta <|-up- PreguntaMultipleChoiceParcial
+Pregunta <|-up- PreguntaMultipleChoice\nConPenalidad
+Pregunta <|-- PreguntaVerdaderoFalsoClasico
+Pregunta <|-- PreguntaVerdaderoFalso\nConPenalidad
+Pregunta <|-- PreguntaGroupChoice
+Pregunta <|-- PreguntaOrderedChoice
+Pregunta -up-> "1" Respuesta
+Pregunta .up.> Resultado
+
+Respuesta <|.up. RespuestaVerdaderoFalso
+Respuesta <|.up. RespuestaMultipleChoiceClasico
+Respuesta <|.up. RespuestaMultipleChoiceParcial
+Respuesta <|.up. RespuestaMultipleChoiceConPenalidad
+Respuesta <|.up. RespuestaOrderedChoice
+Respuesta <|.up. RespuestaGroupChoice
+
+Modificador <|.. Anulador
+Modificador <|.. Exclusividad
+Modificador <|.. MultiplicadorPorDos
+Modificador <|.. MultiplicadorPorTres
+
+Limite <|.down. LimitePreguntas
+Limite <|.down. LimitePuntaje
+
+@enduml

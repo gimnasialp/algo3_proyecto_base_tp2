@@ -1,7 +1,4 @@
 @startuml
-title Diagrama de Clase
-skinparam monochrome true
-hide circle
 skinparam classAttributeIconSize 0
 
 class AlgoHoot{
@@ -62,7 +59,7 @@ class RespuestaIncorrecta{
 
 class Partida{
     -ArrayList<Jugador>
-    -turnos:int
+
     +procesarRespuestas(ArrayList<Respuesta>: respuestaUno, ArrayList<Respuesta>: respuestaDos)
 }
 
@@ -73,27 +70,10 @@ class Jugador{
     + nombrar(String: nombre)
 
 }
+class jugada{
 
-Interface Modificador{
-    +modificarPuntos(puntos: int)
 }
-class MultiplicadorX2{
-    +modificarPuntos(puntos:int)
-}
-class MultiplicadorX3{
-    +modificarPuntos(puntos:int)
-}
-class ExclusividadDePuntaje{
-    +modificarPuntos(jugadores:Jugador, respuestasCorectas:Respuestas)
-}
-class AnuladorDePuntos{
-    +anularPuntos(jugadores:Jugador)
-}
-Modificador <- Jugador
-Modificador <|.. MultiplicadorX2
-Modificador <|.. MultiplicadorX3
-Modificador <|.. AnuladorDePuntos
-Modificador <|.. ExclusividadDePuntaje
+
 MultipleChoice <|-down- MultipleChoiceClasico
 MultipleChoice <|-down- MultipleChoiceParcial
 MultipleChoice <|-- MultipleChoiceConPenalidad
