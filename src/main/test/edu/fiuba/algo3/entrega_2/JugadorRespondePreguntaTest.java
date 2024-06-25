@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Lector.Parser;
+import edu.fiuba.algo3.modelo.Lector.ProveedorJsonPreguntas;
+import edu.fiuba.algo3.modelo.Lector.VerdaderoFalsoClasicoParser;
 import edu.fiuba.algo3.modelo.Modificador.AnuladorDePuntaje;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,8 +29,10 @@ public class JugadorRespondePreguntaTest {
     public void setUpPreguntas() {
         this.jugador = new Jugador("Marianito");
 
-        LectorPreguntasJson lector = new LectorPreguntasJson();
-        ArrayList<Pregunta> preguntas = lector.generarPreguntas();
+        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+        tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
+        ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
+        ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
         this.preguntaVerdaderoFalsoClasicoUno = preguntas.stream().filter(p -> p.mismoId(3)).findFirst().get();
         this.preguntaVerdaderoFalsoClasicoDos = preguntas.stream().filter(p -> p.mismoId(5)).findFirst().get();
     }
