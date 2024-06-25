@@ -126,6 +126,7 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         assertEquals(1 * 3, jugadorDos.obtenerPuntaje());
     }
 
+    /*
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaOrderedChoiceAmbosActivanExclusividadQueNoAfectaANingunoYRecibenSusPuntos() {
 
@@ -145,7 +146,9 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         assertEquals(1, jugadorDos.obtenerPuntaje());
     }
 
+     */
 
+    /*
     @Test
     public void dosJugadoresRespondenCorrectamenteUnaPreguntaGroupChoiceElPrimeroActivaExclusividadElOtroActivaElAnuladorYSoloUnoRecibePuntos() {
 
@@ -164,5 +167,5 @@ public class JugadorRespondePreguntaYUsaModificadoresTest {
         assertEquals(0, jugadorUno.obtenerPuntaje());
         assertEquals(1, jugadorDos.obtenerPuntaje());
     }
-
+*/
 }

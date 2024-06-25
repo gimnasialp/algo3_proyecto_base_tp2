@@ -57,7 +57,7 @@ public class Partida {
         respuestas.add(respondeJugador);
 
         if((direccionListaJugador +1) <= jugadores.size()){
-            avanzoConSiguienteJugador();
+            //avanzoConSiguienteJugador();
         }else{
             evaluarRespuestasDePartidaActual(respuestas);
             actualizarPartidaEnJugadores();
@@ -79,10 +79,11 @@ public class Partida {
 
     private void analisisModificadores() {
         for (int i = 0; i < jugadores.size(); i++) {
-            Jugador jugador = jugadores.get(i);
-            resultado.usarModificador(jugador.obtenerModificadorActual(),i);
-            jugador.resetearMultiplicador();
+            resultado.usarModificador(jugadores.get(i).obtenerModificadorActual(),i);
+            jugadores.get(i).resetearMultiplicador();
+            int g=0;
         }
+        int g=0;
        // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
        // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
     }
@@ -99,6 +100,7 @@ public class Partida {
     }
 
     public void activaMultiplicador(Modificador multiplicadorPorDos, Jugador jugadorDePartidaActiva) {
+        //this.jugadores.get(direccionListaJugador).aplicarNuevoMultiplicador(multiplicadorPorDos);
         jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicadorPorDos);
 
     }
