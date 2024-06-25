@@ -1,6 +1,4 @@
 package edu.fiuba.algo3.vista;
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -180,13 +178,7 @@ public class Interfaz extends Application {
         vBox.setPadding(new Insets(40,40,40,40));
         vBox.getChildren().addAll(part1, checkBox1,checkBox2,checkBox3,checkBox4,checkBox5,siguiente);
 
-        // Crear un HBox para los botones con espaciado entre ellos
-        //HBox buttonBox = new HBox(250); // 10 píxeles de espaciado entre los botones
-        //buttonBox.getChildren().addAll(checkBox1, checkBox2);
 
-
-        // Cambiar la fuente del Label a Arial, tamaño 24, negrita
-        //textFlow.setRotate(Font.font("Arial", FontWeight.BOLD, 13).getSize());
 
         BackgroundFill backgroundFill = new BackgroundFill(Color.DARKVIOLET, new CornerRadii(5), Insets.EMPTY);
         Background background = new Background(backgroundFill);
@@ -203,13 +195,9 @@ public class Interfaz extends Application {
         //Button btnBack = new Button("Atrás");
         siguiente.setOnAction(event -> stage.close());
 
-
-
         // Cambiar la escena de la ventana principal a la segunda escena
 
-
     }
-
 
     public static void main(String[] args){
         launch(args);
