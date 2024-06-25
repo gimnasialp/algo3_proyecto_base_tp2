@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import edu.fiuba.algo3.modelo.Excepciones.CantidadErroneaDeRespuestasParaPreguntaException;
+import edu.fiuba.algo3.modelo.Excepciones.ArchivoPoseeErroresException;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 
@@ -26,25 +26,21 @@ public class LectorPreguntasJson {
         }
     }
 
-    public ArrayList<Pregunta> generarPreguntas(JsonArray jsonArray) throws CantidadErroneaDeRespuestasParaPreguntaException {
-        try {
-            ArrayList<Pregunta> preguntasTotales = new ArrayList<>();
-            for (JsonElement jsonElement : jsonArray) {
-                JsonElement tipoPregunta = jsonElement.getAsJsonObject().get("Tipo");
-                if(this.parseadores.containsKey(tipoPregunta.getAsString().toLowerCase())) {
-                    System.out.println("    ");
-                    System.out.println(jsonElement);
-                    try {
-                        preguntasTotales.add(parse(jsonElement));
-                    } catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
-                        ex.printStackTrace();
-                    }
+    public ArrayList<Pregunta> generarPreguntas(JsonArray jsonArray) throws ArchivoPoseeErroresException {
+        ArrayList<Pregunta> preguntasTotales = new ArrayList<>();
+        for (JsonElement jsonElement : jsonArray) {
+            JsonElement tipoPregunta = jsonElement.getAsJsonObject().get("Tipo");
+            if(this.parseadores.containsKey(tipoPregunta.getAsString().toLowerCase())) {
+                System.out.println("    ");
+                System.out.println(jsonElement);
+                try {
+                    preguntasTotales.add(parse(jsonElement));
+                } catch(RuntimeException ex) {
+                    throw new ArchivoPoseeErroresException();
                 }
             }
-            return preguntasTotales;
-        } catch (JsonSyntaxException e) {
-            throw new RuntimeException(e.toString());
         }
+        return preguntasTotales;
     }
 
     public Pregunta parse(JsonElement preguntaJson) {

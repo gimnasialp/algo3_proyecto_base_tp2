@@ -32,7 +32,7 @@ public class ProveedorJsonPreguntas implements ProveedorPreguntas {
             ArrayList<Pregunta> preguntas = lectorJson.leerArchivo(reader);
             return preguntas;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.toString());
+            throw new ArchivoNoEncontradoException(e.toString());
         }
     }
 
