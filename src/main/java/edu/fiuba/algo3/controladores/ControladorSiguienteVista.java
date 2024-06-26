@@ -1,25 +1,30 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.vistas.VistaPedirLimite;
-import edu.fiuba.algo3.vista.vistas.VistaPedirNombreJugadores;
+import edu.fiuba.algo3.vista.vistas.VistaPedirCantidadJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class ControladorCantidadJugadores implements EventHandler<ActionEvent> {
+public class ControladorSiguienteVista  implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
 
-    public ControladorCantidadJugadores(Stage stage, PantallaPrincipal pantallaPrincipal){
+    public ControladorSiguienteVista(Stage stage, PantallaPrincipal pantallaPrincipal){
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
     }
 
-
+    public void cambiarVista(StackPane vista){
+        pantallaPrincipal.setCentro(vista);
+    }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal));
+        //cambiarVista();
     }
+
+
 }
+

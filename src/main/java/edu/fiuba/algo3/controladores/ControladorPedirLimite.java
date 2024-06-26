@@ -7,19 +7,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
-public class ControladorCantidadJugadores implements EventHandler<ActionEvent> {
+public class ControladorPedirLimite implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
 
-    public ControladorCantidadJugadores(Stage stage, PantallaPrincipal pantallaPrincipal){
+    public ControladorPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal){
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
     }
 
-
-
     @Override
     public void handle(ActionEvent actionEvent) {
-        pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal));
+        pantallaPrincipal.setCentro(null);
     }
 }
