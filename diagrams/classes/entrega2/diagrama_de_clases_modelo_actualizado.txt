@@ -5,8 +5,29 @@ class AlgoHoot{
 +comenzarPartida(): void
 }
 
-class Lector {
-+generarPreguntas(): ArrayList<Pregunta>
+interface ProveedorPreguntas {
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class ProveedorJsonPreguntas {
+-tiposPreguntas: HashMap<String, Parser>
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class LectorPreguntasJson {
+-parseadores: HashMap<String, Parser>
++leerArchivo(reader: JsonReader): ArrayList<Pregunta>
++generarPreguntas(jsonArray: JsonArray): ArrayList<Pregunta>
+}
+
+abstract class Parser {
++parse(preguntaJson: JsonElement): Pregunta
++obtenerOpciones(JsonObject jsonObject): ArrayList<String>
++obtenerDatosDePregunta(JsonObject jsonObject): void
+}
+
+abstract class FabricaPreguntas {
++crearPregunta(parameters: Object...): Pregunta
 }
 
 class Ronda{
@@ -162,6 +183,11 @@ class RespuestaGroupChoice {
 AlgoHoot .up.> Lector
 AlgoHoot .left.> Limite
 AlgoHoot .down.> Jugador
+
+ProveedorPreguntas <|.. ProveedorJsonPreguntas
+ProveedorJsonPreguntas ..> LectorPreguntasJson
+LectorPreguntasJson --> "*" Parser
+Parser --> FabricaPreguntas
 
 Ronda "m" <.left. AlgoHoot
 Ronda ..> Modificador

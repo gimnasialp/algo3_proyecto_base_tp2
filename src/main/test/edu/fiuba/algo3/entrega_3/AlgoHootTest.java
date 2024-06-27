@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Excepciones.PuntajeMaximoSuperadoException;
 import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
+import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Limite.LimitadorPorPuntos;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
@@ -24,12 +24,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class AlgoHootTest {
+
 
     @Test
     public void testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuego(){
@@ -108,8 +111,18 @@ public class AlgoHootTest {
     public void testJuegoLimiteNumeroPuntosconPreguntasOCyGCconDosJugadoresHastaTerminarJuego(){
 
         //Primera pregunta(OrderedChoice id=17)
-        LectorPreguntasJson lector = new LectorPreguntasJson();
-        ArrayList<Pregunta> preguntasLector = lector.generarPreguntas();
+        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+        tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
+        tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
+        tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
+        tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
+        tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
+        tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
+        tiposPreguntas.put("group choice", new GroupChoiceParser());
+        ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
+
+        ArrayList<Pregunta> preguntasLector = proveedor.obtenerPreguntasDe("preguntas.json");
+
         Pregunta preguntaOC = preguntasLector.stream().filter(p -> p.mismoId(17)).findFirst().get();
         //Segunda Pregunta(GroupChoice id=18)
         Pregunta preguntaGC = preguntasLector.stream().filter(p -> p.mismoId(18)).findFirst().get();
@@ -154,10 +167,10 @@ public class AlgoHootTest {
         // Empezamos con un Verdadero Falso Clasico linea 33
         algoHoot.proximaPartida();
 
-         partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
-         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
-         respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
 
         //pasa a jugar segundo Jugador
@@ -180,3 +193,4 @@ public class AlgoHootTest {
         });
     }
 }
+

@@ -2,71 +2,42 @@ package edu.fiuba.algo3.modelo.Lector;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
-import edu.fiuba.algo3.modelo.Excepciones.CantidadErroneaDeRespuestasParaPreguntaException;
+import edu.fiuba.algo3.modelo.Excepciones.ArchivoPoseeErroresException;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class LectorPreguntasJson implements Lector{
+public class LectorPreguntasJson {
+    private HashMap<String, Parser> parseadores;
 
-    private static final String rutaRelativa = "preguntas.json";
-    private final ArrayList<Pregunta> preguntasTotales;
-
-    public LectorPreguntasJson() {
-        this.preguntasTotales = new ArrayList<>();
+    public LectorPreguntasJson(HashMap<String, Parser> parseadores) {
+        this.parseadores = parseadores;
     }
 
-    @Override
-    public ArrayList<Pregunta> generarPreguntas() throws ArchivoNoEncontradoException {
-
-        Parser parserVerdaderoFalsoClasico = new VerdaderoFalsoClasicoParser();
-        Parser parserVerdaderoFalsoConPenalidad = new VerdaderoFalsoConPenalidadParser();
-        Parser parserMultipleChoice = new MultipleChoiceClasicoParser();
-        Parser parserMultipleChoicePenalidad = new MultipleChoicePenalidadParser();
-        Parser parserMultipleChoiceParcial = new MultipleChoiceParcialParser();
-        Parser parserOrden = new OrderedChoiceParser();
-        Parser parserGroupChoice = new GroupChoiceParser();
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoicePenalidad);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserMultipleChoiceParcial);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserOrden);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserGroupChoice);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoClasico);
-        agregarPreguntasDeArchivo(preguntasTotales, rutaRelativa, parserVerdaderoFalsoConPenalidad);
-        return preguntasTotales;
-    }
-
-    private void agregarPreguntasDeArchivo(ArrayList<Pregunta> preguntasTotales, String ruta, Parser preguntaParser) throws ArchivoNoEncontradoException {
-
-        JsonElement preguntasJson;
-        JsonArray jsonarray;
-
+    public ArrayList<Pregunta> leerArchivo(JsonReader reader) throws RuntimeException {
         try {
-            JsonReader reader = new JsonReader(new FileReader(ruta));
-            preguntasJson = JsonParser.parseReader(reader);
-            jsonarray = preguntasJson.getAsJsonArray();
-            try{
-                for (JsonElement jsonElement : jsonarray) {
-                    if(jsonElement.getAsJsonObject().get("Tipo").getAsString().toLowerCase().equals(preguntaParser.tipoPregunta())){
-                        preguntasTotales.add(preguntaParser.parse(jsonElement));
-                    }
-                }
-
-            } catch (JsonSyntaxException e) {
-                throw new RuntimeException(e.toString());
-            }catch(CantidadErroneaDeRespuestasParaPreguntaException ex) {
-                ex.printStackTrace();
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.toString());
+            JsonElement preguntasJson = JsonParser.parseReader(reader);
+            JsonArray jsonArray = preguntasJson.getAsJsonArray();
+            return generarPreguntas(jsonArray);
         } catch (JsonSyntaxException e) {
             throw new RuntimeException(e.toString());
         }
-
     }
 
+    public ArrayList<Pregunta> generarPreguntas(JsonArray jsonArray) throws ArchivoPoseeErroresException {
+        ArrayList<Pregunta> preguntasTotales = new ArrayList<>();
+        for (JsonElement jsonElement : jsonArray) {
+            JsonElement tipoPregunta = jsonElement.getAsJsonObject().get("Tipo");
+            String nombreTipoPregunta = tipoPregunta.getAsString().toLowerCase();
+            if(this.parseadores.containsKey(nombreTipoPregunta)) {
+                try {
+                    preguntasTotales.add(this.parseadores.get(nombreTipoPregunta).parse(jsonElement));
+                } catch(RuntimeException ex) {
+                    throw new ArchivoPoseeErroresException();
+                }
+            }
+        }
+        return preguntasTotales;
+    }
 }

@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Lector.GroupChoiceParser;
 import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
+import edu.fiuba.algo3.modelo.Lector.Parser;
+import edu.fiuba.algo3.modelo.Lector.ProveedorJsonPreguntas;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaGroupChoice;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,8 +25,10 @@ public class PreguntaGroupChoiceTest {
 
     @BeforeEach
     public void setUpPregunta() {
-        LectorPreguntasJson lector = new LectorPreguntasJson();
-        ArrayList<Pregunta> preguntas = lector.generarPreguntas();
+        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+        tiposPreguntas.put("group choice", new GroupChoiceParser());
+        ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
+        ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
         this.preguntaGroupChoice = preguntas.stream().filter(p -> p.mismoId(18)).findFirst().get();
     }
 
