@@ -50,7 +50,7 @@ public class AlgoHootTest {
 
         //EL limite sera la cantidad final de Preguntas
         Limite limite = new LimiteFinalPreguntas(preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas,limite);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33
@@ -135,7 +135,7 @@ public class AlgoHootTest {
         Limite limite =  new LimitadorPorPuntos( preguntas);
         Limite limiteDecorator =new PuntosDefinidosDecorator(limite, preguntas,  puntoLimite);
 
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas,limiteDecorator);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limiteDecorator);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33

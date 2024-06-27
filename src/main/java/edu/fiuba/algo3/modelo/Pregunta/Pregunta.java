@@ -13,6 +13,7 @@ public abstract class Pregunta {
     protected String enunciado;
     protected ArrayList<String> opciones;
     protected Respuesta respuestaCorrecta;
+    protected Resultado resultado;
 
     protected Pregunta(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones,
                     String texto){
@@ -22,6 +23,7 @@ public abstract class Pregunta {
         this.respuestaCorrecta = respuestaCorrecta;
         this.opciones = opciones;
         this.texto = texto;
+        this.resultado= new Resultado();
 
     }
 

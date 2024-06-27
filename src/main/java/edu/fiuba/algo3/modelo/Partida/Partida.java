@@ -14,7 +14,6 @@ public class Partida {
 
     //posicion de lista de jugadores para recorrer secuencialmente
     private int direccionListaJugador;
-    private  Jugador jugador;
     private  Pregunta pregunta;
 
     private  List<Respuesta> respuestas;
@@ -23,11 +22,9 @@ public class Partida {
 
     private Resultado resultado;
 
-    public Partida(Pregunta preguntaActual, List<Jugador> jugadores, Jugador jugadorActual) {
+    public Partida(Pregunta preguntaActual, List<Jugador> jugadores) {
         this.pregunta = preguntaActual;
-        //this.puntuador = new PuntuadorComun();
         this.respuestas = new ArrayList<>();
-        this.jugador = jugadorActual;
         this.direccionListaJugador = 0;
         this.jugadores.addAll(jugadores);
     }
@@ -55,11 +52,8 @@ public class Partida {
 
     public void agregarRespuesta(Respuesta respondeJugador) {
         respuestas.add(respondeJugador);
-
-        if((direccionListaJugador +1) <= jugadores.size()){
-            //avanzoConSiguienteJugador();
-        }else{
-            evaluarRespuestasDePartidaActual(respuestas);
+        if((direccionListaJugador +1) > jugadores.size()){
+            evaluarRespuestasDePartidaActual();
             actualizarPartidaEnJugadores();
         }
     }
@@ -71,24 +65,19 @@ public class Partida {
         }
     }
 
-    private void evaluarRespuestasDePartidaActual(List<Respuesta> respuestas) {
+    private void evaluarRespuestasDePartidaActual() {
         resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
-        //resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
-        analisisModificadores();
+        analisisMultiplicadores();
     }
 
-    private void analisisModificadores() {
+    private void analisisMultiplicadores() {
         for (int i = 0; i < jugadores.size(); i++) {
-            resultado.usarModificador(jugadores.get(i).obtenerModificadorActual(),i);
+            Modificador multiplicador = jugadores.get(i).obtenerModificadorActual();
+            resultado.usarModificador(multiplicador,i);
             jugadores.get(i).resetearMultiplicador();
-            int g=0;
         }
-        int g=0;
-       // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
-       // resultado.asignarPuntosALosJugadores((ArrayList<Jugador>) jugadores);
     }
 
-    //debuggear que parece que me esta multiplicando por tres ,
     public Jugador jugadorConMasPuntos(){
         Jugador jugadorActualConMasPuntos = jugadores.get(0);
         for(Jugador jugador : jugadores){
@@ -99,9 +88,7 @@ public class Partida {
         return jugadorActualConMasPuntos;
     }
 
-    public void activaMultiplicador(Modificador multiplicadorPorDos, Jugador jugadorDePartidaActiva) {
-        //this.jugadores.get(direccionListaJugador).aplicarNuevoMultiplicador(multiplicadorPorDos);
-        jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicadorPorDos);
-
+    public void activaMultiplicador(Modificador multiplicador, Jugador jugadorDePartidaActiva) {
+        jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicador);
     }
 }

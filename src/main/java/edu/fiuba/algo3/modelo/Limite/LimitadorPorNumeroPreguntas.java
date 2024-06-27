@@ -34,7 +34,7 @@ public class LimitadorPorNumeroPreguntas extends Limite {
 
 public class LimitadorPorNumeroPreguntas extends Limite{
 
-    private int limitePreguntas;
+    //private int limitePreguntas;
     public LimitadorPorNumeroPreguntas(int limitePreguntas,List<Pregunta> preguntasParaLimitar){
         super(preguntasParaLimitar.subList(0, limitePreguntas));
     }

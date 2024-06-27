@@ -61,7 +61,7 @@ public class CasosJuegoCompleto {
 
         Limite limite = new LimiteFinalPreguntas(preguntas);
         ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"), new Jugador("Angel")));
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas, limite);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores, limite);
 
         /*  Primer Partida */
         algoHoot.proximaPartida();
