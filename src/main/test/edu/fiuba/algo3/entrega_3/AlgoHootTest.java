@@ -130,7 +130,7 @@ public class AlgoHootTest {
         ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaOC,preguntaGC));
         ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
 
-        //EL limite sera puntaje igual a 3
+        //EL limite sera puntaje igual a 1
         int puntoLimite=1;
         Limite limite =  new LimitadorPorPuntos( preguntas);
         Limite limiteDecorator =new PuntosDefinidosDecorator(limite, preguntas,  puntoLimite);
