@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ExclusividadDePuntaje implements Modificador{
 
-    private List<Jugador> jugadores;
+ //   private List<Jugador> jugadores;
 
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
@@ -28,10 +28,10 @@ public class ExclusividadDePuntaje implements Modificador{
             puntajeRonda.set(i, puntajeRonda.get(i)*2);
         }
 
-        actualizarRonda(puntajeRonda);
+        //actualizarRonda(puntajeRonda);
 
     }
-
+/*
     private void actualizarRonda(ArrayList<Integer> puntajeRonda) {
         int contestaronBien = (int) puntajeRonda.stream().filter(p->p!=0).count();
         boolean rompeExclusividad = contestaronBien != 1 ;
@@ -42,5 +42,5 @@ public class ExclusividadDePuntaje implements Modificador{
         }
         int i=0;
     }
-
+*/
 }
