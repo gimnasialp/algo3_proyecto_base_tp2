@@ -67,10 +67,10 @@ public class Partida {
 
     private void evaluarRespuestasDePartidaActual() {
         resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
-        analisisMultiplicadores();
+        analisisModificadores();
     }
 
-    private void analisisMultiplicadores() {
+    private void analisisModificadores() {
         for (int i = 0; i < jugadores.size(); i++) {
             Modificador multiplicador = jugadores.get(i).obtenerModificadorActual();
             resultado.usarModificador(multiplicador,i);

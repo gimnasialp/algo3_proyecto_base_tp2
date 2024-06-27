@@ -7,8 +7,13 @@ import java.util.List;
 
 public class ExclusividadDePuntaje implements Modificador{
 
- //   private List<Jugador> jugadores;
+    private int vecesUsado;
 
+    private final int MAXIMO_USO=2;
+
+    public ExclusividadDePuntaje(){
+        this.vecesUsado =0;
+    }
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
 
@@ -43,4 +48,10 @@ public class ExclusividadDePuntaje implements Modificador{
         int i=0;
     }
 */
+
+    @Override
+    public boolean equals(Object other) {
+        return (this.getClass().equals(other.getClass()))
+                && (vecesUsado <= MAXIMO_USO);
+    }
 }

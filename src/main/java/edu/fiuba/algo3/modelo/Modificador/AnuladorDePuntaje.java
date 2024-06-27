@@ -13,4 +13,9 @@ public class AnuladorDePuntaje implements Modificador{
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return this.getClass().equals(other.getClass());
+    }
+
 }
