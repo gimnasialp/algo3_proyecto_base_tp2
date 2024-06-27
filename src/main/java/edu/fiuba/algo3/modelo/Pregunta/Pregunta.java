@@ -33,7 +33,7 @@ public abstract class Pregunta {
         return (id == idPregunta);
     }
 
-    protected String obtenerTema(){
+    public String obtenerTema(){
         return tema;
     }
 
