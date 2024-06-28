@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Modificador.Modificador;
+//import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicadorPorUno;
 
@@ -19,7 +20,7 @@ public class Jugador {
     private List<Multiplicador> multiplicadoresEspUsados;
 
     //
-    private Modificador modificador;
+    private ModificadorState modificador;
 
     public Jugador(String nombre) {
         this.nombre = nombre;

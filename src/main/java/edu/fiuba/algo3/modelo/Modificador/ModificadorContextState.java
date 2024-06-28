@@ -21,10 +21,10 @@ public class ModificadorContextState {
         return actualModificadorState;
     }
     public void aplicarState( ArrayList<Integer> puntajePartida, int jugadorPosicio){
-        actualModificadorState.aplicarState(this,puntajePartida,jugadorPosicio);
+        actualModificadorState.aplicar(puntajePartida,jugadorPosicio);
     }
 
-    public Modificador modificadorGanador(List<Jugador> jugadorList){
+    public ModificadorState modificadorGanador(List<Jugador> jugadorList){
         int anulador = (int) jugadorList.stream().filter(
                                         m->m.obtenerModificadorActual().equals(AnuladorDePuntaje.class)).count();
         int exclusividad = (int) jugadorList.stream().filter(
@@ -37,7 +37,7 @@ public class ModificadorContextState {
 
     }
 
-    private Modificador getExclusivoOrAnulador(int anulador, int exclusividad) {
+    private ModificadorState getExclusivoOrAnulador(int anulador, int exclusividad) {
         if(anulador >= exclusividad){
             return new AnuladorDePuntaje();
         }else{

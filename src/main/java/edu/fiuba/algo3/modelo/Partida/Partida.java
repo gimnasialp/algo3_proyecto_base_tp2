@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Modificador.Modificador;
+//import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.ModificadorContextState;
 import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
@@ -79,13 +79,13 @@ public class Partida {
         //analisis Multiplicadores
         analisisMultiplicadores();
         //analisis Modificadores
-       // analisisPuntos();
+        analisisPuntos();
 
     }
 
     private void analisisPuntos() {
        ModificadorContextState modificadorContextState = new ModificadorContextState();
-        modificadorContextState.setState((ModificadorState) modificadorContextState.modificadorGanador(jugadores));
+        modificadorContextState.setState(modificadorContextState.modificadorGanador(jugadores));
         for (int i = 0; i < jugadores.size(); i++) {
             Multiplicador modificador = jugadores.get(i).obtenerModificadorActual();
             resultado.usarModificador(modificador,i);
