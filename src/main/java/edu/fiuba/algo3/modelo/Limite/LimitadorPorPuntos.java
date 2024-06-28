@@ -21,7 +21,7 @@ public class LimitadorPorPuntos extends Limite {
 */
 public class LimitadorPorPuntos extends Limite{
 
-    private int posicionActualLista;
+    /*private int posicionActualLista;
 
     public LimitadorPorPuntos(List<Pregunta> preguntas){
         super(preguntas);
@@ -36,5 +36,13 @@ public class LimitadorPorPuntos extends Limite{
         }
         posicionActualLista++;
         return pregunta;
+    }*/
+
+    public LimitadorPorPuntos(List<Pregunta> preguntas){
+        super(preguntas);
+    }
+    @Override
+    public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
+        return obtenerPreguntaSgte();
     }
 }

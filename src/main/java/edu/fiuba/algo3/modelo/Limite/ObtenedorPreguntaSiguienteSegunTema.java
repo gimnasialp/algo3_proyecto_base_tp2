@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.modelo.Limite;
 
+import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ObtenedorPreguntaSiguienteSegunTema implements ObtenedorPreguntaSiguiente {
-    private ArrayList<Pregunta> preguntas;
+    private List<Pregunta> preguntas;
     private Pregunta preguntaActual;
 
-    public ObtenedorPreguntaSiguienteSegunTema(ArrayList<Pregunta> preguntas) {
+    public ObtenedorPreguntaSiguienteSegunTema(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
@@ -25,8 +25,15 @@ public class ObtenedorPreguntaSiguienteSegunTema implements ObtenedorPreguntaSig
         return preguntasConDistintoTema.isEmpty();
     }
 
+    private void verificarDisponibilidadPreguntas() {
+        if (this.preguntas.isEmpty()) {
+            throw new SinPreguntasDisponiblesException();
+        }
+    }
+
     @Override
     public Pregunta obtenerPreguntaSiguiente() {
+        this.verificarDisponibilidadPreguntas();
         Pregunta proximaPregunta;
         if ((preguntaActual != null) && (verificarPreguntasRestantes())) {
             proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
