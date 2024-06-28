@@ -53,6 +53,8 @@ public class AlgoHoot {
         return partidaActual;
     }
 
-
+    public Pregunta getPreguntaActual() {
+        return this.preguntaActual;
+    }
 
 }

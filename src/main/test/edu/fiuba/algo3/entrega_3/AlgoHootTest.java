@@ -137,22 +137,32 @@ public class AlgoHootTest {
 
         AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas,limiteDecorator);
 
+        Respuesta respuestaJugadorUno;
+        Respuesta respuestaJugadorDos;
+
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33
         algoHoot.proximaPartida();
+
+        if (algoHoot.getPreguntaActual() == preguntaOC) {
+            respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
+            respuestaJugadorDos = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6)));
+        }
+        else {
+            respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
+            respuestaJugadorDos = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 3)), new ArrayList<>(Arrays.asList(4, 5, 6)));
+        }
 
         Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
         Jugador jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
         partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        Respuesta respuestaJugadorDos = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
 
 
@@ -167,17 +177,25 @@ public class AlgoHootTest {
         // Empezamos con un Verdadero Falso Clasico linea 33
         algoHoot.proximaPartida();
 
+        if (algoHoot.getPreguntaActual() == preguntaOC) {
+            respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
+            respuestaJugadorDos = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6)));
+        }
+        else {
+            respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
+            respuestaJugadorDos = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 3)), new ArrayList<>(Arrays.asList(4, 5, 6)));
+        }
+
         partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
-        respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
+
         partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        respuestaJugadorDos = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 3)), new ArrayList<>(Arrays.asList(4, 5, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));

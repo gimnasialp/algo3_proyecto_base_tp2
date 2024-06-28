@@ -37,7 +37,7 @@ public class ObtenedorPreguntaSiguienteSegunTema implements ObtenedorPreguntaSig
         Pregunta proximaPregunta;
         if ((preguntaActual != null) && (verificarPreguntasRestantes())) {
             proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
-            while (proximaPregunta.obtenerTema() != this.preguntaActual.obtenerTema()) {
+            while (proximaPregunta.obtenerTema() == this.preguntaActual.obtenerTema()) {
                 proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
             }
         }
