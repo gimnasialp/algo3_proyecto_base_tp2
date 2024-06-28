@@ -254,7 +254,7 @@ class Partida{
     -void void analisisMultiplicadores();
     -Jugador jugadorConMasPuntos();
     +void activaMultiplicador(Modificador multiplicador, Jugador jugadorDePartidaActiva);
-
+    +Pregunta obtenerPreguntaActual();
 }
 
 AlgoHoot *-- "n" Partida

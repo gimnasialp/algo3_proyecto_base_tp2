@@ -120,4 +120,8 @@ public class Partida {
     public void resetearComodines(List<Jugador> jugadores) {
         jugadores.stream().forEach(j->j.resetearComodines());
     }
+
+    public Pregunta obtenerPreguntaActual(){
+        return pregunta;
+    }
 }
