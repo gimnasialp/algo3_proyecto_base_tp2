@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controladores.Iniciales;
 
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
+import edu.fiuba.algo3.vista.vistas.VistaLimitePreguntas;
 import edu.fiuba.algo3.vista.vistas.VistaPedirNombreJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +33,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
             limitePuntuacionSinSeleccionar.show();
 
         } else {
-            pantallaPrincipal.setCentro(null);
+            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal));
 
         }
 

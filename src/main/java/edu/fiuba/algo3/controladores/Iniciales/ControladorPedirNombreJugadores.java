@@ -29,7 +29,7 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
 
         for (TextField textField : nombreJugadores) {
                 String nombre = textField.getText();
-            if (nombre.isEmpty()) {
+            if (nombre.isEmpty()|| nombre.isBlank()) {
                 return true;
             }
         }

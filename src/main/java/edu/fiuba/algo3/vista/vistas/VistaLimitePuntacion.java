@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePreguntas;
 import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePuntuacion;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonEmpezarJuego;
 import edu.fiuba.algo3.vista.botones.BotonSiguiente;
 import edu.fiuba.algo3.vista.mensajes.AlgoHootMensaje;
 import javafx.geometry.Insets;
@@ -94,8 +95,8 @@ public class VistaLimitePuntacion extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPuntos));
-        botonConfirmado.getChildren().add(botonSiguiente);
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPuntos));
+        botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }
 }
