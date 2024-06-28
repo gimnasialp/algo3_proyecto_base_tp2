@@ -76,10 +76,11 @@ public class CasosJuegoCompleto {
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         //,consulto si el MultiplicadorPorDos fue utilizado, me dara True
-        assertTrue(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorDos()));
+             // assertTrue(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorDos()));
         //en cambio, si consulto si el MultiplicadorPorTres fue utilizado, y me dara false,
         //puedo utilizarlo para otra futura pregunta
-        assertFalse(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorTres()));
+          assertFalse(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorTres()));
+          assertTrue(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorDos()));
 
         // ptos ganados al momento: JugadorUno cuenta con 2 pto y el jugadorDos -2
         /*  Segunda Partida */
@@ -105,7 +106,10 @@ public class CasosJuegoCompleto {
         //en 2da ronda, el jug1 gano 1 pto y el 2do -3
         //total jug1: 2 + 1: 3 y jug2: -2 +(-3)= -5
         assertTrue(jugadores.get(0).obtenerPuntaje()==3);
-        assertTrue(jugadores.get(0).obtenerPuntaje()==3);
+        assertTrue(jugadores.get(1).obtenerPuntaje()== -5);
+
+        //El jugador Dos ya no tiene multiplicadores para usar
+        assertTrue(jugadores.get(1).obtenerMultiplicadoresDisponibles().size()==0);
 
         //Las partidas pueden avanzarse en el desarrollo sin interaccion con
         //los jugadores, tengo una partida, ahora adelantare dos mas para llegar al mismo

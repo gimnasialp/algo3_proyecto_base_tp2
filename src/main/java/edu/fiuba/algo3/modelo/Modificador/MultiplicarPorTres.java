@@ -22,7 +22,7 @@ public class MultiplicarPorTres implements Multiplicador {
 
     @Override
     public boolean equals(Object other) {
-        return this.getClass().isInstance(other.getClass());
+        return this.getClass().equals(other.getClass());
     }
 
 }

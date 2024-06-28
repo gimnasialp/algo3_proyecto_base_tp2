@@ -10,7 +10,6 @@ import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Resultado;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Partida {
@@ -87,7 +86,7 @@ public class Partida {
        ModificadorContextState modificadorContextState = new ModificadorContextState();
         modificadorContextState.setState(modificadorContextState.modificadorGanador(jugadores));
         for (int i = 0; i < jugadores.size(); i++) {
-            Multiplicador modificador = jugadores.get(i).obtenerModificadorActual();
+            ModificadorState modificador = jugadores.get(i).obtenerModificadorActual();
             resultado.usarModificador(modificador,i);
             modificadorContextState.aplicarState(
                     (ArrayList<Integer>)resultado.obtenerPuntosDeJugadores(), i);
@@ -97,9 +96,10 @@ public class Partida {
 
     private void analisisMultiplicadores() {
         for (int i = 0; i < jugadores.size(); i++) {
-            Multiplicador modificador = jugadores.get(i).obtenerModificadorActual();
+            Multiplicador modificador = jugadores.get(i).obtenerMultiplicador();
             resultado.usarModificador(modificador,i);
-            jugadores.get(i).resetearMultiplicador();
+            //jugadores.get(i).resetearMultiplicador();
+            jugadores.get(i).deshabilitarMultiplicador(modificador);
         }
     }
 
@@ -115,5 +115,9 @@ public class Partida {
 
     public void activaModificador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicador);
+    }
+
+    public void resetearComodines(List<Jugador> jugadores) {
+        jugadores.stream().forEach(j->j.resetearComodines());
     }
 }

@@ -1,32 +1,30 @@
 package edu.fiuba.algo3.modelo;
 
 //import edu.fiuba.algo3.modelo.Modificador.Modificador;
-import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
-import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
-import edu.fiuba.algo3.modelo.Modificador.MultiplicadorPorUno;
+import edu.fiuba.algo3.modelo.Modificador.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Jugador {
 
     private String nombre;
     private Puntaje puntaje;
-
-    //Multiplicador Actual
     private Multiplicador multiplicadorActual;
+    private List<Multiplicador> multiplicadoresDisponibles;
 
-    //Multiplicador usado
-    private List<Multiplicador> multiplicadoresEspUsados;
+    private ModificadorState modificadorActual;
 
-    //
-    private ModificadorState modificador;
+    private List<ModificadorState> modificadoresDisponibles;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntaje = new Puntaje();
         this.multiplicadorActual = new MultiplicadorPorUno();
-        this.multiplicadoresEspUsados = new ArrayList<>();
+        this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(),new MultiplicarPorTres()));
+        this.modificadorActual = new ModificadorNulo();
     }
 
     public void asignarPuntos(int puntos) {
@@ -58,16 +56,33 @@ public class Jugador {
         this.multiplicadorActual = multiplicador;
     }
 
-    public Multiplicador obtenerModificadorActual(){
+    public ModificadorState obtenerModificadorActual(){
+        return modificadorActual;
+    }
+
+    public Multiplicador obtenerMultiplicador(){
         return multiplicadorActual;
     }
+
     public void resetearMultiplicador(){
-        multiplicadoresEspUsados.add(multiplicadorActual);
         this.multiplicadorActual = new MultiplicadorPorUno();
     }
 
+    public List<Multiplicador> obtenerMultiplicadoresDisponibles(){
+        return multiplicadoresDisponibles;
+    }
+
+    public void deshabilitarMultiplicador(Multiplicador modificador) {
+        obtenerMultiplicadoresDisponibles().remove(modificador);
+    }
+
     // Sirve para saber si el jugador ya uso el multiplicador a mostrar
-    public boolean mutiplicadorFueUtilizado(Multiplicador multiplicador){
-        return multiplicadoresEspUsados.stream().anyMatch(m->m.equals(multiplicador));
+    public boolean multiplicadorFueUtilizado(Multiplicador multiplicador){
+        return multiplicadoresDisponibles.stream().noneMatch(m->m.equals(multiplicador));
+    }
+
+    public void resetearComodines() {
+        multiplicadorActual = new MultiplicadorPorUno();
+        modificadorActual = new ModificadorNulo();
     }
 }

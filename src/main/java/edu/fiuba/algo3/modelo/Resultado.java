@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 //import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class Resultado {
         modificador.aplicar(puntajeRonda, posicionJugador);
     }
 
+    public void usarModificador(ModificadorState modificador, int posicionJugador) {
+        modificador.aplicar(puntajeRonda, posicionJugador);
+    }
     public void asignarPuntosALosJugadores(ArrayList<Jugador> jugadores) {
 
         for (int i = 0; i < jugadores.size(); i++) {

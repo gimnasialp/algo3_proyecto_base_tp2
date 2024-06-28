@@ -46,6 +46,10 @@ public class AlgoHoot {
         }
         partidaActual = partidas.get(numeroPartida);
         numeroPartida++;
+
+        //
+        partidaActual.resetearComodines(jugadores);
+        //
     }
 
     public Partida obtenerPartidaActiva(){
