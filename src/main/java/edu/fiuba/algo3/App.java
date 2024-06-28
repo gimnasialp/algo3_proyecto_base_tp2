@@ -20,7 +20,7 @@ public class App extends Application {
         Scene sceneInicio = new Scene(pantallaPrincipal, 1280, 720);
         sceneInicio.setOnKeyPressed(new ControladorTeclaPresionada(stage, pantallaPrincipal.getBarraDeMenu()));
 
-        Image icono = new Image("file:" + System.getProperty("user.dir") + "src/main/java/edu/fiuba/algo3/resources/imagenes/iconkahoot.png");
+        Image icono = new Image("file:" + System.getProperty("user.dir") + "src/main/java/edu/fiuba/algo3/resources/imagenes/icono.png");
         stage.getIcons().add(icono);
         stage.setScene(sceneInicio);
         stage.setMinWidth(1280);

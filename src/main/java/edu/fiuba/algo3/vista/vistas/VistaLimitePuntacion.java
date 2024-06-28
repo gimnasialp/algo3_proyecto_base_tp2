@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirLimite;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirNombreJugadores;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorSiguienteVista;
+import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePreguntas;
+import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePuntuacion;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonEmpezarJuego;
 import edu.fiuba.algo3.vista.botones.BotonSiguiente;
 import edu.fiuba.algo3.vista.mensajes.AlgoHootMensaje;
 import javafx.geometry.Insets;
@@ -18,21 +18,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
-
-public class VistaPedirLimite extends StackPane {
+public class VistaLimitePuntacion extends StackPane {
 
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
-    private ComboBox<String> comboBoxTiposDeLimites;
+    private ComboBox<String> comboBoxCantidadPuntos;
 
-    public VistaPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    public VistaLimitePuntacion(Stage stage, PantallaPrincipal pantallaPrincipal) {
         configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
-        this.comboBoxTiposDeLimites = new ComboBox<>();
+        this.comboBoxCantidadPuntos = new ComboBox<>();
         VBox nombreJuego = crearNombreJuego();
         VBox cajaPregunta = crearCajaPregunta();
         VBox botonConfirmado = crearBotonConfirmado(stage, pantallaPrincipal);
@@ -74,15 +71,16 @@ public class VistaPedirLimite extends StackPane {
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
 
-        Label labelCantidadPreguntas = new Label("Seleccione cómo desea terminar la partida:");
-        labelCantidadPreguntas.setFont(Font.font(Estilos.FUENTE, 30));
-        labelCantidadPreguntas.setTextFill(Color.web(Estilos.AMARILLO));
 
-        comboBoxTiposDeLimites.getItems().addAll("Puntos","Cantidad de Preguntas");
-        comboBoxTiposDeLimites.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
+        Label labelCantidadPuntos = new Label("Seleccione la cantidad de puntos maximos: ");
+        labelCantidadPuntos.setFont(Font.font(Estilos.FUENTE, 30));
+        labelCantidadPuntos.setTextFill(Color.web(Estilos.AMARILLO));
 
+        comboBoxCantidadPuntos.getItems().addAll("10", "15", "20", "30", "50", "75", "100");
+        comboBoxCantidadPuntos.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
+        cajaPregunta.getChildren().add(comboBoxCantidadPuntos);
 
-        vboxContenido.getChildren().addAll(labelCantidadPreguntas, comboBoxTiposDeLimites);
+        vboxContenido.getChildren().addAll(labelCantidadPuntos, comboBoxCantidadPuntos);
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);
@@ -97,9 +95,8 @@ public class VistaPedirLimite extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage,pantallaPrincipal,comboBoxTiposDeLimites));
-        botonConfirmado.getChildren().add(botonSiguiente);
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPuntos));
+        botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }
-
 }
