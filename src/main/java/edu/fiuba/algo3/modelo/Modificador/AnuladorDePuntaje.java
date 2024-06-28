@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Modificador;
 
 import java.util.ArrayList;
 
-public class AnuladorDePuntaje implements Modificador{
+public class AnuladorDePuntaje implements Modificador,ModificadorState{
 
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
@@ -18,4 +18,8 @@ public class AnuladorDePuntaje implements Modificador{
         return this.getClass().equals(other.getClass());
     }
 
+    @Override
+    public void aplicarState(ModificadorContextState modificadorContextState, ArrayList<Integer> puntajePartida, int jugadorPosicion) {
+        modificadorContextState.aplicarState(puntajePartida,  jugadorPosicion);
+    }
 }

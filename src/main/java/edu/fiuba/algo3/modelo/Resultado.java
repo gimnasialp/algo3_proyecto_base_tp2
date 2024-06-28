@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Resultado {
         return puntajeRonda.get(posicionJugador);
     };
 
-    public void usarModificador(Modificador modificador, int posicionJugador) {
+    public void usarModificador(Multiplicador modificador, int posicionJugador) {
         modificador.aplicar(puntajeRonda, posicionJugador);
     }
 
@@ -34,6 +35,10 @@ public class Resultado {
 
     public List<Integer> obtenerPuntosDeJugadores() {
         return puntajeRonda;
+    }
+
+    public void limpiarOpcionesDeAnteriorRonda(){
+        puntajeRonda.clear();
     }
 
 }

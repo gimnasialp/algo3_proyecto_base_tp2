@@ -2,6 +2,9 @@ package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.ModificadorContextState;
+import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
+import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Resultado;
@@ -63,17 +66,39 @@ public class Partida {
         for (int i = 0; i < resultadosPartidaActual.size(); i++) {
             jugadores.get(i).asignarPuntos(resultadosPartidaActual.get(i));
         }
+        resultado.limpiarOpcionesDeAnteriorRonda();
     }
 
     private void evaluarRespuestasDePartidaActual() {
         resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
+
         analisisModificadores();
     }
 
     private void analisisModificadores() {
+        //analisis Multiplicadores
+        analisisMultiplicadores();
+        //analisis Modificadores
+       // analisisPuntos();
+
+    }
+
+    private void analisisPuntos() {
+       ModificadorContextState modificadorContextState = new ModificadorContextState();
+        modificadorContextState.setState((ModificadorState) modificadorContextState.modificadorGanador(jugadores));
         for (int i = 0; i < jugadores.size(); i++) {
-            Modificador multiplicador = jugadores.get(i).obtenerModificadorActual();
-            resultado.usarModificador(multiplicador,i);
+            Multiplicador modificador = jugadores.get(i).obtenerModificadorActual();
+            resultado.usarModificador(modificador,i);
+            modificadorContextState.aplicarState(
+                    (ArrayList<Integer>)resultado.obtenerPuntosDeJugadores(), i);
+            //jugadores.get(i).
+        }
+    }
+
+    private void analisisMultiplicadores() {
+        for (int i = 0; i < jugadores.size(); i++) {
+            Multiplicador modificador = jugadores.get(i).obtenerModificadorActual();
+            resultado.usarModificador(modificador,i);
             jugadores.get(i).resetearMultiplicador();
         }
     }
@@ -88,7 +113,7 @@ public class Partida {
         return jugadorActualConMasPuntos;
     }
 
-    public void activaMultiplicador(Modificador multiplicador, Jugador jugadorDePartidaActiva) {
+    public void activaModificador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicador);
     }
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicadorPorUno;
 
 import java.util.ArrayList;
@@ -10,16 +11,21 @@ public class Jugador {
 
     private String nombre;
     private Puntaje puntaje;
-    private Modificador modificadorActual;
 
-    private List<Modificador> modificadoresEspUsados;
+    //Multiplicador Actual
+    private Multiplicador multiplicadorActual;
 
+    //Multiplicador usado
+    private List<Multiplicador> multiplicadoresEspUsados;
+
+    //
+    private Modificador modificador;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntaje = new Puntaje();
-        this.modificadorActual = new MultiplicadorPorUno();
-        this.modificadoresEspUsados = new ArrayList<>();
+        this.multiplicadorActual = new MultiplicadorPorUno();
+        this.multiplicadoresEspUsados = new ArrayList<>();
     }
 
     public void asignarPuntos(int puntos) {
@@ -47,19 +53,20 @@ public class Jugador {
         return puntaje;
     }
 
-    public void aplicarNuevoMultiplicador(Modificador modificador){
-        this.modificadorActual = modificador;
+    public void aplicarNuevoMultiplicador(Multiplicador multiplicador){
+        this.multiplicadorActual = multiplicador;
     }
 
-    public Modificador obtenerModificadorActual(){
-        return modificadorActual;
+    public Multiplicador obtenerModificadorActual(){
+        return multiplicadorActual;
     }
     public void resetearMultiplicador(){
-        modificadoresEspUsados.add(modificadorActual);
-        this.modificadorActual = new MultiplicadorPorUno();
+        multiplicadoresEspUsados.add(multiplicadorActual);
+        this.multiplicadorActual = new MultiplicadorPorUno();
     }
 
-    public boolean modificadorUtilizado(Modificador modificador){
-        return modificadoresEspUsados.stream().anyMatch(m->m.equals(modificador));
+    // Sirve para saber si el jugador ya uso el multiplicador a mostrar
+    public boolean mutiplicadorFueUtilizado(Multiplicador multiplicador){
+        return multiplicadoresEspUsados.stream().anyMatch(m->m.equals(multiplicador));
     }
 }

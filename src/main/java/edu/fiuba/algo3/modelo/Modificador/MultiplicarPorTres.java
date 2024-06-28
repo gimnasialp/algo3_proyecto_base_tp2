@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Modificador;
 
 import java.util.ArrayList;
 
-public class MultiplicarPorTres implements Modificador {
+public class MultiplicarPorTres implements Multiplicador {
 
     private final int MULTIPLICADOR = 3;
 
