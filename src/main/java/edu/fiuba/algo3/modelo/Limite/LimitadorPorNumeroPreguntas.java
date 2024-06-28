@@ -44,7 +44,7 @@ public class LimitadorPorNumeroPreguntas extends Limite{
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
         if (this.cantidadPreguntas > 0) {
             this.cantidadPreguntas--;
-            return super.obtenerPreguntaSgte();
+            return obtenerPreguntaSgte();
         }
         else {
             throw new SinPreguntasDisponiblesException();

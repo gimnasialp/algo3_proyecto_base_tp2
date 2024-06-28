@@ -32,11 +32,11 @@ public abstract class Limite {
 public abstract class Limite {
 
     protected ObtenedorPreguntaSiguiente obtenedorPregunta;
-    protected List<Pregunta> preguntas;
+    //protected List<Pregunta> preguntas;
 
     public Limite(List<Pregunta> preguntas){
-        this.preguntas = preguntas;
-        this.obtenedorPregunta = new ObtenedorPreguntaSiguienteSegunTema(this.preguntas);
+        //this.preguntas = preguntas;
+        this.obtenedorPregunta = new ObtenedorPreguntaSiguienteSegunTema(preguntas);
     }
 
     public Limite() {

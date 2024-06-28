@@ -12,6 +12,6 @@ public class LimiteFinalPreguntas extends Limite{
     }
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
-        return super.obtenerPreguntaSgte();
+        return obtenerPreguntaSgte();
     }
 }
