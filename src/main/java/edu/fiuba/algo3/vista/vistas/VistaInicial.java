@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.ControladorIniciarJuego;
+import edu.fiuba.algo3.controladores.Iniciales.ControladorIniciarJuego;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonInicio;
