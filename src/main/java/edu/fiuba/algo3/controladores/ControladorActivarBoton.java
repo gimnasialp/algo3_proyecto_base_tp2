@@ -14,8 +14,8 @@ public class ControladorActivarBoton implements EventHandler<MouseEvent> {
     private Button boton;
     private String botonColor;
 
-    public ControladorActivarBoton(BotonInicio botonInicio, String botonColor) {
-        this.boton = botonInicio;
+    public ControladorActivarBoton(Button boton, String botonColor) {
+        this.boton = boton;
         this.botonColor = botonColor;
 
     }

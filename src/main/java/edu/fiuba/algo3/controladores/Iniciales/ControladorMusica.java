@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.controladores;
+package edu.fiuba.algo3.controladores.Iniciales;
 
+import edu.fiuba.algo3.controladores.ReproductorMusica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

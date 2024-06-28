@@ -27,6 +27,7 @@ public class ExclusividadTest {
 
     }
 
+
     @Test
     public void tresJugadoresGanaronPuntosYUnJugadorActivaLaExclusividadDePuntajeNoAfectaANinguno () {
 
@@ -66,6 +67,7 @@ public class ExclusividadTest {
 
     }
 
+
     @Test
     public void tresJugadoresGanaronPuntosYTodosLosJugadoresActivanLaExclusividadDePuntajeNoAfectaANignuno () {
 
@@ -86,4 +88,6 @@ public class ExclusividadTest {
         assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
 
     }
+
+
 }
