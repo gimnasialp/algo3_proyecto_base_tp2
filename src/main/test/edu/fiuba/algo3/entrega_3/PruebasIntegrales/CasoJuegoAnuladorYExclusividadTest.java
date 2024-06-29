@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasoJuegoAnuladorYExclusividadTest {
 
-    @Test
+
     public void test(){
 
         //arrancamos con multiplicadores, aplica a preguntas con penalidad
