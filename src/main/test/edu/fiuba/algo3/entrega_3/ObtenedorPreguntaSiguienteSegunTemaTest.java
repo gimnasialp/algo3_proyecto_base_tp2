@@ -63,11 +63,6 @@ public class ObtenedorPreguntaSiguienteSegunTemaTest {
         String tipoPreguntaTres = obtenedorPregunta.obtenerPreguntaSiguiente().obtenerTema();
         String tipoPreguntaCuatro = obtenedorPregunta.obtenerPreguntaSiguiente().obtenerTema();
         String tipoPreguntaCinco = obtenedorPregunta.obtenerPreguntaSiguiente().obtenerTema();
-        System.out.println(tipoPreguntaUno);
-        System.out.println(tipoPreguntaDos);
-        System.out.println(tipoPreguntaTres);
-        System.out.println(tipoPreguntaCuatro);
-        System.out.println(tipoPreguntaCinco);
 
         assertNotEquals(tipoPreguntaUno, tipoPreguntaDos);
         assertNotEquals(tipoPreguntaDos, tipoPreguntaTres);

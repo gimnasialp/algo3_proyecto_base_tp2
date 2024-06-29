@@ -21,7 +21,7 @@ public class ObtenedorPreguntaSiguienteSegunTema implements ObtenedorPreguntaSig
 
     private boolean verificarPreguntasRestantes() {
         String temaPregunta = this.preguntas.get(0).obtenerTema();
-        List<Pregunta> preguntasConDistintoTema = this.preguntas.stream().filter(pregunta -> pregunta.obtenerTema().equals(temaPregunta)).collect(Collectors.toList());
+        List<Pregunta> preguntasConDistintoTema = this.preguntas.stream().filter(pregunta -> !(pregunta.obtenerTema().equals(temaPregunta))).collect(Collectors.toList());
         return preguntasConDistintoTema.isEmpty();
     }
 
@@ -35,10 +35,10 @@ public class ObtenedorPreguntaSiguienteSegunTema implements ObtenedorPreguntaSig
     public Pregunta obtenerPreguntaSiguiente() {
         this.verificarDisponibilidadPreguntas();
         Pregunta proximaPregunta;
-        if ((preguntaActual != null) && (verificarPreguntasRestantes())) {
+        if ((preguntaActual != null) && (!verificarPreguntasRestantes())) {
             proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
-            while (proximaPregunta.obtenerTema() == this.preguntaActual.obtenerTema()) {
-                proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
+            while (proximaPregunta.obtenerTema().equals(this.preguntaActual.obtenerTema())) {
+                proximaPregunta = obtenerUnaPreguntaPorPosicion();
             }
         }
         else {
