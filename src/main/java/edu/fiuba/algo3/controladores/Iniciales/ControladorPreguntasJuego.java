@@ -11,5 +11,6 @@ public abstract class ControladorPreguntasJuego {
     protected PantallaPrincipal contenedorPrincipal;
 
     protected void definirSiguienteVista(Respuesta respuestaDeUnJugador){
+
     }
 }
