@@ -103,7 +103,7 @@ public class AlgoHootTest {
         //y el juego debe terminar
 
         assertThrows(SinPreguntasDisponiblesException.class, () -> {
-            algoHoot.proximaPartida();;
+            algoHoot.proximaPartida();
         });
     }
 

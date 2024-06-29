@@ -22,13 +22,14 @@ public class Partida {
 
     private Resultado resultado;
 
-    private ModificadorContextState modificadorContextState = new ModificadorContextState();
+    private ModificadorContextState modificadorContextState;
 
     public Partida(Pregunta preguntaActual, List<Jugador> jugadores) {
         this.pregunta = preguntaActual;
         this.respuestas = new ArrayList<>();
         this.direccionListaJugador = 0;
         this.jugadores.addAll(jugadores);
+        this.modificadorContextState = new ModificadorContextState();
     }
 
 

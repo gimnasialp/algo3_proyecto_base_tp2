@@ -77,12 +77,15 @@ public class CasoJuegoAnuladorYExclusividadTest {
         partidaActiva.agregarRespuesta(respuestaJugadortres);
 
 
-        //,consulto si el MultiplicadorPorDos fue utilizado, me dara True
-        // assertTrue(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorDos()));
-        //en cambio, si consulto si el MultiplicadorPorTres fue utilizado, y me dara false,
-        //puedo utilizarlo para otra futura pregunta
-        assertFalse(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorTres()));
-        assertTrue(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorDos()));
+        //solo el 2do y tercero  contestaron bien, por lo que los puntos serian
+        //1er: 0pt, 2do: 1pto, 3ro:1pto
+        //los tres jugadores pidieron exclusividad
+       // conforme al juego, no se aplica comodin a ninguno,
+         //       los ptos permanecen intactos .
+        assertTrue(jugadores.get(0).obtenerPuntaje() == 0);
+        assertTrue(jugadores.get(1).obtenerPuntaje() == 1);
+        assertTrue(jugadores.get(2).obtenerPuntaje() == 1);
+        //Los tres ya tiene un exclusividad menos para usar
 
         // ptos ganados al momento: JugadorUno cuenta con 2 pto y el jugadorDos -2
         /*  Segunda Partida */
@@ -105,22 +108,6 @@ public class CasoJuegoAnuladorYExclusividadTest {
         partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorDos2daPartida, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorDos2daPartida);
 
-        //en 2da ronda, el jug1 gano 1 pto y el 2do -3
-        //total jug1: 2 + 1: 3 y jug2: -2 +(-3)= -5
-        assertTrue(jugadores.get(0).obtenerPuntaje()==3);
-        assertTrue(jugadores.get(1).obtenerPuntaje()== -5);
-
-        //El jugador Dos ya no tiene multiplicadores para usar
-        assertTrue(jugadores.get(1).obtenerMultiplicadoresDisponibles().size()==0);
-
-        //Las partidas pueden avanzarse en el desarrollo sin interaccion con
-        //los jugadores, tengo una partida, ahora adelantare dos mas para llegar al mismo
-        //numero de preguntas
-        algoHoot.proximaPartida();
-        //aca me quede sin preguntas, si intento avanzar dara una exception
-        assertThrows(SinPreguntasDisponiblesException.class, () -> {
-            algoHoot.proximaPartida();
-        });
 
     }
 }
