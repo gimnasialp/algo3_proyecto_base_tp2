@@ -1,25 +1,25 @@
 package edu.fiuba.algo3.controladores.Iniciales;
 
-import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaLimitePreguntas;
 import edu.fiuba.algo3.vista.vistas.VistaLimitePuntacion;
-import edu.fiuba.algo3.vista.vistas.VistaPedirNombreJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class ControladorPedirLimite implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
     private ComboBox<String> comboBoxTiposDeLimites;
+    private ArrayList<Jugador> jugadores;
 
-    public ControladorPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxTiposDeLimites){
+    public ControladorPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxTiposDeLimites, ArrayList<Jugador> jugadores){
+        this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.comboBoxTiposDeLimites = comboBoxTiposDeLimites;
@@ -37,10 +37,10 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
         } else {
             switch (seleccion) {
                 case "Puntos":
-                    pantallaPrincipal.setCentro(new VistaLimitePuntacion(stage, pantallaPrincipal));
+                    pantallaPrincipal.setCentro(new VistaLimitePuntacion(stage, pantallaPrincipal,jugadores));
                     break;
                 case "Cantidad de Preguntas":
-                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal));
+                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
                     break;
             }
 

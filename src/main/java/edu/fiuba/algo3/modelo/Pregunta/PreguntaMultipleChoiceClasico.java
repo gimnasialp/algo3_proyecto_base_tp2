@@ -29,4 +29,9 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
         return resultado;
     }
 
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Multiple Choice Clasico";
+    }
+
 }

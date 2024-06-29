@@ -14,7 +14,6 @@ public class Jugador {
 
     private List<Modificador> modificadoresEspUsados;
 
-
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.puntaje = new Puntaje();
@@ -43,9 +42,6 @@ public class Jugador {
         return nombre;
     }
 
-    public Puntaje getPuntaje() {
-        return puntaje;
-    }
 
     public void aplicarNuevoMultiplicador(Modificador modificador){
         this.modificadorActual = modificador;
@@ -61,5 +57,9 @@ public class Jugador {
 
     public boolean modificadorUtilizado(Modificador modificador){
         return modificadoresEspUsados.stream().anyMatch(m->m.equals(modificador));
+    }
+
+    public List<Modificador> getModificadoresEspUsados() {
+        return modificadoresEspUsados;
     }
 }

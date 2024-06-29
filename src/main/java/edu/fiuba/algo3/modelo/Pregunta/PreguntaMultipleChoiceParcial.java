@@ -33,4 +33,10 @@ public class PreguntaMultipleChoiceParcial extends Pregunta{
         return resultado;
     }
 
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Multiple Choice Parcial";
+    }
+
+
 }

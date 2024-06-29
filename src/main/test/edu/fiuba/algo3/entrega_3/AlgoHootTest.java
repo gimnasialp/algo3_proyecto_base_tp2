@@ -72,7 +72,7 @@ public class AlgoHootTest {
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
-        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==1);
+        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje() == 1);
 
         /*  Segunda Partida */
         //Siguiente Partida(2da pregunta del juego para jugadores)
@@ -95,7 +95,7 @@ public class AlgoHootTest {
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
-        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==2);
+        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje()== 2);
 
         //Hasta el momento MIgue tiene 2 puntos y angel tiene 1
         //si quiero continuar la siguiente partida, no podré
@@ -157,7 +157,7 @@ public class AlgoHootTest {
 
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
-        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==1);
+        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje() == 1);
 
         //Hasta el momento MIgue tiene 1 punto y angel tiene 0
         //puedo continuar la siguiente partida, ya que no supere el limite de puntos(1)
@@ -181,7 +181,7 @@ public class AlgoHootTest {
         partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
-        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==2);
+        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje() == 2);
 
         //Hasta el momento MIgue tiene 2 puntos y angel tiene 0
         //si quiero continuar la siguiente partida, no podré

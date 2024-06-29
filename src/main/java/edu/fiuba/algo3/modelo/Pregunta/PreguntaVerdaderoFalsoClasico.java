@@ -29,6 +29,10 @@ public class PreguntaVerdaderoFalsoClasico extends Pregunta {
         return resultado;
     }
 
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Verdadero Falso Clasico";
+    }
 
 
 }

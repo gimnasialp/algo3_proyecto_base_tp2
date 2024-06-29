@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
@@ -29,7 +30,7 @@ public class AlgoHoot {
         jugadorActual = jugadores.stream().findFirst().get();
         preguntaActual = limite.preguntaNoLimitada(jugadores);
         Partida partida = new Partida(preguntaActual, this.jugadores, jugadorActual);
-        numeroPartida=0;
+        numeroPartida = 0;
         partidas.add(partida);
     }
 
@@ -53,6 +54,12 @@ public class AlgoHoot {
         return partidaActual;
     }
 
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
 
+    public Pregunta getPreguntaActual() {
+        return preguntaActual;
+    }
 
 }

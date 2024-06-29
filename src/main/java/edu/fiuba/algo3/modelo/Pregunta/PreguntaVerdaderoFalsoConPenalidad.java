@@ -30,5 +30,10 @@ public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
         return resultado;
     }
 
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Verdadero Falso Con Penalidad";
+    }
+
 
 }

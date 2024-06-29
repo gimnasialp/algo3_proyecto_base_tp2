@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores.Iniciales;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaPedirLimite;
 import javafx.event.ActionEvent;
@@ -26,7 +27,6 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
 
 
     private boolean validarDatosIngresados(){
-
         for (TextField textField : nombreJugadores) {
                 String nombre = textField.getText();
             if (nombre.isEmpty()|| nombre.isBlank()) {
@@ -46,7 +46,13 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
             alerta.setContentText("Por favor, ingrese un nombre para cada jugador.");
             alerta.showAndWait();
         }else{
-            pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal));
+            ArrayList<Jugador> jugadores = new ArrayList<>();
+            for (TextField textField : nombreJugadores) {
+                String nombre = textField.getText();
+                jugadores.add(new Jugador(nombre));
+            }
+
+            pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal,jugadores));
 
         }
 

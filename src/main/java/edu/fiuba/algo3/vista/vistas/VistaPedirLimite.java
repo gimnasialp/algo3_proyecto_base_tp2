@@ -2,8 +2,7 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirLimite;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirNombreJugadores;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorSiguienteVista;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonSiguiente;
@@ -28,8 +27,10 @@ public class VistaPedirLimite extends StackPane {
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
     private ComboBox<String> comboBoxTiposDeLimites;
+    private ArrayList<Jugador> jugadores;
 
-    public VistaPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    public VistaPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
         configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         this.comboBoxTiposDeLimites = new ComboBox<>();
@@ -97,7 +98,7 @@ public class VistaPedirLimite extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage,pantallaPrincipal,comboBoxTiposDeLimites));
+        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage,pantallaPrincipal,comboBoxTiposDeLimites,jugadores));
         botonConfirmado.getChildren().add(botonSiguiente);
         return botonConfirmado;
     }

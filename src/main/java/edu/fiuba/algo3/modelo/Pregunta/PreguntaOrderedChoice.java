@@ -28,4 +28,9 @@ public class PreguntaOrderedChoice extends Pregunta {
         return resultado;
     }
 
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Ordered Choice";
+    }
+
 }

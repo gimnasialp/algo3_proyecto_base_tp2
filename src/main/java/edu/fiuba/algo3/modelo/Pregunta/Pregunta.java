@@ -49,5 +49,8 @@ public abstract class Pregunta {
     public ArrayList<String> obtenerOpciones() {
         return opciones;
     }
+    public abstract String ObtenerTipoPregunta();
+
+
 
 }

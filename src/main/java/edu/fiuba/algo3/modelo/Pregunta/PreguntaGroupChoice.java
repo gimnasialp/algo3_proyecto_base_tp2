@@ -31,4 +31,10 @@ public class PreguntaGroupChoice extends Pregunta {
     public boolean mismoId(int id) {
         return (id == idPregunta);
     }
+
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Group Choice";
+    }
+
 }

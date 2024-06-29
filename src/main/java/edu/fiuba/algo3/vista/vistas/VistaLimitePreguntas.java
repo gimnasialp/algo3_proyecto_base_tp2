@@ -2,10 +2,10 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePreguntas;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonEmpezarJuego;
-import edu.fiuba.algo3.vista.botones.BotonSiguiente;
 import edu.fiuba.algo3.vista.mensajes.AlgoHootMensaje;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class VistaLimitePreguntas extends StackPane {
 
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
@@ -24,8 +26,10 @@ public class VistaLimitePreguntas extends StackPane {
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
     private ComboBox<String> comboBoxCantidadPreguntas;
+    private ArrayList<Jugador> jugadores;
 
-    public VistaLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    public VistaLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
         configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         comboBoxCantidadPreguntas  = new ComboBox<>();
@@ -93,7 +97,7 @@ public class VistaLimitePreguntas extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPreguntas));
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPreguntas,jugadores));
         botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }
