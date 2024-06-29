@@ -2,9 +2,7 @@ package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador;
 //import edu.fiuba.algo3.modelo.Modificador.Modificador;
-import edu.fiuba.algo3.modelo.Modificador.ModificadorContextState;
-import edu.fiuba.algo3.modelo.Modificador.ModificadorState;
-import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
+import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Resultado;
@@ -23,6 +21,8 @@ public class Partida {
     private List<Jugador> jugadores = new ArrayList<>();
 
     private Resultado resultado;
+
+    private ModificadorContextState modificadorContextState = new ModificadorContextState();
 
     public Partida(Pregunta preguntaActual, List<Jugador> jugadores) {
         this.pregunta = preguntaActual;
@@ -83,15 +83,40 @@ public class Partida {
     }
 
     private void analisisPuntos() {
+        comprobarExclusividad();
+        comprobarAnulador();
+
+        /*
        ModificadorContextState modificadorContextState = new ModificadorContextState();
+
         modificadorContextState.setState(modificadorContextState.modificadorGanador(jugadores));
+
         for (int i = 0; i < jugadores.size(); i++) {
             ModificadorState modificador = jugadores.get(i).obtenerModificadorActual();
             resultado.usarModificador(modificador,i);
             modificadorContextState.aplicarState(
                     (ArrayList<Integer>)resultado.obtenerPuntosDeJugadores(), i);
-            //jugadores.get(i).
         }
+        */
+
+    }
+
+    private void comprobarExclusividad() {
+        comprobacionComodines(new ExclusividadDePuntaje());
+    }
+
+    private void comprobarAnulador() {
+        comprobacionComodines(new AnuladorDePuntaje());
+    }
+
+    private void comprobacionComodines(ModificadorState modificadorState) {
+        ModificadorState modificadorParaAplicar = modificadorContextState.checkContraModificadorNulo(modificadorState,jugadores);
+        for (int i = 0; i < jugadores.size(); i++) {
+            resultado.usarModificador(modificadorParaAplicar, i);
+            modificadorContextState.aplicarState(
+                    (ArrayList<Integer>) resultado.obtenerPuntosDeJugadores(), i);
+        }
+
     }
 
     private void analisisMultiplicadores() {
@@ -113,7 +138,7 @@ public class Partida {
         return jugadorActualConMasPuntos;
     }
 
-    public void activaModificador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva) {
+    public void activaMultiplicador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoMultiplicador(multiplicador);
     }
 
@@ -123,5 +148,9 @@ public class Partida {
 
     public Pregunta obtenerPreguntaActual(){
         return pregunta;
+    }
+
+    public void activaModificador(ModificadorState modificador, Jugador jugadorDePartidaActiva) {
+        jugadorDePartidaActiva.aplicarNuevoModificador(modificador);
     }
 }

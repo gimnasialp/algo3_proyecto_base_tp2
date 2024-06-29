@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.entrega_3.PruebasIntegrales;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Excepciones.PuntajeMaximoSuperadoException;
 import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
 import edu.fiuba.algo3.modelo.Lector.Parser;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
@@ -12,13 +10,10 @@ import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
 import edu.fiuba.algo3.modelo.Lector.*;
-import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +21,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CasosJuegoCompleto {
+public class CasosJuegoCompletoMultiplicadores {
 
     @Test
     public void juegoCompletoConPenalidadesYMultiplicadores() {
@@ -63,16 +58,16 @@ public class CasosJuegoCompleto {
         Multiplicador multiplicadorPorDosJugadorUno = new MultiplicarPorDos();
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
-        partidaActiva.activaModificador(multiplicadorPorDosJugadorUno, jugadorDePartidaActiva);
+        partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorUno, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
         Multiplicador multiplicadorPorDosJugadorDos = new MultiplicarPorDos();
-        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(0);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
-        partidaActiva.activaModificador(multiplicadorPorDosJugadorDos, jugadorDePartidaActiva);
+        partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorDos, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         //,consulto si el MultiplicadorPorDos fue utilizado, me dara True
@@ -98,9 +93,9 @@ public class CasosJuegoCompleto {
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
         Multiplicador multiplicadorPorDosJugadorDos2daPartida = new MultiplicarPorTres();
-        Respuesta respuestaJugadorDos2daPartida = new RespuestaVerdaderoFalso(0);
+        Respuesta respuestaJugadorDos2daPartida = new RespuestaVerdaderoFalso(2);
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
-        partidaActiva.activaModificador(multiplicadorPorDosJugadorDos2daPartida, jugadorDePartidaActiva);
+        partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorDos2daPartida, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorDos2daPartida);
 
         //en 2da ronda, el jug1 gano 1 pto y el 2do -3

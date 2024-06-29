@@ -24,24 +24,33 @@ public class ModificadorContextState {
         actualModificadorState.aplicar(puntajePartida,jugadorPosicio);
     }
 
+    /*
     public ModificadorState modificadorGanador(List<Jugador> jugadorList){
-        int anulador = (int) jugadorList.stream().filter(
+        int anuladorCount = (int) jugadorList.stream().filter(
                                         m->m.obtenerModificadorActual().equals(AnuladorDePuntaje.class)).count();
-        int exclusividad = (int) jugadorList.stream().filter(
-                m->(m.obtenerModificadorActual().equals(ExclusividadDePuntaje.class))).count();
-        if(anulador == 0 & exclusividad==0){
+
+        if(anuladorCount == 0 & exclusividadCount==0){
             return new ModificadorNulo();
         }else{
-            return getExclusivoOrAnulador(anulador, exclusividad);
+            return getExclusivoOrAnulador(anuladorCount, exclusividadCount);
         }
 
     }
 
     private ModificadorState getExclusivoOrAnulador(int anulador, int exclusividad) {
-        if(anulador >= exclusividad){
-            return new AnuladorDePuntaje();
+
+        if(anulador != 0){
+            return new ExclusividadDePuntaje();
         }else{
             return new ExclusividadDePuntaje();
         }
+    } */
+
+    public ModificadorState checkContraModificadorNulo(ModificadorState modificadorState, List<Jugador> jugadores) {
+        int modificadorCount = (int) jugadores.stream().filter(
+                m->(m.obtenerModificadorActual().equals(modificadorState))).count();
+        return ( modificadorCount ==0 ? new ModificadorNulo() : modificadorState);
     }
+
+    //
 }

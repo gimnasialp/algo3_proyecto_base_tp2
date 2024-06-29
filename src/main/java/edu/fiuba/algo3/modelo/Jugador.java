@@ -64,10 +64,6 @@ public class Jugador {
         return multiplicadorActual;
     }
 
-    public void resetearMultiplicador(){
-        this.multiplicadorActual = new MultiplicadorPorUno();
-    }
-
     public List<Multiplicador> obtenerMultiplicadoresDisponibles(){
         return multiplicadoresDisponibles;
     }
@@ -84,5 +80,9 @@ public class Jugador {
     public void resetearComodines() {
         multiplicadorActual = new MultiplicadorPorUno();
         modificadorActual = new ModificadorNulo();
+    }
+
+    public void aplicarNuevoModificador(ModificadorState modificador) {
+        this.modificadorActual = modificador;
     }
 }

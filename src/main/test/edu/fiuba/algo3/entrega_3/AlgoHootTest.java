@@ -67,7 +67,7 @@ public class AlgoHootTest {
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(0);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
 
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
