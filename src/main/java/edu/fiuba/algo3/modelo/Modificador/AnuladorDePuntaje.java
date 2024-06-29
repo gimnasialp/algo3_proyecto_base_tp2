@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class AnuladorDePuntaje implements ModificadorState{
 
+    private int vecesUsado;
+
+    public AnuladorDePuntaje(){
+        this.vecesUsado =0;
+    }
+
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
         for (int i = 0; i < puntajeRonda.size(); i++) {
@@ -18,9 +24,8 @@ public class AnuladorDePuntaje implements ModificadorState{
         return this.getClass().equals(other.getClass());
     }
 
-    /*
     @Override
-    public void aplicarState(ModificadorContextState modificadorContextState, ArrayList<Integer> puntajePartida, int jugadorPosicion) {
-        modificadorContextState.aplicarState(puntajePartida,  jugadorPosicion);
-    }*/
+    public void actualizarCantidadDeUso(){
+        vecesUsado++;
+    }
 }

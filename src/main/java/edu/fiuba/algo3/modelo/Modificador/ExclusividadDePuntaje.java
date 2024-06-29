@@ -9,8 +9,6 @@ public class ExclusividadDePuntaje implements ModificadorState{
 
     private int vecesUsado;
 
-    private final int MAXIMO_USO=2;
-
     public ExclusividadDePuntaje(){
         this.vecesUsado =0;
     }
@@ -32,34 +30,18 @@ public class ExclusividadDePuntaje implements ModificadorState{
             }
             puntajeRonda.set(i, puntajeRonda.get(i)*2);
         }
-
-        //actualizarRonda(puntajeRonda);
-
     }
-/*
-    private void actualizarRonda(ArrayList<Integer> puntajeRonda) {
-        int contestaronBien = (int) puntajeRonda.stream().filter(p->p!=0).count();
-        boolean rompeExclusividad = contestaronBien != 1 ;
-        if(rompeExclusividad){
-            for(int i=0; i<puntajeRonda.size();i++){
-                puntajeRonda.set(i,0);
-            }
-        }
-        int i=0;
-    }
-*/
 
     @Override
     public boolean equals(Object other) {
-        return (this.getClass().equals(other.getClass()))
-                && (vecesUsado <= MAXIMO_USO);
+        return (this.getClass().equals(other.getClass()));
     }
 
-    /*
     @Override
-    public void aplicarState(ModificadorContextState modificadorContextState, ArrayList<Integer> puntajePartida, int jugadorPosicion) {
-        modificadorContextState.aplicarState(puntajePartida,  jugadorPosicion);
+    public void actualizarCantidadDeUso(){
+        vecesUsado++;
     }
 
-     */
+
+
 }

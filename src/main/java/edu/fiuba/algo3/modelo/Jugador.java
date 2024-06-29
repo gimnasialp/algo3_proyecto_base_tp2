@@ -25,6 +25,7 @@ public class Jugador {
         this.multiplicadorActual = new MultiplicadorPorUno();
         this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(),new MultiplicarPorTres()));
         this.modificadorActual = new ModificadorNulo();
+        this.modificadoresDisponibles = new ArrayList<>(Arrays.asList(new ExclusividadDePuntaje(),new AnuladorDePuntaje()));
     }
 
     public void asignarPuntos(int puntos) {
@@ -84,5 +85,12 @@ public class Jugador {
 
     public void aplicarNuevoModificador(ModificadorState modificador) {
         this.modificadorActual = modificador;
+        actualizarUso(modificador);
+    }
+
+    private void actualizarUso(ModificadorState modificador) {
+        modificadoresDisponibles.stream().filter(m->m.equals(modificador))
+                .peek(m->m.actualizarCantidadDeUso()).close();
+        int i=0;
     }
 }
