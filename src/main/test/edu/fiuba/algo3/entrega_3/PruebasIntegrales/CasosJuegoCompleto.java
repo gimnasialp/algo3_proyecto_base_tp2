@@ -55,8 +55,10 @@ public class CasosJuegoCompleto {
         Pregunta preguntaVFP = preguntasLector.stream().filter(p -> p.mismoId(10)).findFirst().get();
         //Segunda Pregunta(MCP id=11)
         Pregunta preguntaMCP = preguntasLector.stream().filter(p -> p.mismoId(11)).findFirst().get();
+        //Tercera Pregunta(MCP id=14)
+        Pregunta preguntaMCP2 = preguntasLector.stream().filter(p -> p.mismoId(14)).findFirst().get();
 
-        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaVFP, preguntaMCP));
+        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaVFP, preguntaMCP, preguntaMCP2));
 
         Limite limite = new LimiteFinalPreguntas(preguntas);
         ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"), new Jugador("Angel")));
@@ -65,23 +67,13 @@ public class CasosJuegoCompleto {
         /*  Primer Partida */
         algoHoot.proximaPartida();
 
-        Respuesta respuestaJugadorUno;
-        Respuesta respuestaJugadorDos;
-        if (algoHoot.getPreguntaActual() == preguntaVFP) {
-            respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
-            respuestaJugadorDos = new RespuestaVerdaderoFalso(0);
-        }
-        else {
-            respuestaJugadorUno = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(4)));
-            respuestaJugadorDos = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(Arrays.asList(2)));
-        }
-
         Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
         Jugador jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
         Modificador multiplicadorPorDosJugadorUno = new MultiplicarPorDos();
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
         partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorUno, jugadorDePartidaActiva);
+        Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
 
         //pasa a jugar segundo Jugador
@@ -90,6 +82,7 @@ public class CasosJuegoCompleto {
         Modificador multiplicadorPorDosJugadorDos = new MultiplicarPorDos();
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
         partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorDos, jugadorDePartidaActiva);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(0);
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         //,consulto si el MultiplicadorPorDos fue utilizado, me dara True
@@ -101,6 +94,7 @@ public class CasosJuegoCompleto {
         //Las partidas pueden avanzarse en el desarrollo sin interaccion con
         //los jugadores, tengo una partida, ahora adelantare dos mas para llegar al mismo
         //numero de preguntas
+        algoHoot.proximaPartida();
         algoHoot.proximaPartida();
         //aca me quede sin preguntas, si intento avanzar dara una exception
         assertThrows(SinPreguntasDisponiblesException.class, () -> {

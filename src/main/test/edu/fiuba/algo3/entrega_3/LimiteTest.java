@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 public class LimiteTest {
 
-    /*@Test
+    @Test
     public void test_LimitarHastaFinDePreguntas_NoTengoMasPreguntasDeLimite(){
         int cantidadPreguntasFinal = 1;
         String enunciado = "Argentina es el actual campeon mundial de futbol";
@@ -41,32 +41,9 @@ public class LimiteTest {
         assertEquals(cantidadPreguntasFinal,limite.preguntasRestantesLimite());
         preguntaParaResponder = limite.preguntaNoLimitada(jugadores);
         assertEquals(cantidadPreguntasFinal -1,limite.preguntasRestantesLimite());
-    }*/
-
-    @Test
-    public void test_LimitarHastaFinDePreguntas_NoTengoMasPreguntasDeLimite(){
-        int cantidadPreguntasFinal = 1;
-        String enunciado = "Argentina es el actual campeon mundial de futbol";
-        ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
-        Respuesta respuestaCorrecta = new RespuestaVerdaderoFalso(1);
-        int idPregunta = 16;
-        String tema = "DEPORTES";
-        String textoRepuesta = "Argentina gano mundial de futbol en 2022";
-        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
-        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(pregunta,pregunta));
-        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
-
-        Limite limite = new LimiteFinalPreguntas(preguntas);
-        Pregunta preguntaParaResponder = limite.preguntaNoLimitada(jugadores);
-        //assertEquals(cantidadPreguntasFinal,limite.preguntasRestantesLimite());
-        preguntaParaResponder = limite.preguntaNoLimitada(jugadores);
-        //assertEquals(cantidadPreguntasFinal -1,limite.preguntasRestantesLimite());
-
-        //si intento leer pregunta no existente, previamente limitada
-        assertThrows(SinPreguntasDisponiblesException.class, limite::obtenerPreguntaSgte);
     }
 
-    /*@Test
+    @Test
     public void test_LimitadorDeJuego_PorCantidadDePreguntas(){
         int cantidadPreguntasFinal = 1;
         String enunciado = "Argentina es el actual campeon mundial de futbol";
@@ -89,38 +66,6 @@ public class LimiteTest {
         //si intento leer pregunta no existente, previamente limitada
         assertThrows(SinPreguntasDisponiblesException.class, limite::obtenerPreguntaSgte);
 
-    }*/
-
-    @Test
-    public void test_LimitadorDeJuego_PorCantidadDePreguntas(){
-        //int cantidadPreguntasFinal = 1;
-
-        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
-        tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
-        tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
-        tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
-        tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
-        tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
-        tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
-        tiposPreguntas.put("group choice", new GroupChoiceParser());
-        ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
-
-        ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
-
-        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
-
-        Limite limite = new LimitadorPorNumeroPreguntas(2, preguntas);
-
-        Pregunta preguntaParaResponder = limite.preguntaNoLimitada(jugadores);
-        //assertEquals(cantidadPreguntasFinal,limite.preguntasRestantesLimite());
-        preguntaParaResponder = limite.preguntaNoLimitada(jugadores);
-        //assertEquals(cantidadPreguntasFinal -1,limite.preguntasRestantesLimite());
-
-        //si intento leer pregunta no existente, previamente limitada
-        //assertThrows(SinPreguntasDisponiblesException.class, limite::obtenerPreguntaSgte);
-        assertThrows(SinPreguntasDisponiblesException.class, () -> {
-            limite.preguntaNoLimitada(jugadores);
-        });
     }
 
     @Test
@@ -153,13 +98,13 @@ public class LimiteTest {
         //contestan primera pregunta(1ra partida)
         jugadorUno.asignarPuntos(2);
         jugadorDos.asignarPuntos(0);
-         jugadores = new ArrayList<>(Arrays.asList(jugadorUno,jugadorDos));
+        jugadores = new ArrayList<>(Arrays.asList(jugadorUno,jugadorDos));
         //fin primer partida, primer jugador ganó 2 ptos y el 2do ninguno, y el total seria
         //jugadorUno=2ptos y jugadorDos=0pts, el mayor pto es del jugadorDos pero No supera el limite=3
         //por tanto, puede seguir jugando(obtiene la siguiente pregunta, para partida 2)
 
         //obtener sig pregunta para sig ronda (2 preg-2da ronda)
-         preguntaParaResponder = limiteDecorator.preguntaNoLimitada(jugadores);
+        preguntaParaResponder = limiteDecorator.preguntaNoLimitada(jugadores);
         assertEquals(preguntaParaResponder.getClass(),PreguntaVerdaderoFalsoClasico.class);
 
         //contestan 2 pregunta(2da partida)
@@ -176,6 +121,5 @@ public class LimiteTest {
         });
 
     }
-
 
 }

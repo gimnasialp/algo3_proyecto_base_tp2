@@ -34,20 +34,12 @@ public class LimitadorPorNumeroPreguntas extends Limite {
 
 public class LimitadorPorNumeroPreguntas extends Limite{
 
-    private int cantidadPreguntas;
+    //private int limitePreguntas;
     public LimitadorPorNumeroPreguntas(int limitePreguntas,List<Pregunta> preguntasParaLimitar){
-        //super(preguntasParaLimitar.subList(0, limitePreguntas));
-        super(preguntasParaLimitar);
-        this.cantidadPreguntas = limitePreguntas;
+        super(preguntasParaLimitar.subList(0, limitePreguntas));
     }
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
-        if (this.cantidadPreguntas > 0) {
-            this.cantidadPreguntas--;
-            return obtenerPreguntaSgte();
-        }
-        else {
-            throw new SinPreguntasDisponiblesException();
-        }
+        return super.obtenerPreguntaSgte();
     }
 }

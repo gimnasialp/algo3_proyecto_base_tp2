@@ -20,10 +20,9 @@ public class PuntosDefinidosDecorator extends LimiteDecorator{
 
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
-        //Pregunta pregunta = super.decoratedLimite.preguntaNoLimitada(jugadores);
+        Pregunta pregunta = super.decoratedLimite.preguntaNoLimitada(jugadores);
         if(!superaPuntajeLimite( jugadores)){
-            return super.decoratedLimite.preguntaNoLimitada(jugadores);
-            //return pregunta;
+            return pregunta;
         }else{
             throw new PuntajeMaximoSuperadoException();
         }

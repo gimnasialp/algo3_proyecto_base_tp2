@@ -31,12 +31,10 @@ public abstract class Limite {
 
 public abstract class Limite {
 
-    protected ObtenedorPreguntaSiguiente obtenedorPregunta;
-    //protected List<Pregunta> preguntas;
+    protected List<Pregunta> preguntas;
 
     public Limite(List<Pregunta> preguntas){
-        //this.preguntas = preguntas;
-        this.obtenedorPregunta = new ObtenedorPreguntaSiguienteSegunTema(preguntas);
+        this.preguntas = preguntas;
     }
 
     public Limite() {
@@ -44,19 +42,18 @@ public abstract class Limite {
 
     public abstract Pregunta preguntaNoLimitada(List<Jugador> jugador);
 
-    public Pregunta obtenerPreguntaSgte() {
-        return this.obtenedorPregunta.obtenerPreguntaSiguiente();
-        /*if (preguntas.size() > 0) {
+    public Pregunta obtenerPreguntaSgte(){
+        if (preguntas.size() > 0) {
             Pregunta pregunta = preguntas.get(0);
             preguntas.remove(0);
             return pregunta;
         }else{
             throw new SinPreguntasDisponiblesException();
-        }*/
+        }
     }
 
-    /*public int preguntasRestantesLimite(){
+    public int preguntasRestantesLimite(){
         return preguntas.size();
-    }*/
+    }
 
 }
