@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de Clase de relacion de Pregunta con Respuesta y Resultado
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+abstract class Pregunta{
+    -responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+interface Respuesta{
+    +Respuesta();
+    +comparar(Respuesta respuesta);
+
+}
+class Resultado{
+    -puntosRonda:ArrayList<Integer>
+    +agregarPuntaje(int puntos):void
+    +usarModificador(Modificador modificador, int jugadorPosicion):void;
+    +obtenerPuntosDeJugador(int posicionJugador):int;
+    +asignarPuntosALosJugador(ArrayList<jugador> jugadores):void
+}
+Pregunta --> Respuesta
+Pregunta ..> Resultado
+
+
+@enduml

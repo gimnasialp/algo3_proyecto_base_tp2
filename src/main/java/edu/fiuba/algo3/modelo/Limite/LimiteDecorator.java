@@ -12,8 +12,6 @@ public class LimiteDecorator extends Limite{
         super(preguntas);
         this.decoratedLimite = decoratorLimite;
     }
-
-
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
         return decoratedLimite.preguntaNoLimitada(jugadores);

@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Diagrama de Clase de Modificacdor
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+interface Modificacdor{
+    +aplicar(ArrayList<Interger> puntajeRonda,
+    int jugadorPosicion):void
+}
+class Anulador{
+    +aplicar(ArrayList<Interger> puntajeRonda,
+    int jugadorPosicion):void
+}
+class Exclusividad{
+    +aplicar(ArrayList<Interger> puntajeRonda,
+    int jugadorPosicion):void
+}
+class MultiplicadorPorDos{
+    +aplicar(ArrayList<Interger> puntajeRonda,
+     int jugadorPosicion):void
+}
+class MultiplicadorPorTres{
+    +aplicar(ArrayList<Interger> puntajeRonda,
+     int jugadorPosicion):void
+}
+class Puntaje{
+ -puntos:int
+ +asignarPUntos(int puntos):void
+ +obtenerPuntaje:int
+}
+class Jugador{
+    -nombre:String
+    +Jugador(String nombre)
+    +obtenerRespuesta():Respuesta
+    +obtenerModificador():Modificacdor;
+    +asignarPUntos():void
+    +obtenerPuntaje():int
+}
+Modificacdor <|.left. Anulador
+Modificacdor <|.. Exclusividad
+Modificacdor <|.. MultiplicadorPorDos
+Modificacdor <|.right. MultiplicadorPorTres
+Jugador -> Puntaje
+Jugador ..> Modificacdor
+
+@enduml

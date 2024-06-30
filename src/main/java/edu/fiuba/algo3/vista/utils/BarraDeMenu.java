@@ -25,7 +25,7 @@ public class BarraDeMenu extends MenuBar {
         opcionAcercaDe.setOnAction(new ControladorAcercaDeAyuda());
         opcionAyuda.setOnAction(new ControladorAyudaDelJuego());
         opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(stage,opcionPantallaCompleta));
-        agregarMusicas(menuMusica);
+        //agregarMusicas(menuMusica);
 
         menuArchivo.getItems().addAll(opcionSalir);
 
@@ -38,7 +38,7 @@ public class BarraDeMenu extends MenuBar {
     public void aplicacionMaximizada() {
         opcionPantallaCompleta.setDisable(false);
     }
-    private void agregarMusicas(Menu menuMusica){
+    /*private void agregarMusicas(Menu menuMusica){
         ReproductorMusica unReproductor = new ReproductorMusica();
         MenuItem opcionSinMusica = new MenuItem("Sin música");
         MenuItem opcionMusicaComun = new MenuItem("Kahoot Original");
@@ -69,6 +69,6 @@ public class BarraDeMenu extends MenuBar {
         );
 
 
-    }
+    }*/
 
 }
