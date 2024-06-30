@@ -5,10 +5,15 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExclusividadDePuntaje implements Modificador{
+public class ExclusividadDePuntaje implements ModificadorState{
 
- //   private List<Jugador> jugadores;
+    private int vecesUsado;
 
+    private final int MAXIMO_USO=2;
+
+    public ExclusividadDePuntaje(){
+        this.vecesUsado =0;
+    }
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
 
@@ -43,4 +48,18 @@ public class ExclusividadDePuntaje implements Modificador{
         int i=0;
     }
 */
+
+    @Override
+    public boolean equals(Object other) {
+        return (this.getClass().equals(other.getClass()))
+                && (vecesUsado <= MAXIMO_USO);
+    }
+
+    /*
+    @Override
+    public void aplicarState(ModificadorContextState modificadorContextState, ArrayList<Integer> puntajePartida, int jugadorPosicion) {
+        modificadorContextState.aplicarState(puntajePartida,  jugadorPosicion);
+    }
+
+     */
 }

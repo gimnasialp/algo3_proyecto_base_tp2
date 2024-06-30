@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Limite.LimitadorPorPuntos;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
 import edu.fiuba.algo3.modelo.Limite.PuntosDefinidosDecorator;
-import edu.fiuba.algo3.modelo.Modificador.Modificador;
+//import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicadorPorUno;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
@@ -50,7 +50,7 @@ public class AlgoHootTest {
 
         //EL limite sera la cantidad final de Preguntas
         Limite limite = new LimiteFinalPreguntas(preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas,limite);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33
@@ -67,7 +67,7 @@ public class AlgoHootTest {
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
 
-        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(0);
+        Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
 
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
@@ -135,7 +135,7 @@ public class AlgoHootTest {
         Limite limite =  new LimitadorPorPuntos( preguntas);
         Limite limiteDecorator =new PuntosDefinidosDecorator(limite, preguntas,  puntoLimite);
 
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, preguntas,limiteDecorator);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limiteDecorator);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33

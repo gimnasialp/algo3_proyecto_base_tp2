@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Modificador;
 
 import java.util.ArrayList;
 
-public class MultiplicarPorTres implements Modificador {
+public class MultiplicarPorTres implements Multiplicador {
 
     private final int MULTIPLICADOR = 3;
 
@@ -22,7 +22,7 @@ public class MultiplicarPorTres implements Modificador {
 
     @Override
     public boolean equals(Object other) {
-        return this.getClass().isInstance(other.getClass());
+        return this.getClass().equals(other.getClass());
     }
 
 }

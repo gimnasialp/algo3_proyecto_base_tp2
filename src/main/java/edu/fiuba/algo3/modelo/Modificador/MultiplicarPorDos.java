@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Modificador;
 
 import java.util.ArrayList;
 
-public class MultiplicarPorDos implements Modificador{
+public class MultiplicarPorDos implements Multiplicador{
 
     private final int MULTIPLICADOR = 2;
 
@@ -24,5 +24,6 @@ public class MultiplicarPorDos implements Modificador{
     public boolean equals(Object other) {
         return this.getClass().equals(other.getClass());
     }
+
 
 }
