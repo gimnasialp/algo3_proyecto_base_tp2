@@ -8,6 +8,7 @@ public class ExclusividadDePuntaje extends ModificadorState{
 
     private final int LIMITE_USO=2;
 
+    private final int DUPLICIDAD=2;
     public ExclusividadDePuntaje(){
         super(0);
     }
@@ -44,11 +45,11 @@ public class ExclusividadDePuntaje extends ModificadorState{
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda,
                                 ArrayList<Jugador> jugadores){
-        int duplicidad=2;
+
         int aplicaron = (int) jugadores.stream().map(m->m.obtenerModificadorActual())
                 .filter(m->m.equals(this)).count();
         if (aplicaron ==1 ){
-            aplicarEfectoExclusividad(puntajeRonda, duplicidad,1);
+            aplicarEfectoExclusividad(puntajeRonda,1);
         }  else{
             if(aplicaron >=2) { //mas de uno usó exclusiv
                 /* int respuestasCorrectas = (int) puntajeRonda.stream().filter(i -> i != 0).count();
@@ -59,7 +60,7 @@ public class ExclusividadDePuntaje extends ModificadorState{
                     int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero);
                     puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) *DUPLICIDAD * aplicaron );
                 }*/
-                aplicarEfectoExclusividad(puntajeRonda,duplicidad,aplicaron);
+                aplicarEfectoExclusividad(puntajeRonda,aplicaron);
             }
 
 
@@ -68,14 +69,14 @@ public class ExclusividadDePuntaje extends ModificadorState{
                 //.count()noneMatch(m->m.equals(multiplicador));
     }
 
-    private  void aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int duplicidad, int factorEfecto) {
+    private  void aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int factorEfecto) {
         int respuestasCorrectas = (int) puntajeRonda.stream().filter(i->i!=0).count();
         if(respuestasCorrectas==1){
             //significa que el jugador que aplico exclus. es el unico que contesto bien
             //merece solo duplicar
             int ptoDistintoDeCero = puntajeRonda.stream().filter(i->i!=0).findFirst().get();
             int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero );
-            puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) * duplicidad * factorEfecto);
+            puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) * DUPLICIDAD * factorEfecto);
 
         }
     }

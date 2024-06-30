@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnuladorTest {
-/*
+
     @Test
     public void tresJugadoresTienenDosPuntosUnoActivaElAnuladorDePuntajeSoloEseJugadorRecibiraPuntos() {
 
@@ -48,6 +48,6 @@ public class AnuladorTest {
         assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
 
     }
-    */
+
 
 }
