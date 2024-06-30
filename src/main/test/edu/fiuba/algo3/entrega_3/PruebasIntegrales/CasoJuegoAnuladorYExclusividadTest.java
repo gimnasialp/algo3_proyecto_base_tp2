@@ -85,6 +85,11 @@ public class CasoJuegoAnuladorYExclusividadTest {
         assertTrue(jugadores.get(0).habilitado(new ExclusividadDePuntaje()));
         assertTrue(jugadores.get(1).habilitado(new ExclusividadDePuntaje()));
         assertTrue(jugadores.get(2).habilitado(new ExclusividadDePuntaje()));
+        //y puedo saber que modificador usaron en la actual partida
+        assertEquals(jugadores.get(0).obtenerModificadorActual(), new ExclusividadDePuntaje());
+        assertEquals(jugadores.get(0).obtenerModificadorActual(), new ExclusividadDePuntaje());
+        assertEquals(jugadores.get(0).obtenerModificadorActual(), new ExclusividadDePuntaje());
+
 
         // ptos ganados al momento: JugadorUno cuenta con 2 pto y el jugadorDos -2
         /*  Segunda Partida */
@@ -129,5 +134,9 @@ public class CasoJuegoAnuladorYExclusividadTest {
         assertFalse(jugadores.get(1).habilitado(new ExclusividadDePuntaje()));
         assertFalse(jugadores.get(2).habilitado(new ExclusividadDePuntaje()));
 
+        //y sus actuales modificadores usados
+        assertEquals(jugadores.get(0).obtenerModificadorActual(), new ModificadorNulo());
+        assertEquals(jugadores.get(1).obtenerModificadorActual(), new ExclusividadDePuntaje());
+        assertEquals(jugadores.get(2).obtenerModificadorActual(), new ExclusividadDePuntaje());
     }
 }
