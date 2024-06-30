@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class CirculoModificador  extends StackPane {
-
+/*
     public CirculoModificador(Modificador modificador) {
         String textoBonus = "";
         if(modificador instanceof ExclusividadDePuntaje){
@@ -27,5 +27,5 @@ public class CirculoModificador  extends StackPane {
         Circle circulo = new Circle(10, Paint.valueOf(Estilos.AMARILLO));
         super.getChildren().addAll(circulo,textoCirculo);
 
-    }
+    }*/
 }

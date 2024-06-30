@@ -32,8 +32,8 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         this.comboBoxLimitePreguntas = comboBoxLimitePreguntas;
 
     }
-    private AlgoHoot crearAlgohoot(String limitePregunta){
-        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+    /*private AlgoHoot crearAlgohoot(String limitePregunta){
+    /*    HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
         tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
@@ -49,7 +49,7 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         AlgoHoot algoHoot = new AlgoHoot(jugadores,preguntas,limite);
         this.algoHoot = algoHoot;
         return algoHoot;
-    }
+    }*/
 
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -63,9 +63,9 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
 
         } else {
 
-            crearAlgohoot(seleccion);
-            System.out.println(algoHoot.getJugadores());
-            System.out.println(algoHoot.getPreguntaActual());
+            //crearAlgohoot(seleccion);
+            //System.out.println(algoHoot.getJugadores());
+            //System.out.println(algoHoot.getPreguntaActual());
             //pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

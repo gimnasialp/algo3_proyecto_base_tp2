@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores.Iniciales;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.vistas.VistaGanador;
 import edu.fiuba.algo3.vista.vistas.VistaLimitePreguntas;
 import edu.fiuba.algo3.vista.vistas.VistaLimitePuntacion;
 import javafx.event.ActionEvent;
@@ -35,12 +36,17 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
             LimiteSinSeleccionar.show();
 
         } else {
+
+            Jugador jugador = new Jugador("Carlos");
+            jugador.asignarPuntos(50);
             switch (seleccion) {
                 case "Puntos":
-                    pantallaPrincipal.setCentro(new VistaLimitePuntacion(stage, pantallaPrincipal,jugadores));
+                    //pantallaPrincipal.setCentro(new VistaLimitePuntacion(stage, pantallaPrincipal,jugadores));
+                    pantallaPrincipal.setCentro(new VistaGanador(stage,pantallaPrincipal,jugador));
                     break;
                 case "Cantidad de Preguntas":
-                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
+                   // pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
+                    pantallaPrincipal.setCentro(new VistaGanador(stage, pantallaPrincipal,jugador));
                     break;
             }
 

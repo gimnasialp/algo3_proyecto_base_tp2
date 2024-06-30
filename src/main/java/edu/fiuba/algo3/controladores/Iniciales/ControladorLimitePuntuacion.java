@@ -46,8 +46,8 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
         Limite limite = new LimitadorPorNumeroPreguntas(Integer.parseInt(limitePregunta), preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores,preguntas,limite);
-        this.algoHoot = algoHoot;
+        //AlgoHoot algoHoot = new AlgoHoot(jugadores,preguntas,limite);
+        //this.algoHoot = algoHoot;
         return algoHoot;
     }
 
@@ -64,8 +64,8 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         } else {
 
             crearAlgohoot(seleccion);
-            System.out.println(algoHoot.getJugadores());
-            System.out.println(algoHoot.getPreguntaActual());
+            //System.out.println(algoHoot.getJugadores());
+            //System.out.println(algoHoot.getPreguntaActual());
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }
