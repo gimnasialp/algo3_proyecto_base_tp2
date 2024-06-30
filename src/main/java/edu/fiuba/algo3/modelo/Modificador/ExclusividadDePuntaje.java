@@ -3,14 +3,13 @@ package edu.fiuba.algo3.modelo.Modificador;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ExclusividadDePuntaje implements ModificadorState{
+public class ExclusividadDePuntaje extends ModificadorState{
 
-    private int vecesUsado;
+    private final int LIMITE_USO=2;
 
     public ExclusividadDePuntaje(){
-        this.vecesUsado =0;
+        super(0);
     }
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
@@ -39,9 +38,49 @@ public class ExclusividadDePuntaje implements ModificadorState{
 
     @Override
     public void actualizarCantidadDeUso(){
-        vecesUsado++;
+        super.vecesUsado++;
     }
 
+    @Override
+    public void aplicar(ArrayList<Integer> puntajeRonda,
+                                ArrayList<Jugador> jugadores){
+        int duplicidad=2;
+        int aplicaron = (int) jugadores.stream().map(m->m.obtenerModificadorActual())
+                .filter(m->m.equals(this)).count();
+        if (aplicaron ==1 ){
+            aplicarEfectoExclusividad(puntajeRonda, duplicidad,1);
+        }  else{
+            if(aplicaron >=2) { //mas de uno usó exclusiv
+                /* int respuestasCorrectas = (int) puntajeRonda.stream().filter(i -> i != 0).count();
+                if(respuestasCorrectas==1){
+                    //significa que el jugador que aplico exclus. es el unico que contesto bien
+                    //merece solo duplicar
+                    int ptoDistintoDeCero = puntajeRonda.stream().filter(i->i!=0).findFirst().get();
+                    int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero);
+                    puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) *DUPLICIDAD * aplicaron );
+                }*/
+                aplicarEfectoExclusividad(puntajeRonda,duplicidad,aplicaron);
+            }
 
 
+        }
+
+                //.count()noneMatch(m->m.equals(multiplicador));
+    }
+
+    private  void aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int duplicidad, int factorEfecto) {
+        int respuestasCorrectas = (int) puntajeRonda.stream().filter(i->i!=0).count();
+        if(respuestasCorrectas==1){
+            //significa que el jugador que aplico exclus. es el unico que contesto bien
+            //merece solo duplicar
+            int ptoDistintoDeCero = puntajeRonda.stream().filter(i->i!=0).findFirst().get();
+            int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero );
+            puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) * duplicidad * factorEfecto);
+
+        }
+    }
+
+    public boolean habilitado(){
+        return (super.vecesUsado < LIMITE_USO);
+    }
 }

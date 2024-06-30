@@ -111,12 +111,16 @@ public class Partida {
     }
 
     private void comprobacionComodines(ModificadorState modificadorState) {
+        resultado.usarModificador(modificadorState,jugadores);
+        /*
         ModificadorState modificadorParaAplicar = modificadorContextState.checkContraModificadorNulo(modificadorState,jugadores);
         for (int i = 0; i < jugadores.size(); i++) {
             resultado.usarModificador(modificadorParaAplicar, i);
             modificadorContextState.aplicarState(
                     (ArrayList<Integer>) resultado.obtenerPuntosDeJugadores(), i);
         }
+        */
+
 
     }
 
@@ -124,7 +128,6 @@ public class Partida {
         for (int i = 0; i < jugadores.size(); i++) {
             Multiplicador modificador = jugadores.get(i).obtenerMultiplicador();
             resultado.usarModificador(modificador,i);
-            //jugadores.get(i).resetearMultiplicador();
             jugadores.get(i).deshabilitarMultiplicador(modificador);
         }
     }

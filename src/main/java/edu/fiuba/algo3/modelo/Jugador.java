@@ -90,7 +90,15 @@ public class Jugador {
 
     private void actualizarUso(ModificadorState modificador) {
         modificadoresDisponibles.stream().filter(m->m.equals(modificador))
-                .peek(m->m.actualizarCantidadDeUso()).close();
-        int i=0;
+                .forEach(m->m.actualizarCantidadDeUso());
     }
+
+    //para la vista
+    public boolean habilitado(ModificadorState modificador){
+        ModificadorState modificadorState = modificadoresDisponibles.stream().
+                                            filter(m->m.equals(modificador)).findFirst().get();
+        return modificadorState.habilitado();
+    }
+
+
 }

@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.modelo.Modificador;
 
+import edu.fiuba.algo3.modelo.Jugador;
+
 import java.util.ArrayList;
 
-public class AnuladorDePuntaje implements ModificadorState{
+public class AnuladorDePuntaje extends ModificadorState{
 
-    private int vecesUsado;
+    private final int LIMITE_USO=1;
 
     public AnuladorDePuntaje(){
-        this.vecesUsado =0;
+        super(0);
     }
 
     @Override
@@ -27,5 +29,15 @@ public class AnuladorDePuntaje implements ModificadorState{
     @Override
     public void actualizarCantidadDeUso(){
         vecesUsado++;
+    }
+
+    @Override
+    public void aplicar(ArrayList<Integer> puntajeRonda, ArrayList<Jugador> jugadores) {
+
+    }
+
+    @Override
+    public boolean habilitado() {
+        return false;
     }
 }

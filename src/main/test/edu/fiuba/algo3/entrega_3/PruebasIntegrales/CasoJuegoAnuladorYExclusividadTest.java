@@ -24,10 +24,6 @@ public class CasoJuegoAnuladorYExclusividadTest {
     @Test
     public void test(){
 
-        //arrancamos con multiplicadores, aplica a preguntas con penalidad
-        //VFPenalidad(VF id=10) correcta=1
-        //LectorPreguntasJson lector = new LectorPreguntasJson();
-        //ArrayList<Pregunta> preguntasLector = lector.generarPreguntas();
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
         tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
@@ -39,12 +35,12 @@ public class CasoJuegoAnuladorYExclusividadTest {
 
         //1 Pregunta(VF id=3)
         Pregunta preguntaVF = preguntasLector.stream().filter(p -> p.mismoId(3)).findFirst().get();
-        //2 Pregunta(VFP id=11)
-        Pregunta preguntaMC = preguntasLector.stream().filter(p -> p.mismoId(10)).findFirst().get();
+        //2 Pregunta(VFP2 id=3)
+        Pregunta preguntaVF2 = preguntasLector.stream().filter(p -> p.mismoId(3)).findFirst().get();
         //3 Pregunta(MC id=11)
         Pregunta preguntaVFP = preguntasLector.stream().filter(p -> p.mismoId(12)).findFirst().get();
 
-        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaVF, preguntaMC, preguntaVFP));
+        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaVF, preguntaVF2, preguntaVFP));
 
         Limite limite = new LimiteFinalPreguntas(preguntas);
         ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel"), new Jugador("lionel")));
@@ -77,7 +73,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         partidaActiva.agregarRespuesta(respuestaJugadortres);
 
 
-        //solo el 2do y tercero  contestaron bien, por lo que los puntos serian
+        //solo el 2do y tercero  contestaron bien, por lo que los puntos serian:
         //1er: 0pt, 2do: 1pto, 3ro:1pto
         //los tres jugadores pidieron exclusividad
        // conforme al juego, no se aplica comodin a ninguno,
@@ -85,29 +81,53 @@ public class CasoJuegoAnuladorYExclusividadTest {
         assertTrue(jugadores.get(0).obtenerPuntaje() == 0);
         assertTrue(jugadores.get(1).obtenerPuntaje() == 1);
         assertTrue(jugadores.get(2).obtenerPuntaje() == 1);
-        //Los tres ya tiene un exclusividad menos para usar
+        //Los tres aun tiene habilitado Exclusividad para usar(ya que el limite es >2)
+        assertTrue(jugadores.get(0).habilitado(new ExclusividadDePuntaje()));
+        assertTrue(jugadores.get(1).habilitado(new ExclusividadDePuntaje()));
+        assertTrue(jugadores.get(2).habilitado(new ExclusividadDePuntaje()));
 
         // ptos ganados al momento: JugadorUno cuenta con 2 pto y el jugadorDos -2
         /*  Segunda Partida */
         algoHoot.proximaPartida();
         partidaActiva = algoHoot.obtenerPartidaActiva();
-        partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
-        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        //Modificador multiplicadorPorDosJugadorUno2daPartida = new MultiplicarPorDos();
-        Respuesta respuestaJugadorUno2daPartida  = new RespuestaVerdaderoFalso(1);
-        //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
-        //partidaActiva.activaModificador(multiplicadorPorDosJugadorUno2daPartida, jugadorDePartidaActiva);
-        partidaActiva.agregarRespuesta(respuestaJugadorUno2daPartida);
+        partidaActiva.avanzoConSiguienteJugador();
+        Jugador jugadorUno2daPart = partidaActiva.obtenerJugadorActivo();
+//        ModificadorState modificadorJugUno2daPart = new ExclusividadDePuntaje();
+        Respuesta respuestaJugUno2daPart = new RespuestaVerdaderoFalso(2);
+  //      partidaActiva.activaModificador(modificadorJugUno2daPart, jugadorUno2daPart);
+        partidaActiva.agregarRespuesta(respuestaJugUno2daPart);
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        Multiplicador multiplicadorPorDosJugadorDos2daPartida = new MultiplicarPorTres();
-        Respuesta respuestaJugadorDos2daPartida = new RespuestaVerdaderoFalso(0);
-        //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
-        partidaActiva.activaMultiplicador(multiplicadorPorDosJugadorDos2daPartida, jugadorDePartidaActiva);
-        partidaActiva.agregarRespuesta(respuestaJugadorDos2daPartida);
+        ModificadorState modificadorJugDos2daPart = new ExclusividadDePuntaje();
+        Respuesta respuestaJugDos2daPart = new RespuestaVerdaderoFalso(1);
+        partidaActiva.activaModificador(modificadorJugDos2daPart, jugadorDePartidaActiva);
+        partidaActiva.agregarRespuesta(respuestaJugDos2daPart);
 
+        //pasa a jugar 3 Jugador
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
+        ModificadorState modificadorJugTres2daPart = new ExclusividadDePuntaje();
+        Respuesta respuestaJugTres2daPart = new RespuestaVerdaderoFalso(1);
+        partidaActiva.activaModificador(modificadorJugTres2daPart, jugadorDePartidaActiva);
+        partidaActiva.agregarRespuesta(respuestaJugTres2daPart);
+
+        // de la primera partida venian asi: j1:0ptos;j2:1pto;j3:1pto
+        // resultados del juego j1:1 ;j2:0 ; j3:0
+        // como j2 y j3 activaron exclus. y contestaron mal
+        //se aplica en j1 el doble con el efecto *cantidadJugadoresQuePidieronExcl(2)
+        //el pto de la partida seria j1:1*2*2(cantidad jug.que pidieron excl):4 j2:0 ; j3:0
+        //la suma total da (poniendo en 1er termino ptos de la anterior partida):
+        //  j1:0+4:4 ; j2:1+0 ; j3:1+0
+        assertTrue(jugadores.get(0).obtenerPuntaje() == 4);
+        assertTrue(jugadores.get(1).obtenerPuntaje() == 1);
+        assertTrue(jugadores.get(2).obtenerPuntaje() == 1);
+
+        //De los tres jugadores, solo el primero tiene habilitado Exclusividad(ya usaron los dos usos de limite)
+        assertTrue(jugadores.get(0).habilitado(new ExclusividadDePuntaje()));
+        assertFalse(jugadores.get(1).habilitado(new ExclusividadDePuntaje()));
+        assertFalse(jugadores.get(2).habilitado(new ExclusividadDePuntaje()));
 
     }
 }
