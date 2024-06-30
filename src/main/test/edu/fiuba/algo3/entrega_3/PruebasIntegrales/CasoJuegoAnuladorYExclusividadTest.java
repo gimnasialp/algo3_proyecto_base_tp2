@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasoJuegoAnuladorYExclusividadTest {
 
     @Test
-    public void test(){
+    public void usoDeExclusividadesyComprobacionesDeUso(){
 
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
