@@ -24,11 +24,6 @@ public class ControladorGeneralPartida implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        for (Jugador jugador : algoHoot.obtenerPartidaActiva().getJugadores()) {
-            Partida partidaActiva = algoHoot.obtenerPartidaActiva();
-            pantallaPrincipal.setCentro(new VistaTurnoJugadorActual(stage, pantallaPrincipal, partidaActiva));
-
-        }
-        pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal, algoHoot));
+        pantallaPrincipal.setCentro(new VistaTurnoJugadorActual(stage, pantallaPrincipal, algoHoot));
     }
 }
