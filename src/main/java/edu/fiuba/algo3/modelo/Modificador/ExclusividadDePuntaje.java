@@ -3,17 +3,15 @@ package edu.fiuba.algo3.modelo.Modificador;
 import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ExclusividadDePuntaje implements ModificadorState{
+public class ExclusividadDePuntaje extends Modificador {
 
-    private int vecesUsado;
-
-    private final int MAXIMO_USO=2;
-
+    private final int DUPLICIDAD=2;
     public ExclusividadDePuntaje(){
-        this.vecesUsado =0;
+        super(0,2);
     }
+
+    /* de ale
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
 
@@ -32,34 +30,39 @@ public class ExclusividadDePuntaje implements ModificadorState{
             }
             puntajeRonda.set(i, puntajeRonda.get(i)*2);
         }
-
-        //actualizarRonda(puntajeRonda);
-
     }
-/*
-    private void actualizarRonda(ArrayList<Integer> puntajeRonda) {
-        int contestaronBien = (int) puntajeRonda.stream().filter(p->p!=0).count();
-        boolean rompeExclusividad = contestaronBien != 1 ;
-        if(rompeExclusividad){
-            for(int i=0; i<puntajeRonda.size();i++){
-                puntajeRonda.set(i,0);
-            }
-        }
-        int i=0;
-    }
-*/
+    */
 
     @Override
     public boolean equals(Object other) {
-        return (this.getClass().equals(other.getClass()))
-                && (vecesUsado <= MAXIMO_USO);
+        return (this.getClass().equals(other.getClass()));
     }
 
-    /*
     @Override
-    public void aplicarState(ModificadorContextState modificadorContextState, ArrayList<Integer> puntajePartida, int jugadorPosicion) {
-        modificadorContextState.aplicarState(puntajePartida,  jugadorPosicion);
+    public void aplicar(ArrayList<Integer> puntajeRonda,
+                                ArrayList<Jugador> jugadores){
+
+        int aplicaron = (int) jugadores.stream().map(m->m.obtenerModificadorActual())
+                .filter(m->m.equals(this)).count();
+        if (aplicaron ==1 ){
+            aplicarEfectoExclusividad(puntajeRonda,1);
+        }  else{
+            if(aplicaron >=2) { //mas de uno usó excl.
+                aplicarEfectoExclusividad(puntajeRonda,aplicaron);
+            }
+        }
     }
 
-     */
+    private  void aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int factorEfecto) {
+        int respuestasCorrectas = (int) puntajeRonda.stream().filter(i->i!=0).count();
+        if(respuestasCorrectas==1){
+            //significa que el jugador que aplico exclus. es el unico que contesto bien
+            //merece solo duplicar
+            int ptoDistintoDeCero = puntajeRonda.stream().filter(i->i!=0).findFirst().get();
+            int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero );
+            puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) * DUPLICIDAD * factorEfecto);
+
+        }
+    }
+
 }

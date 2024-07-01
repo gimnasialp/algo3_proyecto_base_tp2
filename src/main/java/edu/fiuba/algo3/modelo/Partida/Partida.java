@@ -22,7 +22,6 @@ public class Partida {
 
     private Resultado resultado;
 
-    private ModificadorContextState modificadorContextState = new ModificadorContextState();
 
     public Partida(Pregunta preguntaActual, List<Jugador> jugadores) {
         this.pregunta = preguntaActual;
@@ -109,13 +108,17 @@ public class Partida {
         comprobacionComodines(new AnuladorDePuntaje());
     }
 
-    private void comprobacionComodines(ModificadorState modificadorState) {
+    private void comprobacionComodines(Modificador modificadorState) {
+        resultado.usarModificador(modificadorState,jugadores);
+        /*
         ModificadorState modificadorParaAplicar = modificadorContextState.checkContraModificadorNulo(modificadorState,jugadores);
         for (int i = 0; i < jugadores.size(); i++) {
             resultado.usarModificador(modificadorParaAplicar, i);
             modificadorContextState.aplicarState(
                     (ArrayList<Integer>) resultado.obtenerPuntosDeJugadores(), i);
         }
+        */
+
 
     }
 
@@ -123,7 +126,6 @@ public class Partida {
         for (int i = 0; i < jugadores.size(); i++) {
             Multiplicador modificador = jugadores.get(i).obtenerMultiplicador();
             resultado.usarModificador(modificador,i);
-            //jugadores.get(i).resetearMultiplicador();
             jugadores.get(i).deshabilitarMultiplicador(modificador);
         }
     }
@@ -150,7 +152,7 @@ public class Partida {
         return pregunta;
     }
 
-    public void activaModificador(ModificadorState modificador, Jugador jugadorDePartidaActiva) {
+    public void activaModificador(Modificador modificador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoModificador(modificador);
     }
 
