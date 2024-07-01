@@ -12,6 +12,11 @@ public class MultiplicadorPorUno implements Multiplicador{
     }
 
     @Override
+    public int consultarValor() {
+        return MULTIPLICADOR;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return this.getClass().equals(other.getClass());
     }

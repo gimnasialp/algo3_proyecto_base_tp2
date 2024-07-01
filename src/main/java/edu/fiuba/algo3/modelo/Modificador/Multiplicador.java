@@ -5,4 +5,5 @@ import java.util.ArrayList;
 public interface Multiplicador {
 
     void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion);
+    int consultarValor();
 }

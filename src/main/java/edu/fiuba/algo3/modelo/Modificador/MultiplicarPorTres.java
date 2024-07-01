@@ -16,7 +16,12 @@ public class MultiplicarPorTres implements Multiplicador {
        // ++usado;
     }
 
-   // public boolean tieneMultiplicadorActivo(){
+    @Override
+    public int consultarValor() {
+        return MULTIPLICADOR;
+    }
+
+    // public boolean tieneMultiplicadorActivo(){
        // return  limite<usado;
    // }
 

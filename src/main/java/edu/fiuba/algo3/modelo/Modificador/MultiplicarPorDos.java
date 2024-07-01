@@ -15,6 +15,11 @@ public class MultiplicarPorDos implements Multiplicador{
         puntajeRonda.set(jugadorPosicion, puntajeRonda.get(jugadorPosicion)*MULTIPLICADOR);
       //  ++usado;
     }
+
+    @Override
+    public int consultarValor() {
+        return MULTIPLICADOR;
+    }
 /*
     public boolean tieneMultiplicadorActivo(){
         return  limite<usado;
