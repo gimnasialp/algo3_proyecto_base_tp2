@@ -35,11 +35,7 @@ public class ExclusividadTest {
         assertEquals(puntosDelJugadorDosEsperadoo, resultadoo.obtenerPuntosDelJugador(1));
         assertEquals(puntosDelJugadorTresEsperadoo, resultadoo.obtenerPuntosDelJugador(2));
 
-
-
-
-
-        //
+        /* de ale
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(0);
         resultado.agregarPuntos(2);
@@ -53,7 +49,7 @@ public class ExclusividadTest {
         assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
         assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));
         assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
-
+        */
     }
 
 
@@ -82,8 +78,7 @@ public class ExclusividadTest {
 
         // FIN test aplicar nuevo de Migue
 
-
-
+        /* de ale
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(5);
         resultado.agregarPuntos(2);
@@ -97,7 +92,7 @@ public class ExclusividadTest {
         assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
         assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));
         assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
-
+        */
     }
 
     @Test
@@ -131,7 +126,7 @@ public class ExclusividadTest {
 
         //FIN test aplicar nuevo de Migue
 
-  /*    falla test al ingresar un jugador mas
+  /*    test ale, falla test al ingresar un jugador mas
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(0);
         resultado.agregarPuntos(2);
@@ -179,6 +174,7 @@ public class ExclusividadTest {
 
         //FIN test aplicar nuevo de Migue
 
+        /* de ale
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(4);
         resultado.agregarPuntos(2);
@@ -194,7 +190,7 @@ public class ExclusividadTest {
         assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
         assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));
         assertEquals(puntosDelJugadorTresEsperado, resultado.obtenerPuntosDelJugador(2));
-
+        */
     }
 
 

@@ -5,14 +5,13 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
 
-public class AnuladorDePuntaje extends ModificadorState{
-
-    private final int LIMITE_USO=1;
+public class AnuladorDePuntaje extends Modificador {
 
     public AnuladorDePuntaje(){
-        super(0);
+        super(0,1);
     }
 
+    /* de ale
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
         for (int i = 0; i < puntajeRonda.size(); i++) {
@@ -21,6 +20,8 @@ public class AnuladorDePuntaje extends ModificadorState{
             }
         }
     }
+    */
+
 
     @Override
     public boolean equals(Object other) {
@@ -28,10 +29,6 @@ public class AnuladorDePuntaje extends ModificadorState{
     }
 
     @Override
-    public void actualizarCantidadDeUso(){
-        super.vecesUsado++;
-    }
-
     public void aplicar(ArrayList<Integer> puntajeRonda,
                         ArrayList<Jugador> jugadores){
 
@@ -44,19 +41,12 @@ public class AnuladorDePuntaje extends ModificadorState{
             for (int i=0 ; i< jugadores.size() ; i++){
                 boolean aplico = jugadores.get(i).obtenerModificadorActual().equals(this);
                 int puntoRespuesta = puntajeRonda.get(i);
-                if(aplico //& puntoRespuesta !=0
-                            ){
+                if(aplico){
                     puntajeRonda.replaceAll(p-> p !=0 ?0:p );
                     puntajeRonda.set(i,puntoRespuesta);
                 }
-
             }
         }
     }
 
-
-    @Override
-    public boolean habilitado() {
-        return (super.vecesUsado < LIMITE_USO);
-    }
 }

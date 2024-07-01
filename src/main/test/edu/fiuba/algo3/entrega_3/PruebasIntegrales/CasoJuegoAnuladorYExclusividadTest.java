@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_3.PruebasIntegrales;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Limite.Limite;
@@ -51,7 +50,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
         Jugador jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorExcl = new ExclusividadDePuntaje();
+        Modificador modificadorExcl = new ExclusividadDePuntaje();
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         partidaActiva.activaModificador(modificadorExcl, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
@@ -59,7 +58,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorExcl2 = new ExclusividadDePuntaje();
+        Modificador modificadorExcl2 = new ExclusividadDePuntaje();
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorExcl2, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
@@ -67,7 +66,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar 3 Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorExcl3 = new ExclusividadDePuntaje();
+        Modificador modificadorExcl3 = new ExclusividadDePuntaje();
         Respuesta respuestaJugadortres = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorExcl3, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadortres);
@@ -103,7 +102,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorJugDos2daPart = new ExclusividadDePuntaje();
+        Modificador modificadorJugDos2daPart = new ExclusividadDePuntaje();
         Respuesta respuestaJugDos2daPart = new RespuestaVerdaderoFalso(1);
         partidaActiva.activaModificador(modificadorJugDos2daPart, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugDos2daPart);
@@ -111,7 +110,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar 3 Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorJugTres2daPart = new ExclusividadDePuntaje();
+        Modificador modificadorJugTres2daPart = new ExclusividadDePuntaje();
         Respuesta respuestaJugTres2daPart = new RespuestaVerdaderoFalso(1);
         partidaActiva.activaModificador(modificadorJugTres2daPart, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugTres2daPart);
@@ -167,7 +166,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
     Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
     Jugador jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-    ModificadorState modificadorExcl = new ExclusividadDePuntaje();
+    Modificador modificadorExcl = new ExclusividadDePuntaje();
     Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         partidaActiva.activaModificador(modificadorExcl, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
@@ -175,7 +174,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
     //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
     jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-    ModificadorState modificadorExcl2 = new ExclusividadDePuntaje();
+    Modificador modificadorExcl2 = new ExclusividadDePuntaje();
     Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorExcl2, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
@@ -183,7 +182,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
     //pasa a jugar 3 Jugador
         partidaActiva.avanzoConSiguienteJugador();
     jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-    ModificadorState modificadorExcl3 = new ExclusividadDePuntaje();
+    Modificador modificadorExcl3 = new ExclusividadDePuntaje();
     Respuesta respuestaJugadortres = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorExcl3, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadortres);
@@ -212,7 +211,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
     partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
     Jugador jugadorUno2daPart = partidaActiva.obtenerJugadorActivo();
-    ModificadorState modificadorJugUno2daPart = new AnuladorDePuntaje();
+    Modificador modificadorJugUno2daPart = new AnuladorDePuntaje();
     Respuesta respuestaJugUno2daPart = new RespuestaVerdaderoFalso(2);
     partidaActiva.activaModificador(modificadorJugUno2daPart, jugadorUno2daPart);
     partidaActiva.agregarRespuesta(respuestaJugUno2daPart);
@@ -258,7 +257,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorExcljug1Part3 = new ExclusividadDePuntaje();
+        Modificador modificadorExcljug1Part3 = new ExclusividadDePuntaje();
         Respuesta respuestajug1Part3 = new RespuestaVerdaderoFalso(1);
         partidaActiva.activaModificador(modificadorExcljug1Part3, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestajug1Part3);
@@ -266,7 +265,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorjug2Part3 = new AnuladorDePuntaje();
+        Modificador modificadorjug2Part3 = new AnuladorDePuntaje();
         Respuesta respuestajug2Part3  = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorjug2Part3, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestajug2Part3);
@@ -274,7 +273,7 @@ public class CasoJuegoAnuladorYExclusividadTest {
         //pasa a jugar 3 Jugador
         partidaActiva.avanzoConSiguienteJugador();
         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
-        ModificadorState modificadorjug3Part3  = new AnuladorDePuntaje();
+        Modificador modificadorjug3Part3  = new AnuladorDePuntaje();
         Respuesta respuestajug3Part3  = new RespuestaVerdaderoFalso(2);
         partidaActiva.activaModificador(modificadorjug3Part3, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestajug3Part3);

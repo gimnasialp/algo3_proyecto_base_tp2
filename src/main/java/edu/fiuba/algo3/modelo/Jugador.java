@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo;
 //import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +14,9 @@ public class Jugador {
     private Multiplicador multiplicadorActual;
     private List<Multiplicador> multiplicadoresDisponibles;
 
-    private ModificadorState modificadorActual;
+    private Modificador modificadorActual;
 
-    private List<ModificadorState> modificadoresDisponibles;
+    private List<Modificador> modificadoresDisponibles;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -57,7 +56,7 @@ public class Jugador {
         this.multiplicadorActual = multiplicador;
     }
 
-    public ModificadorState obtenerModificadorActual(){
+    public Modificador obtenerModificadorActual(){
         return modificadorActual;
     }
 
@@ -83,19 +82,19 @@ public class Jugador {
         modificadorActual = new ModificadorNulo();
     }
 
-    public void aplicarNuevoModificador(ModificadorState modificador) {
+    public void aplicarNuevoModificador(Modificador modificador) {
         this.modificadorActual = modificador;
         actualizarUso(modificador);
     }
 
-    private void actualizarUso(ModificadorState modificador) {
+    private void actualizarUso(Modificador modificador) {
         modificadoresDisponibles.stream().filter(m->m.equals(modificador))
                 .forEach(m->m.actualizarCantidadDeUso());
     }
 
     //para la vista
-    public boolean habilitado(ModificadorState modificador){
-        ModificadorState modificadorState = modificadoresDisponibles.stream().
+    public boolean habilitado(Modificador modificador){
+        Modificador modificadorState = modificadoresDisponibles.stream().
                                             filter(m->m.equals(modificador)).findFirst().get();
         return modificadorState.habilitado();
     }

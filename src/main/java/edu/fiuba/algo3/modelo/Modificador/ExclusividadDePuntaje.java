@@ -4,14 +4,14 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.ArrayList;
 
-public class ExclusividadDePuntaje extends ModificadorState{
-
-    private final int LIMITE_USO=2;
+public class ExclusividadDePuntaje extends Modificador {
 
     private final int DUPLICIDAD=2;
     public ExclusividadDePuntaje(){
-        super(0);
+        super(0,2);
     }
+
+    /* de ale
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
 
@@ -31,15 +31,11 @@ public class ExclusividadDePuntaje extends ModificadorState{
             puntajeRonda.set(i, puntajeRonda.get(i)*2);
         }
     }
+    */
 
     @Override
     public boolean equals(Object other) {
         return (this.getClass().equals(other.getClass()));
-    }
-
-    @Override
-    public void actualizarCantidadDeUso(){
-        super.vecesUsado++;
     }
 
     @Override
@@ -51,22 +47,10 @@ public class ExclusividadDePuntaje extends ModificadorState{
         if (aplicaron ==1 ){
             aplicarEfectoExclusividad(puntajeRonda,1);
         }  else{
-            if(aplicaron >=2) { //mas de uno usó exclusiv
-                /* int respuestasCorrectas = (int) puntajeRonda.stream().filter(i -> i != 0).count();
-                if(respuestasCorrectas==1){
-                    //significa que el jugador que aplico exclus. es el unico que contesto bien
-                    //merece solo duplicar
-                    int ptoDistintoDeCero = puntajeRonda.stream().filter(i->i!=0).findFirst().get();
-                    int posPtjeRonda= puntajeRonda.indexOf(ptoDistintoDeCero);
-                    puntajeRonda.set(posPtjeRonda, puntajeRonda.get(posPtjeRonda) *DUPLICIDAD * aplicaron );
-                }*/
+            if(aplicaron >=2) { //mas de uno usó excl.
                 aplicarEfectoExclusividad(puntajeRonda,aplicaron);
             }
-
-
         }
-
-                //.count()noneMatch(m->m.equals(multiplicador));
     }
 
     private  void aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int factorEfecto) {
@@ -81,7 +65,4 @@ public class ExclusividadDePuntaje extends ModificadorState{
         }
     }
 
-    public boolean habilitado(){
-        return (super.vecesUsado < LIMITE_USO);
-    }
 }

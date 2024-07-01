@@ -22,14 +22,12 @@ public class Partida {
 
     private Resultado resultado;
 
-    private ModificadorContextState modificadorContextState;
 
     public Partida(Pregunta preguntaActual, List<Jugador> jugadores) {
         this.pregunta = preguntaActual;
         this.respuestas = new ArrayList<>();
         this.direccionListaJugador = 0;
         this.jugadores.addAll(jugadores);
-        this.modificadorContextState = new ModificadorContextState();
     }
 
 
@@ -110,7 +108,7 @@ public class Partida {
         comprobacionComodines(new AnuladorDePuntaje());
     }
 
-    private void comprobacionComodines(ModificadorState modificadorState) {
+    private void comprobacionComodines(Modificador modificadorState) {
         resultado.usarModificador(modificadorState,jugadores);
         /*
         ModificadorState modificadorParaAplicar = modificadorContextState.checkContraModificadorNulo(modificadorState,jugadores);
@@ -154,7 +152,7 @@ public class Partida {
         return pregunta;
     }
 
-    public void activaModificador(ModificadorState modificador, Jugador jugadorDePartidaActiva) {
+    public void activaModificador(Modificador modificador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoModificador(modificador);
     }
 }

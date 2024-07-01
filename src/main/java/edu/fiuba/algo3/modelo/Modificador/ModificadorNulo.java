@@ -4,18 +4,10 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.ArrayList;
 
-public class ModificadorNulo extends ModificadorState {
+public class ModificadorNulo extends Modificador {
 
     public ModificadorNulo() {
-        super(0);
-    }
-
-    @Override
-    public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
-    }
-
-    @Override
-    public void actualizarCantidadDeUso() {
+        super(0,0);
     }
 
     @Override
@@ -25,12 +17,6 @@ public class ModificadorNulo extends ModificadorState {
 
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, ArrayList<Jugador> jugadores) {
-
-    }
-
-    @Override
-    public boolean habilitado() {
-        return false;
     }
 
 
