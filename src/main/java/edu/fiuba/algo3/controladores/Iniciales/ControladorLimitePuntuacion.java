@@ -3,8 +3,7 @@ package edu.fiuba.algo3.controladores.Iniciales;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
-import edu.fiuba.algo3.modelo.Limite.LimitadorPorNumeroPreguntas;
-import edu.fiuba.algo3.modelo.Limite.Limite;
+import edu.fiuba.algo3.modelo.Limite.*;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
@@ -26,13 +25,15 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
     private ArrayList<Jugador> jugadores;
     private AlgoHoot algoHoot;
 
-    public ControladorLimitePuntuacion(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitesPuntuacion, ArrayList<Jugador> jugadores){
+    public ControladorLimitePuntuacion(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitesPuntuacion, ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.comboBoxLimitesPuntuacion = comboBoxLimitesPuntuacion;
     }
-    private AlgoHoot crearAlgohoot(String limitePregunta){
+
+    private void crearAlgohoot(String limitePuntuacion) {
+
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
@@ -45,10 +46,11 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
-        Limite limite = new LimitadorPorNumeroPreguntas(Integer.parseInt(limitePregunta), preguntas);
-        //AlgoHoot algoHoot = new AlgoHoot(jugadores,preguntas,limite);
-        //this.algoHoot = algoHoot;
-        return algoHoot;
+        Limite limite =  new LimitadorPorPuntos( preguntas);
+        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas,Integer.parseInt(limitePuntuacion));
+        AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
+
+        this.algoHoot = algoHoot;
     }
 
 
@@ -62,10 +64,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
             limitePuntuacionSinSeleccionar.show();
 
         } else {
-
             crearAlgohoot(seleccion);
-            //System.out.println(algoHoot.getJugadores());
-            //System.out.println(algoHoot.getPreguntaActual());
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

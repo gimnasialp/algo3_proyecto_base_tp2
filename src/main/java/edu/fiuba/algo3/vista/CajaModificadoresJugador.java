@@ -11,34 +11,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CajaModificadoresJugador extends HBox {
-/*
+
     private static int ESPACIADO_BONUS = 5;
     //private List<Modificador> modificadoresEspUsados;
 
     public CajaModificadoresJugador(Jugador jugador) {
         super(ESPACIADO_BONUS);
         super.setAlignment(Pos.CENTER);
-    //    modificadoresEspUsados = new ArrayList<>();
-    //    modificadoresEspUsados = jugador.getModificadoresEspUsados();
-        crearCirculoExclusividad();
-        crearCirculoAnulador();
-        crearCirculoMultiplicadorPorDos();
-        crearCirculoMultiplicadorPorTres();
+        // modificadoresUsados = new ArrayList<>();
+       //  modificadoresEspUsados = jugador.getModificadoresEspUsados();
+       // crearCirculoExclusividad();
+     //   crearCirculoAnulador();
+        //crearCirculoMultiplicadorPorDos();
+        //();
     }
 
     private void crearCirculoExclusividad(){
-        super.getChildren().add(new CirculoModificador(new ExclusividadDePuntaje()));
+       // super.getChildren().add(new CirculoModificador(new ExclusividadDePuntaje()));
     }
 
     private void crearCirculoMultiplicadorPorDos(){
-        super.getChildren().add(new CirculoModificador(new MultiplicarPorDos()));
+        //super.getChildren().add(new CirculoModificador(new MultiplicarPorDos()));
     }
     private void crearCirculoAnulador(){
-        super.getChildren().add(new CirculoModificador(new ExclusividadDePuntaje()));
+       // super.getChildren().add(new CirculoModificador(new ExclusividadDePuntaje()));
     }
     private void crearCirculoMultiplicadorPorTres(){
-        super.getChildren().add(new CirculoModificador(new MultiplicarPorTres()));
+       // super.getChildren().add(new CirculoModificador(new MultiplicarPorTres()));
     }
-*/
+
 
 }

@@ -153,4 +153,8 @@ public class Partida {
     public void activaModificador(ModificadorState modificador, Jugador jugadorDePartidaActiva) {
         jugadorDePartidaActiva.aplicarNuevoModificador(modificador);
     }
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
 }

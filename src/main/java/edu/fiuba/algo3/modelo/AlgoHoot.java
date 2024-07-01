@@ -56,5 +56,4 @@ public class AlgoHoot {
         return partidaActual;
     }
 
-
 }

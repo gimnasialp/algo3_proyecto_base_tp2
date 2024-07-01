@@ -58,14 +58,14 @@ public class AlgoHootTest {
 
         Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
-        Jugador jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        Jugador jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         Respuesta respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         Respuesta respuestaJugadorDos = new RespuestaVerdaderoFalso(2);
 
@@ -143,14 +143,14 @@ public class AlgoHootTest {
 
         Partida partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
-        Jugador jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        Jugador jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         Respuesta respuestaJugadorUno = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2)));
         partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         Respuesta respuestaJugadorDos = new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
@@ -175,7 +175,7 @@ public class AlgoHootTest {
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         respuestaJugadorDos = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 3)), new ArrayList<>(Arrays.asList(4, 5, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;

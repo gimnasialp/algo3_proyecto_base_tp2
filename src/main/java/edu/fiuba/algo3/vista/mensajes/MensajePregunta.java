@@ -10,8 +10,8 @@ public class MensajePregunta extends Label {
 
     public MensajePregunta(String enunciado){
         super(enunciado);
-        super.setFont(Font.font(Estilos.FUENTE,35));
-        super.setTextFill(Color.BLACK);
+        super.setFont(Font.font(Estilos.FUENTE,20));
+        super.setTextFill(Color.YELLOW);
         super.setTextAlignment(TextAlignment.CENTER);
         super.setWrapText(true);
     }

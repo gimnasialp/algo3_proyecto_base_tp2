@@ -15,8 +15,8 @@ public class GrillaGeneralPartida extends GridPane {
 
     public GrillaGeneralPartida(double anchoPantalla, double altoPantalla) {
 
-        super.setMinSize(anchoPantalla + 50, altoPantalla);
-        super.setMaxSize(anchoPantalla + 50, altoPantalla);
+        super.setMinSize(anchoPantalla + 100, altoPantalla);
+        super.setMaxSize(anchoPantalla + 100, altoPantalla);
         super.setVgap(DISTANCIA_FILAS);
         super.getRowConstraints().add(new RowConstraints(TAM_ENCABEZADO));
         super.getRowConstraints().add(new RowConstraints(TAM_CAJA_PREGUNTA));

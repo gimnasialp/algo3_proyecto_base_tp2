@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Limite.LimitadorPorNumeroPreguntas;
 import edu.fiuba.algo3.modelo.Limite.Limite;
+import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
+import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
@@ -32,8 +34,8 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         this.comboBoxLimitePreguntas = comboBoxLimitePreguntas;
 
     }
-    /*private AlgoHoot crearAlgohoot(String limitePregunta){
-    /*    HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+    private void crearAlgohoot(String limitePregunta){
+        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
         tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
@@ -45,11 +47,10 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
-        Limite limite = new LimitadorPorNumeroPreguntas(Integer.parseInt(limitePregunta), preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores,preguntas,limite);
+        Limite limite = new LimiteFinalPreguntas(preguntas);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
         this.algoHoot = algoHoot;
-        return algoHoot;
-    }*/
+    }
 
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -60,13 +61,9 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.setHeaderText("No selecciono una cantidad de preguntas");
             cantidadPreguntasSinSeleccionar.setContentText("Debe seleccionar un limite de Preguntas para poder empezar a jugar.");
             cantidadPreguntasSinSeleccionar.show();
-
         } else {
-
-            //crearAlgohoot(seleccion);
-            //System.out.println(algoHoot.getJugadores());
-            //System.out.println(algoHoot.getPreguntaActual());
-            //pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
+            crearAlgohoot(seleccion);
+            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }
 
