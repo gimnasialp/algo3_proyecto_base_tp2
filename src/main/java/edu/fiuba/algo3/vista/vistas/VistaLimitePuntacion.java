@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorLimitePreguntas;
+import edu.fiuba.algo3.controladores.ControladorLimitePreguntas;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class VistaLimitePuntacion extends StackPane {
 
-    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;

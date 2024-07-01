@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.botones.Spinners;
 
 import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarOrderedChoice;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class SpinnerOrderedChoice extends HBox {
     private Label label;
     private Spinner<Integer> spinner;
 
-    public SpinnerOrderedChoice(String opcion, int cantidadOpciones/*, ControladorEnviarOrderedChoice controlador*/){
+    public SpinnerOrderedChoice(String opcion, int cantidadOpciones, ControladorEnviarOrderedChoice controladorEnviarOrderedChoice) {
 
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(PRIMER_POSICION, cantidadOpciones, VALOR_INICIAL_SPINNER);
 
@@ -30,15 +31,15 @@ public class SpinnerOrderedChoice extends HBox {
         spinner.setMaxHeight(50);
         spinner.getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_LEFT_VERTICAL);
 
-        /*Label label = new Label(opcion.obtenerTexto());
-        label.setFont(Font.font(EstilosApp.FUENTE, 20));
-        label.setTextFill(Color.BLACK);*/
+        Label label = new Label(opcion);
+        label.setFont(Font.font(Estilos.FUENTE, 20));
+        label.setTextFill(Color.BLACK);
 
-        Insets padding = new Insets(6,6,6,6);
+        Insets padding = new Insets(6, 6, 6, 6);
         CornerRadii bordeRedondeado = new CornerRadii(10);
-        Color colorTransparente = Color.web(Estilos.GRIS,Estilos.ALPHA_OPCIONES);
-        spinner.setBackground(new Background(new BackgroundFill(colorTransparente,bordeRedondeado,null)));
-        label.setBackground(new Background(new BackgroundFill(colorTransparente,bordeRedondeado,null)));
+        Color colorTransparente = Color.web(Estilos.GRIS, Estilos.ALPHA_OPCIONES);
+        spinner.setBackground(new Background(new BackgroundFill(colorTransparente, bordeRedondeado, null)));
+        label.setBackground(new Background(new BackgroundFill(colorTransparente, bordeRedondeado, null)));
         label.setPadding(padding);
 
         this.label = label;
@@ -48,11 +49,11 @@ public class SpinnerOrderedChoice extends HBox {
         super.getChildren().addAll(spinner, label);
     }
 
-    public int getNumeroOrden(){
+    public int getNumeroOrden() {
         return spinner.getValue();
     }
 
-    public String getEnunciadoOpcion(){
+    public String getEnunciadoOpcion() {
         return label.getText();
     }
 }

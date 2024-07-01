@@ -1,7 +1,6 @@
-package edu.fiuba.algo3.controladores.Iniciales;
+package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.vistas.VistaPedirLimite;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;

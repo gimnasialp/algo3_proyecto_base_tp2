@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonAccederPregunta;
 import edu.fiuba.algo3.vista.botones.BotonMultiplicador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 
 
 public class VistaTurnoJugadorActual extends StackPane {
-    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
@@ -30,14 +31,14 @@ public class VistaTurnoJugadorActual extends StackPane {
         configurarFondo();
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
-
+        System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
-        VBox cajaPregunta = crearContenedorPregunta(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual());
-       // HBox contenedorJugadores = crearContenedorJugadores(algoHoot.obtenerPartidaActiva().getJugadores());
-        VBox botonConfirmado = crearBotonConfirmado(stage, pantallaPrincipal);
-
+        VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
+        VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
+        VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
-        grilla.add(botonConfirmado, 0, 2);
+        grilla.add(botonModificador, 0, 1);
+        grilla.add(CajaBotonPregunta, 0, 2);
         grilla.setAlignment(Pos.CENTER);
         super.getChildren().add(grilla);
 
@@ -87,20 +88,21 @@ public class VistaTurnoJugadorActual extends StackPane {
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
     }
-/*
 
-    private HBox crearCajaJugador(Jugador jugador) {
-        CajaJugador cajaJugador = new CajaJugador(jugador, Estilos.AZUL);
-        cajaJugador.setPrefSize(200, 300);
-        return cajaJugador;
+    private VBox crearBotonPregunta(Stage stage, PantallaPrincipal pantallaPrincipal){
+        VBox cajaBotonAccederPregunta = new VBox(ESPACIADO_CENTRAL);
+        cajaBotonAccederPregunta.setAlignment(Pos.CENTER);
+        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage,pantallaPrincipal,partidaActual);
+        cajaBotonAccederPregunta.getChildren().add(botonAccederPregunta);
+        return cajaBotonAccederPregunta;
     }
-*/
-    private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
-        VBox botonConfirmado = new VBox(0);
-        botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
+
+    private VBox crearBotonModificador(Stage stage, PantallaPrincipal pantallaPrincipal) {
+        VBox cajaBotonModificador = new VBox(0);
+        cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
         BotonMultiplicador botonMultiplicador = new BotonMultiplicador(new MultiplicarPorDos());
-        botonConfirmado.getChildren().add(botonMultiplicador);
-        return botonConfirmado;
+        cajaBotonModificador.getChildren().add(botonMultiplicador);
+        return cajaBotonModificador;
     }
 
 }

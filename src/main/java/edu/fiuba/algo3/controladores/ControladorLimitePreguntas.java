@@ -1,14 +1,13 @@
-package edu.fiuba.algo3.controladores.Iniciales;
+package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
-import edu.fiuba.algo3.modelo.Limite.*;
+import edu.fiuba.algo3.modelo.Limite.Limite;
+import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
-import edu.fiuba.algo3.vista.vistas.VistaLimitePreguntas;
-import edu.fiuba.algo3.vista.vistas.VistaPedirNombreJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -18,22 +17,21 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
+public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
-    private ComboBox<String> comboBoxLimitesPuntuacion;
+    private ComboBox<String> comboBoxLimitePreguntas;
     private ArrayList<Jugador> jugadores;
     private AlgoHoot algoHoot;
 
-    public ControladorLimitePuntuacion(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitesPuntuacion, ArrayList<Jugador> jugadores) {
+    public ControladorLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitePreguntas,ArrayList<Jugador> jugadores){
         this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
-        this.comboBoxLimitesPuntuacion = comboBoxLimitesPuntuacion;
+        this.comboBoxLimitePreguntas = comboBoxLimitePreguntas;
+
     }
-
-    private void crearAlgohoot(String limitePuntuacion) {
-
+    private void crearAlgohoot(String limitePregunta){
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
@@ -46,23 +44,20 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
-        Limite limite =  new LimitadorPorPuntos( preguntas);
-        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas,Integer.parseInt(limitePuntuacion));
-        AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
-
+        Limite limite = new LimiteFinalPreguntas(preguntas);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
         this.algoHoot = algoHoot;
     }
 
-
     @Override
     public void handle(ActionEvent actionEvent) {
-        String seleccion = comboBoxLimitesPuntuacion.getValue();
-        if (seleccion == null || seleccion.isEmpty()) {
-            Alert limitePuntuacionSinSeleccionar = new Alert(Alert.AlertType.ERROR);
-            limitePuntuacionSinSeleccionar.setHeaderText("No selecciono un limite de puntacion ");
-            limitePuntuacionSinSeleccionar.setContentText("Debe seleccionar un limite de puntacion para poder empezar a jugar. ");
-            limitePuntuacionSinSeleccionar.show();
 
+        String seleccion = comboBoxLimitePreguntas.getValue();
+        if (seleccion == null || seleccion.isEmpty()) {
+            Alert cantidadPreguntasSinSeleccionar = new Alert(Alert.AlertType.ERROR);
+            cantidadPreguntasSinSeleccionar.setHeaderText("No selecciono una cantidad de preguntas");
+            cantidadPreguntasSinSeleccionar.setContentText("Debe seleccionar un limite de Preguntas para poder empezar a jugar.");
+            cantidadPreguntasSinSeleccionar.show();
         } else {
             crearAlgohoot(seleccion);
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));

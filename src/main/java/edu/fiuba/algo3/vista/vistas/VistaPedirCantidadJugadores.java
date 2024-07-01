@@ -1,16 +1,13 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorCantidadJugadores;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirNombreJugadores;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorSiguienteVista;
+import edu.fiuba.algo3.controladores.ControladorCantidadJugadores;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonSiguiente;
 import edu.fiuba.algo3.vista.mensajes.AlgoHootMensaje;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -21,7 +18,7 @@ import javafx.stage.Stage;
 
 public class VistaPedirCantidadJugadores extends StackPane {
 
-    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;

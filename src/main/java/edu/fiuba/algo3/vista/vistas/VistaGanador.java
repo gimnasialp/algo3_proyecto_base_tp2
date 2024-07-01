@@ -2,7 +2,7 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorFinalizarJuego;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorReiniciarJuego;
+import edu.fiuba.algo3.controladores.ControladorReiniciarJuego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;

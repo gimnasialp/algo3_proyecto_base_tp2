@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPreguntasJuego;
-import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerGroupChoice;
@@ -10,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
     private ArrayList<Integer> respuestaGrupoUno;

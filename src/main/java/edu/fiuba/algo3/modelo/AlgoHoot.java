@@ -9,8 +9,8 @@ import java.util.List;
 
 public class AlgoHoot {
 
-    private  Limite limite;
-    private  List<Jugador> jugadores;
+    private Limite limite;
+    private List<Jugador> jugadores;
     private List<Partida> partidas;
     private Jugador jugadorActual;
     private Pregunta preguntaActual;
@@ -18,7 +18,7 @@ public class AlgoHoot {
     private int numeroPartida;
 
 
-    public AlgoHoot(List<Jugador> jugadores, Limite limite){
+    public AlgoHoot(List<Jugador> jugadores, Limite limite) {
         this.jugadores = jugadores;
         this.limite = limite;
         this.partidas = new ArrayList<>();
@@ -29,17 +29,17 @@ public class AlgoHoot {
         jugadorActual = jugadores.stream().findFirst().get();
         preguntaActual = limite.preguntaNoLimitada(jugadores);
         Partida partida = new Partida(preguntaActual, this.jugadores);
-        numeroPartida=0;
+        numeroPartida = 0;
         partidas.add(partida);
     }
 
-    public void proximaPartida(){
+    public void proximaPartida() {
         comprobarPartidaExistente();
         //tal vez habra Observers
     }
 
     private void comprobarPartidaExistente() {
-        if(numeroPartida+1 > partidas.size() ){
+        if (numeroPartida + 1 > partidas.size()) {
             preguntaActual = limite.preguntaNoLimitada(jugadores);
             Partida partida = new Partida(preguntaActual, this.jugadores);
             partidas.add(partida);
@@ -52,7 +52,7 @@ public class AlgoHoot {
         //
     }
 
-    public Partida obtenerPartidaActiva(){
+    public Partida obtenerPartidaActiva() {
         return partidaActual;
     }
 

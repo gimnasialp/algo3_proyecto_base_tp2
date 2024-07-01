@@ -58,5 +58,4 @@ public abstract class Pregunta {
         return this.getClass().equals(other.getClass());
     }
 
-
 }
