@@ -21,17 +21,12 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class VistaGeneralPartida extends StackPane {
-    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/imagenVistaAyuda.jpg";
-    private static final double ANCHO_VENTANA = 1280;
-    private static final double ALTO_VENTANA = 720;
-    private static final double ESPACIADO_CENTRAL = 40;
+public class VistaGeneralPartida extends VistaDinamicaJuego {
     private AlgoHoot algoHoot;
     private Partida partidaActual;
 
-    public VistaGeneralPartida(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
-
-        configurarFondo();
+    public VistaGeneralPartida(String nombreImagen, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+        super(nombreImagen, stage, pantallaPrincipal);
         this.algoHoot = algoHoot;
         algoHoot.proximaPartida();
         this.partidaActual = algoHoot.obtenerPartidaActiva();
@@ -93,25 +88,14 @@ public class VistaGeneralPartida extends StackPane {
         return contenedorJugadores;
     }
 
-    private void configurarFondo() {
-        Image imagen = new Image("file:" + System.getProperty("user.dir") + IMAGEN_RUTA);
-        BackgroundImage fondoImagen = new BackgroundImage(imagen,
-                BackgroundRepeat.ROUND,
-                BackgroundRepeat.SPACE,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(100, 100, true, true, true, false));
-        Background fondo = new Background(fondoImagen);
-        super.setBackground(fondo);
-    }
-
-
     private HBox crearCajaJugador(Jugador jugador) {
         CajaJugador cajaJugador = new CajaJugador(jugador, Estilos.AZUL);
         cajaJugador.setPrefSize(200, 300);
         return cajaJugador;
     }
 
-    private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    @Override
+    protected VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
         BotonEmpezarTurnos botonEmpezarRondaTurnos = new BotonEmpezarTurnos

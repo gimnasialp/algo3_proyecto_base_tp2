@@ -65,7 +65,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         } else {
             crearAlgohoot(seleccion);
-            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
+            pantallaPrincipal.setCentro(new VistaGeneralPartida("imagenVistaAyuda.jpg", stage, pantallaPrincipal,algoHoot));
 
         }
 

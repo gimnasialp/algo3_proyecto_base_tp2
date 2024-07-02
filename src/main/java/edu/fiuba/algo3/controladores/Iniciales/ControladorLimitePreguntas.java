@@ -63,7 +63,7 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.show();
         } else {
             crearAlgohoot(seleccion);
-            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
+            pantallaPrincipal.setCentro(new VistaGeneralPartida("imagenVistaAyuda.jpg", stage, pantallaPrincipal, algoHoot));
 
         }
 

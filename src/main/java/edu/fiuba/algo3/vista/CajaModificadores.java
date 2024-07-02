@@ -42,7 +42,7 @@ public class CajaModificadores extends HBox {
         if (esPreguntaConPenalidad(pregunta)) {
             List<Multiplicador> multiplicadores = jugador.obtenerMultiplicadoresDisponibles();
             if (multiplicadores.isEmpty()) {
-                crearBotonesMultiplicador(multiplicadores);
+                //crearBotonesMultiplicador(multiplicadores);
                 //crearBotonAnulador(jugador);
             } else {
                 mostrarTextoSinMultiplicadores();
@@ -89,13 +89,13 @@ public class CajaModificadores extends HBox {
                     super.getChildren().add(botonExclusividad);
                 }
             }
-    */
+    *//*
     private void crearBotonesMultiplicador(List<Multiplicador> multiplicadores) {
         for (Multiplicador multiplicador : multiplicadores) {
             BotonMultiplicador botonMultiplicador = new BotonMultiplicador(multiplicador);
             super.getChildren().add(botonMultiplicador);
         }
-    }
+    }*/
 
     private void mostrarTextoSinMultiplicadores() {
         MensajeSinMultiplicadores mensajeSinMultiplicadores = new MensajeSinMultiplicadores();

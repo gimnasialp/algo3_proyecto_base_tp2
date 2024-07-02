@@ -44,7 +44,7 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
                     //pantallaPrincipal.setCentro(new VistaGanador(stage,pantallaPrincipal,jugador));
                     break;
                 case "Cantidad de Preguntas":
-                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
+                    pantallaPrincipal.setCentro(new VistaLimitePreguntas("imagenVistaAyuda.jpg", stage, pantallaPrincipal,jugadores));
                     //pantallaPrincipal.setCentro(new VistaGanador(stage, pantallaPrincipal,jugador));
                     break;
             }

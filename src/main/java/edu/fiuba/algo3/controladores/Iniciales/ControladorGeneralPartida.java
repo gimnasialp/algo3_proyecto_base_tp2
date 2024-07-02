@@ -24,6 +24,6 @@ public class ControladorGeneralPartida implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        pantallaPrincipal.setCentro(new VistaTurnoJugadorActual(stage, pantallaPrincipal, algoHoot));
+        pantallaPrincipal.setCentro(new VistaTurnoJugadorActual("imagenVistaAyuda.jpg", stage, pantallaPrincipal, algoHoot));
     }
 }

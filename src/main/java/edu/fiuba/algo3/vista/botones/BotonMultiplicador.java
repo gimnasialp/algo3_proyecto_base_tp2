@@ -13,8 +13,9 @@ import javafx.scene.text.Font;
 
 public class BotonMultiplicador extends Button {
 
-    public BotonMultiplicador(Multiplicador multiplicador) {
-        super.setText("Usar Multiplicador x"+ multiplicador.consultarValor());
+    public BotonMultiplicador(String nombreModificador) {
+        super.setText(nombreModificador);
+        //super.setText("Usar Multiplicador x"+ multiplicador.consultarValor());
         super.setFont(Font.font(Estilos.FUENTE, 15));
         super.setPadding(new Insets(5));
         super.setTextFill(Color.BLACK);
