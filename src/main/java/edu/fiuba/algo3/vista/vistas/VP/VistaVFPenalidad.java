@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
 import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarVFClasico;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
@@ -42,7 +43,7 @@ public class VistaVFPenalidad extends StackPane {
 
 
         VBox cajaPregunta = crearContenedorPregunta(preguntaVF);
-        VBox cajaInferior = armarRespuestas();
+        VBox cajaInferior = armarRespuestas(algoHoot, stagePrincipal, pantallaPrincipal);
 
         grilla.add(cajaPregunta, 0, 0);
         grilla.add(cajaInferior, 0, 1);
@@ -78,20 +79,23 @@ public class VistaVFPenalidad extends StackPane {
         return contenedorPregunta;
     }
 
-    private VBox armarRespuestas() {
+    private VBox armarRespuestas(AlgoHoot algoHoot, Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox cajaOpciones = new VBox();
         Button botonVerdadero = new Button("Verdadero");
-        botonVerdadero.setStyle("-fx-font-size: 30px;");
+        botonVerdadero.setStyle("-fx-font-size: 35px;");
 
         Button botonFalso = new Button("Falso");
-        botonFalso.setStyle("-fx-font-size: 30px;");
+        botonFalso.setStyle("-fx-font-size: 35px;");
 
         botonVerdadero.setOnAction(e -> {
-            // Lógica para respuesta verdadera
+            String textoBoton = botonVerdadero.getText();
+            // controladorEnviarVFClasico = new ControladorEnviarVFPenalidad(stage, pantallaPrincipal, algoHoot, textoBoton);
         });
 
         botonFalso.setOnAction(e -> {
-            // Lógica para respuesta falsa
+            String textoBoton = botonFalso.getText();
+            //ControladorEnviarVFPenalidad controladorEnviarVFClasico = new ControladorEnviarVFPenalidad(stage, pantallaPrincipal, algoHoot, textoBoton);
+
         });
 
         cajaOpciones.getChildren().addAll(botonVerdadero, botonFalso);

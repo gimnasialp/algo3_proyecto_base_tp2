@@ -6,11 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class ControladorEnviarVFClasico extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
 
-    public ControladorEnviarVFClasico(Stage stagePrincipal, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+    public ControladorEnviarVFClasico(Stage stagePrincipal, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot, String textoBoton) {
         super(stagePrincipal, pantallaPrincipal, algoHoot);
         //this.opcionesJugador = new ArrayList<>();
     }

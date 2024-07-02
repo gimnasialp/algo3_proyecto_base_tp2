@@ -45,7 +45,7 @@ public class VistaVFClasico extends StackPane {
 
         // VBox cajaPregunta = crearContenedorPregunta(partida.obtenerPreguntaActual());
         VBox cajaPregunta = crearContenedorPregunta(pregunta);
-        VBox cajaInferior = armarRespuestas();
+        VBox cajaInferior = armarRespuestas(algoHoot, stagePrincipal, pantallaPrincipal);
 
         grilla.add(cajaPregunta, 0, 0);
         grilla.add(cajaInferior, 0, 1);
@@ -81,19 +81,22 @@ public class VistaVFClasico extends StackPane {
         return contenedorPregunta;
     }
 
-    private VBox armarRespuestas() {
+    private VBox armarRespuestas(AlgoHoot algoHoot, Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox cajaOpciones = new VBox();
         Button botonVerdadero = new Button("Verdadero");
-        botonVerdadero.setStyle("-fx-font-size: 30px;");
+        botonVerdadero.setStyle("-fx-font-size: 35px;");
 
         Button botonFalso = new Button("Falso");
-        botonFalso.setStyle("-fx-font-size: 30px;");
+        botonFalso.setStyle("-fx-font-size: 35px;");
 
         botonVerdadero.setOnAction(e -> {
-
+            String textoBoton = botonVerdadero.getText();
+            ControladorEnviarVFClasico controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, textoBoton);
         });
 
         botonFalso.setOnAction(e -> {
+            String textoBoton = botonFalso.getText();
+            ControladorEnviarVFClasico controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, textoBoton);
 
         });
 
