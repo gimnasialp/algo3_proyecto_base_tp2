@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.modelo.AlgoHoot;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Excepciones.PuntajeMaximoSuperadoException;
 import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Limite.LimitadorPorPuntos;
 import edu.fiuba.algo3.modelo.Limite.Limite;
@@ -15,11 +14,7 @@ import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaOrderedChoice;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoClasico;
-import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
-import edu.fiuba.algo3.modelo.Resultado;
+import edu.fiuba.algo3.modelo.Respuesta.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,8 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AlgoHootTest {
@@ -191,6 +185,140 @@ public class AlgoHootTest {
         assertThrows(PuntajeMaximoSuperadoException.class, () -> {
             algoHoot.proximaPartida();
             ;
+        });
+    }
+
+    @Test
+    public void testJuegoLimiteNumeroPuntosconPreguntasMCClasicoMezcladasSegunTemaHastaTerminarJuego(){
+
+        //Primera pregunta(OrderedChoice id=17)
+        HashMap<String, Parser> tiposPreguntas = new HashMap<>();
+        tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
+        ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
+
+        ArrayList<Pregunta> preguntasLector = proveedor.obtenerPreguntasDe("preguntas.json");
+
+        //Pregunta de HISTORIA
+        Pregunta preguntaMCC1 = preguntasLector.stream().filter(p -> p.mismoId(9)).findFirst().get();
+        //Pregunta de CIENCIAS
+        Pregunta preguntaMCC2 = preguntasLector.stream().filter(p -> p.mismoId(13)).findFirst().get();
+        //Pregunta de CIENCIAS
+        Pregunta preguntaMCC3 = preguntasLector.stream().filter(p -> p.mismoId(16)).findFirst().get();
+        //Pregunta de COMPUTACION
+        Pregunta preguntaMCC4 = preguntasLector.stream().filter(p -> p.mismoId(20)).findFirst().get();
+
+        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaMCC1, preguntaMCC2, preguntaMCC3, preguntaMCC4));
+        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
+
+        MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
+        ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
+
+        //Verifico que la primer y segunda pregunta son de distinto tema, al igual que la segunda y la tercera
+        String temaPreguntaUno = preguntasMezcladas.get(0).obtenerTema();
+        String temaPreguntaDos = preguntasMezcladas.get(1).obtenerTema();
+        String temaPreguntaTres = preguntasMezcladas.get(2).obtenerTema();
+        assertNotEquals(temaPreguntaUno, temaPreguntaDos);
+        assertNotEquals(temaPreguntaDos, temaPreguntaTres);
+
+        //EL limite sera puntaje igual a 2
+        int puntoLimite=2;
+        Limite limite =  new LimitadorPorPuntos(preguntasMezcladas);
+        Limite limiteDecorator =new PuntosDefinidosDecorator(limite, preguntasMezcladas, puntoLimite);
+
+        AlgoHoot algoHoot = new AlgoHoot(jugadores,limiteDecorator);
+
+        /*  Primer Partida */
+        algoHoot.proximaPartida();
+
+        Partida partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva.avanzoConSiguienteJugador();
+        Jugador jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
+
+        //pasa a jugar segundo Jugador
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(2)));
+        partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
+
+
+        assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
+        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==1);
+
+        //Hasta el momento MIgue tiene 1 punto y angel tiene 0
+        //puedo continuar la siguiente partida, ya que no supere el limite de puntos(2)
+        /*  Segunda Partida */
+        algoHoot.proximaPartida();
+
+        partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
+
+        //pasa a jugar segundo Jugador
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 1;
+
+        assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
+        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==2);
+
+        //Hasta el momento MIgue tiene 2 puntos y angel tiene 1
+        //Continua la siguiente partida, porque no se supero el limite de puntos (2)
+        /*  Tercer Partida */
+        algoHoot.proximaPartida();
+
+        partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(2)));
+        partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 0;
+
+        //pasa a jugar segundo Jugador
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(2)));
+        partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 0;
+
+        assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
+        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==2);
+
+        //MIgue y Angel siguen con los mismos puntos porque ninguno acerto la respuesta
+        //Continua la siguiente partida, porque no se supero el limite de puntos (2)
+        /*  Cuarta Partida */
+        algoHoot.proximaPartida();
+
+        partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorUno = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
+
+        //pasa a jugar segundo Jugador
+        partidaActiva.avanzoConSiguienteJugador();
+        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+
+        respuestaJugadorDos = new RespuestaMultipleChoiceClasico(new ArrayList<>(Arrays.asList(3)));
+        partidaActiva.agregarRespuesta(respuestaJugadorDos);  //int puntosDelJugadorEsperado = 1;
+
+        assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
+        assertTrue(partidaActiva.jugadorConMasPuntos().getPuntaje().obtenerPuntos()==3);
+
+        //MIgue tiene 3 puntos y angel tiene 2
+        //Por lo tanto, como se supero el limite de puntos (2),
+        //la partida debe terminar
+        assertThrows(PuntajeMaximoSuperadoException.class, () -> {
+            algoHoot.proximaPartida();;
         });
     }
 }
