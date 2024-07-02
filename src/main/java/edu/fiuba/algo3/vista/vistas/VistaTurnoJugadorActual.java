@@ -2,9 +2,11 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.modelo.AlgoHoot;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.vista.CajaJugador;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonAccederPregunta;
@@ -31,19 +33,55 @@ public class VistaTurnoJugadorActual extends StackPane {
         configurarFondo();
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
-        System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+    /*    System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
         System.out.println(partidaActual.obtenerJugadorActivo().getNombre());
+        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());*/
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
         VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
+        //CajaJugador cajaJugador = new CajaJugador(partidaActual.obtenerJugadorActivo());
+        VBox cajaTurnoJugador = crearContenedorTurnoJugador(partidaActual.obtenerJugadorActivo());
         VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
         VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
+        grilla.add(cajaTurnoJugador,0,1);
         grilla.add(botonModificador, 0, 1);
         grilla.add(CajaBotonPregunta, 0, 2);
         grilla.setAlignment(Pos.CENTER);
         super.getChildren().add(grilla);
 
     }
+
+
+    private VBox crearContenedorTurnoJugador(Jugador jugador) {
+
+        VBox contenedorPregunta = new VBox(ESPACIADO_CENTRAL);
+        contenedorPregunta.setAlignment(Pos.TOP_CENTER);
+
+        StackPane contenedor = new StackPane();
+        contenedor.setPadding(new Insets(15)); // Ajusta el padding según sea necesario
+        contenedor.setStyle("-fx-background-color: #245897; -fx-background-radius: 5px;");
+
+        VBox vboxContenido = new VBox(15); // HBox para alinear el label y el textfield horizontalmente
+        vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
+        vboxContenido.setPadding(new Insets(10));
+
+        Label jugadorActualTurno = new Label("TURNO JUGADOR: " + jugador.getNombre());
+        jugadorActualTurno.setFont(Font.font(Estilos.FUENTE, 50));
+        jugadorActualTurno.setTextFill(Color.web(Estilos.ROJO));
+
+
+        vboxContenido.getChildren().addAll(jugadorActualTurno);
+
+        // Añadir HBox interno al contenedor con fondo
+        contenedor.getChildren().add(vboxContenido);
+
+        // Añadir el contenedor al VBox principal
+        contenedorPregunta.getChildren().add(contenedor);
+
+
+        return contenedorPregunta;
+    }
+
 
     private VBox crearContenedorPregunta(Pregunta preguntaActual) {
 

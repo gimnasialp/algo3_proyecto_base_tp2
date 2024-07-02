@@ -46,6 +46,8 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
 
         Limite limite = new LimiteFinalPreguntas(preguntas);
         AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
+        algoHoot.proximaPartida();
+        algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
         this.algoHoot = algoHoot;
     }
 
@@ -60,8 +62,6 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.show();
         } else {
             crearAlgohoot(seleccion);
-            algoHoot.proximaPartida();
-            algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

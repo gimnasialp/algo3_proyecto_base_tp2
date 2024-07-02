@@ -35,7 +35,7 @@ public class AlgoHootTest {
 
 
     @Test
-    public void testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuego(){
+    public void testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuego() {
 
         String enunciado = "Argentina es el actual campeon mundial de futbol";
         ArrayList<String> opciones = new ArrayList<>(Arrays.asList("Verdadero", "Falso"));
@@ -45,12 +45,12 @@ public class AlgoHootTest {
         String textoRepuesta = "Argentina gano mundial de futbol en 2022";
         Pregunta preguntaUno = new PreguntaVerdaderoFalsoClasico(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
         Pregunta preguntaDos = new PreguntaVerdaderoFalsoClasico(++idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
-        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaUno,preguntaDos));
-        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
+        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaUno, preguntaDos));
+        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"), new Jugador("Angel")));
 
         //EL limite sera la cantidad final de Preguntas
         Limite limite = new LimiteFinalPreguntas(preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores, limite);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33
@@ -81,21 +81,21 @@ public class AlgoHootTest {
         partidaActiva = algoHoot.obtenerPartidaActiva();
 
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         respuestaJugadorUno = new RespuestaVerdaderoFalso(1);
         partidaActiva.agregarRespuesta(respuestaJugadorUno);
 
         //pasa a jugar segundo Jugador
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
 
         respuestaJugadorDos = new RespuestaVerdaderoFalso(1);
 
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         assertTrue(partidaActiva.jugadorConMasPuntos().getNombre().equals("Migue"));
-        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje()== 2);
+        assertTrue(partidaActiva.jugadorConMasPuntos().obtenerPuntaje() == 2);
 
         //Hasta el momento MIgue tiene 2 puntos y angel tiene 1
         //si quiero continuar la siguiente partida, no podré
@@ -108,7 +108,7 @@ public class AlgoHootTest {
     }
 
     @Test
-    public void testJuegoLimiteNumeroPuntosconPreguntasOCyGCconDosJugadoresHastaTerminarJuego(){
+    public void testJuegoLimiteNumeroPuntosconPreguntasOCyGCconDosJugadoresHastaTerminarJuego() {
 
         //Primera pregunta(OrderedChoice id=17)
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
@@ -127,15 +127,15 @@ public class AlgoHootTest {
         //Segunda Pregunta(GroupChoice id=18)
         Pregunta preguntaGC = preguntasLector.stream().filter(p -> p.mismoId(18)).findFirst().get();
 
-        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaOC,preguntaGC));
-        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"),new Jugador("Angel")));
+        ArrayList<Pregunta> preguntas = new ArrayList<>(Arrays.asList(preguntaOC, preguntaGC));
+        ArrayList<Jugador> jugadores = new ArrayList<>(Arrays.asList(new Jugador("Migue"), new Jugador("Angel")));
 
         //EL limite sera puntaje igual a 1
-        int puntoLimite=1;
-        Limite limite =  new LimitadorPorPuntos( preguntas);
-        Limite limiteDecorator =new PuntosDefinidosDecorator(limite, preguntas,  puntoLimite);
+        int puntoLimite = 1;
+        Limite limite = new LimitadorPorPuntos(preguntas);
+        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas, puntoLimite);
 
-        AlgoHoot algoHoot = new AlgoHoot(jugadores,limiteDecorator);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
 
         /*  Primer Partida */
         // Empezamos con un Verdadero Falso Clasico linea 33
@@ -169,7 +169,7 @@ public class AlgoHootTest {
 
         partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador();
-        jugadorDePartidaActiva =partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
         respuestaJugadorUno = new RespuestaGroupChoice(new ArrayList<>(Arrays.asList(1, 2, 5)), new ArrayList<>(Arrays.asList(3, 4, 6)));
         partidaActiva.agregarRespuesta(respuestaJugadorUno);  //int puntosDelJugadorEsperado = 1;
 
@@ -189,7 +189,8 @@ public class AlgoHootTest {
         //y el juego debe terminar
 
         assertThrows(PuntajeMaximoSuperadoException.class, () -> {
-            algoHoot.proximaPartida();;
+            algoHoot.proximaPartida();
+            ;
         });
     }
 }

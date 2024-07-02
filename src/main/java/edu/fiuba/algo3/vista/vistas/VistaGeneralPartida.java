@@ -2,7 +2,6 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorGeneralPartida;
-import edu.fiuba.algo3.controladores.ControladorPreguntasJuego;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Partida;
@@ -106,7 +105,7 @@ public class VistaGeneralPartida extends StackPane {
 
 
     private HBox crearCajaJugador(Jugador jugador) {
-        CajaJugador cajaJugador = new CajaJugador(jugador, Estilos.AZUL);
+        CajaJugador cajaJugador = new CajaJugador(jugador);
         cajaJugador.setPrefSize(200, 300);
         return cajaJugador;
     }

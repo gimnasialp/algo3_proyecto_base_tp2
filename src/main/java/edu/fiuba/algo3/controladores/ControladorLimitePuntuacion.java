@@ -47,7 +47,8 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         Limite limite =  new LimitadorPorPuntos( preguntas);
         Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas,Integer.parseInt(limitePuntuacion));
         AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
-
+        algoHoot.proximaPartida();
+        algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
         this.algoHoot = algoHoot;
     }
 
@@ -63,8 +64,6 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         } else {
             crearAlgohoot(seleccion);
-            algoHoot.proximaPartida();
-            algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

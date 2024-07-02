@@ -36,7 +36,11 @@ public abstract class ControladorPreguntasJuego {
     }
 
     protected void definirSiguienteVista(Respuesta respuestaDeUnJugador) {
+        System.out.println(respuestaDeUnJugador);
         sumarPuntos(respuestaDeUnJugador);
+        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());
+        System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+        System.out.println(partidaActual.obtenerPreguntaActual().obtenerOpciones());
         if(ultimoJugadorRespuesta()){
             if (juegoTermino()) {
 
@@ -52,6 +56,7 @@ public abstract class ControladorPreguntasJuego {
             contenedorPrincipal.setCentro(new VistaTurnoJugadorActual(stage, contenedorPrincipal, algoHoot));
 
         }
+
     }
 
     private void sumarPuntos(Respuesta respuestaJugador) {

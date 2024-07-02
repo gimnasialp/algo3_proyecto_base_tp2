@@ -20,7 +20,7 @@ public class CajaJugador extends HBox {
     private static final double ANCHO_CAJA = 200;
     private static final double ALTO_CAJA = 200;
 
-    public CajaJugador(Jugador jugador, String color) {
+    public CajaJugador(Jugador jugador) {
 
         Label labelNombreJugador = new Label(jugador.getNombre());
         labelNombreJugador.setFont(Font.font(Estilos.FUENTE, 30));
@@ -29,7 +29,7 @@ public class CajaJugador extends HBox {
 
         Label puntosJugador = new Label(String.valueOf(jugador.obtenerPuntaje()));
         puntosJugador.setFont(Font.font(Estilos.FUENTE, 25));
-        puntosJugador.setTextFill(Color.BLACK);
+        puntosJugador.setTextFill(Color.YELLOW);
 
         CajaModificadoresJugador cajaBonusJugador = new CajaModificadoresJugador(jugador);
 
