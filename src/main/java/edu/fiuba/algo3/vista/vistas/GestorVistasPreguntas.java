@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.vistas;
 
+import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.*;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
@@ -56,29 +57,29 @@ public class GestorVistasPreguntas {
     private static PreguntaMultipleChoiceClasico preguntaMultipleChoiceClasico;
     private static PreguntaVerdaderoFalsoClasico preguntaVerdaderoFalsoClasico;
 
-    public static StackPane CrearVistaDePregunta(Partida partidaActual, Stage stage, PantallaPrincipal contenedorPrincipal) {
+    public static StackPane CrearVistaDePregunta(AlgoHoot algoHoot, Stage stage, PantallaPrincipal contenedorPrincipal) {
         StackPane vistaPregunta = new StackPane();
 
-        if (partidaActual.obtenerPreguntaActual() instanceof PreguntaVerdaderoFalsoClasico) {
-            vistaPregunta = new VistaVFClasico(partidaActual, stage, contenedorPrincipal);
+        if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaVerdaderoFalsoClasico) {
+            //vistaPregunta = new VistaVFClasico(algoHoot.obtenerPartidaActiva(), stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaOrderedChoice) {
-            vistaPregunta = new VistaOrderedChoice(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaOrderedChoice) {
+            vistaPregunta = new VistaOrderedChoice(algoHoot, stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaGroupChoice) {
-            vistaPregunta = new VistaGroupChoice(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaGroupChoice) {
+            //vistaPregunta = new VistaGroupChoice(algoHoot, stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaMultipleChoiceClasico) {
-            vistaPregunta = new VistaMultipleChoiceClasico(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaMultipleChoiceClasico) {
+            //vistaPregunta = new VistaMultipleChoiceClasico(algoHoot, stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaMultipleChoiceConPenalidad) {
-            vistaPregunta = new VistaMultipleChoicePenalidad(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaMultipleChoiceConPenalidad) {
+            //vistaPregunta = new VistaMultipleChoicePenalidad(algoHoot, stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaMultipleChoiceParcial) {
-            vistaPregunta = new VistaMultipleChoiceParcial(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaMultipleChoiceParcial) {
+            //vistaPregunta = new VistaMultipleChoiceParcial(algoHoot, stage, contenedorPrincipal);
 
-        } else if (partidaActual.obtenerPreguntaActual() instanceof PreguntaVerdaderoFalsoConPenalidad) {
-            vistaPregunta = new VistaVFPenalidad(partidaActual, stage, contenedorPrincipal);
+        } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual()  instanceof PreguntaVerdaderoFalsoConPenalidad) {
+            //vistaPregunta = new VistaVFPenalidad(algoHoot, stage, contenedorPrincipal);
         }
 
         return vistaPregunta;

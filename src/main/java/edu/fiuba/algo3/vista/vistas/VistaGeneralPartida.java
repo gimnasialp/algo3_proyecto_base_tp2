@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorGeneralPartida;
+import edu.fiuba.algo3.controladores.ControladorPreguntasJuego;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Partida;
@@ -33,7 +34,6 @@ public class VistaGeneralPartida extends StackPane {
 
         configurarFondo();
         this.algoHoot = algoHoot;
-        algoHoot.proximaPartida();
         this.partidaActual = algoHoot.obtenerPartidaActiva();
 
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
@@ -115,7 +115,7 @@ public class VistaGeneralPartida extends StackPane {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
         BotonEmpezarTurnos botonEmpezarRondaTurnos = new BotonEmpezarTurnos
-                (new ControladorGeneralPartida(stage, pantallaPrincipal,algoHoot));
+                (new ControladorGeneralPartida(stage, pantallaPrincipal, algoHoot));
         botonConfirmado.getChildren().add(botonEmpezarRondaTurnos);
         return botonConfirmado;
     }

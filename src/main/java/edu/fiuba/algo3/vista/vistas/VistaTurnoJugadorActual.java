@@ -32,6 +32,7 @@ public class VistaTurnoJugadorActual extends StackPane {
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
         System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+        System.out.println(partidaActual.obtenerJugadorActivo().getNombre());
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
         VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
         VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
@@ -92,7 +93,7 @@ public class VistaTurnoJugadorActual extends StackPane {
     private VBox crearBotonPregunta(Stage stage, PantallaPrincipal pantallaPrincipal){
         VBox cajaBotonAccederPregunta = new VBox(ESPACIADO_CENTRAL);
         cajaBotonAccederPregunta.setAlignment(Pos.CENTER);
-        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage,pantallaPrincipal,partidaActual);
+        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage,pantallaPrincipal,algoHoot);
         cajaBotonAccederPregunta.getChildren().add(botonAccederPregunta);
         return cajaBotonAccederPregunta;
     }

@@ -63,6 +63,8 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         } else {
             crearAlgohoot(seleccion);
+            algoHoot.proximaPartida();
+            algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

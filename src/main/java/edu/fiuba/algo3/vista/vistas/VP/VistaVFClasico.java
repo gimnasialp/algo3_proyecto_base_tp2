@@ -61,13 +61,11 @@ public class VistaVFClasico extends StackPane {
         this.partida = partida;
 
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
-    /*   VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
-       VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
-       VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
+        VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
+        VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
-        grilla.add(botonModificador, 0, 1);
         grilla.add(CajaBotonPregunta, 0, 2);
-     */   grilla.setAlignment(Pos.CENTER);
+        grilla.setAlignment(Pos.CENTER);
         super.getChildren().add(grilla);
 
 

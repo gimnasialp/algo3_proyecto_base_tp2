@@ -13,18 +13,18 @@ public class ControladorAccederPregunta implements EventHandler<ActionEvent> {
 
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
-    private Partida partidaActual;
+    private AlgoHoot algoHoot;
 
-    public ControladorAccederPregunta(Stage stage, PantallaPrincipal pantallaPrincipal,Partida partidaActual) {
+    public ControladorAccederPregunta(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
-        this.partidaActual = partidaActual;
+        this.algoHoot = algoHoot;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        pantallaPrincipal.setCentro(GestorVistasPreguntas.CrearVistaDePregunta(partidaActual, stage, pantallaPrincipal));
+        pantallaPrincipal.setCentro(GestorVistasPreguntas.CrearVistaDePregunta(algoHoot, stage, pantallaPrincipal));
     }
 
 

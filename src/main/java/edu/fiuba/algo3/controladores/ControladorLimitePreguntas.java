@@ -60,6 +60,8 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.show();
         } else {
             crearAlgohoot(seleccion);
+            algoHoot.proximaPartida();
+            algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

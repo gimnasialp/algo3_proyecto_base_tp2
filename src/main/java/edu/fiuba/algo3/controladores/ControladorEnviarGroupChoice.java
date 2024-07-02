@@ -9,10 +9,11 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
-    private ArrayList<Integer> respuestaGrupoUno;
+//public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
+   /* private ArrayList<Integer> respuestaGrupoUno;
     private ArrayList<Integer> respuestaGrupoDos;
     private ArrayList<SpinnerGroupChoice> spinnerGrupos;
+
 
     public ControladorEnviarGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos, Stage stage, PantallaPrincipal contenedorPrincipal) {
         this.stage = stage;
@@ -34,4 +35,4 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
 
     public void agregarOpcionesSeleccionadas(ArrayList<SpinnerGroupChoice> spinnersGrupo) {
     }
-}
+}*/

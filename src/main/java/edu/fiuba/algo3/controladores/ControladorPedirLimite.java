@@ -35,15 +35,12 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
 
         } else {
 
-            Jugador jugador = new Jugador("Carlos");
-            jugador.asignarPuntos(50);
             switch (seleccion) {
                 case "Puntos":
-                    //pantallaPrincipal.setCentro(new VistaGanador(stage,pantallaPrincipal,jugador));
+                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage,pantallaPrincipal,jugadores));
                     break;
                 case "Cantidad de Preguntas":
                     pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
-                    //pantallaPrincipal.setCentro(new VistaGanador(stage, pantallaPrincipal,jugador));
                     break;
             }
 

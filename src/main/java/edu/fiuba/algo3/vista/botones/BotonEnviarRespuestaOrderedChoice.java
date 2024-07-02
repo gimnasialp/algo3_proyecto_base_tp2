@@ -30,7 +30,6 @@ public class BotonEnviarRespuestaOrderedChoice extends Button {
             opcionesOrden.add((SpinnerOrderedChoice) opcion);
         }
         controlador.agregarOpcionesSeleccionadas(opcionesOrden);
-        //controlador.agregarOpcionesCorrectas(opcionesCorrectas);
         super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
         Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.VERDE, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(0)));
         super.setBackground(unFondo);
