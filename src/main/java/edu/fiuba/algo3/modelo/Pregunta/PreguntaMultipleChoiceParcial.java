@@ -17,8 +17,6 @@ public class PreguntaMultipleChoiceParcial extends Pregunta{
     @Override
     public Resultado responder(ArrayList<Respuesta> respuestas) {
 
-        Resultado resultado = new Resultado();
-
         for (Respuesta respuesta: respuestas) {
 
             RespuestaMultipleChoiceParcial respuestaJugador = (RespuestaMultipleChoiceParcial) respuesta;
@@ -32,5 +30,11 @@ public class PreguntaMultipleChoiceParcial extends Pregunta{
 
         return resultado;
     }
+
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Multiple Choice Parcial";
+    }
+
 
 }

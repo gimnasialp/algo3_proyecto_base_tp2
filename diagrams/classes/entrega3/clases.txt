@@ -1,0 +1,297 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+interface ProveedorPreguntas {
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class ProveedorJsonPreguntas {
+-tiposPreguntas: HashMap<String, Parser>
++obtenerPreguntasDe(nombreProveedor: String): ArrayList<Pregunta>
+}
+
+class LectorPreguntasJson {
+-parseadores: HashMap<String, Parser>
++leerArchivo(reader: JsonReader): ArrayList<Pregunta>
++generarPreguntas(jsonArray: JsonArray): ArrayList<Pregunta>
+}
+
+abstract class Parser {
++parse(preguntaJson: JsonElement): Pregunta
++obtenerOpciones(JsonObject jsonObject): ArrayList<String>
++obtenerDatosDePregunta(JsonObject jsonObject): void
+}
+
+abstract class FabricaPreguntas {
++crearPregunta(parameters: Object...): Pregunta
+}
+
+class AlgoHoot{
+    -  Limite limite;
+    - Jugador jugadorActual;
+    - Pregunta preguntaActual;
+    - Partida partidaActual;
+    - int numeroPartida;
+ +public AlgoHoot(List<Jugador> jugadores, Limite limite);
+  - void iniciarPartidas();
+  +void proximaPartida();
+  -comprobarPartidaExistente();
+  + Partida obtenerPartidaActiva();
+}
+
+
+
+
+
+
+abstract class Limite{
+ + Limite(List<Pregunta> preguntas);
+  + Limite();
+  +abstract Pregunta preguntaNoLimitada(List<Jugador> jugador);
+  +Pregunta obtenerPreguntaSgte();
+  + int preguntasRestantesLimite();
+}
+Limite -->"n" Pregunta
+class LimitadorPorNumeroPreguntas{
+    +LimitadorPorNumeroPreguntas(int limitePreguntas,List<Pregunta> preguntasParaLimitar);
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores);
+}
+Limite <|-- LimitadorPorNumeroPreguntas
+
+class LimitadorPorPuntos{
+    -int posicionActualLista;
+    + LimitadorPorPuntos(List<Pregunta> preguntas);
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores);
+}
+Limite <|-- LimitadorPorPuntos
+
+class LimiteDecorator{
+    *protected Limite;
+    +LimiteDecorator(Limite decoratorLimite, List<Pregunta> preguntas);
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores);
+}
+Limite <|-- LimiteDecorator
+
+class LimiteFinalPreguntas {
+    +LimiteFinalPreguntas( List<Pregunta> preguntasParaLimitar);
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores);
+}
+Limite <|-- LimiteFinalPreguntas
+
+class PuntosDefinidosDecorator{
+    *protected Limite;
+    -int puntajeLimite;
+    +PuntosDefinidosDecorator(Limite decoratedLimite, List<Pregunta> preguntas, int puntajeLimite);
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores);
+    -boolean superaPuntajeLimite(List<Jugador> jugadores);
+}
+LimiteDecorator <|-- PuntosDefinidosDecorator
+
+
+class Jugador {
+-nombre: String
+-puntaje: Puntaje
++Jugador(String nombre)
++asignarPuntos(): void
++obtenerPuntaje(): int
++boolean tieneMasPuntosQue(Jugador otroJugador);
+-boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos);
++void aplicarNuevoMultiplicador(Modificador modificador);
++Modificador obtenerModificadorActual();
++ void resetearMultiplicador();
++obtenerRespuesta(): Respuesta
++obtenerModificador(): Modificador
++asignarPuntos(): void
++boolean modificadorUtilizado(Modificador modificador);
+}
+
+Jugador --> Puntaje
+Jugador --> "n" Modificador
+
+class Puntaje {
+-puntos: int
++asignarPuntos(int puntos): void
++obtenerPuntaje(): int
+}
+
+interface Modificador {
++{abstract} aplicar(ArrayList<Integer>\n puntajeRonda, int jugadorPosicion): void
+}
+
+class AnuladorDePuntaje {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+class MultiplicadorPorUno {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class ExclusividadDePuntaje {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class MultiplicadorPorDos {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class MultiplicadorPorTres {
++aplicar(ArrayList<Integer> puntajeRonda,\n int jugadorPosicion): void
+}
+
+class Resultado {
+-puntosRonda: ArrayList<Integer>
++agregarPuntaje(int puntos): void
++usarModificador(Modificador\n modificador, int jugadorPosicion): void
++obtenerPuntosDelJugador(int posicionJugador): int
++asignarPuntosALosJugadores(ArrayList<Jugador> jugadores): void
++List<Integer> obtenerPuntosDeJugadores();
+}
+
+abstract class Pregunta {
+    * int idPregunta;
+    * String tema;
+    * String texto;
+    * String enunciado;
+    * ArrayList<String> opciones;
+    * Respuesta respuestaCorrecta;
+    Pregunta(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones,
+                        String texto);
+    +abstract Resultado responder(ArrayList<Respuesta> respuestas);
+}
+class PreguntaGroupChoice {
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaOrderedChoice {
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoiceClasico{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoiceParcial{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaMultipleChoice\nConPenalidad{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaVerdaderoFalsoClasico{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+class PreguntaVerdaderoFalso\nConPenalidad{
++responder(ArrayList<Respuesta>:\n respuestas): Resultado
++mismoId(int id): boolean
+}
+
+interface Respuesta {
++{abstract}comparar(Respuesta\n respuesta): boolean
+}
+
+class RespuestaVerdaderoFalso {
+-respuesta: int
++comparar(Respuesta respuesta): boolean
+-evaluar(int unOpcion): boolean
+}
+
+class RespuestaMultipleChoiceClasico {
+-respuesta: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opciones): boolean
+}
+
+class RespuestaMultipleChoiceConPenalidad {
+-respuesta: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(int choice): boolean
++opcionesCorrectas(Respuesta respuesta): int
++opcionesIncorrectas(Respuesta respuesta): int
+}
+
+class RespuestaMultipleChoiceParcial {
+-respuesta: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(int choice): boolean
++opcionesCorrectas(Respuesta respuesta): int
+}
+
+class RespuestaOrderedChoice {
+-respuesta: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opciones): boolean
+}
+
+class RespuestaGroupChoice {
+-respuestaGrupoUno: ArrayList<Integer>
+-respuestaGrupoDos: ArrayList<Integer>
++comparar(Respuesta respuesta): boolean
+-evaluar(ArrayList<Integer> opcionesGrupoUno,\n ArrayList<Integer> opcionesGrupoDos): boolean
+}
+
+class Partida{
+    - int direccionListaJugador;
+    - Pregunta pregunta;
+    - List<Respuesta> respuestas;
+    - Jugador jugadorActivo;
+    - List<Jugador> jugadores = new ArrayList<>();
+    - Resultado resultado;
+    +Partida(Pregunta preguntaActual, List<Jugador> jugadores);
+    +void avanzoConSiguienteJugador();
+    -Jugador nuevoJugador();
+    +Jugador obtenerJugadorActivo();
+    +void agregarRespuesta(Respuesta respondeJugador);
+    -void actualizarPartidaEnJugadores();
+    -void evaluarRespuestasDePartidaActual();
+    -void void analisisMultiplicadores();
+    -Jugador jugadorConMasPuntos();
+    +void activaMultiplicador(Modificador multiplicador, Jugador jugadorDePartidaActiva);
+
+}
+
+AlgoHoot *-- "n" Partida
+/'-------------------------------------------------------------------'/
+
+AlgoHoot .left.> Limite
+
+AlgoHoot --> "n" Jugador
+
+ProveedorPreguntas <|.. ProveedorJsonPreguntas
+ProveedorJsonPreguntas ..> LectorPreguntasJson
+LectorPreguntasJson --> "*" Parser
+Parser --> FabricaPreguntas
+
+
+
+Pregunta <|-right- PreguntaMultipleChoiceClasico
+Pregunta <|-up- PreguntaMultipleChoiceParcial
+Pregunta <|-up- PreguntaMultipleChoice\nConPenalidad
+Pregunta <|-- PreguntaVerdaderoFalsoClasico
+Pregunta <|-- PreguntaVerdaderoFalso\nConPenalidad
+Pregunta <|-- PreguntaGroupChoice
+Pregunta <|-- PreguntaOrderedChoice
+Pregunta -up-> "1" Respuesta
+Pregunta .up.> Resultado
+
+Respuesta <|.up. RespuestaVerdaderoFalso
+Respuesta <|.up. RespuestaMultipleChoiceClasico
+Respuesta <|.up. RespuestaMultipleChoiceParcial
+Respuesta <|.up. RespuestaMultipleChoiceConPenalidad
+Respuesta <|.up. RespuestaOrderedChoice
+Respuesta <|.up. RespuestaGroupChoice
+
+Modificador <|.. AnuladorDePuntaje
+Modificador <|.. ExclusividadDePuntaje
+Modificador <|.. MultiplicadorPorDos
+Modificador <|.. MultiplicadorPorTres
+Modificador <|.. MultiplicadorPorUno
+
+@enduml

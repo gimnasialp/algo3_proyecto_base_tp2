@@ -15,11 +15,12 @@ public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
         this.pantallaPrincipal = pantallaPrincipal;
     }
 
-
-
     @Override
     public void handle(ActionEvent actionEvent) {
+
         pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores(stage,pantallaPrincipal));
+
     }
+
 
 }

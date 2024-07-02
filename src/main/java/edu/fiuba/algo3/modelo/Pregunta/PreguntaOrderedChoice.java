@@ -15,7 +15,6 @@ public class PreguntaOrderedChoice extends Pregunta {
 
     @Override
     public Resultado responder(ArrayList<Respuesta> respuestas) {
-        Resultado resultado = new Resultado();
 
         for (Respuesta respuesta: respuestas){
             int puntos = 0;
@@ -26,6 +25,11 @@ public class PreguntaOrderedChoice extends Pregunta {
         }
 
         return resultado;
+    }
+
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Ordered Choice";
     }
 
 }

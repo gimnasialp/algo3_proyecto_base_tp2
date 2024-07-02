@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 public class BotonInicio extends Button {
 
     public BotonInicio(EventHandler<ActionEvent> controlador){
-        super.setText("Iniciar partida");
+        super.setText("Iniciar juego");
         super.setFont(Font.font(Estilos.FUENTE, 30));
         super.setTextFill(Color.web(Estilos.BLANCO));
         super.setBorder(new Border(new BorderStroke(Color.web(Estilos.GRIS), BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));

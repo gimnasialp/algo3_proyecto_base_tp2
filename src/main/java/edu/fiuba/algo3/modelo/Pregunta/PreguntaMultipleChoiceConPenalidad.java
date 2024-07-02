@@ -18,8 +18,6 @@ public class PreguntaMultipleChoiceConPenalidad extends Pregunta {
     @Override
     public Resultado responder(ArrayList<Respuesta> respuestas) {
 
-        Resultado resultado = new Resultado();
-
         for (Respuesta respuesta: respuestas) {
 
             RespuestaMultipleChoiceConPenalidad respuestaJugador = (RespuestaMultipleChoiceConPenalidad) respuesta;
@@ -33,6 +31,11 @@ public class PreguntaMultipleChoiceConPenalidad extends Pregunta {
         }
 
         return resultado;
+    }
+
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Multiple Choice Con Penalidad";
     }
 
 

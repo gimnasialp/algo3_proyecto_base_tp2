@@ -16,8 +16,6 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
     @Override
     public Resultado responder(ArrayList<Respuesta> respuestas) {
 
-        Resultado resultado = new Resultado();
-
         for (Respuesta respuesta: respuestas) {
             int puntos = 0;
             if (respuesta.comparar(this.respuestaCorrecta)) {
@@ -27,6 +25,11 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
         }
 
         return resultado;
+    }
+
+    @Override
+    public String ObtenerTipoPregunta() {
+        return "Pregunta Multiple Choice Clasico";
     }
 
 }
