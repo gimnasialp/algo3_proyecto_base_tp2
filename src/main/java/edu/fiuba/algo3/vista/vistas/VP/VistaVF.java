@@ -5,10 +5,9 @@ import edu.fiuba.algo3.controladores.ControladorEnviarVFClasico;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaOrderedChoice;
-import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
 import javafx.geometry.Insets;
@@ -18,33 +17,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
-public class VistaVFClasico extends StackPane {
+public class VistaVF extends StackPane {
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
     private Partida partida;
-    private Pregunta pregunta;
+    private int opcionSeleccionada;
+    private ControladorEnviarVFClasico controladorEnviarVFClasico;
 
-    public VistaVFClasico(AlgoHoot algoHoot, Stage stagePrincipal, PantallaPrincipal pantallaPrincipal) {
+    public VistaVF(AlgoHoot algoHoot, Stage stagePrincipal, PantallaPrincipal pantallaPrincipal) {
         configurarFondo();
         this.partida = algoHoot.obtenerPartidaActiva();
 
-        Pregunta preguntaVF = algoHoot.obtenerpreguntas().stream().filter(p -> p.mismoId(3)).findFirst().get();
-        this.pregunta = preguntaVF;
-        ArrayList<String> opciones = partida.obtenerPreguntaActual().obtenerOpciones();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
 
-
-        // VBox cajaPregunta = crearContenedorPregunta(partida.obtenerPreguntaActual());
-        VBox cajaPregunta = crearContenedorPregunta(pregunta);
+        VBox cajaPregunta = crearContenedorPregunta(partida.obtenerPreguntaActual());
         VBox cajaInferior = armarRespuestas(algoHoot, stagePrincipal, pantallaPrincipal);
 
         grilla.add(cajaPregunta, 0, 0);
@@ -88,15 +79,18 @@ public class VistaVFClasico extends StackPane {
 
         Button botonFalso = new Button("Falso");
         botonFalso.setStyle("-fx-font-size: 35px;");
-
         botonVerdadero.setOnAction(e -> {
-            String textoBoton = botonVerdadero.getText();
-            ControladorEnviarVFClasico controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, textoBoton);
+            opcionSeleccionada = 1;
+            RespuestaVerdaderoFalso respuestaJugador = new RespuestaVerdaderoFalso(opcionSeleccionada);
+            this.controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, respuestaJugador);
+            controladorEnviarVFClasico.handle(e);
         });
 
         botonFalso.setOnAction(e -> {
-            String textoBoton = botonFalso.getText();
-            ControladorEnviarVFClasico controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, textoBoton);
+            opcionSeleccionada = 2;
+            RespuestaVerdaderoFalso respuestaJugador = new RespuestaVerdaderoFalso(opcionSeleccionada);
+            this.controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, respuestaJugador);
+            controladorEnviarVFClasico.handle(e);
 
         });
 
@@ -120,8 +114,8 @@ public class VistaVFClasico extends StackPane {
 
         cajaOpciones.setAlignment(Pos.TOP_LEFT);
         grillaOpciones.add(cajaOpciones, 1, 0);
-        //cajaPregunta.getChildren().add(new MensajePregunta(partida.obtenerPreguntaActual().obtenerEnunciado()));
-        cajaPregunta.getChildren().add(new MensajePregunta(pregunta.obtenerEnunciado()));
+        cajaPregunta.getChildren().add(new MensajePregunta(partida.obtenerPreguntaActual().obtenerEnunciado()));
+        //cajaPregunta.getChildren().add(new MensajePregunta(pregunta.obtenerEnunciado()));
         return cajaPregunta;
     }
 

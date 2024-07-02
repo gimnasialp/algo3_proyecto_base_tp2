@@ -38,9 +38,6 @@ public abstract class ControladorPreguntasJuego {
     protected void definirSiguienteVista(Respuesta respuestaDeUnJugador) {
         System.out.println(respuestaDeUnJugador);
         sumarPuntos(respuestaDeUnJugador);
-        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());
-        System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
-        System.out.println(partidaActual.obtenerPreguntaActual().obtenerOpciones());
         if(ultimoJugadorRespuesta()){
             if (juegoTermino()) {
 
@@ -48,13 +45,14 @@ public abstract class ControladorPreguntasJuego {
                 contenedorPrincipal.setCentro(new VistaGanador(stage, contenedorPrincipal, ganador));
             }else{
                 algoHoot.proximaPartida();
+                System.out.println("estamos en la ronda numero :"+ algoHoot.obtenerNumeroPartida());
+                System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
                 algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
                 contenedorPrincipal.setCentro(new VistaGeneralPartida(stage, contenedorPrincipal, algoHoot));
             }
         } else {
             algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             contenedorPrincipal.setCentro(new VistaTurnoJugadorActual(stage, contenedorPrincipal, algoHoot));
-
         }
 
     }

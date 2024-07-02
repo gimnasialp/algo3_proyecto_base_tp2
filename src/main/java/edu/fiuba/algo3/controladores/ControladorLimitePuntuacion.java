@@ -39,7 +39,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
         tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
         tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
-        tiposPreguntas.put("group choice", new GroupChoiceParser());
+        //tiposPreguntas.put("group choice", new GroupChoiceParser());
 
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
@@ -64,6 +64,8 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         } else {
             crearAlgohoot(seleccion);
+            System.out.println("estamos en la ronda numero :"+algoHoot.obtenerNumeroPartida());
+            System.out.println("Se seleccionaron" + seleccion + "Puntos");
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

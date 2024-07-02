@@ -13,6 +13,7 @@ public class MensajePregunta extends Label {
         super.setFont(Font.font(Estilos.FUENTE,20));
         super.setTextFill(Color.YELLOW);
         super.setTextAlignment(TextAlignment.CENTER);
+        super.prefWidth(200);
         super.setWrapText(true);
     }
 

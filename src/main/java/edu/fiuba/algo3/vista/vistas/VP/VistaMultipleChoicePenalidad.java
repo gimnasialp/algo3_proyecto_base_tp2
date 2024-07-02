@@ -1,43 +1,61 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
+import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoice;
+import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoicePenalidad;
 import edu.fiuba.algo3.controladores.ControladorEnviarOrderedChoice;
 import edu.fiuba.algo3.modelo.AlgoHoot;
+import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Partida.Partida;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaMultipleChoice;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaOrderedChoice;
+import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoice;
+import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoicePenalidad;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VistaMultipleChoicePenalidad extends StackPane {
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
+    private Pregunta pregunta;
+    private Partida partida;
 
     public VistaMultipleChoicePenalidad(AlgoHoot algoHoot, Stage stagePrincipal, PantallaPrincipal pantallaPrincipal) {
         configurarFondo();
-        ControladorEnviarOrderedChoice controladorRespondioUsuario = new ControladorEnviarOrderedChoice(stagePrincipal, pantallaPrincipal, algoHoot);
-        ArrayList<String> opciones = algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerOpciones();
+        this.partida = algoHoot.obtenerPartidaActiva();
+
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
-        //GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
 
-        VBox cajaPregunta = new VBox(30);
+        VBox cajaPregunta = crearContenedorPregunta(partida.obtenerPreguntaActual());
         cajaPregunta.setPrefWidth(600);
-        cajaPregunta.setAlignment(Pos.CENTER);
+        cajaPregunta.setAlignment(Pos.TOP_CENTER);
 
-        VBox cajaOpciones = armarPregunta(cajaPregunta, controladorRespondioUsuario, opciones, algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerEnunciado());
+        ControladorEnviarMultipleChoicePenalidad controladorRespondioUsuario = new ControladorEnviarMultipleChoicePenalidad(stagePrincipal, pantallaPrincipal, algoHoot);
+
+
+        VBox cajaOpciones = armarOpciones(cajaPregunta,partida.obtenerPreguntaActual(), controladorRespondioUsuario);
 
 
         VBox cajaInferior = new VBox();
-        BotonEnviarRespuestaOrderedChoice botonEnviar = new BotonEnviarRespuestaOrderedChoice(controladorRespondioUsuario, cajaOpciones);
+        BotonEnviarRespuestaMultipleChoice botonEnviar = new BotonEnviarRespuestaMultipleChoice(controladorRespondioUsuario);
         cajaInferior.getChildren().add(botonEnviar);
         cajaInferior.setAlignment(Pos.CENTER);
 
@@ -47,24 +65,58 @@ public class VistaMultipleChoicePenalidad extends StackPane {
 
     }
 
-    private VBox armarPregunta(VBox cajaPregunta, ControladorEnviarOrderedChoice controlador, ArrayList<String> opciones, String textoPregunta) {
 
-        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(220, 380);
+    private VBox crearContenedorPregunta(Pregunta preguntaActual) {
+
+        VBox contenedorPregunta = new VBox(ESPACIADO_CENTRAL);
+        contenedorPregunta.setAlignment(Pos.TOP_CENTER);
+
+        StackPane contenedor = new StackPane();
+        contenedor.setPadding(new Insets(20)); // Ajusta el padding según sea necesario
+        contenedor.setStyle("-fx-background-color: #9370DB; -fx-background-radius: 5px;");
+
+        VBox vboxContenido = new VBox(20);
+        vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
+        vboxContenido.setPadding(new Insets(10));
+        MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
+        Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
+
+        Tooltip tooltip = new Tooltip(mensajePregunta.getText());
+        Tooltip.install(this, tooltip);
+
+        tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
+        tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
+        vboxContenido.getChildren().addAll(tipoPreguntaActual);
+
+        // Añadir HBox interno al contenedor con fondo
+        contenedor.getChildren().add(vboxContenido);
+
+        // Añadir el contenedor al VBox principal
+        contenedorPregunta.getChildren().add(contenedor);
+
+
+        return contenedorPregunta;
+    }
+
+
+    private VBox armarOpciones(VBox cajaPregunta, Pregunta pregunta, ControladorEnviarMultipleChoicePenalidad controlador) {
+
+        ArrayList<String> opciones = pregunta.obtenerOpciones();
+
+        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250,350);
         grillaOpciones.setAlignment(Pos.CENTER);
+        VBox cajaOpciones = new VBox(20);
 
-        VBox cajaOpciones = new VBox(5);
 
-        for (String opcion : opciones) {
-            SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(), controlador);
-            opcionOrdenable.setAlignment(Pos.CENTER_LEFT);
-            cajaOpciones.getChildren().add(opcionOrdenable);
+        for (int i = 0; i < opciones.size(); i++) {
+            String opcion = opciones.get(i);
+            BotonOpcionMultipleChoicePenalidad boton = new BotonOpcionMultipleChoicePenalidad(opcion, i, controlador);
+            cajaOpciones.getChildren().add(boton);
         }
 
-        cajaOpciones.setAlignment(Pos.TOP_LEFT);
-        grillaOpciones.add(cajaOpciones, 1, 0);
-        cajaPregunta.getChildren().add(new MensajePregunta(textoPregunta));
+        grillaOpciones.add(cajaOpciones,0,1);
         cajaPregunta.getChildren().add(grillaOpciones);
-        return cajaOpciones;
+        return cajaPregunta;
     }
 
     private void configurarFondo() {

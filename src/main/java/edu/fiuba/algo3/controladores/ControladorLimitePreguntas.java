@@ -62,6 +62,8 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.show();
         } else {
             crearAlgohoot(seleccion);
+            System.out.println("estamos en la ronda numero :"+algoHoot.obtenerNumeroPartida());
+            System.out.println("Se seleccionaron" + seleccion + "Preguntas");
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
 
         }

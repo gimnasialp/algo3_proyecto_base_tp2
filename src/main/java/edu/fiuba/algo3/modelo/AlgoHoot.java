@@ -58,4 +58,7 @@ public class AlgoHoot {
     public List<Pregunta> obtenerpreguntas() {
         return limite.getPreguntas();
     }
+    public int obtenerNumeroPartida() {
+        return numeroPartida;
+    }
 }

@@ -32,9 +32,8 @@ public class VistaOrderedChoice extends StackPane {
         ControladorEnviarOrderedChoice controladorRespondioUsuario = new ControladorEnviarOrderedChoice(stagePrincipal, pantallaPrincipal, algoHoot);
         ArrayList<String> opciones = algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerOpciones();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
-        //GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
 
-        VBox cajaPregunta = new VBox(30);
+        VBox cajaPregunta = new VBox(15);
         cajaPregunta.setPrefWidth(600);
         cajaPregunta.setAlignment(Pos.CENTER);
 
@@ -61,13 +60,15 @@ public class VistaOrderedChoice extends StackPane {
 
         for (String opcion : opciones) {
             SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(), controlador);
-            opcionOrdenable.setAlignment(Pos.CENTER_LEFT);
+            opcionOrdenable.setAlignment(Pos.CENTER);
             cajaOpciones.getChildren().add(opcionOrdenable);
         }
 
         cajaOpciones.setAlignment(Pos.TOP_LEFT);
         grillaOpciones.add(cajaOpciones, 1, 0);
-        cajaPregunta.getChildren().add(new MensajePregunta(textoPregunta));
+        MensajePregunta mensajePregunta = new MensajePregunta(textoPregunta);
+        mensajePregunta.setAlignment(Pos.CENTER);
+        cajaPregunta.getChildren().add(mensajePregunta);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaOpciones;
     }
