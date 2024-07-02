@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de la clase Limite
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+class AlgoHoot{
+    +comenzarPartida():void;
+}
+interface Limite{
+    +terminar():void;
+}
+class LimitePuntaje{
+    -puntaje:int
+    +LimitePuntaje(puntajeLimite: int);
+    +terminar():void;
+}
+class LimitePreguntas{
+    -cantidadPrguntas:int
+    +LimitePuntas(int limitePreguntas)
+    +terminar():void
+}
+class Lector{
+    +generarPreguntas():ArrayList<Pregunta>
+}
+class Jugador{
+    -nombre:String
+    +Jugador(String nombre)
+    +obtenerRespuesta():Respuesta
+    +obtenerModificador():Modificacdor;
+    +asignarPUntos():void
+    +obtenerPuntaje():int
+
+}
+class Ronda{
+    +Ronda(Pregunta pregunta, ArrayList<Jugador> jugadores);
+    +jugarRonda():void
+}
+Limite <|.up. LimitePuntaje
+Limite <|.. LimitePreguntas
+AlgoHoot .left.> Limite
+AlgoHoot ..> Jugador
+AlgoHoot .right.> Lector
+AlgoHoot .up.> Ronda
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+title testDosJugadoresJueganAlgoHootYGanaUnoDeEllos
+skinparam monochrome true
+hide footbox
+participant TestCase
+participant "algo:AlgoHoot" as algoHoot
+participant "jugador1:Jugador" as jugador1
+participant "jugador2:Juegador" as jugador2
+participant "tipoDePregunta:HashMap" as tipoDePregunta
+participant "respuesta:RespuestaVerdaderoFalso" as respuesta
+@endluml
