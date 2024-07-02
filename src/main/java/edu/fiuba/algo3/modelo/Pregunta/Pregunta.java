@@ -16,41 +16,44 @@ public abstract class Pregunta {
     protected Resultado resultado;
 
     protected Pregunta(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones,
-                    String texto){
+                       String texto) {
         this.idPregunta = idPregunta;
         this.tema = tema;
         this.enunciado = enunciado;
         this.respuestaCorrecta = respuestaCorrecta;
         this.opciones = opciones;
         this.texto = texto;
-        this.resultado= new Resultado();
+        this.resultado = new Resultado();
 
     }
 
     public abstract Resultado responder(ArrayList<Respuesta> respuestas);
 
 
-
     public boolean mismoId(int id) {
         return (id == idPregunta);
     }
 
-    public String obtenerTema(){
+    public String obtenerTema() {
         return tema;
     }
 
     public int obtenerIdPregunta() {
         return idPregunta;
     }
+
     public String obtenerTextoRepuesta() {
         return texto;
     }
+
     public String obtenerEnunciado() {
         return enunciado;
     }
+
     public ArrayList<String> obtenerOpciones() {
         return opciones;
     }
+
     public abstract String ObtenerTipoPregunta();
 
     @Override

@@ -53,7 +53,8 @@ public class SpinnerOrderedChoice extends HBox {
         return spinner.getValue();
     }
 
-    public String getEnunciadoOpcion() {
-        return label.getText();
+    public Integer getValue() {
+        return spinner.getValue();
     }
+
 }

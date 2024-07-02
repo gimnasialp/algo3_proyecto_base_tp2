@@ -32,7 +32,7 @@ public class VistaOrderedChoice extends StackPane {
         this.stage = stagePrincipal;
         configurarFondo();
         ControladorEnviarOrderedChoice controladorRespondioUsuario = new ControladorEnviarOrderedChoice(stage, pantallaPrincipal, partidaActual);
-        ArrayList<String> opcionesCorrectas = partidaActual.obtenerPreguntaActual().obtenerOpciones();
+        ArrayList<String> opciones = partidaActual.obtenerPreguntaActual().obtenerOpciones();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         //GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
 
@@ -40,12 +40,12 @@ public class VistaOrderedChoice extends StackPane {
         cajaPregunta.setPrefWidth(600);
         cajaPregunta.setAlignment(Pos.CENTER);
 
-        VBox cajaOpciones = armarPregunta(cajaPregunta, controladorRespondioUsuario, opcionesCorrectas, partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+        VBox cajaOpciones = armarPregunta(cajaPregunta, controladorRespondioUsuario, opciones, partidaActual.obtenerPreguntaActual().obtenerEnunciado());
 
 
         VBox cajaInferior = new VBox();
-        //BotonEnviarRespuestaOrderedChoice botonEnviar = new BotonEnviarRespuestaOrderedChoice(controladorRespondioUsuario, cajaOpciones, opcionesCorrectas);
-       // cajaInferior.getChildren().add(botonEnviar);
+        BotonEnviarRespuestaOrderedChoice botonEnviar = new BotonEnviarRespuestaOrderedChoice(controladorRespondioUsuario, cajaOpciones);
+        cajaInferior.getChildren().add(botonEnviar);
         cajaInferior.setAlignment(Pos.CENTER);
 
         grilla.add(cajaPregunta, 0, 1);
