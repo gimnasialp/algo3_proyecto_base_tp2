@@ -56,4 +56,7 @@ public abstract class Limite {
         return preguntas.size();
     }
 
+    public List<Pregunta> getPreguntas() {
+        return preguntas;
+    }
 }

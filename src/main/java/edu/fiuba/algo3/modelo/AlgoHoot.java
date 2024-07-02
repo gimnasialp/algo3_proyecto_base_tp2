@@ -55,5 +55,7 @@ public class AlgoHoot {
     public Partida obtenerPartidaActiva() {
         return partidaActual;
     }
-
+    public List<Pregunta> obtenerpreguntas() {
+        return limite.getPreguntas();
+    }
 }
