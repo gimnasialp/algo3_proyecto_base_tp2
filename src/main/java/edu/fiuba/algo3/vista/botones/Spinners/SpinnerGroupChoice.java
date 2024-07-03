@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.botones.Spinners;
 
 import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarGroupChoice;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -24,7 +25,7 @@ public class SpinnerGroupChoice extends HBox {
     private final Spinner<String> spinner;
 
 
-    public SpinnerGroupChoice(ArrayList<String> nombresGrupos, String opcion/*,/* ControladorEnviarGroupChoice controlador*/) {
+    public SpinnerGroupChoice(ArrayList<String> nombresGrupos, String opcion, ControladorEnviarGroupChoice controlador) {
 
 
         ObservableList<String> nombresGruposPosibles = FXCollections.observableArrayList();

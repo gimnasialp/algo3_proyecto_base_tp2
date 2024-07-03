@@ -40,11 +40,9 @@ public abstract class ControladorPreguntasJuego {
         sumarPuntos(respuestaDeUnJugador);
         if(ultimoJugadorRespuesta()){
             if (juegoTermino()) {
-
                 Jugador ganador = algoHoot.obtenerPartidaActiva().jugadorConMasPuntos();
                 contenedorPrincipal.setCentro(new VistaGanador(stage, contenedorPrincipal, ganador));
             }else{
-                algoHoot.proximaPartida();
                 System.out.println("estamos en la ronda numero :"+ algoHoot.obtenerNumeroPartida());
                 System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
                 algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();

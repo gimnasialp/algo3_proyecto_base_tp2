@@ -20,7 +20,7 @@ public class GestorVistasPreguntas {
             vistaPregunta = new VistaOrderedChoice(algoHoot, stage, contenedorPrincipal);
 
         } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaGroupChoice) {
-            //vistaPregunta = new VistaGroupChoice(algoHoot, stage, contenedorPrincipal);
+            vistaPregunta = new VistaGroupChoice(algoHoot, stage, contenedorPrincipal);
 
         } else if (algoHoot.obtenerPartidaActiva().obtenerPreguntaActual() instanceof PreguntaMultipleChoiceClasico) {
             vistaPregunta = new VistaMultipleChoiceClasico(algoHoot, stage, contenedorPrincipal);

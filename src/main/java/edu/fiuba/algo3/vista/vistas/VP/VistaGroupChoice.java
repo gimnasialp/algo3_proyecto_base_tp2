@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
 import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarGroupChoice;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaGroupChoice;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaGroupChoice;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerGroupChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
@@ -95,11 +97,11 @@ public class VistaGroupChoice extends StackPane {
         VBox cajaOpciones = new VBox(10);
         cajaOpciones.setAlignment(Pos.CENTER);
         ////Manejo ddatos de la pregunta//
-        /*ControladorEnviarGroupChoice controladorRespondioUsuario = new ControladorEnviarGroupChoice(
+        ControladorEnviarGroupChoice controladorRespondioUsuario = new ControladorEnviarGroupChoice(
                 preguntaGroupChoice.consultarGruposPregunta(),
                 stage,
                 pantallaPrincipal,
-                algoHoot);*/
+                algoHoot);
 
         StackPane contenedor = new StackPane();
         contenedor.setPadding(new Insets(30)); // Ajusta el padding según sea necesario
@@ -109,16 +111,16 @@ public class VistaGroupChoice extends StackPane {
         grillaOpciones.setAlignment(Pos.CENTER);
 
         for (String opcion : preguntaGroupChoice.obtenerOpciones()) {
-            //SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion, controladorRespondioUsuario);
-            //boton.setAlignment(Pos.CENTER_LEFT);
-            //cajaOpciones.getChildren().add(boton);
+            SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion, controladorRespondioUsuario);
+            boton.setAlignment(Pos.CENTER_LEFT);
+            cajaOpciones.getChildren().add(boton);
         }
         cajaOpciones.setAlignment(Pos.TOP_LEFT);
         contenedor.getChildren().add(cajaOpciones);
         grillaOpciones.add(cajaOpciones, 0, 0);
-        //BotonEnviarRespuestaGroupChoice botonEnviar = new BotonEnviarRespuestaGroupChoice(controladorRespondioUsuario, cajaOpciones);
-        //botonEnviar.setAlignment(Pos.CENTER_LEFT);
-        //cajaOpciones.getChildren().add(botonEnviar);
+        BotonEnviarRespuestaGroupChoice botonEnviar = new BotonEnviarRespuestaGroupChoice(controladorRespondioUsuario, cajaOpciones);
+        botonEnviar.setAlignment(Pos.CENTER_LEFT);
+        cajaOpciones.getChildren().add(botonEnviar);
         return cajaOpciones;
     }
     private void crearBoton(){

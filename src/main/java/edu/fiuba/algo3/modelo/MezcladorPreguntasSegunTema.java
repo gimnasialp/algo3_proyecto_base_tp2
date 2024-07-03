@@ -42,7 +42,6 @@ public class MezcladorPreguntasSegunTema implements MezcladorPreguntas {
             this.preguntas.remove(proximaPregunta);
             ultimaPregunta = proximaPregunta;
         }
-
         return preguntasMezcladas;
     }
 }
