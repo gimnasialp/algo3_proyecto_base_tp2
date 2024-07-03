@@ -41,17 +41,17 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
         tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
         tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
-        tiposPreguntas.put("group choice", new GroupChoiceParser());
+        //tiposPreguntas.put("group choice", new GroupChoiceParser());
 
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
         //Las sig 2 lineas son para mezclar las preguntas de la lista
-        MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
-        ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
+        //MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
+        //ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
 
-        //Limite limite = new LimiteFinalPreguntas(preguntas);
-        Limite limite = new LimiteFinalPreguntas(preguntasMezcladas);
+        Limite limite = new LimiteFinalPreguntas(preguntas);
+        //Limite limite = new LimiteFinalPreguntas(preguntasMezcladas);
         AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
         algoHoot.proximaPartida();
         algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();

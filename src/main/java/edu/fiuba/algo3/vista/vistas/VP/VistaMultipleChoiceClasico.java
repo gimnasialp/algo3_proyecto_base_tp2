@@ -16,6 +16,7 @@ import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -74,6 +75,8 @@ public class VistaMultipleChoiceClasico extends StackPane {
         vboxContenido.setPadding(new Insets(10));
         MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
         Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
+        Tooltip tooltip = new Tooltip(mensajePregunta.getText());
+        Tooltip.install(this, tooltip);
         tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
         tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
         vboxContenido.getChildren().addAll(tipoPreguntaActual);

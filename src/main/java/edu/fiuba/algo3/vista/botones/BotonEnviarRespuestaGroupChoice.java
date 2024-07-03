@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vista.botones;
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorActivarBoton;
 import edu.fiuba.algo3.controladores.ControladorDesactivarBoton;
-import edu.fiuba.algo3.controladores.ControladorEnviarGroupChoice;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerGroupChoice;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
-
+/*
 public class BotonEnviarRespuestaGroupChoice extends Button {
 
     public BotonEnviarRespuestaGroupChoice(ControladorEnviarGroupChoice controlador, VBox cajaOpciones) {
@@ -38,4 +37,4 @@ public class BotonEnviarRespuestaGroupChoice extends Button {
         super.setOnMouseEntered(new ControladorActivarBoton(this, Estilos.VERDE));
         super.setOnMouseExited(new ControladorDesactivarBoton(this, Estilos.VERDE));
     }
-}
+}*/

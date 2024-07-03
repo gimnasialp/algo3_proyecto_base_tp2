@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
@@ -22,12 +21,15 @@ public class ControladorEnviarOrderedChoice extends ControladorPreguntasJuego im
         this.opcionesJugador = new ArrayList<>();
     }
 
+
     public void agregarOpcionesSeleccionadas(ArrayList<SpinnerOrderedChoice> opciones) {
         opcionesVista = opciones;
         for (SpinnerOrderedChoice spinner : opcionesVista) {
-            opcionesJugador.add(spinner.getValue()); // Obtener el valor seleccionado del Spinner y agregarlo a la lista
+            Integer valorSeleccionado = spinner.getValue();
+            opcionesJugador.add(valorSeleccionado); // Obtener el valor seleccionado del Spinner y agregarlo a la lista
         }
     }
+
 
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -37,6 +39,9 @@ public class ControladorEnviarOrderedChoice extends ControladorPreguntasJuego im
             repiteoOrden.setContentText("Se deben elegir posiciones de orden distintas para cada opcion!");
             repiteoOrden.show();
         } else {
+            System.out.println("Estas son las opciones del jugador" + opcionesJugador);
+            System.out.println("estas son las opciones" + algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerOpciones());
+            System.out.println("estas son las opciones" + algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerOpciones());
             RespuestaOrderedChoice respuestaDeUnJugador = new RespuestaOrderedChoice(opcionesJugador);
             definirSiguienteVista(respuestaDeUnJugador);
         }

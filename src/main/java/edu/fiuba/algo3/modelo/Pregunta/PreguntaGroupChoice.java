@@ -41,4 +41,5 @@ public class PreguntaGroupChoice extends Pregunta {
     public ArrayList<String> consultarGruposPregunta() {
         return grupos;
     }
+
 }

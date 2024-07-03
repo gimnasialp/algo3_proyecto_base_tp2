@@ -35,7 +35,6 @@ public class ControladorEnviarMultipleChoiceParcial extends ControladorPreguntas
             noRespondio.setContentText("Debe responder como mínimo una opción!");
             noRespondio.show();
         } else {
-            System.out.println(opcionesSeleccionadas);
             RespuestaMultipleChoiceConPenalidad respuestaDeUnJugador = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(opcionesSeleccionadas));
             definirSiguienteVista(respuestaDeUnJugador);
         }

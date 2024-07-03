@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controladores.ControladorPedirNombreJugadores;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaOrderedChoice;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
@@ -26,18 +27,23 @@ public class VistaOrderedChoice extends StackPane {
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
     private static final double ESPACIADO_CENTRAL = 40;
+    private Partida partida;
+    private PreguntaOrderedChoice preguntaOrderedChoice;
 
     public VistaOrderedChoice(AlgoHoot algoHoot, Stage stagePrincipal, PantallaPrincipal pantallaPrincipal) {
         configurarFondo();
+        partida = algoHoot.obtenerPartidaActiva();
+        preguntaOrderedChoice = (PreguntaOrderedChoice) partida.obtenerPreguntaActual();
+
         ControladorEnviarOrderedChoice controladorRespondioUsuario = new ControladorEnviarOrderedChoice(stagePrincipal, pantallaPrincipal, algoHoot);
-        ArrayList<String> opciones = algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerOpciones();
+        ArrayList<String> opciones = preguntaOrderedChoice.obtenerOpciones();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
 
         VBox cajaPregunta = new VBox(15);
         cajaPregunta.setPrefWidth(600);
         cajaPregunta.setAlignment(Pos.CENTER);
 
-        VBox cajaOpciones = armarPregunta(cajaPregunta, controladorRespondioUsuario, opciones, algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerEnunciado());
+        VBox cajaOpciones = armarPregunta(cajaPregunta, controladorRespondioUsuario, opciones, preguntaOrderedChoice.obtenerEnunciado());
 
 
         VBox cajaInferior = new VBox();
