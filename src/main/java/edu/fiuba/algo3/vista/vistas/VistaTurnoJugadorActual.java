@@ -91,75 +91,87 @@ public class VistaTurnoJugadorActual extends VistaDinamicaJuego {
 
     private VBox crearCajaModificadores(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox cajaModificadores = new VBox(ESPACIADO_CENTRAL);
-        cajaModificadores.setAlignment(Pos.CENTER);
+        HBox hbox = agregarModificadores();
+        if (!(hbox.getChildren().isEmpty())) {
+            cajaModificadores.setAlignment(Pos.CENTER);
 
-        StackPane contenedor = new StackPane();
-        contenedor.setPadding(new Insets(7)); // Ajusta el padding según sea necesario
-        contenedor.setStyle("-fx-background-color: #9370DB; -fx-background-radius: 5px;");
+            StackPane contenedor = new StackPane();
+            contenedor.setPadding(new Insets(7)); // Ajusta el padding según sea necesario
+            contenedor.setStyle("-fx-background-color: #9370DB; -fx-background-radius: 5px;");
 
-        /*VBox vboxContenido = new VBox(7); // HBox para alinear el label y el textfield horizontalmente
-        vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
-        vboxContenido.setPadding(new Insets(10));*/
-
-        HBox hboxUno = new HBox(25); // HBox para alinear 2 modificadores horizontalmente
-        hboxUno.setAlignment(Pos.CENTER); // Alinear arriba y al centro
-        hboxUno.setPadding(new Insets(5));
-
-        /*HBox hboxDos = new HBox(50); // HBox para alinear
-        hboxDos.setAlignment(Pos.CENTER); // Alinear abajo y al centro
-        hboxDos.setPadding(new Insets(5));*/
-
-        this.agregarModificadores(hboxUno);
-
-        String nombreModificador;
-
-        MultiplicarPorDos multiplicarPorDos = new MultiplicarPorDos();
-        nombreModificador = "Usar Multiplicador x"+multiplicarPorDos.consultarValor();
-        VBox botonMultiplicadorPorDos = crearBoton(nombreModificador);
-
-        MultiplicarPorTres multiplicarPorTres = new MultiplicarPorTres();
-        nombreModificador = "Usar Multiplicador x"+multiplicarPorTres.consultarValor();
-        VBox botonMultiplicadorPorTres = crearBoton(nombreModificador);
-
-        ExclusividadDePuntaje exclusividadDePuntaje = new ExclusividadDePuntaje();
-        nombreModificador = "Usar Exclusividad de puntaje";
-        VBox botonExclusividad = crearBoton(nombreModificador);
-
-        AnuladorDePuntaje anuladorDePuntaje = new AnuladorDePuntaje();
-        nombreModificador = "Usar Anulador de puntaje";
-        VBox botonAnulador = crearBoton(nombreModificador);
+            /*VBox vboxContenido = new VBox(7); // HBox para alinear el label y el textfield horizontalmente
+            vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
+            vboxContenido.setPadding(new Insets(10));*/
 
 
-        hboxUno.getChildren().addAll(botonMultiplicadorPorDos, botonMultiplicadorPorTres);
-        //hboxDos.getChildren().addAll(botonExclusividad, botonAnulador);
+            /*HBox hboxDos = new HBox(50); // HBox para alinear
+            hboxDos.setAlignment(Pos.CENTER); // Alinear abajo y al centro
+            hboxDos.setPadding(new Insets(5));*/
 
-        //vboxContenido.getChildren().addAll(hboxUno, hboxDos);
+            /*String nombreModificador;
 
-        // Añadir HBox interno al contenedor con fondo
-        //contenedor.getChildren().add(vboxContenido);
+            MultiplicarPorDos multiplicarPorDos = new MultiplicarPorDos();
+            nombreModificador = "Usar Multiplicador x"+multiplicarPorDos.consultarValor();
+            VBox botonMultiplicadorPorDos = crearBoton(nombreModificador);
 
-        // Añadir el contenedor al VBox principal
-        cajaModificadores.getChildren().add(contenedor);
+            MultiplicarPorTres multiplicarPorTres = new MultiplicarPorTres();
+            nombreModificador = "Usar Multiplicador x"+multiplicarPorTres.consultarValor();
+            VBox botonMultiplicadorPorTres = crearBoton(nombreModificador);
 
+            ExclusividadDePuntaje exclusividadDePuntaje = new ExclusividadDePuntaje();
+            nombreModificador = "Usar Exclusividad de puntaje";
+            VBox botonExclusividad = crearBoton(nombreModificador);
+
+            AnuladorDePuntaje anuladorDePuntaje = new AnuladorDePuntaje();
+            nombreModificador = "Usar Anulador de puntaje";
+            VBox botonAnulador = crearBoton(nombreModificador);*/
+
+
+            //hboxUno.getChildren().addAll(botonMultiplicadorPorDos, botonMultiplicadorPorTres);
+            //hboxDos.getChildren().addAll(botonExclusividad, botonAnulador);
+
+            //vboxContenido.getChildren().addAll(hboxUno, hboxDos);
+
+            // Añadir HBox interno al contenedor con fondo
+            //contenedor.getChildren().add(vboxContenido);
+
+            contenedor.getChildren().add(hbox);
+
+            // Añadir el contenedor al VBox principal
+            cajaModificadores.getChildren().add(contenedor);
+        }
         return cajaModificadores;
     }
 
-    private void agregarModificadores(HBox hBox) {
+    private HBox agregarModificadores() {
+        HBox hbox = new HBox(25); // HBox para alinear 2 modificadores horizontalmente
+        hbox.setAlignment(Pos.CENTER); // Alinear arriba y al centro
+        hbox.setPadding(new Insets(5));
         Jugador jugadorActivo = this.partidaActual.obtenerJugadorActivo();
         String nombreModificador;
         if (esPreguntaConPenalidad()) {
             for (Multiplicador multiplicador :jugadorActivo.obtenerMultiplicadoresDisponibles()) {
                 nombreModificador = "Usar Multiplicador x"+multiplicador.consultarValor();
                 VBox botonMultiplicador = crearBoton(nombreModificador);
-                hBox.getChildren().add(botonMultiplicador);
+                hbox.getChildren().add(botonMultiplicador);
             }
         }
         else {
             Modificador exclusividad = new ExclusividadDePuntaje();
-            if (exclusividad)
-            nombreModificador = "Usar exclusividad de puntaje";
+            if (jugadorActivo.habilitado(exclusividad)) {
+                nombreModificador = "Usar exclusividad de puntaje";
+                VBox botonExclusividad = crearBoton(nombreModificador);
+                hbox.getChildren().add(botonExclusividad);
+            }
+        }
+        Modificador anulador = new AnuladorDePuntaje();
+        if (jugadorActivo.habilitado(anulador)) {
+            nombreModificador = "Usar anulador de puntaje";
+            VBox botonAnulador = crearBoton(nombreModificador);
+            hbox.getChildren().add(botonAnulador);
         }
 
+        return hbox;
     }
 
     private boolean esPreguntaConPenalidad() {
