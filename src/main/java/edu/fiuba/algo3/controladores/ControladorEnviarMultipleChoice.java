@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

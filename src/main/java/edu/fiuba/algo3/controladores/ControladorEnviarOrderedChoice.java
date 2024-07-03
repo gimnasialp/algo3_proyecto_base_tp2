@@ -21,15 +21,14 @@ public class ControladorEnviarOrderedChoice extends ControladorPreguntasJuego im
         this.opcionesJugador = new ArrayList<>();
     }
 
-
     public void agregarOpcionesSeleccionadas(ArrayList<SpinnerOrderedChoice> opciones) {
         opcionesVista = opciones;
+        opcionesJugador.clear();
         for (SpinnerOrderedChoice spinner : opcionesVista) {
-            Integer valorSeleccionado = spinner.getValue();
+            Integer valorSeleccionado = spinner.getNumeroOrden();
             opcionesJugador.add(valorSeleccionado); // Obtener el valor seleccionado del Spinner y agregarlo a la lista
         }
     }
-
 
     @Override
     public void handle(ActionEvent actionEvent) {

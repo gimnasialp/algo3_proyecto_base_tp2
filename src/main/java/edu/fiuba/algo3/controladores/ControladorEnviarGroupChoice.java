@@ -10,40 +10,59 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-/*public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
-    private final HashMap<String, ArrayList<String>> respuestasUsuario;
-    ArrayList<SpinnerGroupChoice> spinnerGrupos;
-    private final ArrayList<String> nombresGrupo;
+public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
+    private List<String> nombresGrupos;
+    private List<String> opcionesSeleccionadas;
+    private List<SpinnerGroupChoice> spinners;
 
-    public ControladorEnviarGroupChoice(ArrayList<String> nombresGrupo, Stage stage, PantallaPrincipal contenedorPrincipal,AlgoHoot algoHoot) {
-        super(stage, contenedorPrincipal, algoHoot);
-        this.nombresGrupo = nombresGrupo;
-        respuestasUsuario = new HashMap<>();
-        respuestasUsuario.put(nombresGrupo.get(0), new ArrayList<>());
-        respuestasUsuario.put(nombresGrupo.get(1), new ArrayList<>());
-        this.stage = stage;
-        this.contenedorPrincipal = contenedorPrincipal;
+    public ControladorEnviarGroupChoice(List<String> nombresGrupos, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+        super(stage, pantallaPrincipal, algoHoot);
+        this.nombresGrupos = nombresGrupos;
+        this.opcionesSeleccionadas = new ArrayList<>();
+        this.spinners = new ArrayList<>();
     }
+
+    public void agregarSpinnersGrupo(List<SpinnerGroupChoice> spinners) {
+        this.spinners.addAll(spinners);
+    }
+
+    public void manejarRespuestas() {
+        ArrayList<Integer> grupoA = new ArrayList<>();
+        ArrayList<Integer> grupoB = new ArrayList<>();
+
+        for (SpinnerGroupChoice spinnerGroupChoice : spinners) {
+            String grupo = spinnerGroupChoice.getGrupoOpcion();
+            String opcion = spinnerGroupChoice.getOpcionSpinner();
+            int indiceOpcion = Integer.parseInt(opcion.split(" ")[1]); // Asume que la opción sigue el formato "Opcion X"
+
+            if (grupo.equals(nombresGrupos.get(0))) {
+                grupoA.add(indiceOpcion);
+            } else {
+                grupoB.add(indiceOpcion);
+            }
+        }
+
+        RespuestaGroupChoice respuesta = new RespuestaGroupChoice(grupoA, grupoB);
+        definirSiguienteVista(respuesta);
+    }
+
+
+
+
 
     @Override
-    public void handle(ActionEvent actionEvent) {
-        agregarOpcionesSeleccionadas(spinnerGrupos);
-        RespuestaGroupChoice respuestaDeUnJugador = new RespuestaGroupChoice(nombresGrupo.get(0), respuestasUsuario.get(nombresGrupo.get(0)), nombresGrupo.get(1), respuestasUsuario.get(nombresGrupo.get(1)));
-        definirSiguienteVista(respuestaDeUnJugador);
-    }
-
-    public void agregarSpinnersGrupo(ArrayList<SpinnerGroupChoice> spinnerGrupos) {
-        this.spinnerGrupos = spinnerGrupos;
-    }
-
-    public void agregarOpcionesSeleccionadas(ArrayList<SpinnerGroupChoice> spinnersGrupo) {
-        for (SpinnerGroupChoice spinner : spinnersGrupo) {
-            respuestasUsuario.get(spinner.getGrupoOpcion()).add(spinner.getOpcionSpinner());
+    public void handle(ActionEvent event) {
+        if (spinners.isEmpty()) {
+            Alert noRespondio = new Alert(Alert.AlertType.ERROR);
+            noRespondio.setHeaderText("No respondio alguna opcion");
+            noRespondio.setContentText("Debe de responder como minimo una opcion!");
+            noRespondio.show();
+        } else {
+            manejarRespuestas();
         }
     }
 
-}*/
+}
 

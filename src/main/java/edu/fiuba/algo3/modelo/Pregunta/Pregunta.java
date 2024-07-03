@@ -62,7 +62,4 @@ public abstract class Pregunta {
     }
 
 
-    public Respuesta getRespuestaCorrecta() {
-        return respuestaCorrecta;
-    }
 }

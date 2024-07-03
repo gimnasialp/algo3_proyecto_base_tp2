@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import javafx.event.ActionEvent;
@@ -18,6 +17,7 @@ public class ControladorEnviarMultipleChoicePenalidad extends ControladorPregunt
         super(stagePrincipal, pantallaPrincipal, algoHoot);
         this.opcionesSeleccionadas = new ArrayList<>();
     }
+
     public void agregarOpcion(int indice) {
         if (!opcionesSeleccionadas.contains(indice)) {
             opcionesSeleccionadas.add(indice);

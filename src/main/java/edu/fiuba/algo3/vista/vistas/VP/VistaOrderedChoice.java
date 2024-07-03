@@ -65,7 +65,7 @@ public class VistaOrderedChoice extends StackPane {
         VBox cajaOpciones = new VBox(5);
 
         for (String opcion : opciones) {
-            SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(), controlador);
+            SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(),controlador);
             opcionOrdenable.setAlignment(Pos.CENTER);
             cajaOpciones.getChildren().add(opcionOrdenable);
         }

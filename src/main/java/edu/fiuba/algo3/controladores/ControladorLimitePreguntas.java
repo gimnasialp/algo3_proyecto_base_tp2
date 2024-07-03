@@ -41,7 +41,7 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
         tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
         tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
-        //tiposPreguntas.put("group choice", new GroupChoiceParser());
+        tiposPreguntas.put("group choice", new GroupChoiceParser());
 
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
