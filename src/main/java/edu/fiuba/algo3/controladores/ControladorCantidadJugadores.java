@@ -32,7 +32,7 @@ public class ControladorCantidadJugadores implements EventHandler<ActionEvent> {
 
         } else {
 
-            pantallaPrincipal.setCentro(new VistaPedirNombreJugadores("imagenVistaAyuda.jpg", stage, pantallaPrincipal, Integer.parseInt(seleccion)));
+            pantallaPrincipal.setCentro(new VistaPedirNombreJugadores(stage, pantallaPrincipal, Integer.parseInt(seleccion)));
 
         }
 

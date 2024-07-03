@@ -18,7 +18,7 @@ public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores("imagenVistaAyuda.jpg", stage, pantallaPrincipal));
+        pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores(stage, pantallaPrincipal));
 
     }
 

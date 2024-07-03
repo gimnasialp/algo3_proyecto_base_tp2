@@ -50,7 +50,7 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
                 jugadores.add(new Jugador(nombre));
             }
 
-            pantallaPrincipal.setCentro(new VistaPedirLimite("imagenVistaAyuda.jpg", stage,pantallaPrincipal,jugadores));
+            pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal,jugadores));
 
         }
 

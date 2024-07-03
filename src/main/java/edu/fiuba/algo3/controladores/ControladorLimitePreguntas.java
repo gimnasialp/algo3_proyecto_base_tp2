@@ -35,12 +35,12 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     }
     private void crearAlgohoot(String limitePregunta){
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
-        tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
+        //tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
-        tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
+        /*tiposPreguntas.put("multiple choice simple", new MultipleChoiceCLasicoParser());
         tiposPreguntas.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
         tiposPreguntas.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
-        tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
+        tiposPreguntas.put("ordered choice", new OrderedChoiceParser());*/
         tiposPreguntas.put("group choice", new GroupChoiceParser());
 
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);

@@ -16,12 +16,14 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
     private List<String> nombresGrupos;
     private List<String> opcionesSeleccionadas;
     private List<SpinnerGroupChoice> spinners;
+    private List<String> opciones;
 
     public ControladorEnviarGroupChoice(List<String> nombresGrupos, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
         super(stage, pantallaPrincipal, algoHoot);
         this.nombresGrupos = nombresGrupos;
         this.opcionesSeleccionadas = new ArrayList<>();
         this.spinners = new ArrayList<>();
+        this.opciones = this.partidaActual.obtenerPreguntaActual().obtenerOpciones();
     }
 
     public void agregarSpinnersGrupo(List<SpinnerGroupChoice> spinners) {
@@ -34,8 +36,8 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
 
         for (SpinnerGroupChoice spinnerGroupChoice : spinners) {
             String grupo = spinnerGroupChoice.getGrupoOpcion();
-            String opcion = spinnerGroupChoice.getOpcionSpinner();
-            int indiceOpcion = Integer.parseInt(opcion.split(" ")[1]); // Asume que la opción sigue el formato "Opcion X"
+            int indiceOpcion = this.opciones.indexOf(spinnerGroupChoice.getOpcionSpinner()) + 1;
+            //int indiceOpcion = Integer.parseInt(opcion.split(" ")[1]); // Asume que la opción sigue el formato "Opcion X"
 
             if (grupo.equals(nombresGrupos.get(0))) {
                 grupoA.add(indiceOpcion);
