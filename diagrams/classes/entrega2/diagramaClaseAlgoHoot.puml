@@ -8,19 +8,16 @@ skinparam classAttributeIconSize 0
 class AlgoHoot{
     +comenzarPartida():void;
 }
-interface Limite{
-    +terminar():void;
+abstract class Limite{
+    -preguntas:List<Pregunta>
+    +Limite(List<Pregunta> preguntas)
+    +Pregunta preguntaNoLimitada(List<Jugador> jugador)
+    +Pregunta obtenerPreguntaSgte()
+    +preguntasRestantesLimite():int
+    +getPreguntas():List<Pregunta>;
 }
-class LimitePuntaje{
-    -puntaje:int
-    +LimitePuntaje(puntajeLimite: int);
-    +terminar():void;
-}
-class LimitePreguntas{
-    -cantidadPrguntas:int
-    +LimitePuntas(int limitePreguntas)
-    +terminar():void
-}
+
+
 class Lector{
     +generarPreguntas():ArrayList<Pregunta>
 }
@@ -37,8 +34,8 @@ class Ronda{
     +Ronda(Pregunta pregunta, ArrayList<Jugador> jugadores);
     +jugarRonda():void
 }
-Limite <|.up. LimitePuntaje
-Limite <|.. LimitePreguntas
+
+
 AlgoHoot .left.> Limite
 AlgoHoot ..> Jugador
 AlgoHoot .right.> Lector
