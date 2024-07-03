@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 public class PreguntaGroupChoice extends Pregunta {
 
-
+    private ArrayList<String> grupos;
 
     public PreguntaGroupChoice(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones, String textoRespuesta, ArrayList<String> grupos) {
-        super(idPregunta,tema,enunciado,respuestaCorrecta,opciones,textoRespuesta);;
+        super(idPregunta,tema,enunciado,respuestaCorrecta,opciones,textoRespuesta);
+        this.grupos = grupos;
     }
 
     @Override
@@ -37,4 +38,7 @@ public class PreguntaGroupChoice extends Pregunta {
         return "Pregunta Group Choice";
     }
 
+    public ArrayList<String> consultarGruposPregunta() {
+        return grupos;
+    }
 }

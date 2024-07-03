@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.vistas.VP.VistaGroupChoice;
 import edu.fiuba.algo3.vista.vistas.VP.VistaMultipleChoiceClasico;
 import edu.fiuba.algo3.vista.vistas.VP.VistaOrderedChoice;
 import edu.fiuba.algo3.vista.vistas.VistaTurnoJugadorActual;
@@ -22,6 +23,7 @@ public class ControladorGeneralPartida implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        pantallaPrincipal.setCentro(new VistaTurnoJugadorActual(stage, pantallaPrincipal, algoHoot));
+        //pantallaPrincipal.setCentro(new VistaTurnoJugadorActual(stage, pantallaPrincipal, algoHoot));
+        pantallaPrincipal.setCentro(new VistaGroupChoice(algoHoot, stage, pantallaPrincipal));
     }
 }

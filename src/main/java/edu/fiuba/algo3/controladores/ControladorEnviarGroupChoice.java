@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
+import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerGroupChoice;
@@ -9,15 +10,14 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-//public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
-   /* private ArrayList<Integer> respuestaGrupoUno;
+public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
+    private ArrayList<Integer> respuestaGrupoUno;
     private ArrayList<Integer> respuestaGrupoDos;
     private ArrayList<SpinnerGroupChoice> spinnerGrupos;
 
 
-    public ControladorEnviarGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos, Stage stage, PantallaPrincipal contenedorPrincipal) {
-        this.stage = stage;
-        this.contenedorPrincipal = contenedorPrincipal;
+    public ControladorEnviarGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+        super(stage, pantallaPrincipal, algoHoot);
         this.respuestaGrupoUno = respuestaGrupoUno;
         this.respuestaGrupoDos = respuestaGrupoDos;
     }
@@ -35,4 +35,4 @@ import java.util.ArrayList;
 
     public void agregarOpcionesSeleccionadas(ArrayList<SpinnerGroupChoice> spinnersGrupo) {
     }
-}*/
+}
