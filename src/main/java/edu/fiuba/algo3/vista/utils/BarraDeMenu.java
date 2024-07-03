@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.vista.utils;
 import edu.fiuba.algo3.controladores.*;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorAcercaDeAyuda;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorMusica;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPantallaCompleta;
+import edu.fiuba.algo3.controladores.ControladorAcercaDeAyuda;
+import edu.fiuba.algo3.controladores.ControladorMusica;
+import edu.fiuba.algo3.controladores.ControladorPantallaCompleta;
 import javafx.stage.Stage;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;

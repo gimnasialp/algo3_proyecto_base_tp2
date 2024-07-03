@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirLimite;
+import edu.fiuba.algo3.controladores.ControladorPedirLimite;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
@@ -20,14 +20,18 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 
-public class VistaPedirLimite extends VistaDinamicaJuego {
+public class VistaPedirLimite extends StackPane {
 
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
+    private static final double ANCHO_VENTANA = 1280;
+    private static final double ALTO_VENTANA = 720;
+    private static final double ESPACIADO_CENTRAL = 40;
     private ComboBox<String> comboBoxTiposDeLimites;
     private ArrayList<Jugador> jugadores;
 
-    public VistaPedirLimite(String nombreImagen, Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<Jugador> jugadores) {
-        super(nombreImagen, stage, pantallaPrincipal);
+    public VistaPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
+        configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         this.comboBoxTiposDeLimites = new ComboBox<>();
         VBox nombreJuego = crearNombreJuego();
@@ -38,6 +42,25 @@ public class VistaPedirLimite extends VistaDinamicaJuego {
         grilla.add(botonConfirmado, 0, 2);
 
         super.getChildren().add(grilla);
+    }
+
+    private void configurarFondo() {
+        Image imagen = new Image("file:" + System.getProperty("user.dir") + IMAGEN_RUTA);
+        BackgroundImage fondoImagen = new BackgroundImage(imagen,
+                BackgroundRepeat.ROUND,
+                BackgroundRepeat.SPACE,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, false));
+        Background fondo = new Background(fondoImagen);
+        super.setBackground(fondo);
+    }
+
+    private VBox crearNombreJuego() {
+        VBox nombreJuego = new VBox(1);
+        nombreJuego.setAlignment(Pos.TOP_CENTER);
+        AlgoHootMensaje textoAlgoHootInicio = new AlgoHootMensaje(Estilos.GRIS);
+        nombreJuego.getChildren().add(textoAlgoHootInicio);
+        return nombreJuego;
     }
 
     private VBox crearCajaPregunta() {
@@ -72,8 +95,7 @@ public class VistaPedirLimite extends VistaDinamicaJuego {
         return cajaPregunta;
     }
 
-    @Override
-    protected VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
         BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage,pantallaPrincipal,comboBoxTiposDeLimites,jugadores));

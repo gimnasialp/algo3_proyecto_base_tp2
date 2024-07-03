@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 //import edu.fiuba.algo3.modelo.Modificador.Modificador;
+
 import edu.fiuba.algo3.modelo.Modificador.*;
 
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ public class Jugador {
         this.nombre = nombre;
         this.puntaje = new Puntaje();
         this.multiplicadorActual = new MultiplicadorPorUno();
-        this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(),new MultiplicarPorTres()));
+        this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(), new MultiplicarPorTres()));
         this.modificadorActual = new ModificadorNulo();
-        this.modificadoresDisponibles = new ArrayList<>(Arrays.asList(new ExclusividadDePuntaje(),new AnuladorDePuntaje()));
+        this.modificadoresDisponibles = new ArrayList<>(Arrays.asList(new ExclusividadDePuntaje(), new AnuladorDePuntaje()));
     }
 
     public void asignarPuntos(int puntos) {
@@ -40,7 +41,7 @@ public class Jugador {
         return otroJugador.tieneMenosOLosMismosPuntosQue(obtenerPuntaje());
     }
 
-    private boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos){
+    private boolean tieneMenosOLosMismosPuntosQue(int otrosPuntos) {
         return (obtenerPuntaje() <= otrosPuntos);
     }
 
@@ -52,19 +53,19 @@ public class Jugador {
         return puntaje;
     }
 
-    public void aplicarNuevoMultiplicador(Multiplicador multiplicador){
+    public void aplicarNuevoMultiplicador(Multiplicador multiplicador) {
         this.multiplicadorActual = multiplicador;
     }
 
-    public Modificador obtenerModificadorActual(){
+    public Modificador obtenerModificadorActual() {
         return modificadorActual;
     }
 
-    public Multiplicador obtenerMultiplicador(){
+    public Multiplicador obtenerMultiplicador() {
         return multiplicadorActual;
     }
 
-    public List<Multiplicador> obtenerMultiplicadoresDisponibles(){
+    public List<Multiplicador> obtenerMultiplicadoresDisponibles() {
         return multiplicadoresDisponibles;
     }
 
@@ -73,8 +74,8 @@ public class Jugador {
     }
 
     // Sirve para saber si el jugador ya uso el multiplicador a mostrar
-    public boolean multiplicadorFueUtilizado(Multiplicador multiplicador){
-        return multiplicadoresDisponibles.stream().noneMatch(m->m.equals(multiplicador));
+    public boolean multiplicadorFueUtilizado(Multiplicador multiplicador) {
+        return multiplicadoresDisponibles.stream().noneMatch(m -> m.equals(multiplicador));
     }
 
     public void resetearComodines() {
@@ -88,14 +89,14 @@ public class Jugador {
     }
 
     private void actualizarUso(Modificador modificador) {
-        modificadoresDisponibles.stream().filter(m->m.equals(modificador))
-                .forEach(m->m.actualizarCantidadDeUso());
+        modificadoresDisponibles.stream().filter(m -> m.equals(modificador))
+                .forEach(m -> m.actualizarCantidadDeUso());
     }
 
     //para la vista
-    public boolean habilitado(Modificador modificador){
+    public boolean habilitado(Modificador modificador) {
         Modificador modificadorState = modificadoresDisponibles.stream().
-                                            filter(m->m.equals(modificador)).findFirst().get();
+                filter(m -> m.equals(modificador)).findFirst().get();
         return modificadorState.habilitado();
     }
 

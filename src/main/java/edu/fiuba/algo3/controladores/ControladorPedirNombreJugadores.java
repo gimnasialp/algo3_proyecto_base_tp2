@@ -1,7 +1,5 @@
-package edu.fiuba.algo3.controladores.Iniciales;
+package edu.fiuba.algo3.controladores;
 
-import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Excepciones.ArchivoNoEncontradoException;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaPedirLimite;

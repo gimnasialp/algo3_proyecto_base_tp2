@@ -1,11 +1,6 @@
-package edu.fiuba.algo3.controladores.Iniciales;
+package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.vistas.VP.VistaGroupChoice;
-import edu.fiuba.algo3.vista.vistas.VP.VistaOrderedChoice;
-import edu.fiuba.algo3.vista.vistas.VP.VistaVFClasico;
-import edu.fiuba.algo3.vista.vistas.VP.VistaVFPenalidad;
-import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
 import edu.fiuba.algo3.vista.vistas.VistaPedirCantidadJugadores;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

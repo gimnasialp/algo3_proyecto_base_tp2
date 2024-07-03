@@ -10,17 +10,21 @@ public class Resultado {
 
     private ArrayList<Integer> puntajeRonda;
 
-    public Resultado () {
+    public Resultado() {
         this.puntajeRonda = new ArrayList<>();
     }
 
     public void agregarPuntos(int puntos) {
         puntajeRonda.add(puntos);
-    };
+    }
+
+    ;
 
     public int obtenerPuntosDelJugador(int posicionJugador) {
         return puntajeRonda.get(posicionJugador);
-    };
+    }
+
+    ;
 
     public void usarModificador(Multiplicador modificador, int posicionJugador) {
         modificador.aplicar(puntajeRonda, posicionJugador);
@@ -28,12 +32,12 @@ public class Resultado {
 
     //Para Test de Ale
     //public void usarModificador(ModificadorState modificador, int posicionJugador) {
-      //  modificador.aplicar(puntajeRonda, posicionJugador);
+    //  modificador.aplicar(puntajeRonda, posicionJugador);
     //}
 
 
     public void usarModificador(Modificador modificador, List<Jugador> jugadores) {
-        modificador.aplicar( puntajeRonda, (ArrayList<Jugador>) jugadores);
+        modificador.aplicar(puntajeRonda, (ArrayList<Jugador>) jugadores);
     }
 
 
@@ -48,7 +52,7 @@ public class Resultado {
         return puntajeRonda;
     }
 
-    public void limpiarOpcionesDeAnteriorRonda(){
+    public void limpiarOpcionesDeAnteriorRonda() {
         puntajeRonda.clear();
     }
 

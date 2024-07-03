@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorGeneralPartida;
+import edu.fiuba.algo3.controladores.ControladorGeneralPartida;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Partida;
@@ -21,14 +21,18 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class VistaGeneralPartida extends VistaDinamicaJuego {
+public class VistaGeneralPartida extends StackPane {
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
+    private static final double ANCHO_VENTANA = 1280;
+    private static final double ALTO_VENTANA = 720;
+    private static final double ESPACIADO_CENTRAL = 40;
     private AlgoHoot algoHoot;
     private Partida partidaActual;
 
-    public VistaGeneralPartida(String nombreImagen, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
-        super(nombreImagen, stage, pantallaPrincipal);
+    public VistaGeneralPartida(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+
+        configurarFondo();
         this.algoHoot = algoHoot;
-        algoHoot.proximaPartida();
         this.partidaActual = algoHoot.obtenerPartidaActiva();
 
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
@@ -88,18 +92,29 @@ public class VistaGeneralPartida extends VistaDinamicaJuego {
         return contenedorJugadores;
     }
 
+    private void configurarFondo() {
+        Image imagen = new Image("file:" + System.getProperty("user.dir") + IMAGEN_RUTA);
+        BackgroundImage fondoImagen = new BackgroundImage(imagen,
+                BackgroundRepeat.ROUND,
+                BackgroundRepeat.SPACE,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, false));
+        Background fondo = new Background(fondoImagen);
+        super.setBackground(fondo);
+    }
+
+
     private HBox crearCajaJugador(Jugador jugador) {
-        CajaJugador cajaJugador = new CajaJugador(jugador, Estilos.AZUL);
+        CajaJugador cajaJugador = new CajaJugador(jugador);
         cajaJugador.setPrefSize(200, 300);
         return cajaJugador;
     }
 
-    @Override
-    protected VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
         BotonEmpezarTurnos botonEmpezarRondaTurnos = new BotonEmpezarTurnos
-                (new ControladorGeneralPartida(stage, pantallaPrincipal,algoHoot));
+                (new ControladorGeneralPartida(stage, pantallaPrincipal, algoHoot));
         botonConfirmado.getChildren().add(botonEmpezarRondaTurnos);
         return botonConfirmado;
     }

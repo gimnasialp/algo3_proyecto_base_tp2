@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirLimite;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorPedirNombreJugadores;
-import edu.fiuba.algo3.controladores.Iniciales.ControladorSiguienteVista;
+import edu.fiuba.algo3.controladores.ControladorPedirNombreJugadores;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonSiguiente;
@@ -20,11 +18,15 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class VistaPedirNombreJugadores extends VistaDinamicaJuego {
+public class VistaPedirNombreJugadores extends StackPane {
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
+    private static final double ANCHO_VENTANA = 1280;
+    private static final double ALTO_VENTANA = 720;
+    private static final double ESPACIADO_CENTRAL = 40;
     private ArrayList<TextField> nombresIngresados;
 
-    public VistaPedirNombreJugadores(String nombreImagen, Stage stage, PantallaPrincipal pantallaPrincipal, int cantidadJugadores) {
-        super(nombreImagen, stage, pantallaPrincipal);
+    public VistaPedirNombreJugadores(Stage stage, PantallaPrincipal pantallaPrincipal,int cantidadJugadores) {
+        configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         this.nombresIngresados = new ArrayList<>();
 
@@ -50,6 +52,15 @@ public class VistaPedirNombreJugadores extends VistaDinamicaJuego {
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
     }
+
+    private VBox crearNombreJuego() {
+        VBox nombreJuego = new VBox(1);
+        nombreJuego.setAlignment(Pos.TOP_CENTER);
+        AlgoHootMensaje textoAlgoHootInicio = new AlgoHootMensaje(Estilos.GRIS);
+        nombreJuego.getChildren().add(textoAlgoHootInicio);
+        return nombreJuego;
+    }
+
 
     private VBox crearCajaNombreJugadores(int cantidadJugadores) {
         VBox cajaNombreJugadores = new VBox(ESPACIADO_CENTRAL);
@@ -87,8 +98,7 @@ public class VistaPedirNombreJugadores extends VistaDinamicaJuego {
         return cajaNombreJugadores;
     }
 
-    @Override
-    protected VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
+    private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
         BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirNombreJugadores(stage,pantallaPrincipal,nombresIngresados));

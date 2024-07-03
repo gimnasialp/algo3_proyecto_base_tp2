@@ -19,4 +19,5 @@ public class RespuestaVerdaderoFalso implements Respuesta {
     private boolean evaluar(Integer respuesta) {
         return Objects.equals(this.respuesta, respuesta);
     }
+
 }

@@ -3,13 +3,13 @@ package edu.fiuba.algo3.vista.vistas;
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Modificador.*;
+import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceConPenalidad;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaVerdaderoFalsoConPenalidad;
+import edu.fiuba.algo3.vista.CajaJugador;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
+import edu.fiuba.algo3.vista.botones.BotonAccederPregunta;
 import edu.fiuba.algo3.vista.botones.BotonMultiplicador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,30 +21,67 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-public class VistaTurnoJugadorActual extends VistaDinamicaJuego {
+public class VistaTurnoJugadorActual extends StackPane {
+    private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
+    private static final double ANCHO_VENTANA = 1280;
+    private static final double ALTO_VENTANA = 720;
+    private static final double ESPACIADO_CENTRAL = 40;
     private AlgoHoot algoHoot;
     private Partida partidaActual;
-    private PreguntaMultipleChoiceConPenalidad preguntaMultipleChoiceConPenalidad;
-    private PreguntaVerdaderoFalsoConPenalidad preguntaVerdaderoFalsoConPenalidad;
 
-    public VistaTurnoJugadorActual(String nombreImagen, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
-        super(nombreImagen, stage, pantallaPrincipal);
+    public VistaTurnoJugadorActual(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
+        configurarFondo();
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
-
+    /*    System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+        System.out.println(partidaActual.obtenerJugadorActivo().getNombre());
+        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());*/
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
-        VBox cajaPregunta = crearContenedorPregunta(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual());
-       // HBox contenedorJugadores = crearContenedorJugadores(algoHoot.obtenerPartidaActiva().getJugadores());
-        VBox botonConfirmado = crearBotonConfirmado(stage, pantallaPrincipal);
-        VBox cajaModificadores = crearCajaModificadores(stage, pantallaPrincipal);
-
+        VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
+        //CajaJugador cajaJugador = new CajaJugador(partidaActual.obtenerJugadorActivo());
+        VBox cajaTurnoJugador = crearContenedorTurnoJugador(partidaActual.obtenerJugadorActivo());
+        VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
+        VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
-        grilla.add(cajaModificadores, 0, 2);
-        //grilla.add(botonConfirmado, 0, 2);
+        grilla.add(cajaTurnoJugador,0,1);
+        grilla.add(botonModificador, 0, 1);
+        grilla.add(CajaBotonPregunta, 0, 2);
         grilla.setAlignment(Pos.CENTER);
         super.getChildren().add(grilla);
 
     }
+
+
+    private VBox crearContenedorTurnoJugador(Jugador jugador) {
+
+        VBox contenedorPregunta = new VBox(ESPACIADO_CENTRAL);
+        contenedorPregunta.setAlignment(Pos.TOP_CENTER);
+
+        StackPane contenedor = new StackPane();
+        contenedor.setPadding(new Insets(15)); // Ajusta el padding según sea necesario
+        contenedor.setStyle("-fx-background-color: #245897; -fx-background-radius: 5px;");
+
+        VBox vboxContenido = new VBox(15); // HBox para alinear el label y el textfield horizontalmente
+        vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
+        vboxContenido.setPadding(new Insets(10));
+
+        Label jugadorActualTurno = new Label("TURNO JUGADOR: " + jugador.getNombre());
+        jugadorActualTurno.setFont(Font.font(Estilos.FUENTE, 50));
+        jugadorActualTurno.setTextFill(Color.web(Estilos.ROJO));
+
+
+        vboxContenido.getChildren().addAll(jugadorActualTurno);
+
+        // Añadir HBox interno al contenedor con fondo
+        contenedor.getChildren().add(vboxContenido);
+
+        // Añadir el contenedor al VBox principal
+        contenedorPregunta.getChildren().add(contenedor);
+
+
+        return contenedorPregunta;
+    }
+
 
     private VBox crearContenedorPregunta(Pregunta preguntaActual) {
 
@@ -80,127 +117,31 @@ public class VistaTurnoJugadorActual extends VistaDinamicaJuego {
         return contenedorPregunta;
     }
 
-/*
-
-    private HBox crearCajaJugador(Jugador jugador) {
-        CajaJugador cajaJugador = new CajaJugador(jugador, Estilos.AZUL);
-        cajaJugador.setPrefSize(200, 300);
-        return cajaJugador;
-    }
-*/
-
-    private VBox crearCajaModificadores(Stage stage, PantallaPrincipal pantallaPrincipal) {
-        VBox cajaModificadores = new VBox(ESPACIADO_CENTRAL);
-        HBox hbox = agregarModificadores();
-        if (!(hbox.getChildren().isEmpty())) {
-            cajaModificadores.setAlignment(Pos.CENTER);
-
-            StackPane contenedor = new StackPane();
-            contenedor.setPadding(new Insets(7)); // Ajusta el padding según sea necesario
-            contenedor.setStyle("-fx-background-color: #9370DB; -fx-background-radius: 5px;");
-
-            /*VBox vboxContenido = new VBox(7); // HBox para alinear el label y el textfield horizontalmente
-            vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
-            vboxContenido.setPadding(new Insets(10));*/
-
-
-            /*HBox hboxDos = new HBox(50); // HBox para alinear
-            hboxDos.setAlignment(Pos.CENTER); // Alinear abajo y al centro
-            hboxDos.setPadding(new Insets(5));*/
-
-            /*String nombreModificador;
-
-            MultiplicarPorDos multiplicarPorDos = new MultiplicarPorDos();
-            nombreModificador = "Usar Multiplicador x"+multiplicarPorDos.consultarValor();
-            VBox botonMultiplicadorPorDos = crearBoton(nombreModificador);
-
-            MultiplicarPorTres multiplicarPorTres = new MultiplicarPorTres();
-            nombreModificador = "Usar Multiplicador x"+multiplicarPorTres.consultarValor();
-            VBox botonMultiplicadorPorTres = crearBoton(nombreModificador);
-
-            ExclusividadDePuntaje exclusividadDePuntaje = new ExclusividadDePuntaje();
-            nombreModificador = "Usar Exclusividad de puntaje";
-            VBox botonExclusividad = crearBoton(nombreModificador);
-
-            AnuladorDePuntaje anuladorDePuntaje = new AnuladorDePuntaje();
-            nombreModificador = "Usar Anulador de puntaje";
-            VBox botonAnulador = crearBoton(nombreModificador);*/
-
-
-            //hboxUno.getChildren().addAll(botonMultiplicadorPorDos, botonMultiplicadorPorTres);
-            //hboxDos.getChildren().addAll(botonExclusividad, botonAnulador);
-
-            //vboxContenido.getChildren().addAll(hboxUno, hboxDos);
-
-            // Añadir HBox interno al contenedor con fondo
-            //contenedor.getChildren().add(vboxContenido);
-
-            contenedor.getChildren().add(hbox);
-
-            // Añadir el contenedor al VBox principal
-            cajaModificadores.getChildren().add(contenedor);
-        }
-        return cajaModificadores;
+    private void configurarFondo() {
+        Image imagen = new Image("file:" + System.getProperty("user.dir") + IMAGEN_RUTA);
+        BackgroundImage fondoImagen = new BackgroundImage(imagen,
+                BackgroundRepeat.ROUND,
+                BackgroundRepeat.SPACE,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, false));
+        Background fondo = new Background(fondoImagen);
+        super.setBackground(fondo);
     }
 
-    private HBox agregarModificadores() {
-        HBox hbox = new HBox(25); // HBox para alinear 2 modificadores horizontalmente
-        hbox.setAlignment(Pos.CENTER); // Alinear arriba y al centro
-        hbox.setPadding(new Insets(5));
-        Jugador jugadorActivo = this.partidaActual.obtenerJugadorActivo();
-        String nombreModificador;
-        if (esPreguntaConPenalidad()) {
-            for (Multiplicador multiplicador :jugadorActivo.obtenerMultiplicadoresDisponibles()) {
-                nombreModificador = "Usar Multiplicador x"+multiplicador.consultarValor();
-                VBox botonMultiplicador = crearBoton(nombreModificador);
-                hbox.getChildren().add(botonMultiplicador);
-            }
-        }
-        else {
-            Modificador exclusividad = new ExclusividadDePuntaje();
-            if (jugadorActivo.habilitado(exclusividad)) {
-                nombreModificador = "Usar exclusividad de puntaje";
-                VBox botonExclusividad = crearBoton(nombreModificador);
-                hbox.getChildren().add(botonExclusividad);
-            }
-        }
-        Modificador anulador = new AnuladorDePuntaje();
-        if (jugadorActivo.habilitado(anulador)) {
-            nombreModificador = "Usar anulador de puntaje";
-            VBox botonAnulador = crearBoton(nombreModificador);
-            hbox.getChildren().add(botonAnulador);
-        }
-
-        return hbox;
+    private VBox crearBotonPregunta(Stage stage, PantallaPrincipal pantallaPrincipal){
+        VBox cajaBotonAccederPregunta = new VBox(ESPACIADO_CENTRAL);
+        cajaBotonAccederPregunta.setAlignment(Pos.CENTER);
+        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage,pantallaPrincipal,algoHoot);
+        cajaBotonAccederPregunta.getChildren().add(botonAccederPregunta);
+        return cajaBotonAccederPregunta;
     }
 
-    private boolean esPreguntaConPenalidad() {
-        Pregunta pregunta = this.partidaActual.obtenerPreguntaActual();
-        return pregunta.equals(preguntaMultipleChoiceConPenalidad) ||
-                pregunta.equals(preguntaVerdaderoFalsoConPenalidad);
-    }
-
-    @Override
-    protected VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
-        //no hace nada
-        return new VBox();
-    }
-
-    private VBox crearBoton(String nombreModificador) {
-        VBox botonConfirmado = new VBox(0);
-        botonConfirmado.setAlignment(Pos.CENTER);
-        BotonMultiplicador botonMultiplicador = new BotonMultiplicador(nombreModificador);
-        botonConfirmado.getChildren().add(botonMultiplicador);
-        return botonConfirmado;
-    }
-
-/*
-    private HBox crearBoton(Stage stage, PantallaPrincipal pantallaPrincipal) {
-        HBox botonConfirmado = new HBox(0);
-        botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
+    private VBox crearBotonModificador(Stage stage, PantallaPrincipal pantallaPrincipal) {
+        VBox cajaBotonModificador = new VBox(0);
+        cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
         BotonMultiplicador botonMultiplicador = new BotonMultiplicador(new MultiplicarPorDos());
-        botonConfirmado.getChildren().add(botonMultiplicador);
-        return botonConfirmado;
-    }*/
+        cajaBotonModificador.getChildren().add(botonMultiplicador);
+        return cajaBotonModificador;
+    }
 
 }

@@ -19,5 +19,8 @@ public class RespuestaOrderedChoice implements Respuesta {
     private boolean evaluar(ArrayList<Integer> respuesta) {
         return this.respuesta.equals(respuesta);
     }
+    public ArrayList<Integer> getRespuesta() {
+        return respuesta;
+    }
 
 }

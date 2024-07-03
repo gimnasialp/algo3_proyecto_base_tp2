@@ -33,5 +33,4 @@ public class PreguntaVerdaderoFalsoConPenalidad extends Pregunta {
         return "Pregunta Verdadero Falso Con Penalidad";
     }
 
-
 }
