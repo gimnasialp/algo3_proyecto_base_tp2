@@ -53,7 +53,6 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
         ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
 
-        //Limite limite = new LimitadorPorPuntos(preguntas);
         Limite limite = new LimitadorPorPuntos(preguntasMezcladas);
         Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas, limitePuntuacion);
         AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
