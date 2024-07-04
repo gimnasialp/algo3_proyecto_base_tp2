@@ -18,23 +18,15 @@ public class Resultado {
         puntajeRonda.add(puntos);
     }
 
-    ;
 
     public int obtenerPuntosDelJugador(int posicionJugador) {
         return puntajeRonda.get(posicionJugador);
     }
 
-    ;
 
     public void usarModificador(Multiplicador modificador, int posicionJugador) {
         modificador.aplicar(puntajeRonda, posicionJugador);
     }
-
-    //Para Test de Ale
-    //public void usarModificador(ModificadorState modificador, int posicionJugador) {
-    //  modificador.aplicar(puntajeRonda, posicionJugador);
-    //}
-
 
     public void usarModificador(Modificador modificador, List<Jugador> jugadores) {
         modificador.aplicar(puntajeRonda, (ArrayList<Jugador>) jugadores);

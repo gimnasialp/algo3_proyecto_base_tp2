@@ -2,20 +2,16 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Excepciones.PuntajeMaximoSuperadoException;
+import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
-import edu.fiuba.algo3.modelo.Resultado;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
-import edu.fiuba.algo3.vista.vistas.GestorVistasPreguntas;
 import edu.fiuba.algo3.vista.vistas.VistaGanador;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
 import edu.fiuba.algo3.vista.vistas.VistaTurnoJugadorActual;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class ControladorPreguntasJuego {
@@ -24,7 +20,6 @@ public abstract class ControladorPreguntasJuego {
     protected PantallaPrincipal contenedorPrincipal;
     protected AlgoHoot algoHoot;
     protected Partida partidaActual;
-    private Resultado resultado;
     private boolean juegoFinalizado;
 
     public ControladorPreguntasJuego(Stage stage, PantallaPrincipal contenedorPrincipal, AlgoHoot algoHoot) {
@@ -38,33 +33,29 @@ public abstract class ControladorPreguntasJuego {
     protected void definirSiguienteVista(Respuesta respuestaDeUnJugador) {
         System.out.println(respuestaDeUnJugador);
         sumarPuntos(respuestaDeUnJugador);
-        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());
-        System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
-        System.out.println(partidaActual.obtenerPreguntaActual().obtenerOpciones());
-        if(ultimoJugadorRespuesta()){
-            if (juegoTermino()) {
-
+        if (ultimoJugadorRespuesta()) {
+            juegoTermino();
+            if (juegoFinalizado) {
                 Jugador ganador = algoHoot.obtenerPartidaActiva().jugadorConMasPuntos();
                 contenedorPrincipal.setCentro(new VistaGanador(stage, contenedorPrincipal, ganador));
-            }else{
-                algoHoot.proximaPartida();
+            } else {
                 algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
                 contenedorPrincipal.setCentro(new VistaGeneralPartida(stage, contenedorPrincipal, algoHoot));
             }
         } else {
             algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
             contenedorPrincipal.setCentro(new VistaTurnoJugadorActual(stage, contenedorPrincipal, algoHoot));
-
         }
 
     }
 
     private void sumarPuntos(Respuesta respuestaJugador) {
-        partidaActual.agregarRespuesta(respuestaJugador);
+        algoHoot.obtenerPartidaActiva().agregarRespuesta(respuestaJugador);
+
     }
 
     private boolean ultimoJugadorRespuesta() {
-        List<Jugador> jugadores = partidaActual.getJugadores();
+        List<Jugador> jugadores = algoHoot.consultarJugadores();
         Jugador jugadorActual = partidaActual.obtenerJugadorActivo();
 
         // Verificar si la lista de jugadores no está vacía
@@ -84,15 +75,12 @@ public abstract class ControladorPreguntasJuego {
     private boolean juegoTermino() {
         try {
             algoHoot.proximaPartida();
-        } catch (PuntajeMaximoSuperadoException e) {
+
+        } catch (PuntajeMaximoSuperadoException | SinPreguntasDisponiblesException e) {
             juegoFinalizado = true;
         }
-
-        if (juegoFinalizado) {
-            return true;
-        } else {
-            return false;
-        }
+        return juegoFinalizado;
     }
 
 }
+

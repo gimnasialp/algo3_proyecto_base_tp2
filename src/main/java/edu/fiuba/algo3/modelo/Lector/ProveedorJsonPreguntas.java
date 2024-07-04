@@ -14,14 +14,6 @@ public class ProveedorJsonPreguntas implements ProveedorPreguntas {
 
     public ProveedorJsonPreguntas(HashMap<String, Parser> tiposPreguntas) {
         this.tiposPreguntas = tiposPreguntas;
-        /*this.parseadores = new HashMap<>();
-        this.parseadores.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
-        this.parseadores.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
-        this.parseadores.put("multiple choice simple", new MultipleChoiceCLasicoParser());
-        this.parseadores.put("multiple choice puntaje parcial", new MultipleChoiceParcialParser());
-        this.parseadores.put("multiple choice penalidad", new MultipleChoicePenalidadParser());
-        this.parseadores.put("ordered choice", new OrderedChoiceParser());
-        this.parseadores.put("group choice", new GroupChoiceParser());*/
     }
 
     @Override

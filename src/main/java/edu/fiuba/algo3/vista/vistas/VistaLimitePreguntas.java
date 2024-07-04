@@ -32,7 +32,7 @@ public class VistaLimitePreguntas extends StackPane {
         this.jugadores = jugadores;
         configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
-        comboBoxCantidadPreguntas  = new ComboBox<>();
+        comboBoxCantidadPreguntas = new ComboBox<>();
 
         VBox nombreJuego = crearNombreJuego();
         VBox cajaPregunta = crearCajaPregunta();
@@ -79,7 +79,7 @@ public class VistaLimitePreguntas extends StackPane {
         labelCantidadPreguntas.setFont(Font.font(Estilos.FUENTE, 30));
         labelCantidadPreguntas.setTextFill(Color.web(Estilos.AMARILLO));
 
-        comboBoxCantidadPreguntas.getItems().addAll("10","15","20","25","30");
+        comboBoxCantidadPreguntas.getItems().addAll("10", "15", "20", "25", "30");
         comboBoxCantidadPreguntas.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
 
         vboxContenido.getChildren().addAll(labelCantidadPreguntas, comboBoxCantidadPreguntas);
@@ -97,7 +97,7 @@ public class VistaLimitePreguntas extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPreguntas,jugadores));
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage, pantallaPrincipal, comboBoxCantidadPreguntas, jugadores));
         botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }

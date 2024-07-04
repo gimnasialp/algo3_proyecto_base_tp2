@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MultiplicadorTest {
 
     @Test
-    public void unJugadorTieneDosPuntosYActivaElMultiplicadorPorDos () {
+    public void unJugadorTieneDosPuntosYActivaElMultiplicadorPorDos() {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(2);
@@ -23,7 +23,7 @@ public class MultiplicadorTest {
     }
 
     @Test
-    public void unJugadorTieneDosPuntosYActivaElMultiplicadorPorTres () {
+    public void unJugadorTieneDosPuntosYActivaElMultiplicadorPorTres() {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(2);
@@ -36,7 +36,7 @@ public class MultiplicadorTest {
     }
 
     @Test
-    public void deVariosJugadoresConDistintosPuntosSoloUnoActivaElMultiplicadorPorDos(){
+    public void deVariosJugadoresConDistintosPuntosSoloUnoActivaElMultiplicadorPorDos() {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(2);
@@ -48,7 +48,7 @@ public class MultiplicadorTest {
 
         int puntosDelJugadorUnoEsperado = 2;
         int puntosDelJugadorDosEsperado = 3;
-        int puntosDelJugadorTresEsperado = 5*2;
+        int puntosDelJugadorTresEsperado = 5 * 2;
         int puntosDelJugadorCuatroEsperado = 1;
 
         assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
@@ -59,7 +59,7 @@ public class MultiplicadorTest {
     }
 
     @Test
-    public void variosJugadoresConDistintosPuntosActivaronElMultiplicadorPorDos(){
+    public void variosJugadoresConDistintosPuntosActivaronElMultiplicadorPorDos() {
 
         Resultado resultado = new Resultado();
         resultado.agregarPuntos(2);
@@ -71,10 +71,10 @@ public class MultiplicadorTest {
         resultado.usarModificador(new MultiplicarPorDos(), 1);
         resultado.usarModificador(new MultiplicarPorDos(), 3);
 
-        int puntosDelJugadorUnoEsperado = 2*2;
-        int puntosDelJugadorDosEsperado = 3*2;
+        int puntosDelJugadorUnoEsperado = 2 * 2;
+        int puntosDelJugadorDosEsperado = 3 * 2;
         int puntosDelJugadorTresEsperado = 5;
-        int puntosDelJugadorCuatroEsperado = 1*2;
+        int puntosDelJugadorCuatroEsperado = 1 * 2;
 
         assertEquals(puntosDelJugadorUnoEsperado, resultado.obtenerPuntosDelJugador(0));
         assertEquals(puntosDelJugadorDosEsperado, resultado.obtenerPuntosDelJugador(1));

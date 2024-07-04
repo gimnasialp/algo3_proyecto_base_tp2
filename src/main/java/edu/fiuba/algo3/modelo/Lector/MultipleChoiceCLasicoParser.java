@@ -15,7 +15,6 @@ public class MultipleChoiceCLasicoParser extends Parser {
     }
 
 
-
     @Override
     public Pregunta parse(JsonElement preguntaJson) {
 

@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.modelo.Pregunta.Fabricas;
 
-import edu.fiuba.algo3.modelo.Pregunta.*;
-import edu.fiuba.algo3.modelo.Respuesta.*;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaOrderedChoice;
+import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 
 import java.util.ArrayList;
 
 public class FabricaPreguntaOrderedChoice extends FabricaPreguntas {
 
-    private Respuesta obtenerRespuesta(String respuestaCorrecta){
+    private Respuesta obtenerRespuesta(String respuestaCorrecta) {
 
         String[] lista = respuestaCorrecta.split(",");
         ArrayList<Integer> listaRespuesta = new ArrayList<>();
@@ -18,8 +20,9 @@ public class FabricaPreguntaOrderedChoice extends FabricaPreguntas {
 
         return respuesta;
     }
+
     @Override
-    public Pregunta crearPregunta(Object ... parameters) {
+    public Pregunta crearPregunta(Object... parameters) {
         PreguntaOrderedChoice preguntaOrderedChoice = new PreguntaOrderedChoice(
                 (Integer) parameters[0],//ID
                 parameters[1].toString(), //TEMA

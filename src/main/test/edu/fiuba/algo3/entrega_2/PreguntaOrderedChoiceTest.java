@@ -1,15 +1,12 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
 import edu.fiuba.algo3.modelo.Lector.OrderedChoiceParser;
 import edu.fiuba.algo3.modelo.Lector.Parser;
 import edu.fiuba.algo3.modelo.Lector.ProveedorJsonPreguntas;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaOrderedChoice;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.modelo.Resultado;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +22,7 @@ public class PreguntaOrderedChoiceTest {
     private Pregunta preguntaOrderedChoice;
 
     @BeforeEach
-    public void setUpPregunta(){
+    public void setUpPregunta() {
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("ordered choice", new OrderedChoiceParser());
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);

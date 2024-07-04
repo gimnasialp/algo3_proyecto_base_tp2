@@ -10,21 +10,21 @@ public class ReproductorMusica {
 
     private AudioClip temaEscuchandose;
 
-    public ReproductorMusica(){
+    public ReproductorMusica() {
         String direccionMusicaInicio = "\\src\\main\\java\\edu\\fiuba\\algo3\\resources\\musica\\classic.mp3";
         temaEscuchandose = reproducirTema(direccionMusicaInicio);
     }
 
     public void escucharTema(String direccion) {
-        if(temaEscuchandose.isPlaying()){
+        if (temaEscuchandose.isPlaying()) {
             temaEscuchandose.stop();
         }
-        if(!direccion.isEmpty()){
+        if (!direccion.isEmpty()) {
             temaEscuchandose = reproducirTema(direccion);
         }
     }
 
-    private AudioClip reproducirTema(String direccion){
+    private AudioClip reproducirTema(String direccion) {
         File dir = new File(System.getProperty("user.dir") + direccion);
         URI path = dir.toURI();
         String direccionParaMedia = path.toString();
@@ -33,6 +33,6 @@ public class ReproductorMusica {
         mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
         mediaPlayer.play();
         mediaPlayer.setVolume(5);
-        return  mediaPlayer;
+        return mediaPlayer;
     }
 }

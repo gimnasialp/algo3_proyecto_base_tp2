@@ -7,20 +7,9 @@ import java.util.ArrayList;
 
 public class AnuladorDePuntaje extends Modificador {
 
-    public AnuladorDePuntaje(){
-        super(0,1);
+    public AnuladorDePuntaje() {
+        super(0, 1);
     }
-
-    /* de ale
-    @Override
-    public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
-        for (int i = 0; i < puntajeRonda.size(); i++) {
-            if (i != jugadorPosicion) {
-                puntajeRonda.set(i, 0);
-            }
-        }
-    }
-    */
 
 
     @Override
@@ -30,20 +19,20 @@ public class AnuladorDePuntaje extends Modificador {
 
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda,
-                        ArrayList<Jugador> jugadores){
+                        ArrayList<Jugador> jugadores) {
 
-        int aplicaron = (int) jugadores.stream().map(m->m.obtenerModificadorActual())
-                .filter(m->m.equals(this)).count();
-        if (aplicaron == jugadores.size() ){
+        int aplicaron = (int) jugadores.stream().map(m -> m.obtenerModificadorActual())
+                .filter(m -> m.equals(this)).count();
+        if (aplicaron == jugadores.size()) {
             // Todos usaron anuladores, asi que todos recibiran pto cero sin distincion
-            puntajeRonda.replaceAll( i -> 0);
-        }  else{
-            for (int i=0 ; i< jugadores.size() ; i++){
+            puntajeRonda.replaceAll(i -> 0);
+        } else {
+            for (int i = 0; i < jugadores.size(); i++) {
                 boolean aplico = jugadores.get(i).obtenerModificadorActual().equals(this);
                 int puntoRespuesta = puntajeRonda.get(i);
-                if(aplico){
-                    puntajeRonda.replaceAll(p-> p !=0 ?0:p );
-                    puntajeRonda.set(i,puntoRespuesta);
+                if (aplico) {
+                    puntajeRonda.replaceAll(p -> p != 0 ? 0 : p);
+                    puntajeRonda.set(i, puntoRespuesta);
                 }
             }
         }

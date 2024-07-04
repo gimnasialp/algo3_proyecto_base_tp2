@@ -25,7 +25,7 @@ public class VistaPedirNombreJugadores extends StackPane {
     private static final double ESPACIADO_CENTRAL = 40;
     private ArrayList<TextField> nombresIngresados;
 
-    public VistaPedirNombreJugadores(Stage stage, PantallaPrincipal pantallaPrincipal,int cantidadJugadores) {
+    public VistaPedirNombreJugadores(Stage stage, PantallaPrincipal pantallaPrincipal, int cantidadJugadores) {
         configurarFondo();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
         this.nombresIngresados = new ArrayList<>();
@@ -101,7 +101,7 @@ public class VistaPedirNombreJugadores extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirNombreJugadores(stage,pantallaPrincipal,nombresIngresados));
+        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirNombreJugadores(stage, pantallaPrincipal, nombresIngresados));
         botonConfirmado.getChildren().add(botonSiguiente);
         return botonConfirmado;
     }

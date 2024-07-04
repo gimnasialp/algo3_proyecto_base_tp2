@@ -90,6 +90,7 @@ public class VistaPedirCantidadJugadores extends StackPane {
 
         return cajaPregunta;
     }
+
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);

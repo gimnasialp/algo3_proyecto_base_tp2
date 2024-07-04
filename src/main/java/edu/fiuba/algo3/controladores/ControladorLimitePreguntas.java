@@ -3,8 +3,11 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
+import edu.fiuba.algo3.modelo.Limite.LimitadorPorNumeroPreguntas;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
+import edu.fiuba.algo3.modelo.MezcladorPreguntas;
+import edu.fiuba.algo3.modelo.MezcladorPreguntasSegunTema;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
@@ -24,14 +27,17 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     private ArrayList<Jugador> jugadores;
     private AlgoHoot algoHoot;
 
-    public ControladorLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitePreguntas,ArrayList<Jugador> jugadores){
+
+    public ControladorLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitePreguntas, ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.comboBoxLimitePreguntas = comboBoxLimitePreguntas;
 
+
     }
-    private void crearAlgohoot(String limitePregunta){
+
+    private void crearAlgohoot(Integer limitePregunta) {
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
         tiposPreguntas.put("verdadero falso penalidad", new VerdaderoFalsoConPenalidadParser());
@@ -44,8 +50,12 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         ProveedorJsonPreguntas proveedor = new ProveedorJsonPreguntas(tiposPreguntas);
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
-        Limite limite = new LimiteFinalPreguntas(preguntas);
-        AlgoHoot algoHoot = new AlgoHoot(jugadores,limite);
+        //Las sig 2 lineas son para mezclar las preguntas de la lista
+        MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
+        ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
+
+        Limite limite = new LimitadorPorNumeroPreguntas(limitePregunta,preguntasMezcladas);
+        AlgoHoot algoHoot = new AlgoHoot(jugadores, limite);
         algoHoot.proximaPartida();
         algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
         this.algoHoot = algoHoot;
@@ -55,14 +65,15 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
 
         String seleccion = comboBoxLimitePreguntas.getValue();
+         int limite = Integer.parseInt(seleccion);
         if (seleccion == null || seleccion.isEmpty()) {
             Alert cantidadPreguntasSinSeleccionar = new Alert(Alert.AlertType.ERROR);
             cantidadPreguntasSinSeleccionar.setHeaderText("No selecciono una cantidad de preguntas");
             cantidadPreguntasSinSeleccionar.setContentText("Debe seleccionar un limite de Preguntas para poder empezar a jugar.");
             cantidadPreguntasSinSeleccionar.show();
         } else {
-            crearAlgohoot(seleccion);
-            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
+            crearAlgohoot(Integer.parseInt(seleccion));
+            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal, algoHoot));
 
         }
 

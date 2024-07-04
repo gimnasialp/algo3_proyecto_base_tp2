@@ -7,13 +7,14 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import java.util.Comparator;
 import java.util.List;
 
-public class PuntosDefinidosDecorator extends LimiteDecorator{
+public class PuntosDefinidosDecorator extends LimiteDecorator {
 
     protected Limite decoratedLimite;
 
-    private int  puntajeLimite;
+    private int puntajeLimite;
+
     public PuntosDefinidosDecorator(Limite decoratedLimite, List<Pregunta> preguntas, int puntajeLimite) {
-        super(decoratedLimite,preguntas);
+        super(decoratedLimite, preguntas);
         this.puntajeLimite = puntajeLimite;
     }
 
@@ -21,14 +22,14 @@ public class PuntosDefinidosDecorator extends LimiteDecorator{
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
         Pregunta pregunta = super.decoratedLimite.preguntaNoLimitada(jugadores);
-        if(!superaPuntajeLimite( jugadores)){
+        if (!superaPuntajeLimite(jugadores)) {
             return pregunta;
-        }else{
+        } else {
             throw new PuntajeMaximoSuperadoException();
         }
     }
 
-    private boolean superaPuntajeLimite(List<Jugador> jugadores){
+    private boolean superaPuntajeLimite(List<Jugador> jugadores) {
         int puntajeMayorActualJuego =
                 jugadores.stream().max(Comparator.comparing(Jugador::obtenerPuntaje)).get().obtenerPuntaje();
         return (puntajeMayorActualJuego > puntajeLimite);

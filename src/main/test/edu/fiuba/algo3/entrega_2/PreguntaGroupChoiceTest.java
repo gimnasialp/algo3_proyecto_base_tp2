@@ -1,15 +1,12 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Lector.GroupChoiceParser;
-import edu.fiuba.algo3.modelo.Lector.LectorPreguntasJson;
 import edu.fiuba.algo3.modelo.Lector.Parser;
 import edu.fiuba.algo3.modelo.Lector.ProveedorJsonPreguntas;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.modelo.Pregunta.PreguntaGroupChoice;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaGroupChoice;
-import org.junit.jupiter.api.BeforeAll;
+import edu.fiuba.algo3.modelo.Resultado;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

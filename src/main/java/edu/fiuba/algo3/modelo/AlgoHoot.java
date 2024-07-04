@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Limite.LimitadorPorNumeroPreguntas;
 import edu.fiuba.algo3.modelo.Limite.Limite;
+import edu.fiuba.algo3.modelo.Limite.PuntosDefinidosDecorator;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
@@ -17,6 +19,9 @@ public class AlgoHoot {
     private Partida partidaActual;
     private int numeroPartida;
 
+    //atributos nuevos de prueba
+    private boolean limitadorPorCantidadPreguntas;
+
 
     public AlgoHoot(List<Jugador> jugadores, Limite limite) {
         this.jugadores = jugadores;
@@ -31,11 +36,11 @@ public class AlgoHoot {
         Partida partida = new Partida(preguntaActual, this.jugadores);
         numeroPartida = 0;
         partidas.add(partida);
+
     }
 
     public void proximaPartida() {
         comprobarPartidaExistente();
-        //tal vez habra Observers
     }
 
     private void comprobarPartidaExistente() {
@@ -46,16 +51,21 @@ public class AlgoHoot {
         }
         partidaActual = partidas.get(numeroPartida);
         numeroPartida++;
-
-        //
         partidaActual.resetearComodines(jugadores);
-        //
+
     }
 
     public Partida obtenerPartidaActiva() {
         return partidaActual;
     }
-    public List<Pregunta> obtenerpreguntas() {
-        return limite.getPreguntas();
+
+    public List<Jugador> consultarJugadores() {
+        return jugadores;
     }
+
+    public int consultarCantidadDePartidasActuales() {
+        return partidas.size();
+    }
+
+
 }

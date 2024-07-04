@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo.Lector;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 import edu.fiuba.algo3.modelo.Excepciones.ArchivoPoseeErroresException;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
@@ -30,14 +33,15 @@ public class LectorPreguntasJson {
         for (JsonElement jsonElement : jsonArray) {
             JsonElement tipoPregunta = jsonElement.getAsJsonObject().get("Tipo");
             String nombreTipoPregunta = tipoPregunta.getAsString().toLowerCase();
-            if(this.parseadores.containsKey(nombreTipoPregunta)) {
+            if (this.parseadores.containsKey(nombreTipoPregunta)) {
                 try {
                     preguntasTotales.add(this.parseadores.get(nombreTipoPregunta).parse(jsonElement));
-                } catch(RuntimeException ex) {
+                } catch (RuntimeException ex) {
                     throw new ArchivoPoseeErroresException();
                 }
             }
         }
         return preguntasTotales;
     }
+
 }

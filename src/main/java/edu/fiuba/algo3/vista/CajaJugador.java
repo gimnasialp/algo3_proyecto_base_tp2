@@ -4,15 +4,9 @@ import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.modelo.Jugador;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 public class CajaJugador extends HBox {
@@ -31,11 +25,11 @@ public class CajaJugador extends HBox {
         puntosJugador.setFont(Font.font(Estilos.FUENTE, 25));
         puntosJugador.setTextFill(Color.YELLOW);
 
-        CajaModificadoresJugador cajaBonusJugador = new CajaModificadoresJugador(jugador);
+        CajaComodinesJugador cajaBonusJugador = new CajaComodinesJugador(jugador);
 
         VBox vBox = new VBox(10); // Espaciado entre los elementos
         vBox.setAlignment(Pos.CENTER); // Centrar verticalmente los elementos
-        vBox.getChildren().addAll(labelNombreJugador, puntosJugador/*, cajaBonusJugador*/);
+        vBox.getChildren().addAll(labelNombreJugador, puntosJugador, cajaBonusJugador);
 
         this.setMinSize(ANCHO_CAJA, ALTO_CAJA);
         this.setPrefSize(ANCHO_CAJA, ALTO_CAJA);

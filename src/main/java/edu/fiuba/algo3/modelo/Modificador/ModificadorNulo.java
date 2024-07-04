@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ModificadorNulo extends Modificador {
 
     public ModificadorNulo() {
-        super(0,0);
+        super(0, 0);
     }
 
     @Override

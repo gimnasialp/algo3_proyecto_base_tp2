@@ -16,7 +16,7 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
     private PantallaPrincipal pantallaPrincipal;
     private ArrayList<TextField> nombreJugadores;
 
-    public ControladorPedirNombreJugadores(Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<TextField> nombres){
+    public ControladorPedirNombreJugadores(Stage stage, PantallaPrincipal pantallaPrincipal, ArrayList<TextField> nombres) {
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.nombreJugadores = nombres;
@@ -24,10 +24,10 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
     }
 
 
-    private boolean validarDatosIngresados(){
+    private boolean validarDatosIngresados() {
         for (TextField textField : nombreJugadores) {
-                String nombre = textField.getText();
-            if (nombre.isEmpty()|| nombre.isBlank()) {
+            String nombre = textField.getText();
+            if (nombre.isEmpty() || nombre.isBlank()) {
                 return true;
             }
         }
@@ -37,20 +37,20 @@ public class ControladorPedirNombreJugadores implements EventHandler<ActionEvent
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        if(validarDatosIngresados()){
+        if (validarDatosIngresados()) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error de validación");
             alerta.setHeaderText("Nombre de jugador vacío");
             alerta.setContentText("Por favor, ingrese un nombre para cada jugador.");
             alerta.showAndWait();
-        }else{
+        } else {
             ArrayList<Jugador> jugadores = new ArrayList<>();
             for (TextField textField : nombreJugadores) {
                 String nombre = textField.getText();
                 jugadores.add(new Jugador(nombre));
             }
 
-            pantallaPrincipal.setCentro(new VistaPedirLimite(stage,pantallaPrincipal,jugadores));
+            pantallaPrincipal.setCentro(new VistaPedirLimite(stage, pantallaPrincipal, jugadores));
 
         }
 

@@ -21,7 +21,7 @@ public class SpinnerOrderedChoice extends HBox {
     private Label label;
     private Spinner<Integer> spinner;
 
-    public SpinnerOrderedChoice(String opcion, int cantidadOpciones, ControladorEnviarOrderedChoice controladorEnviarOrderedChoice) {
+    public SpinnerOrderedChoice(String opcion, int cantidadOpciones, ControladorEnviarOrderedChoice controlador) {
 
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(PRIMER_POSICION, cantidadOpciones, VALOR_INICIAL_SPINNER);
 
@@ -45,7 +45,7 @@ public class SpinnerOrderedChoice extends HBox {
         this.label = label;
         this.spinner = spinner;
         super.setAlignment(Pos.CENTER);
-        super.setSpacing(2);
+        super.setSpacing(5);
         super.getChildren().addAll(spinner, label);
     }
 
@@ -53,8 +53,8 @@ public class SpinnerOrderedChoice extends HBox {
         return spinner.getValue();
     }
 
-    public Integer getValue() {
-        return spinner.getValue();
+    public String getEnunciadoOpcion() {
+        return label.getText();
     }
-
 }
+

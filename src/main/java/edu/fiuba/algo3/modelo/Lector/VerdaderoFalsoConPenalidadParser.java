@@ -17,7 +17,7 @@ public class VerdaderoFalsoConPenalidadParser extends Parser {
     public Pregunta parse(JsonElement preguntaJson) {
         JsonObject jsonObject = preguntaJson.getAsJsonObject();
         obtenerDatosDePregunta(jsonObject);
-        return fabrica.crearPregunta(idPregunta,tema,enunciadoPregunta,respuesta,opciones,textoRespuesta);
+        return fabrica.crearPregunta(idPregunta, tema, enunciadoPregunta, respuesta, opciones, textoRespuesta);
     }
 
 }

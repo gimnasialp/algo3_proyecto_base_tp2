@@ -79,7 +79,7 @@ public class VistaPedirLimite extends StackPane {
         labelCantidadPreguntas.setFont(Font.font(Estilos.FUENTE, 30));
         labelCantidadPreguntas.setTextFill(Color.web(Estilos.AMARILLO));
 
-        comboBoxTiposDeLimites.getItems().addAll("Puntos","Cantidad de Preguntas");
+        comboBoxTiposDeLimites.getItems().addAll("Puntos", "Cantidad de Preguntas");
         comboBoxTiposDeLimites.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
 
 
@@ -98,7 +98,7 @@ public class VistaPedirLimite extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage,pantallaPrincipal,comboBoxTiposDeLimites,jugadores));
+        BotonSiguiente botonSiguiente = new BotonSiguiente(new ControladorPedirLimite(stage, pantallaPrincipal, comboBoxTiposDeLimites, jugadores));
         botonConfirmado.getChildren().add(botonSiguiente);
         return botonConfirmado;
     }

@@ -17,6 +17,6 @@ public class ControladorReiniciarJuego implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        principal.setCentro(new VistaInicial(stage,principal));
+        principal.setCentro(new VistaInicial(stage, principal));
     }
 }

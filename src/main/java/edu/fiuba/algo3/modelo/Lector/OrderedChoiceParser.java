@@ -11,7 +11,7 @@ public class OrderedChoiceParser extends Parser {
     private FabricaPreguntaOrderedChoice fabrica;
 
     public OrderedChoiceParser() {
-        this.fabrica= new FabricaPreguntaOrderedChoice();
+        this.fabrica = new FabricaPreguntaOrderedChoice();
     }
 
     @Override
