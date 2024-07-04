@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de la clase Limite
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class Limite{
+    -preguntas:List<Pregunta>
+    +Limite(List<Pregunta> preguntas)
+    +Pregunta preguntaNoLimitada(List<Jugador> jugador)
+    +Pregunta obtenerPreguntaSgte()
+    +preguntasRestantesLimite():int
+    +getPreguntas():List<Pregunta>;
+}
+class LimitadorPorNumeroDePreguntas{
+    +LimitadorPorNumeroPreguntas(int limitePreguntas,List<Pregunta> preguntasParaLimitar)
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores)
+}
+class LimitadorPorPuntos{
+    -posicionActualLista:int;
+    +LimitadorPorPuntos(List<Pregunta> preguntas)
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores)
+}
+class LimiteDecorator{
+    #decoratedLimite:Limite ;
+    +Pregunta preguntaNoLimitada(List<Jugador> jugadores)
+    +LimiteDecorator(Limite decoratorLimite, List<Pregunta> preguntas)
+}
+class LimiteFinalPreguntas{
+    +LimiteFinalPreguntas( List<Pregunta> preguntasParaLimitar)
+    +preguntaNoLimitada(List<Jugador> jugadores):Pregunta
+}
+class PuntosDefinidosDecoretor{
+    -puntajeLimite:int;
+    +PuntosDefinidosDecorator(Limite decoratedLimite, List<Pregunta> preguntas, int puntajeLimite)
+    +preguntaNoLimitada(List<Jugador> jugadores):Pregunta
+    +superaPuntajeLimite(List<Jugador> jugadores):boolean
+}
+Limite <|-up- LimitadorPorNumeroDePreguntas
+Limite <|-- LimitadorPorPuntos
+Limite <|-- LimiteDecorator
+Limite <|-- LimiteFinalPreguntas
+LimiteDecorator <|-- PuntosDefinidosDecoretor
+
+
+@enduml

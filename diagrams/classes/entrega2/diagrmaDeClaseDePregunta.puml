@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Diagrama de Clase de Pregunta
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+abstract class Pregunta{
+    -idPregunta
+    -tema:String
+    -texto:String
+    -enunciado:String
+    -opciones:ArrayList<String>
+    -respuestaCorrecta:Respuesta
+    -resultado:Resultado
+    +Pregunta(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones,
+                            String texto)
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+    +obtenerTema():String
+    +obtenerIdPregunta():int
+    +obtenerTextoRepuesta():String
+    +obtenerEnunciado():String
+    +obtenerOpciones():ArrayList<String>
+    +obtenerTipoPregunta():String
+    +equals(Object other):boolean
+}
+class PreguntaMultipleChoiceConPenalidad{
+    +PreguntaMultipleChoiceConPenalidad(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta, ArrayList<String>opciones, String textoRespuesta)
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class PreguntaMultipleChoiceClasico{
+    +PreguntaMultipleChoiceClasico(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta,ArrayList<String>opciones, String textoRespuesta);
+    -responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class PreguntaVerdaderoFalsoConPenalidad{
+    +PreguntaVerdaderoFalsoConPenalidad(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta,ArrayList<String>opciones, String textoRespuesta);
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class PreguntaVerdaderoFalsoClasico{
+    +PreguntaVerdaderoFalsoClasico(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta, ArrayList<String>opciones, String textoRespuesta);
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class PreguntaOrderChoice{
+    +PreguntaOrderedChoice(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta,ArrayList<String>opciones, String textoRespuesta);
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class PreguntaGroupChoice{
+    +PreguntaGroupChoice(int idPregunta, String tema, String enunciado,
+    Respuesta respuestaCorrecta, ArrayList<String> opciones,
+    String textoRespuesta, ArrayList<String> grupos)
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+
+class PreguntaMultipleChoiceParcial{
+    +PreguntaMultipleChoiceParcial(int idPregunta, String tema, String enunciado,
+     Respuesta respuestaCorrecta,ArrayList<String>opciones, String textoRespuesta);
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+
+Pregunta <|-- PreguntaGroupChoice
+Pregunta <|-up- PreguntaMultipleChoiceClasico
+Pregunta <|-- PreguntaOrderChoice
+Pregunta <|-right- PreguntaMultipleChoiceParcial
+Pregunta <|-left- PreguntaVerdaderoFalsoClasico
+Pregunta <|-- PreguntaVerdaderoFalsoConPenalidad
+Pregunta <|-up- PreguntaMultipleChoiceConPenalidad
+@enduml

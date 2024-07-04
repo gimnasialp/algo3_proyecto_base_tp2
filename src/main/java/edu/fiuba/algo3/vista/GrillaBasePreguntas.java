@@ -10,8 +10,6 @@ public class GrillaBasePreguntas extends GridPane {
     private static int TAM_ENCABEZADO = 110;
     private static int TAM_SECCION_PREGUNTA = 375;
     private static int TAM_BOTON_ENVIAR = 50;
-
-
     public GrillaBasePreguntas(double anchoPantalla, double altoPantalla) {
 
         super.setMinSize(anchoPantalla + 50, altoPantalla);

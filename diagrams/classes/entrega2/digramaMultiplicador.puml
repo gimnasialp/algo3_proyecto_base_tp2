@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de Clase de Multiplicador
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+interface Multiplicador{
+    +aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion):void ;
+    +consultarValor():int ;
+}
+class MultiplicadoPorUno{
+     +aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion):void
+     +consultarValor():int
+     +equals(Object other):boolean
+}
+class MultiplicadoPorDos{
+    +aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion):void
+    +consultarValor():int
+    +equals(Object other):boolean
+}
+class MultiplicadoPorTres{
+    +aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion):void
+    +consultarValor():int
+    +equals(Object other):boolean
+}
+
+
+
+
+class Jugador{
+    -nombre:String
+    -puntaje:Puntaje
+    -modificadores: ArrayList<Modificador>
+    -modificadorActual:Modificador
+    +Jugador(String nombre)
+    +tieneMasPuntosQue(Jugador otroJugador):boolean
+    +tieneMenosOLosMismosPuntosQue(int otrosPuntos):boolean
+    +getNombre():String
+    +getPuntaje():Puntaje
+    +aplicarNuevoMultiplicador(Multiplicador multiplicador):void
+    +obtenerMultiplicadorActual():Multiplicador;
+    +obtenerMultiplicador():Multiplicador
+    +obtenerMultiplicadoresDisponibles():List<Multiplicador>
+    +deshabilitarMultiplicador(Multiplicador modificador):void
+    +multiplicadorFueUtilizado(Multiplicador multiplicador):boolean
+    +resetearComodines():void
+    +aplicarNuevoModificador(Modificador modificador):void
+    +actualizarUso(Modificador modificador):void
+    +habilitado(Modificador modificador):boolean
+    +asignarPuntos():void
+
+}
+
+Multiplicador <|.up. MultiplicadoPorUno
+Multiplicador <|.. MultiplicadoPorDos
+Multiplicador <|.. MultiplicadoPorTres
+Jugador --> Multiplicador
+
+@enduml

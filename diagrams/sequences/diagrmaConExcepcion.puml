@@ -1,0 +1,52 @@
+@startuml
+title testJuegoLimiteNumeroPuntosconPreguntasOCyGCconDosJugadoresSiLlegaAlPuntajeMaximoSupearadoLanzaUnaExcepcion
+skinparam monochrome true
+hide footbox
+participant TestCase
+participant "proveedor:ProveedorJsonPreguntas" as proveedor
+participant "jugador1:Jugador" as jugador1
+participant "jugador2:Juegador" as jugador2
+participant "limite:Limite" as limite
+participant "limite:LimiteDecoretor" as limiteDecoretor
+participant "algo:AlgoHoot" as algoHoot
+create proveedor
+TestCase -> proveedor:new ProveedorJsonPreguntas(new HashMap<String, Parser>(\n"ordered choice", new OrderedChoiceParser(),\n"group choice", new GroupChoiceParser()))
+TestCase -> proveedor: obtenerPreguntasDe("preguntas.json")
+proveedor --> TestCase: preguntasLector
+create jugador1
+TestCase -> jugador1 : new Jugador("Migue")
+create jugador2
+TestCase -> jugador2 : new Jugador("Angel")
+create limite
+TestCase -> limite : new Limite(new ArrayList<>(Arrays.asList(preguntasLector.obtenerPreguntasOC, preguntasLector.obtenerPreguntasGC)))
+limite --> TestCase:limite
+create limiteDecoretor
+TestCase -> limiteDecoretor : new PuntosDefinidosDecorator(limite, new ArrayList<>(Arrays.asList(preguntasLector.obtenerPreguntasOC, preguntasLector.obtenerPreguntasGC)), 1)
+limiteDecoretor --> TestCase : limiteDecoretor
+create algoHoot
+TestCase -> algoHoot : new AlgoHoot(new ArrayList<>(Arrays.asList(jugador1, jugador2)), limiteDecoretor)
+activate algoHoot
+TestCase -> algoHoot: proximaPartida()
+loop busco la partida activa
+algoHoot -> algoHoot:obtenerParticaActiva()
+algoHoot -> "partidaActiva:Patida":avanzaAsiguienteJugador()
+"partidaActiva:Patida" <- algoHoot:obtenerJugadorActivo()
+end
+"partidaActiva:Patida" --> algoHoot: jugador1
+algoHoot -> jugador1: responderPregunta()
+jugador1 -> "partidaActiva:Patida":agregarRespuesta(new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(1, 3, 4, 6, 5, 2))))
+algoHoot ->"partidaActiva:Patida":avanzoConSiguienteJugador()
+
+loop busco jugador activo
+
+algoHoot -> "partidaActiva:Patida":obtenerJugadorActivo()
+
+end
+"partidaActiva:Patida" --> algoHoot: jugador2
+algoHoot -> jugador2: responderPregunta()
+jugador2 -> "partidaActiva:Patida":agregarRespuesta(new RespuestaOrderedChoice(new ArrayList<>(Arrays.asList(2, 4, 3, 1, 5, 6))))
+TestCase -> algoHoot : proximaPartida();
+create "PuntajeMaximoSuperadoException"
+algoHoot -> PuntajeMaximoSuperadoException
+
+@endluml

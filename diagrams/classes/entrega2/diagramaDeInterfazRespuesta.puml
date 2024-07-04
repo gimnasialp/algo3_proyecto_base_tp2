@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Diagrama de Clase de Respuesta
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+
+interface Respuesta{
+    +comparar(Respuesta respuesta):boolean;
+
+}
+class RespuestaGroupChoice{
+    +RespuestaGroupChoice(ArrayList<Integer> respuestaGrupoUno, ArrayList<Integer> respuestaGrupoDos)
+    -respuestaGrupoUno(ArrayList<Interger>);
+    -respuestaGrupoDos(ArrayList<Interger>);
+    +comparar(Respuesta respuesta);
+    -evaluar(ArrayList<Integer> respuestaCorrectaGrupoUno, ArrayList<Integer> respuestaCorrectaGrupoDos);
+}
+class RespuestaOrderChoice{
+    +RespuestaOrderedChoice(ArrayList<Integer> respuesta)
+    -respuesta : ArrayList<Interger>
+    +comparar(Respuesta respuesta):boolean
+    -evaluar(ArrayList<Integer> respuesta);
+}
+class RespuestaMultipleChoiceConPenalidad{
+    -respuesta : ArrayList<Interger>
+    +RespuestaMultipleChoiceConPenalidad
+    (ArrayList<Integer> respuesta)
+    +comparar(Respuesta respuesta):boolean
+    -evaluar(ArrayList<Interger>);
+    +opcionesCorrectas(Respuesta respuesta):int
+    +opcionesIncorrectas(Respuesta respuesta):int
+}
+class RespuestaMultipleChoiceClaico{
+    -respuesta: ArrayList<Interger>
+    +RespuestaMultipleChoiceClasico
+    (ArrayList<Integer> respuesta)
+    +comparar(Respuesta respuesta):boolean
+    -evaluar(ArrayList<Interger>);
+
+}
+class RespuestaVerdaderoFalso{
+    -respuesta:int
+    +RespuestaVerdaderoFalso(Integer respuesta)
+    +comparar(Respuesta respuesta):boolean
+    -evaluar(ArrayList<Interger>);
+}
+class RespuestaMultipleChoiceParcial{
+    -respuesta: ArrayList<Integer>
+    +RespuestaMultipleChoiceParcial
+    (ArrayList<Integer> respuesta)
+    +comparar(Respuesta respuesta):boolean
+    -evaluar(Integer choice):boolean
+    +opcionesCorrectas(Respuesta respuesta):int
+}
+Respuesta <|.up. RespuestaGroupChoice
+Respuesta <|.. RespuestaMultipleChoiceClaico
+Respuesta <|.. RespuestaMultipleChoiceConPenalidad
+Respuesta <|.left. RespuestaOrderChoice
+Respuesta <|.right. RespuestaVerdaderoFalso
+Respuesta <|.. RespuestaMultipleChoiceParcial
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+title testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuegoDespuesDeResponderLaPreguntaNOPudenJUgarOtraPartida
+skinparam monochrome true
+hide footbox
+participant TestCase
+participant "pregunta1:Pregunta" as pregunta1
+participant "pregunta2:Pregunta" as pregunta2
+participant "limite:Limite" as limite
+participant "jugador1:Jugador" as jugador1
+participant "jugador2:Juegador" as jugador2
+participant "algo:AlgoHoot" as algoHoot
+create pregunta1
+TestCase -> pregunta1:new PreguntaVerdaderoFalsoClasico(16, "DEPORTES",\n"Argentina es el actual campeon mundial de futbol", \n new RespuestaVerdaderoFalso(1),new ArrayList<>(Arrays.asList("Verdadero", "Falso")),\n "Argentina gano mundial de futbol en 2022")
+pregunta1 --> TestCase: pregunta1
+create pregunta2
+TestCase -> pregunta2 : new PreguntaVerdaderoFalsoClasico(17, "DEPORTES",\n "Argentina es el actual campeon mundial de futbol",\n  new RespuestaVerdaderoFalso(1),new ArrayList<>(Arrays.asList("Verdadero", "Falso")),\n "Argentina gano mundial de futbol en 2022")
+pregunta2 --> TestCase: pregunta2
+create limite
+TestCase -> limite : new Limite(new ArrayList<>(Arrays.asList(preguntaUno, preguntaDos)))
+limite --> TestCase :limite
+create jugador1
+TestCase -> jugador1: new Jugador("Migue")
+TestCase <-- jugador1: jugador1
+create jugador2
+TestCase -> jugador2:new Jugador("Angel")
+TestCase <-- jugador2: jugador2
+create algoHoot
+TestCase -> algoHoot : new AlgoHoot(new ArrayList<>(Arrays.asList(jugador1, jugador2)), limite)
+activate algoHoot
+TestCase -> algoHoot: proximaPartida()
+loop busco la partida activa
+algoHoot -> algoHoot:obtenerParticaActiva()
+algoHoot -> "partidaActiva:Patida":avanzaAsiguienteJugador()
+"partidaActiva:Patida" <- algoHoot:obtenerJugadorActivo()
+end
+"partidaActiva:Patida" --> algoHoot: jugador1
+algoHoot -> jugador1: responderPregunta()
+jugador1 -> "partidaActiva:Patida":agregarRespuesta(new RespuestaVerdaderoFalso(1))
+algoHoot ->"partidaActiva:Patida":avanzoConSiguienteJugador()
+
+loop busco jugador activo
+
+algoHoot -> "partidaActiva:Patida":obtenerJugadorActivo()
+
+end
+"partidaActiva:Patida" --> algoHoot: jugador2
+algoHoot -> jugador2: responderPregunta()
+jugador2 -> "partidaActiva:Patida":agregarRespuesta(new RespuestaVerdaderoFalso(2))
+TestCase -> algoHoot : proximaPartida()
+create "SinPreguntasDisponiblesException"
+algoHoot -> "SinPreguntasDisponiblesException":throw
+@endluml
