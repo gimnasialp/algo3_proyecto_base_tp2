@@ -130,7 +130,4 @@ public class Partida {
         jugadorDePartidaActiva.aplicarNuevoModificador(modificador);
     }
 
-    public List<Jugador> getJugadores() {
-        return jugadores;
-    }
 }

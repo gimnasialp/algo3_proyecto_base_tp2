@@ -18,7 +18,6 @@ public class AlgoHoot {
     private int numeroPartida;
 
 
-
     public AlgoHoot(List<Jugador> jugadores, Limite limite) {
         this.jugadores = jugadores;
         this.limite = limite;
@@ -54,12 +53,5 @@ public class AlgoHoot {
         return partidaActual;
     }
 
-    public int obtenerNumeroPartida() {
-        return numeroPartida;
-    }
-
-    public boolean todasLasPreguntasRespondidas() {
-        return false;
-    }
 
 }
