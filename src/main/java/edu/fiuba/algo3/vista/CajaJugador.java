@@ -36,7 +36,7 @@ public class CajaJugador extends HBox {
         this.setMaxSize(ANCHO_CAJA, ALTO_CAJA);
 
         this.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
-        this.setBackground(new Background(new BackgroundFill(Color.web(Estilos.AZUL), Estilos.BORDE_CURVO, null)));
+        this.setBackground(new Background(new BackgroundFill(Color.web(Estilos.VIOLETA), Estilos.BORDE_CURVO, null)));
 
         this.getChildren().add(vBox);
         this.setAlignment(Pos.CENTER); // Centrar horizontalmente los elementos en el HBox

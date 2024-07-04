@@ -72,7 +72,7 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
             cantidadPreguntasSinSeleccionar.setContentText("Debe seleccionar un limite de Preguntas para poder empezar a jugar.");
             cantidadPreguntasSinSeleccionar.show();
         } else {
-            crearAlgohoot(Integer.parseInt(seleccion));
+            crearAlgohoot(limite);
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal, algoHoot));
 
         }

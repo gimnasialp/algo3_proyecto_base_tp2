@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista.vistas;
 
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorLimitePreguntas;
+import edu.fiuba.algo3.controladores.ControladorLimitePuntuacion;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
@@ -98,7 +99,7 @@ public class VistaLimitePuntacion extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage, pantallaPrincipal, comboBoxCantidadPuntos, jugadores));
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePuntuacion(stage, pantallaPrincipal, comboBoxCantidadPuntos, jugadores));
         botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }
