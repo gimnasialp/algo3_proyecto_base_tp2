@@ -92,7 +92,6 @@ public class VistaGroupChoice extends StackPane {
 
         return contenedorPregunta;
     }
-
     private VBox crearCajaInferior(Stage stage, PantallaPrincipal pantallaPrincipal,AlgoHoot algoHoot) {
         VBox cajaOpciones = new VBox(10);
         cajaOpciones.setAlignment(Pos.CENTER);
@@ -111,7 +110,7 @@ public class VistaGroupChoice extends StackPane {
         grillaOpciones.setAlignment(Pos.CENTER);
 
         for (String opcion : preguntaGroupChoice.obtenerOpciones()) {
-            SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion, controladorRespondioUsuario);
+            SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion);
             boton.setAlignment(Pos.CENTER_LEFT);
             cajaOpciones.getChildren().add(boton);
         }

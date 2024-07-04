@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.CajaJugador;
+import edu.fiuba.algo3.vista.CajaModificadores;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonAccederPregunta;
@@ -33,18 +34,14 @@ public class VistaTurnoJugadorActual extends StackPane {
         configurarFondo();
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
-    /*    System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
-        System.out.println(partidaActual.obtenerJugadorActivo().getNombre());
-        System.out.println(partidaActual.obtenerJugadorActivo().obtenerPuntaje());*/
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
         VBox cajaPregunta = crearContenedorPregunta(partidaActual.obtenerPreguntaActual());
-        //CajaJugador cajaJugador = new CajaJugador(partidaActual.obtenerJugadorActivo());
         VBox cajaTurnoJugador = crearContenedorTurnoJugador(partidaActual.obtenerJugadorActivo());
-        VBox botonModificador = crearBotonModificador(stage, pantallaPrincipal);
+        CajaModificadores cajaModificadores = new CajaModificadores(algoHoot);
         VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
         grilla.add(cajaTurnoJugador,0,1);
-        grilla.add(botonModificador, 0, 1);
+        grilla.add(cajaModificadores, 0, 1);
         grilla.add(CajaBotonPregunta, 0, 2);
         grilla.setAlignment(Pos.CENTER);
         super.getChildren().add(grilla);
@@ -136,12 +133,5 @@ public class VistaTurnoJugadorActual extends StackPane {
         return cajaBotonAccederPregunta;
     }
 
-    private VBox crearBotonModificador(Stage stage, PantallaPrincipal pantallaPrincipal) {
-        VBox cajaBotonModificador = new VBox(0);
-        cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
-        BotonMultiplicador botonMultiplicador = new BotonMultiplicador(new MultiplicarPorDos());
-        cajaBotonModificador.getChildren().add(botonMultiplicador);
-        return cajaBotonModificador;
-    }
 
 }

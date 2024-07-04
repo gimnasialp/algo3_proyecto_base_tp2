@@ -23,9 +23,9 @@ public class Jugador {
         this.nombre = nombre;
         this.puntaje = new Puntaje();
         this.multiplicadorActual = new MultiplicadorPorUno();
-        this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(), new MultiplicarPorTres()));
+        this.multiplicadoresDisponibles = new ArrayList<>(Arrays.asList(new MultiplicarPorDos(),new MultiplicarPorTres()));
         this.modificadorActual = new ModificadorNulo();
-        this.modificadoresDisponibles = new ArrayList<>(Arrays.asList(new ExclusividadDePuntaje(), new AnuladorDePuntaje()));
+        this.modificadoresDisponibles = new ArrayList<>(Arrays.asList(new ExclusividadDePuntaje(),new ExclusividadDePuntaje(), new AnuladorDePuntaje()));
     }
 
     public void asignarPuntos(int puntos) {
@@ -67,6 +67,9 @@ public class Jugador {
 
     public List<Multiplicador> obtenerMultiplicadoresDisponibles() {
         return multiplicadoresDisponibles;
+    }
+    public List<Modificador> obtenerModificadoresDisponibles() {
+        return modificadoresDisponibles;
     }
 
     public void deshabilitarMultiplicador(Multiplicador modificador) {

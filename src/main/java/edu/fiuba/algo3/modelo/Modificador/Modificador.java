@@ -14,9 +14,6 @@ public abstract class Modificador {
         this.limiteParaUso = limiteParaUso;
     }
 
-    //De ale
-    //public abstract void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion);
-
     public void actualizarCantidadDeUso() {
         vecesUsado++;
     }

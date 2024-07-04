@@ -31,11 +31,11 @@ public class CajaJugador extends HBox {
         puntosJugador.setFont(Font.font(Estilos.FUENTE, 25));
         puntosJugador.setTextFill(Color.YELLOW);
 
-        CajaModificadoresJugador cajaBonusJugador = new CajaModificadoresJugador(jugador);
+        CajaComodinesJugador cajaBonusJugador = new CajaComodinesJugador(jugador);
 
         VBox vBox = new VBox(10); // Espaciado entre los elementos
         vBox.setAlignment(Pos.CENTER); // Centrar verticalmente los elementos
-        vBox.getChildren().addAll(labelNombreJugador, puntosJugador/*, cajaBonusJugador*/);
+        vBox.getChildren().addAll(labelNombreJugador, puntosJugador, cajaBonusJugador);
 
         this.setMinSize(ANCHO_CAJA, ALTO_CAJA);
         this.setPrefSize(ANCHO_CAJA, ALTO_CAJA);

@@ -43,8 +43,7 @@ public abstract class ControladorPreguntasJuego {
                 Jugador ganador = algoHoot.obtenerPartidaActiva().jugadorConMasPuntos();
                 contenedorPrincipal.setCentro(new VistaGanador(stage, contenedorPrincipal, ganador));
             }else{
-                System.out.println("estamos en la ronda numero :"+ algoHoot.obtenerNumeroPartida());
-                System.out.println(partidaActual.obtenerPreguntaActual().obtenerEnunciado());
+
                 algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
                 contenedorPrincipal.setCentro(new VistaGeneralPartida(stage, contenedorPrincipal, algoHoot));
             }
@@ -56,7 +55,8 @@ public abstract class ControladorPreguntasJuego {
     }
 
     private void sumarPuntos(Respuesta respuestaJugador) {
-        partidaActual.agregarRespuesta(respuestaJugador);
+        algoHoot.obtenerPartidaActiva().agregarRespuesta(respuestaJugador);
+
     }
 
     private boolean ultimoJugadorRespuesta() {
@@ -80,6 +80,7 @@ public abstract class ControladorPreguntasJuego {
     private boolean juegoTermino() {
         try {
             algoHoot.proximaPartida();
+
         } catch (PuntajeMaximoSuperadoException e) {
             juegoFinalizado = true;
         }

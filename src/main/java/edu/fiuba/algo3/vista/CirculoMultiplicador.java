@@ -7,14 +7,14 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-public class CirculoModificador  extends StackPane {
+public class CirculoMultiplicador  extends StackPane {
 
-    public CirculoModificador(Modificador modificador) {
+    public CirculoMultiplicador(Multiplicador multiplicador) {
         String textoBonus = "";
-        if(modificador instanceof ExclusividadDePuntaje){
-            textoBonus = "E";
-        }if(modificador instanceof AnuladorDePuntaje){
-            textoBonus = "A";
+        if(multiplicador instanceof MultiplicarPorDos){
+            textoBonus = "X2";
+        }if(multiplicador instanceof MultiplicarPorTres){
+            textoBonus = "X3";
         }
         Text textoCirculo = new Text(textoBonus);
         Circle circulo = new Circle(10, Paint.valueOf(Estilos.AMARILLO));
@@ -22,3 +22,4 @@ public class CirculoModificador  extends StackPane {
 
     }
 }
+
