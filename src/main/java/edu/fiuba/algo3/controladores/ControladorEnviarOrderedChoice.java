@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaOrderedChoice;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
@@ -49,26 +48,27 @@ public class ControladorEnviarOrderedChoice extends ControladorPreguntasJuego im
         }
 
     }
+
     private boolean seRepitenOpcionesSeleccionadas() {
         int contadorPos1 = 0, contadorPos2 = 0;
         int contadorPos3 = 0, contadorPos4 = 0;
         int contadorPos5 = 0;
 
         ArrayList<Integer> listaAux = new ArrayList<>();
-        for(SpinnerOrderedChoice opcion : opcionesSeleccionadas){
+        for (SpinnerOrderedChoice opcion : opcionesSeleccionadas) {
             listaAux.add(opcion.getNumeroOrden());
         }
-        for(int orden : listaAux){
-            if(orden == 1)
+        for (int orden : listaAux) {
+            if (orden == 1)
                 contadorPos1++;
-            if(orden == 2)
-                contadorPos2 ++;
-            if(orden == 3)
-                contadorPos3 ++;
-            if(orden == 4)
-                contadorPos4 ++;
-            if(orden == 5)
-                contadorPos5 ++;
+            if (orden == 2)
+                contadorPos2++;
+            if (orden == 3)
+                contadorPos3++;
+            if (orden == 4)
+                contadorPos4++;
+            if (orden == 5)
+                contadorPos5++;
         }
         return hayMasDeUnaOpcionEnElMismoLugar(contadorPos1, contadorPos2, contadorPos3, contadorPos4, contadorPos5);
     }

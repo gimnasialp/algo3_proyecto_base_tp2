@@ -14,14 +14,12 @@ import java.util.List;
 
 public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
     private List<String> nombresGrupos;
-    private List<String> opcionesSeleccionadas;
     private List<SpinnerGroupChoice> spinners;
     private List<String> opciones;
 
     public ControladorEnviarGroupChoice(List<String> nombresGrupos, Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
         super(stage, pantallaPrincipal, algoHoot);
         this.nombresGrupos = nombresGrupos;
-        this.opcionesSeleccionadas = new ArrayList<>();
         this.spinners = new ArrayList<>();
         this.opciones = this.partidaActual.obtenerPreguntaActual().obtenerOpciones();
     }
@@ -50,9 +48,6 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
     }
 
 
-
-
-
     @Override
     public void handle(ActionEvent event) {
         if (spinners.isEmpty()) {
@@ -66,4 +61,3 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
     }
 
 }
-

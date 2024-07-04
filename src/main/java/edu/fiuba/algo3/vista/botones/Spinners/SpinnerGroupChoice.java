@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.botones.Spinners;
 
 import edu.fiuba.algo3.Estilos;
+import edu.fiuba.algo3.controladores.ControladorEnviarGroupChoice;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class SpinnerGroupChoice extends HBox {
 
@@ -24,7 +24,8 @@ public class SpinnerGroupChoice extends HBox {
     private final Spinner<String> spinner;
 
 
-    public SpinnerGroupChoice(ArrayList<String> nombresGrupos, String opcion) {
+    public SpinnerGroupChoice(ArrayList<String> nombresGrupos, String opcion, ControladorEnviarGroupChoice controlador) {
+
 
         ObservableList<String> nombresGruposPosibles = FXCollections.observableArrayList();
         nombresGruposPosibles.addAll(nombresGrupos);
@@ -44,12 +45,12 @@ public class SpinnerGroupChoice extends HBox {
         label.setFont(Font.font(Estilos.FUENTE, 25));
         label.setTextFill(Color.YELLOW);
 
-        Insets padding = new Insets(4,4,4,4);// Proporciona un margen interior, mejora el aspecto y la disposición de la interfaz gráfica.
+        Insets padding = new Insets(4, 4, 4, 4);// Proporciona un margen interior, mejora el aspecto y la disposición de la interfaz gráfica.
         CornerRadii bordeRedondeado = new CornerRadii(10);
-        Color colorTransparente = Color.web(Estilos.VIOLETA,Estilos.ALPHA_OPCIONES);
-        spinner.setBackground(new Background(new BackgroundFill(colorTransparente,bordeRedondeado,null)));
+        Color colorTransparente = Color.web(Estilos.VIOLETA, Estilos.ALPHA_OPCIONES);
+        spinner.setBackground(new Background(new BackgroundFill(colorTransparente, bordeRedondeado, null)));
         spinner.setPadding(padding);
-        label.setBackground(new Background(new BackgroundFill(colorTransparente,bordeRedondeado,null)));
+        label.setBackground(new Background(new BackgroundFill(colorTransparente, bordeRedondeado, null)));
         label.setPadding(padding);
 
         super.setAlignment(Pos.CENTER);
@@ -57,10 +58,11 @@ public class SpinnerGroupChoice extends HBox {
         super.getChildren().addAll(spinner, label);
     }
 
-    public String getGrupoOpcion(){
+    public String getGrupoOpcion() {
         return spinner.getValue();
     }
 
-    public String getOpcionSpinner() { return opcionSpinner;}
+    public String getOpcionSpinner() {
+        return opcionSpinner;
+    }
 }
-

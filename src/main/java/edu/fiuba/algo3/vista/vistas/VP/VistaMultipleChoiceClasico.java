@@ -3,13 +3,11 @@ package edu.fiuba.algo3.vista.vistas.VP;
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoice;
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaMultipleChoice;
-import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaOrderedChoice;
 import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
@@ -24,7 +22,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class VistaMultipleChoiceClasico extends StackPane {
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";

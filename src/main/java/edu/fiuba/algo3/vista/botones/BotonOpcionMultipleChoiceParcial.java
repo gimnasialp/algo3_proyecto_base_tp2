@@ -20,7 +20,7 @@ public class BotonOpcionMultipleChoiceParcial extends CheckBox {
         this.indice = indice + 1;
         super.setText(opcion);
         super.setFont(Font.font(Estilos.FUENTE, 20));
-        super.setTextFill(Color.BLACK);
+        super.setTextFill(Color.WHITE);
 
         // Ajustar el tamaño del CheckBox para que muestre el texto completo
         super.setMaxWidth(Double.MAX_VALUE);

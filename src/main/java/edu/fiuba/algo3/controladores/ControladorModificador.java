@@ -18,7 +18,7 @@ public class ControladorModificador implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         algoHoot.obtenerPartidaActiva().obtenerJugadorActivo().obtenerModificadoresDisponibles().remove(modificador);
-        algoHoot.obtenerPartidaActiva().activaModificador(modificador,algoHoot.obtenerPartidaActiva().obtenerJugadorActivo());
+        algoHoot.obtenerPartidaActiva().activaModificador(modificador, algoHoot.obtenerPartidaActiva().obtenerJugadorActivo());
 
     }
 }

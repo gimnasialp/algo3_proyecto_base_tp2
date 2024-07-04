@@ -10,7 +10,7 @@ public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
     private Stage stage;
     private PantallaPrincipal pantallaPrincipal;
 
-    public ControladorIniciarJuego(Stage stage, PantallaPrincipal pantallaPrincipal){
+    public ControladorIniciarJuego(Stage stage, PantallaPrincipal pantallaPrincipal) {
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
     }
@@ -18,7 +18,7 @@ public class ControladorIniciarJuego implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores(stage,pantallaPrincipal));
+        pantallaPrincipal.setCentro(new VistaPedirCantidadJugadores(stage, pantallaPrincipal));
 
     }
 

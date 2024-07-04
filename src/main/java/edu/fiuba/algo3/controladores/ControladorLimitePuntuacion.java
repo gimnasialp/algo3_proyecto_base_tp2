@@ -3,7 +3,9 @@ package edu.fiuba.algo3.controladores;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
-import edu.fiuba.algo3.modelo.Limite.*;
+import edu.fiuba.algo3.modelo.Limite.LimitadorPorPuntos;
+import edu.fiuba.algo3.modelo.Limite.Limite;
+import edu.fiuba.algo3.modelo.Limite.PuntosDefinidosDecorator;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
@@ -48,9 +50,9 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         //MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
         //ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
 
-        Limite limite =  new LimitadorPorPuntos( preguntas);
-
-        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas,Integer.parseInt(limitePuntuacion));
+        Limite limite = new LimitadorPorPuntos(preguntas);
+        //Limite limite = new LimiteFinalPreguntas(preguntasMezcladas);
+        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas, Integer.parseInt(limitePuntuacion));
         AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
         algoHoot.proximaPartida();
         algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
@@ -69,9 +71,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         } else {
             crearAlgohoot(seleccion);
-            System.out.println("estamos en la ronda numero :"+algoHoot.obtenerNumeroPartida());
-            System.out.println("Se seleccionaron" + seleccion + "Puntos");
-            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal,algoHoot));
+            pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal, algoHoot));
 
         }
 

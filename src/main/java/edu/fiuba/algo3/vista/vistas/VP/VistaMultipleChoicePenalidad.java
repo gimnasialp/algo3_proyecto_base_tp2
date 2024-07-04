@@ -1,20 +1,14 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoice;
 import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoicePenalidad;
-import edu.fiuba.algo3.controladores.ControladorEnviarOrderedChoice;
 import edu.fiuba.algo3.modelo.AlgoHoot;
-import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaMultipleChoice;
-import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaOrderedChoice;
-import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoice;
 import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoicePenalidad;
-import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
 import javafx.geometry.Insets;
@@ -28,7 +22,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class VistaMultipleChoicePenalidad extends StackPane {
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
@@ -51,7 +44,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
         ControladorEnviarMultipleChoicePenalidad controladorRespondioUsuario = new ControladorEnviarMultipleChoicePenalidad(stagePrincipal, pantallaPrincipal, algoHoot);
 
 
-        VBox cajaOpciones = armarOpciones(cajaPregunta,partida.obtenerPreguntaActual(), controladorRespondioUsuario);
+        VBox cajaOpciones = armarOpciones(cajaPregunta, partida.obtenerPreguntaActual(), controladorRespondioUsuario);
 
 
         VBox cajaInferior = new VBox();
@@ -103,7 +96,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
 
         ArrayList<String> opciones = pregunta.obtenerOpciones();
 
-        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250,350);
+        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250, 350);
         grillaOpciones.setAlignment(Pos.CENTER);
         VBox cajaOpciones = new VBox(20);
 
@@ -114,7 +107,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones,0,1);
+        grillaOpciones.add(cajaOpciones, 0, 1);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }

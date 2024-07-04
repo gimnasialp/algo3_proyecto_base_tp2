@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 
 public class BotonEmpezarTurnos extends Button {
 
-    public BotonEmpezarTurnos(EventHandler<ActionEvent> controlador){
+    public BotonEmpezarTurnos(EventHandler<ActionEvent> controlador) {
         super.setText("Empezar Ronda");
         super.setFont(Font.font(Estilos.FUENTE, 30));
         super.setTextFill(Color.web(Estilos.BLANCO));
@@ -22,7 +22,7 @@ public class BotonEmpezarTurnos extends Button {
         super.setBackground(unFondito);
 
         super.setOnAction(controlador);
-        super.setOnMouseEntered(new ControladorActivarBoton(this,Estilos.AMARILLO));
+        super.setOnMouseEntered(new ControladorActivarBoton(this, Estilos.AMARILLO));
         super.setOnMouseExited(new ControladorDesactivarBoton(this, Estilos.VERDE));
     }
 }

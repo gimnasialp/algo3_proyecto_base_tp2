@@ -17,6 +17,7 @@ public class ControladorEnviarMultipleChoiceParcial extends ControladorPreguntas
         super(stagePrincipal, pantallaPrincipal, algoHoot);
         this.opcionesSeleccionadas = new ArrayList<>();
     }
+
     public void agregarOpcion(int indice) {
         if (!opcionesSeleccionadas.contains(indice)) {
             opcionesSeleccionadas.add(indice);

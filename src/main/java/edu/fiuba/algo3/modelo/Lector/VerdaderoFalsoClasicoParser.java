@@ -10,7 +10,7 @@ public class VerdaderoFalsoClasicoParser extends Parser {
     private FabricaPreguntasVerdaderoFalso fabrica;
 
     public VerdaderoFalsoClasicoParser() {
-        this.fabrica= new FabricaPreguntasVerdaderoFalso();
+        this.fabrica = new FabricaPreguntasVerdaderoFalso();
     }
 
     @Override

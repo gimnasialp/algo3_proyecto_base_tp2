@@ -10,7 +10,7 @@ public class MultiplicarPorDos implements Multiplicador {
     @Override
     public void aplicar(ArrayList<Integer> puntajeRonda, int jugadorPosicion) {
         puntajeRonda.set(jugadorPosicion, puntajeRonda.get(jugadorPosicion) * MULTIPLICADOR);
-        //  ++usado;
+
     }
 
     @Override

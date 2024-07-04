@@ -3,15 +3,12 @@ package edu.fiuba.algo3.vista.vistas;
 import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
-import edu.fiuba.algo3.vista.CajaJugador;
 import edu.fiuba.algo3.vista.CajaModificadores;
 import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonAccederPregunta;
-import edu.fiuba.algo3.vista.botones.BotonMultiplicador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -40,7 +37,7 @@ public class VistaTurnoJugadorActual extends StackPane {
         CajaModificadores cajaModificadores = new CajaModificadores(algoHoot);
         VBox CajaBotonPregunta = crearBotonPregunta(stage, pantallaPrincipal);
         grilla.add(cajaPregunta, 0, 0);
-        grilla.add(cajaTurnoJugador,0,1);
+        grilla.add(cajaTurnoJugador, 0, 1);
         grilla.add(cajaModificadores, 0, 1);
         grilla.add(CajaBotonPregunta, 0, 2);
         grilla.setAlignment(Pos.CENTER);
@@ -125,10 +122,10 @@ public class VistaTurnoJugadorActual extends StackPane {
         super.setBackground(fondo);
     }
 
-    private VBox crearBotonPregunta(Stage stage, PantallaPrincipal pantallaPrincipal){
+    private VBox crearBotonPregunta(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox cajaBotonAccederPregunta = new VBox(ESPACIADO_CENTRAL);
         cajaBotonAccederPregunta.setAlignment(Pos.CENTER);
-        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage,pantallaPrincipal,algoHoot);
+        BotonAccederPregunta botonAccederPregunta = new BotonAccederPregunta(stage, pantallaPrincipal, algoHoot);
         cajaBotonAccederPregunta.getChildren().add(botonAccederPregunta);
         return cajaBotonAccederPregunta;
     }

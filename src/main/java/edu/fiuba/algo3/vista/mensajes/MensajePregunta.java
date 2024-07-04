@@ -8,9 +8,9 @@ import javafx.scene.text.TextAlignment;
 
 public class MensajePregunta extends Label {
 
-    public MensajePregunta(String enunciado){
+    public MensajePregunta(String enunciado) {
         super(enunciado);
-        super.setFont(Font.font(Estilos.FUENTE,20));
+        super.setFont(Font.font(Estilos.FUENTE, 20));
         super.setTextFill(Color.YELLOW);
         super.setTextAlignment(TextAlignment.CENTER);
         super.prefWidth(200);

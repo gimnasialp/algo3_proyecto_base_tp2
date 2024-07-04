@@ -17,7 +17,7 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
     private ComboBox<String> comboBoxTiposDeLimites;
     private ArrayList<Jugador> jugadores;
 
-    public ControladorPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxTiposDeLimites, ArrayList<Jugador> jugadores){
+    public ControladorPedirLimite(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxTiposDeLimites, ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
@@ -37,10 +37,10 @@ public class ControladorPedirLimite implements EventHandler<ActionEvent> {
 
             switch (seleccion) {
                 case "Puntos":
-                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage,pantallaPrincipal,jugadores));
+                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal, jugadores));
                     break;
                 case "Cantidad de Preguntas":
-                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal,jugadores));
+                    pantallaPrincipal.setCentro(new VistaLimitePreguntas(stage, pantallaPrincipal, jugadores));
                     break;
             }
 

@@ -1,18 +1,16 @@
 package edu.fiuba.algo3.vista.utils;
+
 import edu.fiuba.algo3.controladores.*;
-import edu.fiuba.algo3.controladores.ControladorAcercaDeAyuda;
-import edu.fiuba.algo3.controladores.ControladorMusica;
-import edu.fiuba.algo3.controladores.ControladorPantallaCompleta;
-import javafx.stage.Stage;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 
 public class BarraDeMenu extends MenuBar {
 
     MenuItem opcionPantallaCompleta = new MenuItem("Pantalla completa");
-    private String rutaMusica = "\\src\\main\\java\\edu\\fiuba\\algo3\\resources\\musica\\";;
+    private String rutaMusica = "\\src\\main\\java\\edu\\fiuba\\algo3\\resources\\musica\\";
 
     public BarraDeMenu(Stage stage) {
         Menu menuArchivo = new Menu("Archivo");
@@ -27,42 +25,44 @@ public class BarraDeMenu extends MenuBar {
         opcionSalir.setOnAction(new ControladorFinalizarJuego());
         opcionAcercaDe.setOnAction(new ControladorAcercaDeAyuda());
         opcionAyuda.setOnAction(new ControladorAyudaDelJuego());
-        opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(stage,opcionPantallaCompleta));
+        opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(stage, opcionPantallaCompleta));
         agregarMusicas(menuMusica);
 
         menuArchivo.getItems().addAll(opcionSalir);
 
-        menuAyuda.getItems().addAll(opcionAcercaDe,opcionAyuda);
+        menuAyuda.getItems().addAll(opcionAcercaDe, opcionAyuda);
         menuVer.getItems().addAll(opcionPantallaCompleta);
 
         this.getMenus().addAll(menuArchivo, menuVer, menuMusica, menuAyuda);
 
     }
+
     public void aplicacionMaximizada() {
         opcionPantallaCompleta.setDisable(false);
     }
-    private void agregarMusicas(Menu menuMusica){
+
+    private void agregarMusicas(Menu menuMusica) {
         ReproductorMusica unReproductor = new ReproductorMusica();
         MenuItem opcionSinMusica = new MenuItem("Sin música");
         MenuItem opcionMusicaComun = new MenuItem("Kahoot Original");
-        MenuItem opcionMusicaArcade= new MenuItem("Kahoot Arcade");
-        MenuItem opcionMusicaCyberPunk= new MenuItem("Kahoot Cyber-hoot");
-        MenuItem opcionMusicaHappy= new MenuItem("kahoot happy");
+        MenuItem opcionMusicaArcade = new MenuItem("Kahoot Arcade");
+        MenuItem opcionMusicaCyberPunk = new MenuItem("Kahoot Cyber-hoot");
+        MenuItem opcionMusicaHappy = new MenuItem("kahoot happy");
         MenuItem opcionMusicaSlow = new MenuItem("kahoot slow");
         MenuItem opcionMusicaHalloween = new MenuItem("Kahoot Halloween");
         MenuItem opcionMusicaMine = new MenuItem("kahoot Mine");
 
-        opcionSinMusica.setOnAction(new ControladorMusica("",unReproductor));
-        opcionMusicaComun.setOnAction(new ControladorMusica(rutaMusica + "classic.mp3",unReproductor));
-        opcionMusicaArcade.setOnAction(new ControladorMusica(rutaMusica + "arcade.mp3",unReproductor));
-        opcionMusicaCyberPunk.setOnAction(new ControladorMusica(rutaMusica + "cyberpunk-bits.mp3",unReproductor));
-        opcionMusicaHappy.setOnAction(new ControladorMusica(rutaMusica + "happy.mp3",unReproductor));
-        opcionMusicaSlow.setOnAction(new ControladorMusica(rutaMusica + "slow-bits.mp3",unReproductor));
-        opcionMusicaHalloween.setOnAction(new ControladorMusica(rutaMusica+"halloween.mp3",unReproductor));
-        opcionMusicaMine.setOnAction(new ControladorMusica(rutaMusica + "Miner.mp3",unReproductor));
+        opcionSinMusica.setOnAction(new ControladorMusica("", unReproductor));
+        opcionMusicaComun.setOnAction(new ControladorMusica(rutaMusica + "classic.mp3", unReproductor));
+        opcionMusicaArcade.setOnAction(new ControladorMusica(rutaMusica + "arcade.mp3", unReproductor));
+        opcionMusicaCyberPunk.setOnAction(new ControladorMusica(rutaMusica + "cyberpunk-bits.mp3", unReproductor));
+        opcionMusicaHappy.setOnAction(new ControladorMusica(rutaMusica + "happy.mp3", unReproductor));
+        opcionMusicaSlow.setOnAction(new ControladorMusica(rutaMusica + "slow-bits.mp3", unReproductor));
+        opcionMusicaHalloween.setOnAction(new ControladorMusica(rutaMusica + "halloween.mp3", unReproductor));
+        opcionMusicaMine.setOnAction(new ControladorMusica(rutaMusica + "Miner.mp3", unReproductor));
 
 
-        menuMusica.getItems().addAll(opcionSinMusica,opcionMusicaComun,
+        menuMusica.getItems().addAll(opcionSinMusica, opcionMusicaComun,
                 opcionMusicaArcade,
                 opcionMusicaCyberPunk,
                 opcionMusicaHappy,

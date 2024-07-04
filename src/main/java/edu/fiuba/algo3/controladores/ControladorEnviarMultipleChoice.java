@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ControladorEnviarMultipleChoice extends ControladorPreguntasJuego implements EventHandler<ActionEvent> {
     private ArrayList<Integer> opcionesSeleccionadas;
@@ -19,6 +18,7 @@ public class ControladorEnviarMultipleChoice extends ControladorPreguntasJuego i
         super(stagePrincipal, pantallaPrincipal, algoHoot);
         this.opcionesSeleccionadas = new ArrayList<>();
     }
+
     public void agregarOpcion(int indice) {
         if (!opcionesSeleccionadas.contains(indice)) {
             opcionesSeleccionadas.add(indice);
@@ -42,10 +42,5 @@ public class ControladorEnviarMultipleChoice extends ControladorPreguntasJuego i
             definirSiguienteVista(respuestaDeUnJugador);
         }
     }
-
-    public List<Integer> getOpcionesSeleccionadas() {
-        return opcionesSeleccionadas;
-    }
-
 
 }

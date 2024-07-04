@@ -1,16 +1,12 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
 import edu.fiuba.algo3.controladores.ControladorEnviarOrderedChoice;
-import edu.fiuba.algo3.controladores.ControladorPedirNombreJugadores;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
-import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaOrderedChoice;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
-import edu.fiuba.algo3.vista.GrillaGeneralPartida;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaOrderedChoice;
-import edu.fiuba.algo3.vista.botones.BotonSiguiente;
 import edu.fiuba.algo3.vista.botones.Spinners.SpinnerOrderedChoice;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
@@ -64,7 +60,7 @@ public class VistaOrderedChoice extends StackPane {
         VBox cajaOpciones = new VBox(5);
 
         for (String opcion : opciones) {
-            SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(),controlador);
+            SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(), controlador);
             opcionOrdenable.setAlignment(Pos.CENTER);
             cajaOpciones.getChildren().add(opcionOrdenable);
         }

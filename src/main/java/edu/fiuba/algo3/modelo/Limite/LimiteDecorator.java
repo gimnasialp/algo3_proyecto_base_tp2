@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 import java.util.List;
 
-public class LimiteDecorator extends Limite{
+public class LimiteDecorator extends Limite {
     protected Limite decoratedLimite;
 
     public LimiteDecorator(Limite decoratorLimite, List<Pregunta> preguntas) {
@@ -18,5 +18,6 @@ public class LimiteDecorator extends Limite{
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
         return decoratedLimite.preguntaNoLimitada(jugadores);
     }
+
 
 }

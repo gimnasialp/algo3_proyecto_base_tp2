@@ -7,6 +7,7 @@ public class ControladorMusica implements EventHandler<ActionEvent> {
 
     private String direccion;
     private ReproductorMusica reproductor;
+
     public ControladorMusica(String direccionMusica, ReproductorMusica unReproductor) {
         direccion = direccionMusica;
         reproductor = unReproductor;

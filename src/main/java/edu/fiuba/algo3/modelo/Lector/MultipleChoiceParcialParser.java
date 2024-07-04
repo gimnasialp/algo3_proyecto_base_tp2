@@ -10,7 +10,7 @@ public class MultipleChoiceParcialParser extends Parser {
     private FabricaPreguntaMultipleChoiceParcial fabrica;
 
     public MultipleChoiceParcialParser() {
-        this.fabrica= new FabricaPreguntaMultipleChoiceParcial();
+        this.fabrica = new FabricaPreguntaMultipleChoiceParcial();
     }
 
     @Override

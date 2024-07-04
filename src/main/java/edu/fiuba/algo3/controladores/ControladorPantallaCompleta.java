@@ -18,7 +18,7 @@ public class ControladorPantallaCompleta implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        if(!stage.isFullScreen()){
+        if (!stage.isFullScreen()) {
             stage.hide();
             stage.setFullScreen(true);
             opcionPantallaCompleta.setDisable(true);

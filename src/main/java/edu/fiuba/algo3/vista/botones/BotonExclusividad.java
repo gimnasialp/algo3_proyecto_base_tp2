@@ -23,7 +23,7 @@ public class BotonExclusividad extends Button {
         super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
         Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.AMARILLO, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(1)));
         super.setBackground(unFondo);
-        super.setOnAction(new ControladorModificador(modificador,algoHoot));
+        super.setOnAction(new ControladorModificador(modificador, algoHoot));
         super.setOnMouseEntered(new ControladorActivarBoton(this, Estilos.AMARILLO));
         super.setOnMouseExited(new ControladorDesactivarBoton(this, Estilos.AMARILLO));
     }

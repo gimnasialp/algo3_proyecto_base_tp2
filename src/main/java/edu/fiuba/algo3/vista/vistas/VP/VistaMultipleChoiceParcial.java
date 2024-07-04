@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.GrillaBasePreguntas;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.botones.BotonEnviarRespuestaMultipleChoice;
-import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoice;
 import edu.fiuba.algo3.vista.botones.BotonOpcionMultipleChoiceParcial;
 import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
@@ -43,7 +42,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
         ControladorEnviarMultipleChoiceParcial controladorRespondioUsuario = new ControladorEnviarMultipleChoiceParcial(stagePrincipal, pantallaPrincipal, algoHoot);
 
 
-        VBox cajaOpciones = armarOpciones(cajaPregunta,partida.obtenerPreguntaActual(), controladorRespondioUsuario);
+        VBox cajaOpciones = armarOpciones(cajaPregunta, partida.obtenerPreguntaActual(), controladorRespondioUsuario);
 
 
         VBox cajaInferior = new VBox();
@@ -93,7 +92,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
 
         ArrayList<String> opciones = pregunta.obtenerOpciones();
 
-        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250,350);
+        GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250, 350);
         grillaOpciones.setAlignment(Pos.CENTER);
         VBox cajaOpciones = new VBox(20);
 
@@ -103,7 +102,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones,0,1);
+        grillaOpciones.add(cajaOpciones, 0, 1);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }

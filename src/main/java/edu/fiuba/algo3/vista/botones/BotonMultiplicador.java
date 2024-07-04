@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 public class BotonMultiplicador extends Button {
 
     public BotonMultiplicador(Multiplicador multiplicador, AlgoHoot algoHoot) {
-        super.setText("Usar Multiplicador x"+ multiplicador.consultarValor());
+        super.setText("Usar Multiplicador x" + multiplicador.consultarValor());
         super.setFont(Font.font(Estilos.FUENTE, 15));
         super.setPadding(new Insets(5));
         super.setTextFill(Color.BLACK);

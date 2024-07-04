@@ -48,6 +48,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class BotonOpcionMultipleChoice extends CheckBox {
+
     private String opcion;
     private int indice;
 
@@ -56,7 +57,7 @@ public class BotonOpcionMultipleChoice extends CheckBox {
         this.indice = indice;
         super.setText(opcion);
         super.setFont(Font.font(Estilos.FUENTE, 20));
-        super.setTextFill(Color.BLACK);
+        super.setTextFill(Color.WHITE);
 
         // Ajustar el tamaño del CheckBox para que muestre el texto completo
         super.setMaxWidth(Double.MAX_VALUE);

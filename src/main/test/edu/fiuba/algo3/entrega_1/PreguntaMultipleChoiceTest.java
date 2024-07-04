@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.*;
-
-import edu.fiuba.algo3.modelo.Pregunta.*;
+import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceClasico;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Pregunta.PreguntaMultipleChoiceParcial;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceClasico;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
+import edu.fiuba.algo3.modelo.Resultado;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -81,7 +83,7 @@ public class PreguntaMultipleChoiceTest {
         this.respuestaCorrecta = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(1, 4, 5)));
         Pregunta pregunta = new PreguntaMultipleChoiceParcial(idPregunta, tema, enunciado, respuestaCorrecta, opciones, textoRepuesta);
 
-        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(5, 1 ,4)));
+        Respuesta respuestaJugadorUno = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(5, 1, 4)));
         Respuesta respuestaJugadorDos = new RespuestaMultipleChoiceParcial(new ArrayList<>(List.of(1)));
         Respuesta respuestaJugadorTres = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(1, 6, 5)));
         Respuesta respuestaJugadorCuatro = new RespuestaMultipleChoiceParcial(new ArrayList<>(Arrays.asList(6, 1, 5, 4)));

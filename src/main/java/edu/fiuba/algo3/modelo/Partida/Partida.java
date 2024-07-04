@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador;
-//import edu.fiuba.algo3.modelo.Modificador.Modificador;
-import edu.fiuba.algo3.modelo.Modificador.*;
+import edu.fiuba.algo3.modelo.Modificador.AnuladorDePuntaje;
+import edu.fiuba.algo3.modelo.Modificador.ExclusividadDePuntaje;
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Resultado;
@@ -12,11 +14,10 @@ import java.util.List;
 
 public class Partida {
 
-    //posicion de lista de jugadores para recorrer secuencialmente
     private int direccionListaJugador;
-    private  Pregunta pregunta;
+    private Pregunta pregunta;
 
-    private  List<Respuesta> respuestas;
+    private List<Respuesta> respuestas;
     private Jugador jugadorActivo;
     private List<Jugador> jugadores = new ArrayList<>();
 
@@ -33,12 +34,11 @@ public class Partida {
 
     public void avanzoConSiguienteJugador() {
         jugadorActivo = nuevoJugador();
-        //posible observer
-        
+
     }
 
-    private Jugador nuevoJugador(){
-        if((direccionListaJugador +1) <= jugadores.size()){
+    private Jugador nuevoJugador() {
+        if ((direccionListaJugador + 1) <= jugadores.size()) {
             Jugador jugador = jugadores.get(direccionListaJugador);
             direccionListaJugador++;
             return jugador;
@@ -47,13 +47,13 @@ public class Partida {
     }
 
     public Jugador obtenerJugadorActivo() {
-        return  jugadorActivo;
+        return jugadorActivo;
     }
 
 
     public void agregarRespuesta(Respuesta respondeJugador) {
         respuestas.add(respondeJugador);
-        if((direccionListaJugador +1) > jugadores.size()){
+        if ((direccionListaJugador + 1) > jugadores.size()) {
             evaluarRespuestasDePartidaActual();
             actualizarPartidaEnJugadores();
         }
@@ -69,14 +69,11 @@ public class Partida {
 
     private void evaluarRespuestasDePartidaActual() {
         resultado = pregunta.responder((ArrayList<Respuesta>) this.respuestas);
-
         analisisModificadores();
     }
 
     private void analisisModificadores() {
-        //analisis Multiplicadores
         analisisMultiplicadores();
-        //analisis Modificadores
         analisisPuntos();
 
     }
@@ -84,19 +81,6 @@ public class Partida {
     private void analisisPuntos() {
         comprobarExclusividad();
         comprobarAnulador();
-
-        /*
-       ModificadorContextState modificadorContextState = new ModificadorContextState();
-
-        modificadorContextState.setState(modificadorContextState.modificadorGanador(jugadores));
-
-        for (int i = 0; i < jugadores.size(); i++) {
-            ModificadorState modificador = jugadores.get(i).obtenerModificadorActual();
-            resultado.usarModificador(modificador,i);
-            modificadorContextState.aplicarState(
-                    (ArrayList<Integer>)resultado.obtenerPuntosDeJugadores(), i);
-        }
-        */
 
     }
 
@@ -109,31 +93,21 @@ public class Partida {
     }
 
     private void comprobacionComodines(Modificador modificadorState) {
-        resultado.usarModificador(modificadorState,jugadores);
-        /*
-        ModificadorState modificadorParaAplicar = modificadorContextState.checkContraModificadorNulo(modificadorState,jugadores);
-        for (int i = 0; i < jugadores.size(); i++) {
-            resultado.usarModificador(modificadorParaAplicar, i);
-            modificadorContextState.aplicarState(
-                    (ArrayList<Integer>) resultado.obtenerPuntosDeJugadores(), i);
-        }
-        */
-
-
+        resultado.usarModificador(modificadorState, jugadores);
     }
 
     private void analisisMultiplicadores() {
         for (int i = 0; i < jugadores.size(); i++) {
             Multiplicador modificador = jugadores.get(i).obtenerMultiplicador();
-            resultado.usarModificador(modificador,i);
+            resultado.usarModificador(modificador, i);
             jugadores.get(i).deshabilitarMultiplicador(modificador);
         }
     }
 
-    public Jugador jugadorConMasPuntos(){
+    public Jugador jugadorConMasPuntos() {
         Jugador jugadorActualConMasPuntos = jugadores.get(0);
-        for(Jugador jugador : jugadores){
-            if(jugador.tieneMasPuntosQue(jugadorActualConMasPuntos)){
+        for (Jugador jugador : jugadores) {
+            if (jugador.tieneMasPuntosQue(jugadorActualConMasPuntos)) {
                 jugadorActualConMasPuntos = jugador;
             }
         }
@@ -145,10 +119,10 @@ public class Partida {
     }
 
     public void resetearComodines(List<Jugador> jugadores) {
-        jugadores.stream().forEach(j->j.resetearComodines());
+        jugadores.stream().forEach(j -> j.resetearComodines());
     }
 
-    public Pregunta obtenerPreguntaActual(){
+    public Pregunta obtenerPreguntaActual() {
         return pregunta;
     }
 

@@ -11,14 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class VistaInicial extends StackPane{
+public class VistaInicial extends StackPane {
 
     private Stage stage;
 
     public VistaInicial(Stage stagePrincipal, PantallaPrincipal contenedorPrincipal) {
         this.stage = stagePrincipal;
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondoInicio.jpg");
+        Image imagen = new Image("file:" + System.getProperty("user.dir") + "/src/main/java/edu/fiuba/algo3/resources/imagenes/fondoInicio.jpg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,
                 BackgroundRepeat.ROUND,
                 BackgroundRepeat.SPACE,
@@ -36,13 +36,13 @@ public class VistaInicial extends StackPane{
         AlgoHootMensaje textoAlgoHootInicio = new AlgoHootMensaje(Estilos.GRIS);
         cajaPrincipal.getChildren().add(textoAlgoHootInicio);
 
-        BotonInicio botonInicio = new BotonInicio(new ControladorIniciarJuego(stagePrincipal,contenedorPrincipal));
+        BotonInicio botonInicio = new BotonInicio(new ControladorIniciarJuego(stagePrincipal, contenedorPrincipal));
         cajaPrincipal.getChildren().add(botonInicio);
 
         stage.setTitle("AlgoHoot!");
         stage.centerOnScreen();
 
-        grilla.add(cajaPrincipal,0,1);
+        grilla.add(cajaPrincipal, 0, 1);
         super.getChildren().add(grilla);
     }
 }

@@ -98,7 +98,7 @@ public class VistaLimitePuntacion extends StackPane {
     private VBox crearBotonConfirmado(Stage stage, PantallaPrincipal pantallaPrincipal) {
         VBox botonConfirmado = new VBox(0);
         botonConfirmado.setAlignment(Pos.BOTTOM_CENTER);
-        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage,pantallaPrincipal,comboBoxCantidadPuntos,jugadores));
+        BotonEmpezarJuego botonEmpezarJuego = new BotonEmpezarJuego(new ControladorLimitePreguntas(stage, pantallaPrincipal, comboBoxCantidadPuntos, jugadores));
         botonConfirmado.getChildren().add(botonEmpezarJuego);
         return botonConfirmado;
     }

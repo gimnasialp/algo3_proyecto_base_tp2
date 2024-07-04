@@ -58,30 +58,32 @@ public class CajaModificadores extends HBox {
     }
 
 
-    private void crearBotonesMultiplicador(List<Multiplicador> multiplicadoresJugadorActual,AlgoHoot algoHoot) {
+    private void crearBotonesMultiplicador(List<Multiplicador> multiplicadoresJugadorActual, AlgoHoot algoHoot) {
         for (Multiplicador multiplicador : this.multiplicadores) {
             if (multiplicadoresJugadorActual.contains(multiplicador)) {
-                super.getChildren().add(crearBotonMultiplicador(multiplicador,algoHoot));
+                super.getChildren().add(crearBotonMultiplicador(multiplicador, algoHoot));
             } else {
                 super.getChildren().add(crearBotonSinMultiplicador(multiplicador));
 
             }
         }
     }
-    private void crearBotonesModificador(List<Modificador> modificadoresJugadorActual,AlgoHoot algoHoot) {
+
+    private void crearBotonesModificador(List<Modificador> modificadoresJugadorActual, AlgoHoot algoHoot) {
         for (Modificador modificador : this.modificadores) {
             if (modificadoresJugadorActual.contains(modificador)) {
-                super.getChildren().add(crearBotonModificador(modificador,algoHoot));
+                super.getChildren().add(crearBotonModificador(modificador, algoHoot));
             } else {
                 super.getChildren().add(crearBotonSinModificador(modificador));
 
             }
         }
     }
-    private void crearBotonesAnulador(List<Modificador> modificadoresJugadorActual,AlgoHoot algoHoot) {
+
+    private void crearBotonesAnulador(List<Modificador> modificadoresJugadorActual, AlgoHoot algoHoot) {
         for (Modificador modificador : this.modificadores) {
             if (modificadoresJugadorActual.contains(modificador)) {
-                super.getChildren().add(crearBotonAnulador(new AnuladorDePuntaje(),algoHoot));
+                super.getChildren().add(crearBotonAnulador(new AnuladorDePuntaje(), algoHoot));
             } else {
                 super.getChildren().add(crearBotonSinAnulador());
 
@@ -89,26 +91,26 @@ public class CajaModificadores extends HBox {
         }
     }
 
-    private VBox crearBotonMultiplicador(Multiplicador multiplicador,AlgoHoot algoHoot) {
+    private VBox crearBotonMultiplicador(Multiplicador multiplicador, AlgoHoot algoHoot) {
         VBox cajaBotonModificador = new VBox(0);
         cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
-        BotonMultiplicador botonMultiplicador = new BotonMultiplicador(multiplicador,algoHoot);
+        BotonMultiplicador botonMultiplicador = new BotonMultiplicador(multiplicador, algoHoot);
         cajaBotonModificador.getChildren().add(botonMultiplicador);
         return cajaBotonModificador;
     }
 
-    private VBox crearBotonModificador(Modificador modificador,AlgoHoot algoHoot) {
+    private VBox crearBotonModificador(Modificador modificador, AlgoHoot algoHoot) {
         VBox cajaBotonModificador = new VBox(0);
         cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
-        BotonExclusividad botonExclusividad = new BotonExclusividad(modificador,algoHoot);
+        BotonExclusividad botonExclusividad = new BotonExclusividad(modificador, algoHoot);
         cajaBotonModificador.getChildren().add(botonExclusividad);
         return cajaBotonModificador;
     }
 
-    private VBox crearBotonAnulador(AnuladorDePuntaje anulador,AlgoHoot algoHoot) {
+    private VBox crearBotonAnulador(AnuladorDePuntaje anulador, AlgoHoot algoHoot) {
         VBox cajaBotonModificador = new VBox(0);
         cajaBotonModificador.setAlignment(Pos.BOTTOM_CENTER);
-        BotonAnulador botonAnulador = new BotonAnulador(anulador,algoHoot);
+        BotonAnulador botonAnulador = new BotonAnulador(anulador, algoHoot);
         cajaBotonModificador.getChildren().add(botonAnulador);
         return cajaBotonModificador;
     }

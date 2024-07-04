@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoice;
 import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoicePenalidad;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
@@ -21,7 +20,7 @@ public class BotonOpcionMultipleChoicePenalidad extends CheckBox {
         this.indice = indice;
         super.setText(opcion);
         super.setFont(Font.font(Estilos.FUENTE, 20));
-        super.setTextFill(Color.BLACK);
+        super.setTextFill(Color.WHITE);
 
         // Ajustar el tamaño del CheckBox para que muestre el texto completo
         super.setMaxWidth(Double.MAX_VALUE);

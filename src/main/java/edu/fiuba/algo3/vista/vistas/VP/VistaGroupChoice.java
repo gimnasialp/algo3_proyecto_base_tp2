@@ -26,7 +26,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class VistaGroupChoice extends StackPane {
@@ -44,7 +43,7 @@ public class VistaGroupChoice extends StackPane {
         configurarFondo();
         this.partida = algoHoot.obtenerPartidaActiva();
         this.preguntaGroupChoice = (PreguntaGroupChoice) partida.obtenerPreguntaActual();
-        GrillaBasePreguntas grilla = new GrillaBasePreguntas(1280, 720);
+        GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
 
         VBox cajaPregunta = armarPregunta();
         cajaPregunta.setAlignment(Pos.TOP_CENTER);
@@ -52,7 +51,7 @@ public class VistaGroupChoice extends StackPane {
 
         VBox cajaInferior = new VBox(20);
 
-        cajaInferior.getChildren().add(crearCajaInferior(stage,pantallaPrincipal,algoHoot));
+        cajaInferior.getChildren().add(crearCajaInferior(stage, pantallaPrincipal, algoHoot));
         cajaInferior.setAlignment(Pos.CENTER);
 
         grilla.add(cajaPregunta, 0, 0);
@@ -92,7 +91,8 @@ public class VistaGroupChoice extends StackPane {
 
         return contenedorPregunta;
     }
-    private VBox crearCajaInferior(Stage stage, PantallaPrincipal pantallaPrincipal,AlgoHoot algoHoot) {
+
+    private VBox crearCajaInferior(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
         VBox cajaOpciones = new VBox(10);
         cajaOpciones.setAlignment(Pos.CENTER);
         ////Manejo ddatos de la pregunta//
@@ -110,7 +110,7 @@ public class VistaGroupChoice extends StackPane {
         grillaOpciones.setAlignment(Pos.CENTER);
 
         for (String opcion : preguntaGroupChoice.obtenerOpciones()) {
-            SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion);
+            SpinnerGroupChoice boton = new SpinnerGroupChoice(preguntaGroupChoice.consultarGruposPregunta(), opcion, controladorRespondioUsuario);
             boton.setAlignment(Pos.CENTER_LEFT);
             cajaOpciones.getChildren().add(boton);
         }
@@ -122,7 +122,8 @@ public class VistaGroupChoice extends StackPane {
         cajaOpciones.getChildren().add(botonEnviar);
         return cajaOpciones;
     }
-    private void crearBoton(){
+
+    private void crearBoton() {
         Button btnRecogerRespuestas = new Button("Recoger Respuestas");
         btnRecogerRespuestas.setOnAction(e -> {
             ArrayList<Integer> grupoA = new ArrayList<>();

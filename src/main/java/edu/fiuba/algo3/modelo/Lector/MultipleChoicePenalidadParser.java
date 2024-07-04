@@ -10,7 +10,7 @@ public class MultipleChoicePenalidadParser extends Parser {
     private FabricaPreguntaMultipleChoiceConPenalidad fabrica;
 
     public MultipleChoicePenalidadParser() {
-        this.fabrica= new FabricaPreguntaMultipleChoiceConPenalidad();
+        this.fabrica = new FabricaPreguntaMultipleChoiceConPenalidad();
     }
 
     @Override

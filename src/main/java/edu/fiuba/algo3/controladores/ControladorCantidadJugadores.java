@@ -13,12 +13,11 @@ public class ControladorCantidadJugadores implements EventHandler<ActionEvent> {
     private PantallaPrincipal pantallaPrincipal;
     private ComboBox<String> comboBoxCantidadJugadores;
 
-    public ControladorCantidadJugadores(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxCantidadJugadores){
+    public ControladorCantidadJugadores(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxCantidadJugadores) {
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.comboBoxCantidadJugadores = comboBoxCantidadJugadores;
     }
-
 
 
     @Override

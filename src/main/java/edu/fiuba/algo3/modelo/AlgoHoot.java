@@ -51,13 +51,14 @@ public class AlgoHoot {
         partidaActual.resetearComodines(jugadores);
         //
     }
+    /*public boolean JuegoTerminado(){
+
+    }*/
 
     public Partida obtenerPartidaActiva() {
         return partidaActual;
     }
-    public List<Pregunta> obtenerpreguntas() {
-        return limite.getPreguntas();
-    }
+
     public int obtenerNumeroPartida() {
         return numeroPartida;
     }

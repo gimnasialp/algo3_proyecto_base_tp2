@@ -5,13 +5,19 @@ import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 
 import java.util.List;
 
-public class LimiteFinalPreguntas extends Limite{
+public class LimiteFinalPreguntas extends Limite {
 
-    public LimiteFinalPreguntas( List<Pregunta> preguntasParaLimitar){
+    public LimiteFinalPreguntas(List<Pregunta> preguntasParaLimitar) {
         super(preguntasParaLimitar);
     }
+
     @Override
     public Pregunta preguntaNoLimitada(List<Jugador> jugadores) {
         return super.obtenerPreguntaSgte();
+    }
+
+
+    public int indicarLimiteAlcanzado() {
+        return 0;
     }
 }

@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Modificador.AnuladorDePuntaje;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 
 public class ControladorAnulador implements EventHandler<ActionEvent> {
 
@@ -20,7 +19,7 @@ public class ControladorAnulador implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         algoHoot.obtenerPartidaActiva().obtenerJugadorActivo().obtenerModificadoresDisponibles().remove(anuladorDePuntaje);
-        algoHoot.obtenerPartidaActiva().activaModificador(anuladorDePuntaje,algoHoot.obtenerPartidaActiva().obtenerJugadorActivo());
+        algoHoot.obtenerPartidaActiva().activaModificador(anuladorDePuntaje, algoHoot.obtenerPartidaActiva().obtenerJugadorActivo());
     }
 }
 

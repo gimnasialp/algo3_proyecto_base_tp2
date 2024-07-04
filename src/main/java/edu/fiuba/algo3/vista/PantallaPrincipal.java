@@ -12,14 +12,16 @@ public class PantallaPrincipal extends BorderPane {
     public PantallaPrincipal(Stage stage) {
         this.setMenu(stage);
     }
+
     private void setMenu(Stage stage) {
         this.menu = new BarraDeMenu(stage);
         this.setTop(menu);
     }
 
-    public void setCentro(StackPane centro){
+    public void setCentro(StackPane centro) {
         this.setCenter(centro);
     }
+
     public BarraDeMenu getBarraDeMenu() {
         return menu;
     }

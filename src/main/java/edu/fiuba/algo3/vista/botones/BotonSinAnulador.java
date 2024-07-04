@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,7 +17,7 @@ public class BotonSinAnulador extends Button {
         super.setTextFill(Color.BLACK);
         super.setAlignment(Pos.CENTER);
         super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
-        Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.AMARILLO, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(1)));
+        Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.ROJO, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(1)));
         super.setBackground(unFondo);
     }
 }

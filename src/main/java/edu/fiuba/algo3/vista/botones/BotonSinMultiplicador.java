@@ -1,10 +1,6 @@
 package edu.fiuba.algo3.vista.botones;
 
 import edu.fiuba.algo3.Estilos;
-import edu.fiuba.algo3.controladores.ControladorActivarBoton;
-import edu.fiuba.algo3.controladores.ControladorDesactivarBoton;
-import edu.fiuba.algo3.controladores.ControladorMultipliador;
-import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +12,7 @@ import javafx.scene.text.Font;
 public class BotonSinMultiplicador extends Button {
 
     public BotonSinMultiplicador(Multiplicador multiplicador) {
-        super.setText("Sin Multiplicador x"+ multiplicador.consultarValor());
+        super.setText("Sin Multiplicador x" + multiplicador.consultarValor());
         super.setFont(Font.font(Estilos.FUENTE, 15));
         super.setPadding(new Insets(5));
         super.setTextFill(Color.BLACK);

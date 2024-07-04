@@ -3,17 +3,20 @@ package edu.fiuba.algo3.entrega_3.PruebasIntegrales;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Lector.MultipleChoicePenalidadParser;
 import edu.fiuba.algo3.modelo.Lector.Parser;
+import edu.fiuba.algo3.modelo.Lector.ProveedorJsonPreguntas;
+import edu.fiuba.algo3.modelo.Lector.VerdaderoFalsoConPenalidadParser;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
-import edu.fiuba.algo3.modelo.Modificador.*;
+import edu.fiuba.algo3.modelo.Modificador.Multiplicador;
+import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorDos;
+import edu.fiuba.algo3.modelo.Modificador.MultiplicarPorTres;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaVerdaderoFalso;
 import org.junit.jupiter.api.Test;
-
-import edu.fiuba.algo3.modelo.Lector.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,20 +74,20 @@ public class CasosJuegoCompletoMultiplicadores {
         partidaActiva.agregarRespuesta(respuestaJugadorDos);
 
         //,consulto si el MultiplicadorPorDos fue utilizado, me dara True
-             // assertTrue(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorDos()));
+        // assertTrue(jugadores.get(0).mutiplicadorFueUtilizado(new MultiplicarPorDos()));
         //en cambio, si consulto si el MultiplicadorPorTres fue utilizado, y me dara false,
         //puedo utilizarlo para otra futura pregunta
-          assertFalse(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorTres()));
-          assertTrue(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorDos()));
+        assertFalse(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorTres()));
+        assertTrue(jugadores.get(0).multiplicadorFueUtilizado(new MultiplicarPorDos()));
 
         // ptos ganados al momento: JugadorUno cuenta con 2 pto y el jugadorDos -2
         /*  Segunda Partida */
         algoHoot.proximaPartida();
-         partidaActiva = algoHoot.obtenerPartidaActiva();
+        partidaActiva = algoHoot.obtenerPartidaActiva();
         partidaActiva.avanzoConSiguienteJugador(); //EN este caso es el primer jugador
-         jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
+        jugadorDePartidaActiva = partidaActiva.obtenerJugadorActivo();
         //Modificador multiplicadorPorDosJugadorUno2daPartida = new MultiplicarPorDos();
-        Respuesta respuestaJugadorUno2daPartida  = new RespuestaVerdaderoFalso(1);
+        Respuesta respuestaJugadorUno2daPartida = new RespuestaVerdaderoFalso(1);
         //antes de ser activado Multiplicador, se validara por vista o Controlador si el Multiplicador solicitado esta disponible
         //partidaActiva.activaModificador(multiplicadorPorDosJugadorUno2daPartida, jugadorDePartidaActiva);
         partidaActiva.agregarRespuesta(respuestaJugadorUno2daPartida);
@@ -100,11 +103,11 @@ public class CasosJuegoCompletoMultiplicadores {
 
         //en 2da ronda, el jug1 gano 1 pto y el 2do -3
         //total jug1: 2 + 1: 3 y jug2: -2 +(-3)= -5
-        assertTrue(jugadores.get(0).obtenerPuntaje()==3);
-        assertTrue(jugadores.get(1).obtenerPuntaje()== -5);
+        assertTrue(jugadores.get(0).obtenerPuntaje() == 3);
+        assertTrue(jugadores.get(1).obtenerPuntaje() == -5);
 
         //El jugador Dos ya no tiene multiplicadores para usar
-        assertTrue(jugadores.get(1).obtenerMultiplicadoresDisponibles().size()==0);
+        assertTrue(jugadores.get(1).obtenerMultiplicadoresDisponibles().size() == 0);
 
         //Las partidas pueden avanzarse en el desarrollo sin interaccion con
         //los jugadores, tengo una partida, ahora adelantare dos mas para llegar al mismo

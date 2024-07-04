@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Pregunta.Fabricas;
 
-import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.modelo.Pregunta.PreguntaGroupChoice;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 
 public class FabricaPreguntaGroupChoice extends FabricaPreguntas {
 
-    private Respuesta obtenerRespuesta(String respuestaCorrecta){
+    private Respuesta obtenerRespuesta(String respuestaCorrecta) {
         String[] grupos = respuestaCorrecta.split(";");
         HashMap<String, ArrayList<Integer>> claveValor = new HashMap<>();
         for (String grupo : grupos) {
@@ -32,7 +31,7 @@ public class FabricaPreguntaGroupChoice extends FabricaPreguntas {
 
 
     @Override
-    public Pregunta crearPregunta(Object ... parameters) {
+    public Pregunta crearPregunta(Object... parameters) {
         PreguntaGroupChoice preguntaGroupChoice = new PreguntaGroupChoice(
                 (Integer) parameters[0],//ID
                 parameters[1].toString(), //TEMA
@@ -46,7 +45,6 @@ public class FabricaPreguntaGroupChoice extends FabricaPreguntas {
 
         return preguntaGroupChoice;
     }
-
 
 
 }
