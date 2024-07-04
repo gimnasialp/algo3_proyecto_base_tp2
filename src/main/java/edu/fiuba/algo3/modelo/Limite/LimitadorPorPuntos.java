@@ -25,4 +25,9 @@ public class LimitadorPorPuntos extends Limite {
         return pregunta;
     }
 
+    @Override
+    public int preguntasRestantesLimite() {
+        return preguntas.size() - posicionActualLista;
+    }
+
 }

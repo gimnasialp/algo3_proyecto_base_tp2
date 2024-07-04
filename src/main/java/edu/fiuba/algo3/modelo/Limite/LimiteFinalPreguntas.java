@@ -16,4 +16,8 @@ public class LimiteFinalPreguntas extends Limite {
         return super.obtenerPreguntaSgte();
     }
 
+    @Override
+    public int preguntasRestantesLimite() {
+        return this.preguntas.size();
+    }
 }

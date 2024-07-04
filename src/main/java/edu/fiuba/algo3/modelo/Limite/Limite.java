@@ -30,7 +30,5 @@ public abstract class Limite {
         }
     }
 
-    public int preguntasRestantesLimite() {
-        return preguntas.size();
-    }
+    public abstract int preguntasRestantesLimite();
 }

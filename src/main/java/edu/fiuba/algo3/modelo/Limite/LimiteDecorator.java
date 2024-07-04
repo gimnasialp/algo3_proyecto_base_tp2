@@ -19,5 +19,8 @@ public class LimiteDecorator extends Limite {
         return decoratedLimite.preguntaNoLimitada(jugadores);
     }
 
-
+    @Override
+    public int preguntasRestantesLimite() {
+        return decoratedLimite.preguntasRestantesLimite();
+    };
 }

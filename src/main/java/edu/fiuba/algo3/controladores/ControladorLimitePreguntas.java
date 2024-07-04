@@ -65,7 +65,7 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
 
         String seleccion = comboBoxLimitePreguntas.getValue();
-         int limite = Integer.parseInt(seleccion);
+        int limite = Integer.parseInt(seleccion);
         if (seleccion == null || seleccion.isEmpty()) {
             Alert cantidadPreguntasSinSeleccionar = new Alert(Alert.AlertType.ERROR);
             cantidadPreguntasSinSeleccionar.setHeaderText("No selecciono una cantidad de preguntas");

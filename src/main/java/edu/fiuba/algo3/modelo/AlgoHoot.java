@@ -68,4 +68,8 @@ public class AlgoHoot {
     }
 
 
+    public int obtenerCantidadPreguntasRestantes() {
+        return this.limite.preguntasRestantesLimite();
+    }
+
 }

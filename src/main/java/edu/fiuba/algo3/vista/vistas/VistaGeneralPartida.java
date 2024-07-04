@@ -120,19 +120,9 @@ public class VistaGeneralPartida extends StackPane {
     }
 
     private Label crearLabelSegunLimite() {
-        Label limiteAsignadoJuego = new Label("ACAdebe ir los limites");
-        /*
-        if (false) {
-            //por preguntas
-            limiteAsignadoJuego = new Label("Quedan " + algoHoot.consultarLimite() +
-                    " de " +
-                     + algoHoot.consultarCantidadDePartidasActuales()+ " preguntas Totales");
-        } else {
-            limiteAsignadoJuego = new Label("Quedan " +
-                    partidaActual.jugadorConMasPuntos().getPuntaje().obtenerPuntos() + " de " + algoHoot.consultarLimite() + " puntos Totales");
-        }
+        Label limiteAsignadoJuego = new Label("Quedan " + (this.algoHoot.obtenerCantidadPreguntasRestantes() + 1) + " preguntas");
         limiteAsignadoJuego.setFont(Font.font(Estilos.FUENTE, 30));
-        limiteAsignadoJuego.setTextFill(Color.web(Estilos.AMARILLO));*/
+        limiteAsignadoJuego.setTextFill(Color.web(Estilos.AMARILLO));
         return limiteAsignadoJuego;
 
     }
