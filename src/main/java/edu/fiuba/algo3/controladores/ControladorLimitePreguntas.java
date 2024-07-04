@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Lector.*;
 import edu.fiuba.algo3.modelo.Limite.Limite;
 import edu.fiuba.algo3.modelo.Limite.LimiteFinalPreguntas;
+import edu.fiuba.algo3.modelo.MezcladorPreguntas;
+import edu.fiuba.algo3.modelo.MezcladorPreguntasSegunTema;
 import edu.fiuba.algo3.modelo.Pregunta.Pregunta;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import edu.fiuba.algo3.vista.vistas.VistaGeneralPartida;
@@ -24,11 +26,13 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
     private ArrayList<Jugador> jugadores;
     private AlgoHoot algoHoot;
 
+
     public ControladorLimitePreguntas(Stage stage, PantallaPrincipal pantallaPrincipal, ComboBox<String> comboBoxLimitePreguntas, ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
         this.stage = stage;
         this.pantallaPrincipal = pantallaPrincipal;
         this.comboBoxLimitePreguntas = comboBoxLimitePreguntas;
+
 
     }
 
@@ -46,11 +50,11 @@ public class ControladorLimitePreguntas implements EventHandler<ActionEvent> {
         ArrayList<Pregunta> preguntas = proveedor.obtenerPreguntasDe("preguntas.json");
 
         //Las sig 2 lineas son para mezclar las preguntas de la lista
-        //MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
-        //ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
+        MezcladorPreguntas mezcladorPreguntas = new MezcladorPreguntasSegunTema(preguntas);
+        ArrayList<Pregunta> preguntasMezcladas = mezcladorPreguntas.mezclarPreguntas();
 
-        Limite limite = new LimiteFinalPreguntas(preguntas);
-        //Limite limite = new LimiteFinalPreguntas(preguntasMezcladas);
+        //Limite limite = new LimiteFinalPreguntas(preguntas);
+        Limite limite = new LimiteFinalPreguntas(preguntasMezcladas);
         AlgoHoot algoHoot = new AlgoHoot(jugadores, limite);
         algoHoot.proximaPartida();
         algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();

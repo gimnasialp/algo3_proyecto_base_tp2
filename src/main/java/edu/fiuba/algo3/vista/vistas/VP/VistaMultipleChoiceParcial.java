@@ -32,7 +32,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
 
     public VistaMultipleChoiceParcial(AlgoHoot algoHoot, Stage stagePrincipal, PantallaPrincipal pantallaPrincipal) {
         configurarFondo();
-
+        this.partida = algoHoot.obtenerPartidaActiva();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
 
         VBox cajaPregunta = crearContenedorPregunta(partida.obtenerPreguntaActual());
@@ -51,7 +51,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
         cajaInferior.setAlignment(Pos.CENTER);
 
         grilla.add(cajaPregunta, 0, 1);
-        grilla.add(cajaInferior, 0, 2);
+        grilla.add(cajaInferior, 0, 3);
         super.getChildren().add(grilla);
 
     }
@@ -102,7 +102,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones, 0, 1);
+        grillaOpciones.add(cajaOpciones, 1, 0);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }

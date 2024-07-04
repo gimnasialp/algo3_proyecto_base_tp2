@@ -15,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -65,6 +66,8 @@ public class VistaVFPenalidad extends StackPane {
         Label tipoPreguntaActual = new Label("ENUNCIADO: " + preguntaActual.obtenerEnunciado());
         tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
         tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
+        Tooltip tooltip = new Tooltip(tipoPreguntaActual.getText());
+        Tooltip.install(this, tooltip);
         vboxContenido.getChildren().addAll(tipoPreguntaActual);
 
         // Añadir HBox interno al contenedor con fondo
@@ -87,15 +90,11 @@ public class VistaVFPenalidad extends StackPane {
         botonVerdadero.setOnAction(e -> {
             opcionSeleccionada = 1;
             RespuestaVerdaderoFalso respuestaJugador = new RespuestaVerdaderoFalso(opcionSeleccionada);
-            //this.controladorEnviarVF = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, respuestaJugador);
-            //controladorEnviarVFClasico.handle(e);
         });
 
         botonFalso.setOnAction(e -> {
             opcionSeleccionada = 2;
             RespuestaVerdaderoFalso respuestaJugador = new RespuestaVerdaderoFalso(opcionSeleccionada);
-            //this.controladorEnviarVFClasico = new ControladorEnviarVFClasico(stage, pantallaPrincipal, algoHoot, respuestaJugador);
-            //controladorEnviarVFClasico.handle(e);
 
         });
 

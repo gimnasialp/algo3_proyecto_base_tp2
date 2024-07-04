@@ -56,6 +56,11 @@ public class ControladorEnviarGroupChoice extends ControladorPreguntasJuego impl
             noRespondio.setContentText("Debe de responder como minimo una opcion!");
             noRespondio.show();
         } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Respuesta");
+            alerta.setHeaderText("Respuesta de la pregunta");
+            alerta.setContentText(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerTextoRepuesta());
+            alerta.showAndWait();
             manejarRespuestas();
         }
     }

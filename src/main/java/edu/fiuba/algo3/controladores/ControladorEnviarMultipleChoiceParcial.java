@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceConPenalidad;
+import edu.fiuba.algo3.modelo.Respuesta.RespuestaMultipleChoiceParcial;
 import edu.fiuba.algo3.vista.PantallaPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,7 +37,12 @@ public class ControladorEnviarMultipleChoiceParcial extends ControladorPreguntas
             noRespondio.setContentText("Debe responder como mínimo una opción!");
             noRespondio.show();
         } else {
-            RespuestaMultipleChoiceConPenalidad respuestaDeUnJugador = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(opcionesSeleccionadas));
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Respuesta");
+            alerta.setHeaderText("Respuesta de la pregunta");
+            alerta.setContentText(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerTextoRepuesta());
+            alerta.showAndWait();
+            RespuestaMultipleChoiceParcial respuestaDeUnJugador = new RespuestaMultipleChoiceParcial(new ArrayList<>(opcionesSeleccionadas));
             definirSiguienteVista(respuestaDeUnJugador);
         }
     }

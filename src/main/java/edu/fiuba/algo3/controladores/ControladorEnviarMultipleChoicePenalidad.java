@@ -36,7 +36,11 @@ public class ControladorEnviarMultipleChoicePenalidad extends ControladorPregunt
             noRespondio.setContentText("Debe responder como mínimo una opción!");
             noRespondio.show();
         } else {
-            System.out.println(opcionesSeleccionadas);
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Respuesta");
+            alerta.setHeaderText("Respuesta de la pregunta");
+            alerta.setContentText(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerTextoRepuesta());
+            alerta.showAndWait();
             RespuestaMultipleChoiceConPenalidad respuestaDeUnJugador = new RespuestaMultipleChoiceConPenalidad(new ArrayList<>(opcionesSeleccionadas));
             definirSiguienteVista(respuestaDeUnJugador);
         }

@@ -14,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -58,9 +59,12 @@ public class VistaVF extends StackPane {
         vboxContenido.setPadding(new Insets(10));
 
         Label tipoPreguntaActual = new Label("ENUNCIADO: " + preguntaActual.obtenerEnunciado());
+        Tooltip tooltip = new Tooltip(tipoPreguntaActual.getText());
+        Tooltip.install(this, tooltip);
         tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
         tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
         vboxContenido.getChildren().addAll(tipoPreguntaActual);
+
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);

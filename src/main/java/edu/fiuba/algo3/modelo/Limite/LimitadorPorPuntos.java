@@ -25,8 +25,4 @@ public class LimitadorPorPuntos extends Limite {
         return pregunta;
     }
 
-
-    public int indicarLimiteAlcanzado() {
-        return 0;
-    }
 }

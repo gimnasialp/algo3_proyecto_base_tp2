@@ -43,6 +43,11 @@ public class ControladorEnviarOrderedChoice extends ControladorPreguntasJuego im
             noRespondio.show();
             this.respuestas = new ArrayList<>();
         } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Respuesta");
+            alerta.setHeaderText("Respuesta de la pregunta");
+            alerta.setContentText(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual().obtenerTextoRepuesta());
+            alerta.showAndWait();
             RespuestaOrderedChoice respuestaDeUnJugador = new RespuestaOrderedChoice(respuestas);
             definirSiguienteVista(respuestaDeUnJugador);
         }

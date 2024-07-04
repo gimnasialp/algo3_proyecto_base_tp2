@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controladores;
 
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Excepciones.PuntajeMaximoSuperadoException;
+import edu.fiuba.algo3.modelo.Excepciones.SinPreguntasDisponiblesException;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Partida;
 import edu.fiuba.algo3.modelo.Respuesta.Respuesta;
@@ -75,15 +76,12 @@ public abstract class ControladorPreguntasJuego {
         try {
             algoHoot.proximaPartida();
 
-        } catch (PuntajeMaximoSuperadoException e) {
+        } catch (PuntajeMaximoSuperadoException| SinPreguntasDisponiblesException e) {
             juegoFinalizado = true;
+            return  juegoFinalizado;
         }
-
-        if (juegoFinalizado) {
-            return true;
-        } else {
-            return false;
-        }
+        return  juegoFinalizado;
     }
 
 }
+

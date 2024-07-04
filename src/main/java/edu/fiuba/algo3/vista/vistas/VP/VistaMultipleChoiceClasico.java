@@ -74,6 +74,7 @@ public class VistaMultipleChoiceClasico extends StackPane {
         Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
         Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
+
         tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
         tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
         vboxContenido.getChildren().addAll(tipoPreguntaActual);
@@ -95,7 +96,7 @@ public class VistaMultipleChoiceClasico extends StackPane {
 
         GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250, 350);
         grillaOpciones.setAlignment(Pos.CENTER);
-        VBox cajaOpciones = new VBox(20);
+        VBox cajaOpciones = new VBox(10);
 
 
         for (int i = 0; i < opciones.size(); i++) {
@@ -104,7 +105,7 @@ public class VistaMultipleChoiceClasico extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones, 0, 1);
+        grillaOpciones.add(cajaOpciones, 0, 0);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }

@@ -16,8 +16,4 @@ public class LimiteFinalPreguntas extends Limite {
         return super.obtenerPreguntaSgte();
     }
 
-
-    public int indicarLimiteAlcanzado() {
-        return 0;
-    }
 }
