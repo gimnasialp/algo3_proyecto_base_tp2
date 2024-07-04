@@ -8,14 +8,15 @@ import java.util.stream.Collectors;
 
 public class MezcladorPreguntasSegunTema implements MezcladorPreguntas {
     private ArrayList<Pregunta> preguntas;
+    private Pregunta proximaPregunta;
 
     public MezcladorPreguntasSegunTema(ArrayList<Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
-    private Pregunta obtenerUnaPreguntaPorPosicion() {
+    private void obtenerUnaPreguntaPorPosicion() {
         Integer idProximaPreguntaProbable = (int) (Math.random() * this.preguntas.size());
-        return this.preguntas.get(idProximaPreguntaProbable);
+        this.proximaPregunta = this.preguntas.get(idProximaPreguntaProbable);
     }
 
     private boolean verificarPreguntasRestantes() {
@@ -26,21 +27,23 @@ public class MezcladorPreguntasSegunTema implements MezcladorPreguntas {
 
     @Override
     public ArrayList<Pregunta> mezclarPreguntas() {
-        Pregunta proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
+        this.obtenerUnaPreguntaPorPosicion();
         ArrayList<Pregunta> preguntasMezcladas = new ArrayList<>();
         preguntasMezcladas.add(proximaPregunta);
-        this.preguntas.remove(proximaPregunta);
-        Pregunta ultimaPregunta = proximaPregunta;
+
+        this.preguntas = (ArrayList<Pregunta>) this.preguntas.stream().filter(pregunta -> !(pregunta.obtenerIdPregunta()==this.proximaPregunta.obtenerIdPregunta())).collect(Collectors.toList());
+
+        String temaUltimaPregunta = proximaPregunta.obtenerTema();
         while (!(this.preguntas.isEmpty())) {
-            proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
+            this.obtenerUnaPreguntaPorPosicion();
             if (!verificarPreguntasRestantes()) {
-                while (proximaPregunta.obtenerTema().equals(ultimaPregunta.obtenerTema())) {
-                    proximaPregunta = this.obtenerUnaPreguntaPorPosicion();
+                while (proximaPregunta.obtenerTema().equals(temaUltimaPregunta)) {
+                    this.obtenerUnaPreguntaPorPosicion();
                 }
             }
             preguntasMezcladas.add(proximaPregunta);
-            this.preguntas.remove(proximaPregunta);
-            ultimaPregunta = proximaPregunta;
+            this.preguntas = (ArrayList<Pregunta>) this.preguntas.stream().filter(pregunta -> !(pregunta.obtenerIdPregunta()==this.proximaPregunta.obtenerIdPregunta())).collect(Collectors.toList());
+            temaUltimaPregunta = proximaPregunta.obtenerTema();
         }
 
         return preguntasMezcladas;

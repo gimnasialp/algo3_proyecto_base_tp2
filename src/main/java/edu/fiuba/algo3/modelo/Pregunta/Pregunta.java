@@ -38,6 +38,9 @@ public abstract class Pregunta {
         return tema;
     }
 
+    public int obtenerIdPregunta() {
+        return idPregunta;
+    }
 
     public String obtenerTextoRepuesta() {
         return texto;
