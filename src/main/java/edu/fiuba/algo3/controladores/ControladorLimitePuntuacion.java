@@ -35,7 +35,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
         this.comboBoxLimitesPuntuacion = comboBoxLimitesPuntuacion;
     }
 
-    private void crearAlgohoot(String limitePuntuacion) {
+    private void crearAlgohoot(int limitePuntuacion) {
 
         HashMap<String, Parser> tiposPreguntas = new HashMap<>();
         tiposPreguntas.put("verdadero falso simple", new VerdaderoFalsoClasicoParser());
@@ -55,7 +55,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
 
         //Limite limite = new LimitadorPorPuntos(preguntas);
         Limite limite = new LimitadorPorPuntos(preguntasMezcladas);
-        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas, Integer.parseInt(limitePuntuacion));
+        Limite limiteDecorator = new PuntosDefinidosDecorator(limite, preguntas, limitePuntuacion);
         AlgoHoot algoHoot = new AlgoHoot(jugadores, limiteDecorator);
         algoHoot.proximaPartida();
         algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
@@ -66,6 +66,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         String seleccion = comboBoxLimitesPuntuacion.getValue();
+        int limite = Integer.parseInt(seleccion);
         if (seleccion == null || seleccion.isEmpty()) {
             Alert limitePuntuacionSinSeleccionar = new Alert(Alert.AlertType.ERROR);
             limitePuntuacionSinSeleccionar.setHeaderText("No selecciono un limite de puntacion ");
@@ -73,7 +74,7 @@ public class ControladorLimitePuntuacion implements EventHandler<ActionEvent> {
             limitePuntuacionSinSeleccionar.show();
 
         } else {
-            crearAlgohoot(seleccion);
+            crearAlgohoot(limite);
             pantallaPrincipal.setCentro(new VistaGeneralPartida(stage, pantallaPrincipal, algoHoot));
 
         }

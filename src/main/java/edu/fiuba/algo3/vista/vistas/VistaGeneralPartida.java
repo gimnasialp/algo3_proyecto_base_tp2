@@ -30,14 +30,12 @@ public class VistaGeneralPartida extends StackPane {
     private Partida partidaActual;
 
     public VistaGeneralPartida(Stage stage, PantallaPrincipal pantallaPrincipal, AlgoHoot algoHoot) {
-
         configurarFondo();
         this.algoHoot = algoHoot;
         this.partidaActual = algoHoot.obtenerPartidaActiva();
-
         GrillaGeneralPartida grilla = new GrillaGeneralPartida(ANCHO_VENTANA, ALTO_VENTANA);
         VBox cajaPregunta = crearContenedorPregunta(algoHoot.obtenerPartidaActiva().obtenerPreguntaActual());
-        HBox contenedorJugadores = crearContenedorJugadores(algoHoot.obtenerPartidaActiva().getJugadores());
+        HBox contenedorJugadores = crearContenedorJugadores(algoHoot.consultarJugadores());
         VBox botonConfirmado = crearBotonConfirmado(stage, pantallaPrincipal);
 
         grilla.add(cajaPregunta, 0, 0);
@@ -122,15 +120,19 @@ public class VistaGeneralPartida extends StackPane {
     }
 
     private Label crearLabelSegunLimite() {
-        Label limiteAsignadoJuego;
-
-        if (true) {
-            limiteAsignadoJuego = new Label("Quedan " + 1 + " de " + 25 + " preguntas Totales");
+        Label limiteAsignadoJuego = new Label("ACAdebe ir los limites");
+        /*
+        if (false) {
+            //por preguntas
+            limiteAsignadoJuego = new Label("Quedan " + algoHoot.consultarLimite() +
+                    " de " +
+                     + algoHoot.consultarCantidadDePartidasActuales()+ " preguntas Totales");
         } else {
-            limiteAsignadoJuego = new Label("Quedan " + 1 + " de " + 30 + " puntos Totales");
+            limiteAsignadoJuego = new Label("Quedan " +
+                    partidaActual.jugadorConMasPuntos().getPuntaje().obtenerPuntos() + " de " + algoHoot.consultarLimite() + " puntos Totales");
         }
         limiteAsignadoJuego.setFont(Font.font(Estilos.FUENTE, 30));
-        limiteAsignadoJuego.setTextFill(Color.web(Estilos.AMARILLO));
+        limiteAsignadoJuego.setTextFill(Color.web(Estilos.AMARILLO));*/
         return limiteAsignadoJuego;
 
     }

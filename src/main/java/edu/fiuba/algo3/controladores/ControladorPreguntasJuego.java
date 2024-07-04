@@ -34,11 +34,11 @@ public abstract class ControladorPreguntasJuego {
         System.out.println(respuestaDeUnJugador);
         sumarPuntos(respuestaDeUnJugador);
         if (ultimoJugadorRespuesta()) {
-            if (juegoTermino()) {
+            juegoTermino();
+            if (juegoFinalizado) {
                 Jugador ganador = algoHoot.obtenerPartidaActiva().jugadorConMasPuntos();
                 contenedorPrincipal.setCentro(new VistaGanador(stage, contenedorPrincipal, ganador));
             } else {
-
                 algoHoot.obtenerPartidaActiva().avanzoConSiguienteJugador();
                 contenedorPrincipal.setCentro(new VistaGeneralPartida(stage, contenedorPrincipal, algoHoot));
             }
@@ -55,7 +55,7 @@ public abstract class ControladorPreguntasJuego {
     }
 
     private boolean ultimoJugadorRespuesta() {
-        List<Jugador> jugadores = partidaActual.getJugadores();
+        List<Jugador> jugadores = algoHoot.consultarJugadores();
         Jugador jugadorActual = partidaActual.obtenerJugadorActivo();
 
         // Verificar si la lista de jugadores no está vacía
@@ -76,11 +76,10 @@ public abstract class ControladorPreguntasJuego {
         try {
             algoHoot.proximaPartida();
 
-        } catch (PuntajeMaximoSuperadoException| SinPreguntasDisponiblesException e) {
+        } catch (PuntajeMaximoSuperadoException | SinPreguntasDisponiblesException e) {
             juegoFinalizado = true;
-            return  juegoFinalizado;
         }
-        return  juegoFinalizado;
+        return juegoFinalizado;
     }
 
 }

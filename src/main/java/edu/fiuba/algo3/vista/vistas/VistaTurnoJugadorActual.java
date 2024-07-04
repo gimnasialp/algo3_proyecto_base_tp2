@@ -53,15 +53,15 @@ public class VistaTurnoJugadorActual extends StackPane {
 
         StackPane contenedor = new StackPane();
         contenedor.setPadding(new Insets(15)); // Ajusta el padding según sea necesario
-        contenedor.setStyle("-fx-background-color: #245897; -fx-background-radius: 5px;");
+        contenedor.setStyle("-fx-background-color: #9370DB; -fx-background-radius: 5px;");
 
         VBox vboxContenido = new VBox(15); // HBox para alinear el label y el textfield horizontalmente
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
 
-        Label jugadorActualTurno = new Label("TURNO JUGADOR: " + jugador.getNombre());
+        Label jugadorActualTurno = new Label("Turno de " + jugador.getNombre());
         jugadorActualTurno.setFont(Font.font(Estilos.FUENTE, 50));
-        jugadorActualTurno.setTextFill(Color.web(Estilos.ROJO));
+        jugadorActualTurno.setTextFill(Color.web(Estilos.NEGRO));
 
 
         vboxContenido.getChildren().addAll(jugadorActualTurno);
