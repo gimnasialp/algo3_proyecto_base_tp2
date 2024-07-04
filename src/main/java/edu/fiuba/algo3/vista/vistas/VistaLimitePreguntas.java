@@ -79,7 +79,7 @@ public class VistaLimitePreguntas extends StackPane {
         labelCantidadPreguntas.setFont(Font.font(Estilos.FUENTE, 30));
         labelCantidadPreguntas.setTextFill(Color.web(Estilos.AMARILLO));
 
-        comboBoxCantidadPreguntas.getItems().addAll("10", "15", "20", "25", "30");
+        comboBoxCantidadPreguntas.getItems().addAll("10", "15", "20", "25");
         comboBoxCantidadPreguntas.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
 
         vboxContenido.getChildren().addAll(labelCantidadPreguntas, comboBoxCantidadPreguntas);

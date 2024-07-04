@@ -80,7 +80,7 @@ public class VistaLimitePuntacion extends StackPane {
         labelCantidadPuntos.setFont(Font.font(Estilos.FUENTE, 30));
         labelCantidadPuntos.setTextFill(Color.web(Estilos.AMARILLO));
 
-        comboBoxCantidadPuntos.getItems().addAll("10", "15", "20", "25", "30");
+        comboBoxCantidadPuntos.getItems().addAll("5", "10", "15", "20", "25");
         comboBoxCantidadPuntos.setStyle("-fx-font-size: 20px; -fx-pref-width: 200px;");
         cajaPregunta.getChildren().add(comboBoxCantidadPuntos);
 
