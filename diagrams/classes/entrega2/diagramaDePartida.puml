@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de Clase de Partida
+skinparam monochrome true
+hide circle
+skinparam classAttributeIconSize 0
+class Paritda{
+    -direccionListaJugador:int
+    -jugadores:List<Jugador>
+    +Partida(Pregunta preguntaActual, List<Jugador> jugadores)
+    +avanzoConSiguienteJugador():void
+    +nuevoJugador():Jugador
+    +obtenerJugadorActivo():Jugador
+    +agregarRespuesta(Respuesta respondeJugador):void
+    +actualizarPartidaEnJugadores():void
+    +evaluarRespuestasDePartidaActual():void
+    +analisisModificadores() :void
+    +analisisPuntos():void
+    +comprobarExclusividad():void
+    +comprobarAnulador():void
+    +comprobacionComodines(Modificador modificadorState):void
+    +analisisMultiplicadores():void
+    +jugadorConMasPuntos():Jugador
+    +activaMultiplicador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva):void
+    +resetearComodines(List<Jugador> jugadores):void
+    +obtenerPreguntaActual():Pregunta
+    +activaModificador(Modificador modificador, Jugador jugadorDePartidaActiva):void
+    +getJugadores():List<Jugador>
+
+}
+interface Respuesta{
+    +comparar(Respuesta respuesta):boolean;
+
+}
+
+class Jugador{
+    -nombre:String
+    +Jugador(String nombre)
+    +obtenerRespuesta():Respuesta
+    +obtenerModificador():Modificacdor;
+    +asignarPUntos():void
+    +obtenerPuntaje():int
+
+}
+class Resultado{
+    -puntosRonda:ArrayList<Integer>
+    +agregarPuntaje(int puntos):void
+    +usarModificador(Modificador modificador, int jugadorPosicion):void;
+    +obtenerPuntosDeJugador(int posicionJugador):int;
+    +asignarPuntosALosJugador(ArrayList<jugador> jugadores):void
+}
+abstract class Pregunta{
+    +Pregunta(int idPregunta, String tema, String enunciado,
+    Respuesta respustaCorrecta, ArrayList<String>:opciones)
+    -responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+Paritda -> Jugador
+Paritda o-- Respuesta
+Paritda -up->Resultado
+Paritda -up->Pregunta
+
+@enduml

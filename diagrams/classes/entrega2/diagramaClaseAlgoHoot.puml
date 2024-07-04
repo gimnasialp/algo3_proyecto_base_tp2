@@ -6,7 +6,17 @@ skinparam monochrome true
 hide circle
 skinparam classAttributeIconSize 0
 class AlgoHoot{
+
+    -jugadorActual:Jugador
+    -partidaActual:Partida
+    -numeroPartida:int
+    +AlgoHoot(List<Jugador> jugadores, Limite limite)
     +comenzarPartida():void;
+    +iniciarPartidas():void
+    +proximaPartida():void
+    +comprobarPartidaExistente():void
+    +obtenerPartidaActiva():Partida
+    +obtenerpreguntas():List<Pregunta>
 }
 abstract class Limite{
     -preguntas:List<Pregunta>
@@ -17,27 +27,70 @@ abstract class Limite{
     +getPreguntas():List<Pregunta>;
 }
 
+abstract class Pregunta{
+    +Pregunta(int idPregunta, String tema, String enunciado,
+    Respuesta respustaCorrecta, ArrayList<String>:opciones)
+    -responder(ArrayList<Respuesta>:respuestas):Resultado
+    +mismold(int d):boolean
+}
+class Paritda{
+    -direccionListaJugador:int
+    -jugadores:List<Jugador>
+    +Partida(Pregunta preguntaActual, List<Jugador> jugadores)
+    +avanzoConSiguienteJugador():void
+    +nuevoJugador():Jugador
+    +obtenerJugadorActivo():Jugador
+    +agregarRespuesta(Respuesta respondeJugador):void
+    +actualizarPartidaEnJugadores():void
+    +evaluarRespuestasDePartidaActual():void
+    +analisisModificadores() :void
+    +analisisPuntos():void
+    +comprobarExclusividad():void
+    +comprobarAnulador():void
+    +comprobacionComodines(Modificador modificadorState):void
+    +analisisMultiplicadores():void
+    +jugadorConMasPuntos():Jugador
+    +activaMultiplicador(Multiplicador multiplicador, Jugador jugadorDePartidaActiva):void
+    +resetearComodines(List<Jugador> jugadores):void
+    +obtenerPreguntaActual():Pregunta
+    +activaModificador(Modificador modificador, Jugador jugadorDePartidaActiva):void
+    +getJugadores():List<Jugador>
 
-class Lector{
-    +generarPreguntas():ArrayList<Pregunta>
 }
 class Jugador{
     -nombre:String
+    -puntaje:Puntaje
+    -modificadores: ArrayList<Modificador>
+    -modificadorActual:Modificador
     +Jugador(String nombre)
-    +obtenerRespuesta():Respuesta
-    +obtenerModificador():Modificacdor;
-    +asignarPUntos():void
-    +obtenerPuntaje():int
+    +tieneMasPuntosQue(Jugador otroJugador):boolean
+    +tieneMenosOLosMismosPuntosQue(int otrosPuntos):boolean
+    +getNombre():String
+    +getPuntaje():Puntaje
+    +aplicarNuevoMultiplicador(Multiplicador multiplicador):void
+    +obtenerMultiplicadorActual():Multiplicador;
+    +obtenerMultiplicador():Multiplicador
+    +obtenerMultiplicadoresDisponibles():List<Multiplicador>
+    +deshabilitarMultiplicador(Multiplicador modificador):void
+    +multiplicadorFueUtilizado(Multiplicador multiplicador):boolean
+    +resetearComodines():void
+    +aplicarNuevoModificador(Modificador modificador):void
+    +actualizarUso(Modificador modificador):void
+    +habilitado(Modificador modificador):boolean
+    +asignarPuntos():void
 
 }
-class Ronda{
-    +Ronda(Pregunta pregunta, ArrayList<Jugador> jugadores);
-    +jugarRonda():void
+
+class Puntaje{
+    -puntaje:int;
+     +asignarPuntos(int puntos):void
+     +obtenerPuntos():int
 }
 
+AlgoHoot -left-> Limite
+AlgoHoot o-- Jugador
+AlgoHoot o-- Paritda
+AlgoHoot -right-> Pregunta
+Jugador -left->Puntaje
 
-AlgoHoot .left.> Limite
-AlgoHoot ..> Jugador
-AlgoHoot .right.> Lector
-AlgoHoot .up.> Ronda
 @enduml

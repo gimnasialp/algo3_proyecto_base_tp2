@@ -4,44 +4,64 @@ title Diagrama de Clase de Modificacdor
 skinparam monochrome true
 hide circle
 skinparam classAttributeIconSize 0
-interface Modificacdor{
+abstract class Modificacdor{
+    -limiteParaUso:int
+    -vecesUsado:int
+    +Modificador(int vecesUsado, int limiteParaUso)
+    +actualizarCantidadDeUso():void
+    +aplicar(ArrayList<Integer> puntajeRonda,
+     ArrayList<Jugador> jugadores):void
+    +habilitado():boolean
+
+}
+class AnuladorDePuntaje{
+    +AnuladorDePuntaje()
+    +equals(Object other):boolean
     +aplicar(ArrayList<Interger> puntajeRonda,
     int jugadorPosicion):void
+
 }
-class Anulador{
-    +aplicar(ArrayList<Interger> puntajeRonda,
-    int jugadorPosicion):void
+class ExclusividadDePuntaje{
+    +ExclusividadDePuntaje()
+    +equals(Object other):boolean
+    +aplicar(ArrayList<Integer> puntajeRonda,
+    ArrayList<Jugador> jugadores):void
+    +aplicarEfectoExclusividad(ArrayList<Integer> puntajeRonda, int factorEfecto):void
 }
-class Exclusividad{
-    +aplicar(ArrayList<Interger> puntajeRonda,
-    int jugadorPosicion):void
+
+class  ModificadorNulo {
+    +ModificadorNulo()
+    +equals(Object other):boolean
+    +aplicar(ArrayList<Integer> puntajeRonda, ArrayList<Jugador> jugadores)
 }
-class MultiplicadorPorDos{
-    +aplicar(ArrayList<Interger> puntajeRonda,
-     int jugadorPosicion):void
-}
-class MultiplicadorPorTres{
-    +aplicar(ArrayList<Interger> puntajeRonda,
-     int jugadorPosicion):void
-}
-class Puntaje{
- -puntos:int
- +asignarPUntos(int puntos):void
- +obtenerPuntaje:int
-}
+
 class Jugador{
     -nombre:String
+    -puntaje:Puntaje
+    -multiplicadorActual:Multiplicador
+    -modificadorActual:Modificador
     +Jugador(String nombre)
-    +obtenerRespuesta():Respuesta
-    +obtenerModificador():Modificacdor;
-    +asignarPUntos():void
-    +obtenerPuntaje():int
+    +tieneMasPuntosQue(Jugador otroJugador):boolean
+    +tieneMenosOLosMismosPuntosQue(int otrosPuntos):boolean
+    +getNombre():String
+    +getPuntaje():Puntaje
+    +aplicarNuevoMultiplicador(Multiplicador multiplicador):void
+    +obtenerMultiplicadorActual():Multiplicador;
+    +obtenerMultiplicador():Multiplicador
+    +obtenerMultiplicadoresDisponibles():List<Multiplicador>
+    +deshabilitarMultiplicador(Multiplicador modificador):void
+    +multiplicadorFueUtilizado(Multiplicador multiplicador):boolean
+    +resetearComodines():void
+    +aplicarNuevoModificador(Modificador modificador):void
+    +actualizarUso(Modificador modificador):void
+    +habilitado(Modificador modificador):boolean
+    +asignarPuntos():void
+
 }
-Modificacdor <|.left. Anulador
-Modificacdor <|.. Exclusividad
-Modificacdor <|.. MultiplicadorPorDos
-Modificacdor <|.right. MultiplicadorPorTres
-Jugador -> Puntaje
-Jugador ..> Modificacdor
+Modificacdor <|-left- AnuladorDePuntaje
+Modificacdor <|-- ExclusividadDePuntaje
+Modificacdor <|-- ModificadorNulo
+Jugador o-- Modificacdor
+
 
 @enduml

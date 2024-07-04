@@ -6,10 +6,24 @@ skinparam monochrome true
 hide circle
 skinparam classAttributeIconSize 0
 abstract class Pregunta{
-    +Pregunta(int idPregunta, String tema, String enunciado,
-    Respuesta respustaCorrecta, ArrayList<String>:opciones)
-    -responder(ArrayList<Respuesta>:respuestas):Resultado
+    -idPregunta
+    -tema:String
+    -texto:String
+    -enunciado:String
+    -opciones:ArrayList<String>
+    -respuestaCorrecta:Respuesta
+    -resultado:Resultado
+    +Pregunta(int idPregunta, String tema, String enunciado, Respuesta respuestaCorrecta, ArrayList<String> opciones,
+                            String texto)
+    +responder(ArrayList<Respuesta>:respuestas):Resultado
     +mismold(int d):boolean
+    +obtenerTema():String
+    +obtenerIdPregunta():int
+    +obtenerTextoRepuesta():String
+    +obtenerEnunciado():String
+    +obtenerOpciones():ArrayList<String>
+    +obtenerTipoPregunta():String
+    +equals(Object other):boolean
 }
 class PreguntaMultipleChoiceConPenalidad{
     +PreguntaMultipleChoiceConPenalidad(int idPregunta, String tema, String enunciado,

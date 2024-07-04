@@ -1,9 +1,15 @@
 @startuml
 'https://plantuml.com/class-diagram
+
 title Diagrama de Paquetes
-skinparam monochrome true
-hide circle
-skinparam classAttributeIconSize 0
+package Controlador{
+allowmixing
+    class ControladorIniciarJuego{}
+    class ControladorGenerarPartida{}
+    class ControladorDeFinalizarJuego{}
+    class ControladorLimitePreguntas{}
+
+}
 package Modelo {
         package Excepciones
         package Lector
@@ -19,9 +25,33 @@ package Vista{
     package utils
     package vistas
 }
-package Controladores{
-}
+
 Vista --> Modelo
-Controladores -->Vista
-Controladores --> Modelo
+Controlador -->Vista
+Controlador --> Modelo
+@enduml
+@startuml
+'https://plantuml.com/class-diagram
+
+title Diagrama de Paquetes
+
+package Modelo {
+        package Excepciones
+        package Lector
+        package Limite
+        package Modificador
+        package Partida
+        package Pregunta
+        package Respuesta
+}
+package Vista{
+    package botones
+    package mensajes
+    package utils
+    package vistas
+}
+
+Vista --> Modelo
+Controlador -->Vista
+Controlador --> Modelo
 @enduml

@@ -1,5 +1,5 @@
 @startuml
-title testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuego
+title testJuegoLimiteTotalPreguntasConDosJugadoresHastaTerminarJuegoDespuesDeResponderLaPreguntaNOPudenJUgarOtraPartida
 skinparam monochrome true
 hide footbox
 participant TestCase
@@ -46,15 +46,7 @@ end
 "partidaActiva:Patida" --> algoHoot: jugador2
 algoHoot -> jugador2: responderPregunta()
 jugador2 -> "partidaActiva:Patida":agregarRespuesta(new RespuestaVerdaderoFalso(2))
-TestCase ->algoHoot: obtenerJugadorConMasPunataje()
-algoHoot -> "partidaActiva:Patida":obtenerJugadorConMasPunataje()
-loop por cada jugador busco el que tiene mayor puntaje
-"partidaActiva:Patida" -> "partidaActiva:Patida":jugador.obtnerPuntaje() <= jugadores.get(0).obtnerPuntaje()
-"partidaActiva:Patida" -> jugador1:obtenrPuntaje()
-"partidaActiva:Patida" <-- jugador1:puntajeJugador1
-"partidaActiva:Patida" -> jugador2:obtenrPuntaje()
-"partidaActiva:Patida" <-- jugador2:puntajeJugador2
-end
-"partidaActiva:Patida" --> algoHoot:jugador1
-algoHoot --> TestCase :jugador1
+TestCase -> algoHoot : proximaPartida()
+create "SinPreguntasDisponiblesException"
+algoHoot -> "SinPreguntasDisponiblesException":throw
 @endluml
