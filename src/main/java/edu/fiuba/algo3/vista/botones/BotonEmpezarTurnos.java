@@ -23,6 +23,6 @@ public class BotonEmpezarTurnos extends Button {
 
         super.setOnAction(controlador);
         super.setOnMouseEntered(new ControladorActivarBoton(this, Estilos.AMARILLO));
-        super.setOnMouseExited(new ControladorDesactivarBoton(this, Estilos.VERDE));
+        super.setOnMouseExited(new ControladorDesactivarBoton(this, Estilos.VIOLETA));
     }
 }

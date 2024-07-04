@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.vista.vistas.VP;
-
 import edu.fiuba.algo3.controladores.ControladorEnviarOrderedChoice;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
@@ -12,6 +11,7 @@ import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -24,7 +24,6 @@ public class VistaOrderedChoice extends StackPane {
     private static final String IMAGEN_RUTA = "/src/main/java/edu/fiuba/algo3/resources/imagenes/Fondo2.jpg";
     private static final double ANCHO_VENTANA = 1280;
     private static final double ALTO_VENTANA = 720;
-    private static final double ESPACIADO_CENTRAL = 40;
     private Partida partida;
     private PreguntaOrderedChoice preguntaOrderedChoice;
 
@@ -37,7 +36,7 @@ public class VistaOrderedChoice extends StackPane {
         ArrayList<String> opciones = preguntaOrderedChoice.obtenerOpciones();
         GrillaBasePreguntas grilla = new GrillaBasePreguntas(ANCHO_VENTANA, ALTO_VENTANA);
 
-        VBox cajaPregunta = new VBox(15);
+        VBox cajaPregunta = new VBox(30);
         cajaPregunta.setPrefWidth(600);
         cajaPregunta.setAlignment(Pos.CENTER);
 
@@ -57,14 +56,14 @@ public class VistaOrderedChoice extends StackPane {
     private VBox armarPregunta(VBox cajaPregunta, ControladorEnviarOrderedChoice controlador, ArrayList<String> opciones, String textoPregunta) {
         GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(220, 380);
         grillaOpciones.setAlignment(Pos.CENTER);
-
         VBox cajaOpciones = new VBox(5);
 
         for (String opcion : opciones) {
             SpinnerOrderedChoice opcionOrdenable = new SpinnerOrderedChoice(opcion, opciones.size(), controlador);
-            opcionOrdenable.setAlignment(Pos.CENTER);
+            opcionOrdenable.setAlignment(Pos.CENTER_LEFT);
             cajaOpciones.getChildren().add(opcionOrdenable);
         }
+        cajaOpciones.setPadding(new Insets(20));
 
         StackPane contenedor = new StackPane();
         contenedor.setPadding(new Insets(20)); // Ajusta el padding según sea necesario
@@ -73,6 +72,7 @@ public class VistaOrderedChoice extends StackPane {
         cajaOpciones.setAlignment(Pos.TOP_LEFT);
         grillaOpciones.add(cajaOpciones, 1, 0);
         MensajePregunta mensajePregunta = new MensajePregunta(textoPregunta);
+        //Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
 
         Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
@@ -81,7 +81,7 @@ public class VistaOrderedChoice extends StackPane {
         cajaPregunta.getChildren().add(contenedor);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaOpciones;
-        /**/
+
     }
 
     private void configurarFondo() {
@@ -97,3 +97,4 @@ public class VistaOrderedChoice extends StackPane {
 
 
 }
+

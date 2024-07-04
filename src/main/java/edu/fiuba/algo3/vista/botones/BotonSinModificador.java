@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 public class BotonSinModificador extends Button {
 
     public BotonSinModificador(Modificador modificador) {
-        super.setText("Sin Modificador disponible");
+        super.setText("Sin Exclusividad disponible");
         super.setFont(Font.font(Estilos.FUENTE, 15));
         super.setPadding(new Insets(5));
         super.setTextFill(Color.BLACK);

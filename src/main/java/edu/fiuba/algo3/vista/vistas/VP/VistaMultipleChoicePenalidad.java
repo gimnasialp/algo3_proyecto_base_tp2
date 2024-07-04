@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista.vistas.VP;
 
-import edu.fiuba.algo3.Estilos;
 import edu.fiuba.algo3.controladores.ControladorEnviarMultipleChoicePenalidad;
 import edu.fiuba.algo3.modelo.AlgoHoot;
 import edu.fiuba.algo3.modelo.Partida.Partida;
@@ -13,12 +12,9 @@ import edu.fiuba.algo3.vista.mensajes.MensajePregunta;
 import edu.fiuba.algo3.vista.vistas.GrillaOpcionesPregunta;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -44,7 +40,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
         ControladorEnviarMultipleChoicePenalidad controladorRespondioUsuario = new ControladorEnviarMultipleChoicePenalidad(stagePrincipal, pantallaPrincipal, algoHoot);
 
 
-        VBox cajaOpciones = armarOpciones(cajaPregunta, partida.obtenerPreguntaActual(), controladorRespondioUsuario);
+        armarOpciones(cajaPregunta, partida.obtenerPreguntaActual(), controladorRespondioUsuario);
 
 
         VBox cajaInferior = new VBox();
@@ -72,14 +68,11 @@ public class VistaMultipleChoicePenalidad extends StackPane {
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
         MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
-        Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
 
         Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
 
-        tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
-        tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
-        vboxContenido.getChildren().addAll(tipoPreguntaActual);
+        vboxContenido.getChildren().addAll(mensajePregunta);
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);
@@ -98,7 +91,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
 
         GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250, 350);
         grillaOpciones.setAlignment(Pos.CENTER);
-        VBox cajaOpciones = new VBox(20);
+        VBox cajaOpciones = new VBox(10);
 
 
         for (int i = 0; i < opciones.size(); i++) {
@@ -107,7 +100,7 @@ public class VistaMultipleChoicePenalidad extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones, 0, 1);
+        grillaOpciones.add(cajaOpciones, 0, 0);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }

@@ -60,6 +60,8 @@ public class VistaGeneralPartida extends StackPane {
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
 
+        Label limiteAsignadoJuego = crearLabelSegunLimite();
+
         Label tipoPreguntaActual = new Label("TIPO DE PREGUNTA: " + preguntaActual.ObtenerTipoPregunta());
         tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 30));
         tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
@@ -69,7 +71,7 @@ public class VistaGeneralPartida extends StackPane {
         temaPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
 
 
-        vboxContenido.getChildren().addAll(tipoPreguntaActual, temaPreguntaActual);
+        vboxContenido.getChildren().addAll(limiteAsignadoJuego,tipoPreguntaActual, temaPreguntaActual);
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);
@@ -119,5 +121,18 @@ public class VistaGeneralPartida extends StackPane {
         return botonConfirmado;
     }
 
+    private Label crearLabelSegunLimite() {
+        Label limiteAsignadoJuego;
+
+        if (true) {
+            limiteAsignadoJuego = new Label("Quedan " + 1 + " de " + 25 + " preguntas Totales");
+        } else {
+            limiteAsignadoJuego = new Label("Quedan " + 1 + " de " + 30 + " puntos Totales");
+        }
+        limiteAsignadoJuego.setFont(Font.font(Estilos.FUENTE, 30));
+        limiteAsignadoJuego.setTextFill(Color.web(Estilos.AMARILLO));
+        return limiteAsignadoJuego;
+
+    }
 
 }

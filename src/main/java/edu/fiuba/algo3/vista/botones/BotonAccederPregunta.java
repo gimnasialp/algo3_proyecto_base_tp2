@@ -20,9 +20,9 @@ public class BotonAccederPregunta extends Button {
         super.setText("Ir a la pregunta");
         super.setFont(Font.font(Estilos.FUENTE, 30));
         super.setPadding(new Insets(10));
-        super.setTextFill(Color.BLACK);
-        super.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
-        Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.VERDE, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(0)));
+        super.setTextFill(Color.WHITE);
+        super.setBorder(new Border(new BorderStroke(Color.web(Estilos.GRIS), BorderStrokeStyle.SOLID, Estilos.BORDE_CURVO, Estilos.GROSOR_BORDE)));
+        Background unFondo = new Background(new BackgroundFill(Color.web(Estilos.VIOLETA, Estilos.ALPHA_BOTON_INACTIVO), Estilos.BORDE_CURVO, new Insets(0)));
         super.setBackground(unFondo);
         super.setAlignment(Pos.CENTER);
         super.setOnAction(new ControladorAccederPregunta(stage, pantallaPrincipal, algoHoot));

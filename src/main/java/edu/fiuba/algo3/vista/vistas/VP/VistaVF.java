@@ -57,13 +57,13 @@ public class VistaVF extends StackPane {
         VBox vboxContenido = new VBox(20); // HBox para alinear el label y el textfield horizontalmente
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
+        MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
 
-        Label tipoPreguntaActual = new Label("ENUNCIADO: " + preguntaActual.obtenerEnunciado());
-        Tooltip tooltip = new Tooltip(tipoPreguntaActual.getText());
+        Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
-        tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
-        tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
-        vboxContenido.getChildren().addAll(tipoPreguntaActual);
+
+        contenedor.getChildren().addAll(mensajePregunta);
+        vboxContenido.getChildren().addAll(mensajePregunta);
 
 
         // Añadir HBox interno al contenedor con fondo
@@ -100,7 +100,7 @@ public class VistaVF extends StackPane {
 
         cajaOpciones.getChildren().addAll(botonVerdadero, botonFalso);
         cajaOpciones.setAlignment(Pos.CENTER);
-
+        cajaOpciones.setSpacing(20);
         StackPane contenedor = new StackPane(cajaOpciones);
         contenedor.setAlignment(Pos.CENTER);
 

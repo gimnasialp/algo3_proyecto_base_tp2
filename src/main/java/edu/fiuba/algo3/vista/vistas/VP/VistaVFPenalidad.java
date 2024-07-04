@@ -63,12 +63,13 @@ public class VistaVFPenalidad extends StackPane {
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
 
-        Label tipoPreguntaActual = new Label("ENUNCIADO: " + preguntaActual.obtenerEnunciado());
-        tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
-        tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
-        Tooltip tooltip = new Tooltip(tipoPreguntaActual.getText());
+        MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
+
+        Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
-        vboxContenido.getChildren().addAll(tipoPreguntaActual);
+
+        contenedor.getChildren().addAll(mensajePregunta);
+        vboxContenido.getChildren().addAll(mensajePregunta);
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);

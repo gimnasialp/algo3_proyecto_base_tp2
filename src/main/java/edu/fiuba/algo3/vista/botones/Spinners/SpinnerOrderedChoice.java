@@ -45,7 +45,7 @@ public class SpinnerOrderedChoice extends HBox {
         this.label = label;
         this.spinner = spinner;
         super.setAlignment(Pos.CENTER);
-        super.setSpacing(2);
+        super.setSpacing(5);
         super.getChildren().addAll(spinner, label);
     }
 

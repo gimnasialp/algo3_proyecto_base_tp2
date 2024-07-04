@@ -70,12 +70,11 @@ public class VistaMultipleChoiceParcial extends StackPane {
         vboxContenido.setAlignment(Pos.CENTER); // Alinear al centro
         vboxContenido.setPadding(new Insets(10));
         MensajePregunta mensajePregunta = new MensajePregunta(preguntaActual.obtenerEnunciado());
-        Label tipoPreguntaActual = new Label("ENUNCIADO: " + mensajePregunta.getText());
+
         Tooltip tooltip = new Tooltip(mensajePregunta.getText());
         Tooltip.install(this, tooltip);
-        tipoPreguntaActual.setFont(Font.font(Estilos.FUENTE, 25));
-        tipoPreguntaActual.setTextFill(Color.web(Estilos.AMARILLO));
-        vboxContenido.getChildren().addAll(tipoPreguntaActual);
+
+        vboxContenido.getChildren().addAll(mensajePregunta);
 
         // Añadir HBox interno al contenedor con fondo
         contenedor.getChildren().add(vboxContenido);
@@ -94,7 +93,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
 
         GrillaOpcionesPregunta grillaOpciones = new GrillaOpcionesPregunta(250, 350);
         grillaOpciones.setAlignment(Pos.CENTER);
-        VBox cajaOpciones = new VBox(20);
+        VBox cajaOpciones = new VBox(10);
 
         for (int i = 0; i < opciones.size(); i++) {
             String opcion = opciones.get(i);
@@ -102,7 +101,7 @@ public class VistaMultipleChoiceParcial extends StackPane {
             cajaOpciones.getChildren().add(boton);
         }
 
-        grillaOpciones.add(cajaOpciones, 1, 0);
+        grillaOpciones.add(cajaOpciones, 0, 0);
         cajaPregunta.getChildren().add(grillaOpciones);
         return cajaPregunta;
     }
